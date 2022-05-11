@@ -6,6 +6,7 @@
 #include "EventListener/EventListener.hpp"
 #include "Logger/Logger.hpp"
 #include "Object/Object.hpp"
-#include "Vector/Vector.hpp"
+#include "Point/Point.hpp"
+#include "Vector/Vector2D.hpp"
 
 #endif
