@@ -9,7 +9,7 @@ namespace JirungEngine {
         public: static bool show_log;
 
     public:
-        static void log(util::str_t str);
+        static void log(Util::str_t str);
     };
 }
 

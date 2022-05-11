@@ -3,10 +3,10 @@
 using namespace Util;
 
 
-void util::print(str_t str) {
+void Util::print(str_t str) {
     printf("%s", str.c_str());
 }
 
-void util::println(str_t str) {
+void Util::println(str_t str) {
     printf("%s\n", str.c_str());
 }
