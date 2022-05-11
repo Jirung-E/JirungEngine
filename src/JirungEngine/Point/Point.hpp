@@ -3,8 +3,8 @@
 
 namespace JirungEngine {
     class Point {
-        private: int x;
-        private: int y;
+        public: int x;
+        public: int y;
 
     public:
         Point();

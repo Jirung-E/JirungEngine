@@ -3,8 +3,8 @@
 
 namespace JirungEngine {
     class Vector2D {
-        private: int x;
-        private: int y;
+        public: int x;
+        public: int y;
 
     public:
         Vector2D();
