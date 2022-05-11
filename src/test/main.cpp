@@ -6,7 +6,14 @@ using namespace JirungEngine;
 using namespace Util;
 
 
+void test_Vector2D();
+
 int main() {
+    
+}
+
+
+void test_Vector2D() {
     Vector2D v1 { 10, 5 };
     Vector2D v2 { v1 + Vector2D { 5, 5 } };
     Vector2D v3 = v1;
