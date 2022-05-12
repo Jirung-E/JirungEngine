@@ -2,7 +2,7 @@
 #define __Object_hpp__
 
 #include "../Point/Point.hpp"
-#include "../BoxCollider/BoxCollider.hpp"
+#include "../Collider/BoxCollider/BoxCollider.hpp"
 
 #include "../../Util/UtilType.hpp"
 
@@ -21,7 +21,7 @@ namespace JirungEngine {
 
     public:
         Object(std::string id, const Object* parent_object = nullptr);
-        Object(std::string id, const Point& position = Position { 0, 0 }, const Object* parent_object = nullptr);
+        Object(std::string id, const Point& position = Position { 0, 0, 0 }, const Object* parent_object = nullptr);
         ~Object();
 
         Object* getParent();

@@ -3,7 +3,7 @@
 using namespace JirungEngine;
 
 
-BoxCollider::BoxCollider() : top_left { 0, 0 }, buttom_right { 0, 0 } {
+BoxCollider::BoxCollider() : top_left { 0, 0, 0 }, buttom_right { 0, 0, 0 } {
 
 }
 
