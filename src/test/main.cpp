@@ -7,10 +7,17 @@ using namespace Util;
 
 
 void test_Vector2D();
+void test_Canvas();
 
 int main() {
-    test_Vector2D();
+    //test_Vector2D();
+    test_Canvas();
 }
+
+
+
+
+
 
 
 void test_Vector2D() {
@@ -29,4 +36,10 @@ void test_Vector2D() {
     printf("v4: <%d, %d>\n", v4.x, v4.y);
     printf("v5: <%d, %d>\n", v5.x, v5.y);
     println(to_string(v1*v5));
+}
+
+void test_Canvas() {
+    Canvas canvas;
+    canvas.draw("Hello", 0, 0);
+    println(canvas.getByString());
 }
