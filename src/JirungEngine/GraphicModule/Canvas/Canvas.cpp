@@ -18,7 +18,7 @@ Canvas::~Canvas() {
 }
 
 
-std::string Canvas::getByString() const {
+string Canvas::getByString() const {
     string str_canvas = "";
     for(int i=0; i<height_max; ++i) {
         for(int k=0; k<width_max; ++k) {
@@ -30,8 +30,8 @@ std::string Canvas::getByString() const {
     return str_canvas;
 }
 
-void Canvas::draw(std::string content, int pos_x, int pos_y, bool draw_empty_char) {
-    if(pos_x >= width_max || pos_y >= height_max) {
+void Canvas::draw(string content, int pos_x, int pos_y, bool draw_empty_char) {
+    if(pos_x >= static_cast<int>(width_max) || pos_y >= static_cast<int>(height_max)) {
         return;
     }
 
@@ -39,7 +39,11 @@ void Canvas::draw(std::string content, int pos_x, int pos_y, bool draw_empty_cha
     int cursur_y = pos_y;
 
     for(int i=0; i<content.length(); ++i) {
-        if(cursur_y < 0 || cursur_x < 0) {
+        if(cursur_y < 0) {
+            continue;
+        }
+        if(cursur_x < 0) {
+            cursur_x++;
             continue;
         }
         if(cursur_y >= height_max || cursur_x >= width_max) {
