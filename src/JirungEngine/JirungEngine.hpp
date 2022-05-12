@@ -3,7 +3,8 @@
 
 #include "Collider/Collider.hpp"
 #include "Collider/BoxCollider.hpp"
-#include "Canvas/Canvas.hpp"
+#include "GraphicModule/Canvas/Canvas.hpp"
+#include "GraphicModule/Pixel/Pixel.hpp"
 #include "EventListener/EventListener.hpp"
 #include "Logger/Logger.hpp"
 #include "Object/Object.hpp"
