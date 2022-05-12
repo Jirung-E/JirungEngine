@@ -9,7 +9,7 @@ Object::Object(string id, const Object* parent_object) : id { id }, position { 0
 }
 
 Object::Object(string id, const Point& position, const Object* parent_object) : id { id }, position { position }, box_collider { nullptr }, parent_object { parent_object } {
-
+    object_id_list.push_back(id);
 }
 
 Object::~Object() {

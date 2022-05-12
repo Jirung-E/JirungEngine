@@ -20,8 +20,8 @@ namespace JirungEngine {
         private: static std::list<std::string> object_id_list;
 
     public:
-        Object(std::string id, const Object* parent_object = nullptr);
-        Object(std::string id, const Point& position = Position { 0, 0, 0 }, const Object* parent_object = nullptr);
+        Object(std::string id, Object* parent_object = nullptr);
+        Object(std::string id, const Point& position = Point { 0, 0, 0 }, Object* parent_object = nullptr);
         ~Object();
 
         Object* getParent();
