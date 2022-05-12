@@ -41,5 +41,9 @@ void test_Vector2D() {
 void test_Canvas() {
     Canvas canvas;
     canvas.draw("Hello", 0, 0);
+    canvas.draw("Hello", -2, 6);
+    canvas.draw("Hello", 5, 5);
+    canvas.draw("Hello", 78, 15);
+    println();
     println(canvas.getByString());
 }
