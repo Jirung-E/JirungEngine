@@ -4,6 +4,8 @@ using namespace std;
 using namespace JirungEngine;
 
 
+static std::list<std::string> Object::object_id_list;
+
 Object::Object(string id, Object* parent_object) : id { id }, position { 0, 0, 0 }, box_collider { nullptr }, parent_object { parent_object } {
     object_id_list.push_back(id);
 }
@@ -22,5 +24,5 @@ Object* Object::getParent() {
 }
 
 Object* Object::getChildById(string id) {
-    
+    return nullptr;
 }
