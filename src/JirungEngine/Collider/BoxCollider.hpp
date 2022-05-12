@@ -1,7 +1,7 @@
 #ifndef __BoxCollider_hpp__
 #define __BoxCollider_hpp__
 
-#include "../../Point/Point.hpp"
+#include "../Point/Point.hpp"
 
 
 namespace JirungEngine {

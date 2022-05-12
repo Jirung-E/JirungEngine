@@ -2,7 +2,7 @@
 #define __Object_hpp__
 
 #include "../Point/Point.hpp"
-#include "../Collider/BoxCollider/BoxCollider.hpp"
+#include "../Collider/BoxCollider.hpp"
 
 #include "../../Util/UtilType.hpp"
 
