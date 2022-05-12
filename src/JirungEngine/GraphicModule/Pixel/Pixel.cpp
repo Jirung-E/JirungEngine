@@ -11,3 +11,8 @@ Pixel::Pixel(char shape) : shape { shape } {
 Pixel::~Pixel() {
     
 }
+
+
+char Pixel::getShape() const {
+    return shape;
+}

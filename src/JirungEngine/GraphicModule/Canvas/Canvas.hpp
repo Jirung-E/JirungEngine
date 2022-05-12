@@ -20,6 +20,7 @@ namespace JirungEngine {
         Canvas();
         ~Canvas();
 
+    public:
         std::string getByString() const;
         void draw(std::string content, int pos_x, int pos_y, bool draw_empty_char = true);
         void erase(unsigned int start_x, unsigned int start_y, unsigned int end_x, unsigned int end_y);

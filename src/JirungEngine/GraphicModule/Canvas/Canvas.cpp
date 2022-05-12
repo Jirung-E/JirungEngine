@@ -19,7 +19,14 @@ Canvas::~Canvas() {
 
 
 std::string Canvas::getByString() const {
-    return "";
+    string str_canvas = "";
+    for(int i=0; i<height_max; ++i) {
+        for(int k=0; k<width_max; ++k) {
+            str_canvas += pixel[i][k].getShape();
+        }
+    }
+
+    return str_canvas;
 }
 
 void Canvas::draw(std::string content, int pos_x, int pos_y, bool draw_empty_char) {

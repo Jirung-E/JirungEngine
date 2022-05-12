@@ -12,6 +12,9 @@ namespace JirungEngine {
     public:
         Pixel(char shape = ' ');
         ~Pixel();
+
+    public:
+        char getShape() const;
     };
 }
 
