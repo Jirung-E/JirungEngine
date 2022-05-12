@@ -5,6 +5,9 @@
 
 #include "../Pixel/Pixel.hpp"
 #include "../../Point/Point.hpp"
+#include "../../Vector/Vector2D.hpp"
+#include "../../Collider/Collider.hpp"
+#include "../../Collider/BoxCollider.hpp"
 
 
 namespace JirungEngine {
@@ -23,6 +26,10 @@ namespace JirungEngine {
     public:
         std::string getByString() const;
         void draw(std::string content, int pos_x, int pos_y, bool draw_empty_char = true);
+        void draw(Canvas canvas, Point point, bool draw_empty_char = true);
+        void draw(Vector2D vector2d, Point point);
+        void draw(Collider collider, Point point);
+        void draw(BoxCollider collider, Point point);
         void erase(unsigned int start_x, unsigned int start_y, unsigned int end_x, unsigned int end_y);
         void erase(unsigned int pos_x, unsigned int pos_y);
     };
