@@ -35,37 +35,37 @@ void Canvas::draw(string content, int pos_x, int pos_y, bool draw_empty_char) {
         return;
     }
 
-    int cursur_x = pos_x;
-    int cursur_y = pos_y;
+    int cursor_x = pos_x;
+    int cursor_y = pos_y;
 
     for(int i=0; i<content.length(); ++i) {
-        if(cursur_y < 0) {
+        if(cursor_y < 0) {
             continue;
         }
-        if(cursur_x < 0) {
-            cursur_x++;
+        if(cursor_x < 0) {
+            cursor_x++;
             continue;
         }
-        if(cursur_y >= height_max || cursur_x >= width_max) {
+        if(cursor_y >= height_max || cursor_x >= width_max) {
             continue;
         }
 
         char c = content.at(i);
         if(c == '\n') {
-            cursur_y++;
-            cursur_x -= i;
+            cursor_y++;
+            cursor_x -= i;
             continue;
         }
         
         if(draw_empty_char == false) {
             if(c == ' ') {
-                cursur_x++;
+                cursor_x++;
                 continue;
             }
         }
 
-        pixel[cursur_y][cursur_x] = Pixel(c);
-        cursur_x++;
+        pixel[cursor_y][cursor_x] = Pixel(c);
+        cursor_x++;
     }
 }
 
