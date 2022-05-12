@@ -42,7 +42,7 @@ void Canvas::draw(std::string content, int pos_x, int pos_y, bool draw_empty_cha
         if(cursur_y < 0 || cursur_x < 0) {
             continue;
         }
-        if(cursur_y >= height || cursur_x >= width) {
+        if(cursur_y >= height_max || cursur_x >= width_max) {
             continue;
         }
 
