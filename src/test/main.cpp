@@ -9,7 +9,7 @@ using namespace Util;
 void test_Vector2D();
 
 int main() {
-    
+    test_Vector2D();
 }
 
 
