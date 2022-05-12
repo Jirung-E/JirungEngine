@@ -2,7 +2,7 @@
 #define __Object_hpp__
 
 #include "../Point/Point.hpp"
-#include "../Collider/BoxCollider.hpp"
+#include "../Collider/Collider.hpp"
 
 #include "../../Util/UtilType.hpp"
 
@@ -13,7 +13,10 @@ namespace JirungEngine {
     class Object {
         public: std::string id;
         public: Point position;
-        public: BoxCollider* box_collider;
+        public: float rotate_speed;
+        public: Point rotate_pivot;
+        
+        public: std::list<Collider*> collider;
         public: Object* parent_object;
         private: std::list<Object*> child_object;
 

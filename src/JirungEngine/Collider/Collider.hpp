@@ -3,18 +3,17 @@
 
 #include "../Point/Point.hpp"
 #include "../Vector/Vector2D.hpp"
-#include "../Object/Object.hpp"
+//#include "../Object/Object.hpp"
 
 
 namespace JirungEngine {
     class Collider {
-        public: Point position;
         public: Point start_point;
         public: Vector2D vector;
-        private: Object* parent;
+        //private: Object* parent;
 
     public:
-        Collider(Point position, Point start_point, Vector2D vector, Object* parent = nullptr);
+        Collider(const Point& start_point, const Vector2D& vector);//, Object* parent = nullptr);
 
     public:
         
