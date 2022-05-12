@@ -24,6 +24,7 @@ std::string Canvas::getByString() const {
         for(int k=0; k<width_max; ++k) {
             str_canvas += pixel[i][k].getShape();
         }
+        str_canvas += '\n';
     }
 
     return str_canvas;
