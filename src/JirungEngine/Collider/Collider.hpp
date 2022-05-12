@@ -13,7 +13,8 @@ namespace JirungEngine {
         //private: Object* parent;
 
     public:
-        Collider(const Point& start_point, const Vector2D& vector);//, Object* parent = nullptr);
+        Collider(const Point& start_point, const Vector2D& vector);
+        Collider(const Collider& new_collider);
 
     public:
         
