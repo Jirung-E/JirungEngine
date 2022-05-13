@@ -69,7 +69,7 @@ void Canvas::draw(string content, int pos_x, int pos_y, bool draw_empty_char) {
     }
 }
 
-void Canvas::draw(const Canvas& canvas, const Point& point, bool draw_empty_char = true) {
+void Canvas::draw(const Canvas& canvas, const Point& point, bool draw_empty_char) {
 
 }
 
