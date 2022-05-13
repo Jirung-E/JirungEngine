@@ -3,21 +3,21 @@
 
 namespace JirungEngine {
     class Vector {
-        public: int x;
-        public: int y;
-        public: int z;
+        public: float x;
+        public: float y;
+        public: float z;
 
     public:
         Vector();
         Vector(const Vector& vector);
-        Vector(int x, int y, int z);
+        Vector(float x, float y, float z);
 
         Vector operator=(const Vector& vector);
         Vector operator+(const Vector& vector);
         Vector operator-(const Vector& vector);
-        int operator*(const Vector& vector);            // scalar product
-        Vector operator*(int n);
-        Vector operator/(int n);
+        float operator*(const Vector& vector);            // scalar product
+        Vector operator*(float n);
+        Vector operator/(float n);
     };
 }
 

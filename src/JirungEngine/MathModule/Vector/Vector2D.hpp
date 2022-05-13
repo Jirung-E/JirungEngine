@@ -3,20 +3,20 @@
 
 namespace JirungEngine {
     class Vector2D {
-        public: int x;
-        public: int y;
+        public: float x;
+        public: float y;
 
     public:
         Vector2D();
         Vector2D(const Vector2D& vector2d);
-        Vector2D(int x, int y);
+        Vector2D(float x, float y);
 
         Vector2D operator=(const Vector2D& vector2d);
         Vector2D operator+(const Vector2D& vector2d);
         Vector2D operator-(const Vector2D& vector2d);
-        int operator*(const Vector2D& vector2d);            // scalar product
-        Vector2D operator*(int n);
-        Vector2D operator/(int n);
+        float operator*(const Vector2D& vector2d);            // scalar product
+        Vector2D operator*(float n);
+        Vector2D operator/(float n);
     };
 }
 

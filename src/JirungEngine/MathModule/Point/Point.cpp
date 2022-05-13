@@ -7,7 +7,7 @@ Point::Point() : x { 0 }, y { 0 }, z { 0 } {
 
 }
 
-Point::Point(int x, int y, int z) : x { x }, y { y }, z { z } {
+Point::Point(float x, float y, float z) : x { x }, y { y }, z { z } {
 
 }
 
@@ -31,10 +31,10 @@ Point Point::operator-(const Point& point) {
     return Point { x - point.x, y - point.y, z - point.z };
 }
 
-Point Point::operator*(int n) {
+Point Point::operator*(float n) {
     return Point { x*n, y*n, z*n };
 }
 
-Point Point::operator/(int n) {
+Point Point::operator/(float n) {
     return Point { x/n, y/n, z/n };
 }

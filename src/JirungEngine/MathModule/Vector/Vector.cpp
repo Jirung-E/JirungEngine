@@ -11,7 +11,7 @@ Vector::Vector(const Vector& vector) : x { vector.x }, y { vector.y }, z { vecto
 
 }
 
-Vector::Vector(int x, int y, int z) : x { x }, y { y }, z { z } {
+Vector::Vector(float x, float y, float z) : x { x }, y { y }, z { z } {
 
 }
 
@@ -31,14 +31,14 @@ Vector Vector::operator-(const Vector& vector) {
     return Vector { x - vector.x, y - vector.y, z - vector.z };
 }
 
-int Vector::operator*(const Vector& vector) {
+float Vector::operator*(const Vector& vector) {
     return x*vector.x + y*vector.y, z*vector.z;
 }
 
-Vector Vector::operator*(int n) {
+Vector Vector::operator*(float n) {
     return Vector { x*n, y*n, z*n };
 }
 
-Vector Vector::operator/(int n) {
+Vector Vector::operator/(float n) {
     return Vector { x/n, y/n, z/n };
 }
