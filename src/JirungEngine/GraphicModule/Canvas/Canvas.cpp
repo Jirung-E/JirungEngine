@@ -114,7 +114,7 @@ void Canvas::draw(const Vector2D& vector2d, const Point& point) {
     Point start_point { point };
     Point end_point { point.x + vector2d.x, point.y + vector2d.y };
     
-    pixel[point.y][point.x] = '@';
+    //pixel[point.y][point.x] = '@';
 }
 
 void Canvas::draw(const Vector& vector, const Point& point) {

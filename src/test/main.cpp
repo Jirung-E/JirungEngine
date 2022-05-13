@@ -30,13 +30,13 @@ void test_Vector2D() {
     Vector2D v5 = Vector2D { -10, -20 };
     
     println("Hi");
-    printf("v1: <%d, %d>\n", v1.x, v1.y);
-    printf("v2: <%d, %d>\n", v2.x, v2.y);
+    printf("v1: <%f, %f>\n", v1.x, v1.y);
+    printf("v2: <%f, %f>\n", v2.x, v2.y);
     println(to_string(v1*v2));
     
-    printf("v3: <%d, %d>\n", v3.x, v3.y);
-    printf("v4: <%d, %d>\n", v4.x, v4.y);
-    printf("v5: <%d, %d>\n", v5.x, v5.y);
+    printf("v3: <%f, %f>\n", v3.x, v3.y);
+    printf("v4: <%f, %f>\n", v4.x, v4.y);
+    printf("v5: <%f, %f>\n", v5.x, v5.y);
     println(to_string(v1*v5));
 }
 
