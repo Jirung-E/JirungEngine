@@ -80,7 +80,9 @@ void test_Canvas_DrawVectorAndCollider() {
     collider_canvas.width = 30;
     collider_canvas.height = 15;
     
-        
+    vector_canvas.draw(Vector(5, 5, 0), Point(2, 2));
+    vector_canvas.draw(Vector(-5, -5, 0), Point(20, 10));
+    vector_canvas.draw(Vector(7, -10, 0), Point(1, 14));
     
     main_canvas.draw(vector_canvas, { 4, 10 });
     main_canvas.draw(collider_canvas, { 40, 10 });

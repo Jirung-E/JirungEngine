@@ -109,12 +109,25 @@ void Canvas::draw(const Canvas& canvas, const Point& point, bool draw_empty_char
 
 void Canvas::draw(const Vector2D& vector2d, const Point& point) {
     char ink = '*';
-    auto f = [&vector2d, &point](float x) { return point.y + x * (static_cast<float>(vector2d.y) / static_cast<float>(vector2d.x)); };
+    auto f = [&vector2d, &point](float x) { return point.y + (x - point.x) * (vector2d.y / vector2d.x); };
     
     Point start_point { point };
     Point end_point { point.x + vector2d.x, point.y + vector2d.y };
     
-    //pixel[point.y][point.x] = '@';
+    float pos_x = point.x;
+    int cursor_x = point.x;
+    int cursor_y = f(point.x);
+    
+    while(cursor_x != static_cast<int>(end_point.x)) {            // 이부분 수정 필요: <0, y> 같은 벡터도 정상적으로 출력할수 있어야됨.
+        pixel[cursor_y][cursor_x] = ink;
+        pos_x += vector2d.x > 0 ? 0.1 : -0.1;
+        cursor_x = pos_x;
+        cursor_y = f(pos_x);
+    }
+    cursor_x -= vector2d.x > 0 ? 1 : -1;
+    cursor_y = f(cursor_x);
+    pixel[static_cast<int>(point.y)][static_cast<int>(point.x)] = '@';
+    pixel[cursor_y][cursor_x] = '+';
 }
 
 void Canvas::draw(const Vector& vector, const Point& point) {
