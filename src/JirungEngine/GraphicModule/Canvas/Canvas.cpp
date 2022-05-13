@@ -4,7 +4,7 @@ using namespace std;
 using namespace JirungEngine;
 
 
-Canvas::Canvas() : width_max { 80 }, height_max { 40 }, width { 0 }, height { 0 }, pixel { new Pixel*[height_max] }, default_background { ' ' } {
+Canvas::Canvas() : title { }, width_max { 80 }, height_max { 40 }, width { 0 }, height { 0 }, pixel { new Pixel*[height_max] }, default_background { ' ' } {
     for(int i=0; i<height_max; ++i) {
         pixel[i] = new Pixel[width_max];
     }
@@ -19,13 +19,17 @@ Canvas::~Canvas() {
 
 
 string Canvas::getByString() const {
-    string str_canvas = "";
+    string str_canvas = title + "\n";
     for(int i=0; i<height_max; ++i) {
         for(int k=0; k<width_max; ++k) {
             str_canvas += pixel[i][k].getShape();
         }
         str_canvas += '\n';
     }
+    for(int k=0; k<width_max; ++k) {
+        str_canvas += '-';
+    }
+    str_canvas += '\n';
 
     return str_canvas;
 }
@@ -38,13 +42,17 @@ string Canvas::getByString(size_t width, size_t height) const {
         height = height_max;
     }
 
-    string str_canvas = "";
+    string str_canvas = title + "\n";
     for(int i=0; i<height; ++i) {
         for(int k=0; k<width; ++k) {
             str_canvas += pixel[i][k].getShape();
         }
         str_canvas += '\n';
     }
+    for(int k=0; k<width; ++k) {
+        str_canvas += '-';
+    }
+    str_canvas += '\n';
 
     return str_canvas;
 }

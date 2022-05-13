@@ -12,6 +12,7 @@
 
 namespace JirungEngine {
     class Canvas {
+        public: std::string title;
         private: size_t width_max;
         private: size_t height_max;
         public: size_t width;
