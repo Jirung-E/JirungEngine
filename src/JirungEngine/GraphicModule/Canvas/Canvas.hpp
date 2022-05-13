@@ -4,10 +4,10 @@
 #include <string>
 
 #include "../Pixel/Pixel.hpp"
-#include "../../Point/Point.hpp"
-#include "../../Vector/Vector2D.hpp"
-#include "../../Collider/Collider.hpp"
-#include "../../Collider/BoxCollider.hpp"
+#include "../../MathModule/Point/Point.hpp"
+#include "../../MathModule/Vector/Vector2D.hpp"
+#include "../../ObjectModule/Collider/Collider.hpp"
+#include "../../ObjectModule/Collider/BoxCollider.hpp"
 
 
 namespace JirungEngine {
