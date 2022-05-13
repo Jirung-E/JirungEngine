@@ -8,10 +8,12 @@ using namespace Util;
 
 void test_Vector2D();
 void test_Canvas();
+void test_Canvas_DrawVectorAndCollider();
 
 int main() {
-    //test_Vector2D();
-    test_Canvas();
+    println("\nTest Start!\n\n");
+    
+    test_Canvas_DrawVectorAndCollider();
 }
 
 
@@ -61,4 +63,26 @@ void test_Canvas() {
     println(c1.getByString(5, 5));
     println();
     println(canvas.getByString());
+}
+
+void test_Canvas_DrawVectorAndCollider() {
+    Canvas main_canvas;
+    main_canvas.setDefaultBackground('+');
+    main_canvas.title = "Vector And Collider";
+    
+    Canvas vector_canvas;
+    vector_canvas.title = "vector";
+    vector_canvas.width = 30;
+    vector_canvas.height = 15;
+    
+    Canvas collider_canvas;
+    collider_canvas.title = "collider";
+    collider_canvas.width = 30;
+    collider_canvas.height = 15;
+    
+        
+    
+    main_canvas.draw(vector_canvas, { 4, 10 });
+    main_canvas.draw(collider_canvas, { 40, 10 });
+    println(main_canvas.getByString());
 }

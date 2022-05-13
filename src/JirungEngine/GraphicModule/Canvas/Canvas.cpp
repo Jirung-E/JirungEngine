@@ -55,10 +55,11 @@ string Canvas::getByString(size_t width, size_t height) const {
         }
         str_canvas += '\n';
     }
-    for(int k=0; k<width; ++k) {
-        str_canvas += '-';
-    }
-    str_canvas += '\n';
+    
+    // for(int k=0; k<width; ++k) {
+    //     str_canvas += '-';
+    // }
+    // str_canvas += '\n';
 
     return str_canvas;
 }
@@ -107,7 +108,17 @@ void Canvas::draw(const Canvas& canvas, const Point& point, bool draw_empty_char
 }
 
 void Canvas::draw(const Vector2D& vector2d, const Point& point) {
+    char ink = '*';
+    auto f = [&vector2d, &point](float x) { return point.y + x * (static_cast<float>(vector2d.y) / static_cast<float>(vector2d.x)); };
+    
+    Point start_point { point };
+    Point end_point { point.x + vector2d.x, point.y + vector2d.y };
+    
+    pixel[point.y][point.x] = '@';
+}
 
+void Canvas::draw(const Vector& vector, const Point& point) {
+    draw(Vector2D(vector.x, vector.y), point);
 }
 
 void Canvas::draw(const Collider& collider, const Point& point) {

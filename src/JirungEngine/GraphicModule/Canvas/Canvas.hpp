@@ -6,6 +6,7 @@
 #include "../Pixel/Pixel.hpp"
 #include "../../MathModule/Point/Point.hpp"
 #include "../../MathModule/Vector/Vector2D.hpp"
+#include "../../MathModule/Vector/Vector.hpp"
 #include "../../ObjectModule/Collider/Collider.hpp"
 #include "../../ObjectModule/Collider/BoxCollider.hpp"
 
@@ -31,6 +32,7 @@ namespace JirungEngine {
         void draw(std::string content, int pos_x, int pos_y, bool draw_empty_char = true);
         void draw(const Canvas& canvas, const Point& point, bool draw_empty_char = true);
         void draw(const Vector2D& vector2d, const Point& point);
+        void draw(const Vector& vector, const Point& point);
         void draw(const Collider& collider, const Point& point);
         void draw(const BoxCollider& collider, const Point& point);
         void erase(unsigned int start_x, unsigned int start_y, unsigned int end_x, unsigned int end_y);
