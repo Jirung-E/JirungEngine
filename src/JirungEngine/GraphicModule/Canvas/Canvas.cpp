@@ -69,19 +69,19 @@ void Canvas::draw(string content, int pos_x, int pos_y, bool draw_empty_char) {
     }
 }
 
-void Canvas::draw(Canvas canvas, Point point, bool draw_empty_char = true) {
+void Canvas::draw(const Canvas& canvas, const Point& point, bool draw_empty_char = true) {
 
 }
 
-void Canvas::draw(Vector2D vector2d, Point point) {
+void Canvas::draw(const Vector2D& vector2d, const Point& point) {
 
 }
 
-void Canvas::draw(Collider collider, Point point) {
+void Canvas::draw(const Collider& collider, const Point& point) {
 
 }
 
-void Canvas::draw(BoxCollider collider, Point point) {
+void Canvas::draw(const BoxCollider& collider, const Point& point) {
 
 }
 
