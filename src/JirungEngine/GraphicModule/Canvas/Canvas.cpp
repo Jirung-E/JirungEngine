@@ -8,6 +8,7 @@ Canvas::Canvas() : title { }, width_max { 80 }, height_max { 40 }, width { 0 }, 
     for(int i=0; i<height_max; ++i) {
         pixel[i] = new Pixel[width_max];
     }
+    setDefaultBackground(' ');
 }
 
 Canvas::~Canvas() {
@@ -18,20 +19,17 @@ Canvas::~Canvas() {
 }
 
 
-string Canvas::getByString() const {
-    string str_canvas = title + "\n";
+void Canvas::setDefaultBackground(char c) {
+    default_background = c;
     for(int i=0; i<height_max; ++i) {
         for(int k=0; k<width_max; ++k) {
-            str_canvas += pixel[i][k].getShape();
+            pixel[i][k] = default_background;
         }
-        str_canvas += '\n';
     }
-    for(int k=0; k<width_max; ++k) {
-        str_canvas += '-';
-    }
-    str_canvas += '\n';
+}
 
-    return str_canvas;
+string Canvas::getByString() const {
+    return getByString(width_max, height_max);
 }
 
 string Canvas::getByString(size_t width, size_t height) const {
@@ -42,7 +40,15 @@ string Canvas::getByString(size_t width, size_t height) const {
         height = height_max;
     }
 
-    string str_canvas = title + "\n";
+    string str_canvas = "";
+    for(int i=0; i<title.length() && i<width; ++i) {
+        str_canvas += title[i];
+    }
+    while(str_canvas.length() < width) {
+        str_canvas += ' ';
+    }
+    str_canvas += '\n';
+    
     for(int i=0; i<height; ++i) {
         for(int k=0; k<width; ++k) {
             str_canvas += pixel[i][k].getShape();
@@ -80,7 +86,7 @@ void Canvas::draw(string content, int pos_x, int pos_y, bool draw_empty_char) {
         char c = content.at(i);
         if(c == '\n') {
             cursor_y++;
-            cursor_x -= i;
+            cursor_x = pos_x;
             continue;
         }
         
