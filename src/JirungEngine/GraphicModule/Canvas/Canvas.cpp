@@ -89,7 +89,7 @@ void Canvas::draw(string content, int pos_x, int pos_y, bool draw_empty_char) {
 }
 
 void Canvas::draw(const Canvas& canvas, const Point& point, bool draw_empty_char) {
-    draw(canvas.getByString(canvas.width, canvas.height), point, draw_empty_char);
+    draw(canvas.getByString(canvas.width, canvas.height), point.x, point.y, draw_empty_char);
 }
 
 void Canvas::draw(const Vector2D& vector2d, const Point& point) {
