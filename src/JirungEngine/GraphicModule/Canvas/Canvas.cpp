@@ -30,6 +30,25 @@ string Canvas::getByString() const {
     return str_canvas;
 }
 
+string Canvas::getByString(size_t width, size_t height) const {
+    if(width > width_max) {
+        width = width_max;
+    }
+    if(height > height_max) {
+        height = height_max;
+    }
+
+    string str_canvas = "";
+    for(int i=0; i<height; ++i) {
+        for(int k=0; k<width; ++k) {
+            str_canvas += pixel[i][k].getShape();
+        }
+        str_canvas += '\n';
+    }
+
+    return str_canvas;
+}
+
 void Canvas::draw(string content, int pos_x, int pos_y, bool draw_empty_char) {
     if(pos_x >= static_cast<int>(width_max) || pos_y >= static_cast<int>(height_max)) {
         return;
@@ -70,7 +89,7 @@ void Canvas::draw(string content, int pos_x, int pos_y, bool draw_empty_char) {
 }
 
 void Canvas::draw(const Canvas& canvas, const Point& point, bool draw_empty_char) {
-
+    draw(canvas.getByString(canvas.width, canvas.height), point, draw_empty_char);
 }
 
 void Canvas::draw(const Vector2D& vector2d, const Point& point) {

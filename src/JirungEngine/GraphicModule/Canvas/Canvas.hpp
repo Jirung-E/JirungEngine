@@ -14,8 +14,8 @@ namespace JirungEngine {
     class Canvas {
         private: size_t width_max;
         private: size_t height_max;
-        private: size_t width;
-        private: size_t height;
+        public: size_t width;
+        public: size_t height;
         private: Pixel** pixel;
         private: Pixel default_background;
 
@@ -25,6 +25,7 @@ namespace JirungEngine {
 
     public:
         std::string getByString() const;
+        std::string getByString(size_t width, size_t height) const;
         void draw(std::string content, int pos_x, int pos_y, bool draw_empty_char = true);
         void draw(const Canvas& canvas, const Point& point, bool draw_empty_char = true);
         void draw(const Vector2D& vector2d, const Point& point);
