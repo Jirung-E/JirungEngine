@@ -3,7 +3,7 @@
 
 #include "Collider.hpp"
 
-#include "../Point/Point.hpp"
+#include "../../MathModule/Point/Point.hpp"
 
 
 namespace JirungEngine {

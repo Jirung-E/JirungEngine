@@ -1,8 +1,8 @@
 #ifndef __Collider_hpp__
 #define __Collider_hpp__
 
-#include "../Point/Point.hpp"
-#include "../Vector/Vector2D.hpp"
+#include "../../MathModule/Point/Point.hpp"
+#include "../../MathModule/Vector/Vector2D.hpp"
 //#include "../Object/Object.hpp"
 
 

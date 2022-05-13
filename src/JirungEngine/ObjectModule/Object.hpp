@@ -1,8 +1,9 @@
 #ifndef __Object_hpp__
 #define __Object_hpp__
 
-#include "../Point/Point.hpp"
-#include "../Collider/Collider.hpp"
+#include "../MathModule/Point/Point.hpp"
+#include "Collider/Collider.hpp"
+#include "Physics/Physics.hpp"
 
 #include "../../Util/UtilType.hpp"
 
@@ -13,8 +14,7 @@ namespace JirungEngine {
     class Object {
         public: std::string id;
         public: Point position;
-        public: float rotate_speed;
-        public: Point rotate_pivot;
+        public: Physics physics;
         
         public: std::list<Collider*> collider;
         public: Object* parent_object;
