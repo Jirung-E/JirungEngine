@@ -40,10 +40,23 @@ void test_Vector2D() {
 
 void test_Canvas() {
     Canvas canvas;
+    canvas.title = "canvas";
     canvas.draw("Hello Canvas", 0, 0);
     canvas.draw("Hello Canvas", -2, 6);
     canvas.draw("Hello Canvas", 5, 5);
     canvas.draw("Hello Canvas", 78, 15);
+    canvas.draw("Hello\nCanvas", 50, 30);
+    println();
+    println(canvas.getByString());
+    
+    Canvas c1;
+    c1.title = "c1";
+    c1.width = 5;
+    c1.height = 5;
+    c1.draw("@@\n@@", 1, 1);
+    canvas.draw(c1, { 10, 10 });
+    println();
+    println(c1.getByString(5, 5));
     println();
     println(canvas.getByString());
 }
