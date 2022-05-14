@@ -53,8 +53,8 @@ Point BoxCollider::getButtomLeftPoint() const {
 
 void BoxCollider::setTopLeftPoint(const Point& point) {
     top_left = point;
-    side[3] = Collider { getButtomLeftPoint(), Vector2D(top_left.x - getButtomLeftPoint().x, top_left.y - getButtomLeftPoint().y) };
-    side[0] = Collider { top_left, Vector2D(getTopRightPoint().x - top_left.x, getTopRightPoint().y - top_left.x) };
+    side[3] = Collider { getButtomLeftPoint(), Vector2D(point.x - getButtomLeftPoint().x, point.y - getButtomLeftPoint().y) };
+    side[0] = Collider { top_left, Vector2D(getTopRightPoint().x - point.x, getTopRightPoint().y - point.x) };
 }
 
 void BoxCollider::setTopRightPoint(const Point& point) {
@@ -65,12 +65,12 @@ void BoxCollider::setTopRightPoint(const Point& point) {
 
 void BoxCollider::setButtomRightPoint(const Point& point) {
     buttom_right = point;
-    side[1] = Collider { getTopRightPoint(), Vector2D(buttom_right.x - getTopRightPoint().x, buttom_right.y - getTopRightPoint().y) };
-    side[2] = Collider { buttom_right, Vector2D(getButtomLeftPoint().x - buttom_right.x, getButtomLeftPoint().y - buttom_right.x) };
+    side[1] = Collider { getTopRightPoint(), Vector2D(point.x - getTopRightPoint().x, point.y - getTopRightPoint().y) };
+    side[2] = Collider { buttom_right, Vector2D(getButtomLeftPoint().x - point.x, getButtomLeftPoint().y - point.x) };
 }
 
 void BoxCollider::setButtomLeftPoint(const Point& point) {
     buttom_left = point;
     side[2] = Collider { getButtomRightPoint(), Vector2D(point.x - getButtomRightPoint().x, point.y - getButtomRightPoint().y) };
-    side[3] = Collider { point, Vector2D(getTopLeftPoint().x - point.x, getTopLeftPoint().y - point.x) };
+    side[3] = Collider { point, Vector2D(getTopLeftPoint().x - point.x, getTopLeftPoint().y - point.y) };
 }
