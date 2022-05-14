@@ -1,7 +1,10 @@
 #include "Canvas.hpp"
 
+#include "../../../Util/Util.hpp"
+
 using namespace std;
 using namespace JirungEngine;
+using namespace Util;
 
 
 Canvas::Canvas() : title { }, width_max { 80 }, height_max { 40 }, width { 0 }, height { 0 }, pixel { new Pixel*[height_max] }, default_background { ' ' } {
@@ -108,26 +111,48 @@ void Canvas::draw(const Canvas& canvas, const Point& point, bool draw_empty_char
 }
 
 void Canvas::draw(const Vector2D& vector2d, const Point& point) {
-    char ink = '*';
-    auto f = [&vector2d, &point](float x) { return point.y + (x - point.x) * (vector2d.y / vector2d.x); };
-    
     Point start_point { point };
     Point end_point { point.x + vector2d.x, point.y + vector2d.y };
     
     float pos_x = point.x;
     int cursor_x = point.x;
-    int cursor_y = f(point.x);
+    float pos_y = point.y;
+    int cursor_y = point.y;
     
-    while(cursor_x != static_cast<int>(end_point.x)) {            // 이부분 수정 필요: <0, y> 같은 벡터도 정상적으로 출력할수 있어야됨.
-        pixel[cursor_y][cursor_x] = ink;
-        pos_x += vector2d.x > 0 ? 0.1 : -0.1;
-        cursor_x = pos_x;
-        cursor_y = f(pos_x);
+    int abs_x = vector2d.x >= 0 ? vector2d.x : -vector2d.x;
+    int abs_y = vector2d.y >= 0 ? vector2d.y : -vector2d.y;    
+    int num_of_pixels = abs_x >= abs_y ? abs_x : abs_y;
+    
+    if(num_of_pixels > 0) {
+        println("1");
+        Point* points = new Point[num_of_pixels];
+        for(int i=0; i<num_of_pixels; ++i) {
+            points[i] = Point { float(vector2d.x >= 0.0f ? i : -i), float(vector2d.y >= 0.0f ? i : -i) };
+            println("2");
+        }
+        
+        if(abs_x > abs_y) {
+            for(int i=0; i<num_of_pixels; ++i) {
+                points[i].y *= (abs_y / abs_x);
+            }
+        }
+        else if(abs_x < abs_y) {
+            for(int i=0; i<num_of_pixels; ++i) {
+                points[i].x *= (abs_x / abs_y);
+            }
+        }
+        println("4");
+        
+        for(int i=0; i<num_of_pixels; ++i) {
+            draw("*", static_cast<int>(point.x + points[i].x), static_cast<int>(point.y + points[i].y));
+            println("5");
+        }
+
+        draw("@", static_cast<int>(start_point.x), static_cast<int>(start_point.y));
+        draw("+", static_cast<int>(end_point.x), static_cast<int>(end_point.y));
+        
+        delete[] points;
     }
-    cursor_x -= vector2d.x > 0 ? 1 : -1;
-    cursor_y = f(cursor_x);
-    pixel[static_cast<int>(point.y)][static_cast<int>(point.x)] = '@';
-    pixel[cursor_y][cursor_x] = '+';
 }
 
 void Canvas::draw(const Vector& vector, const Point& point) {
@@ -149,4 +174,8 @@ void Canvas::erase(unsigned int start_x, unsigned int start_y, unsigned int end_
 
 void Canvas::erase(unsigned int pos_x, unsigned int pos_y) {
     pixel[pos_y][pos_x] = default_background;
+}
+
+void Canvas::clear() {
+    setDefaultBackground(default_background.getShape());
 }

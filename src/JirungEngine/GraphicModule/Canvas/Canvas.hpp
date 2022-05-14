@@ -37,6 +37,7 @@ namespace JirungEngine {
         void draw(const BoxCollider& collider, const Point& point);
         void erase(unsigned int start_x, unsigned int start_y, unsigned int end_x, unsigned int end_y);
         void erase(unsigned int pos_x, unsigned int pos_y);
+        void clear();
     };
 }
 

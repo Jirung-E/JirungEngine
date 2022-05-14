@@ -72,19 +72,23 @@ void test_Canvas_DrawVectorAndCollider() {
     
     Canvas vector_canvas;
     vector_canvas.title = "vector";
-    vector_canvas.width = 30;
-    vector_canvas.height = 15;
+    vector_canvas.width = 37;
+    vector_canvas.height = 37;
     
     Canvas collider_canvas;
     collider_canvas.title = "collider";
-    collider_canvas.width = 30;
-    collider_canvas.height = 15;
+    collider_canvas.width = 37;
+    collider_canvas.height = 37;
     
     vector_canvas.draw(Vector(5, 5, 0), Point(2, 2));
     vector_canvas.draw(Vector(-5, -5, 0), Point(20, 10));
     vector_canvas.draw(Vector(7, -10, 0), Point(1, 14));
+    vector_canvas.draw(Vector(0, 10, 0), Point(10, 4));
+    vector_canvas.draw(Vector(10, 0, 0), Point(0, 0));
+    vector_canvas.draw(Vector(30, 5, 0), Point(1, 35));
+    vector_canvas.draw(Vector(9, -25, 0), Point(18, 32));
     
-    main_canvas.draw(vector_canvas, { 4, 10 });
-    main_canvas.draw(collider_canvas, { 40, 10 });
+    main_canvas.draw(vector_canvas, { 2, 1 });
+    main_canvas.draw(collider_canvas, { 41, 1 });
     println(main_canvas.getByString());
 }
