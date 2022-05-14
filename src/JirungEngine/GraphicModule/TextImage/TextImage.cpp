@@ -56,7 +56,7 @@ Pixel** TextImage::get() const {
     return pixel;
 }
 
-char** TextImage::getByCharpp() const {
+char** TextImage::getByChars() const {
     return pixel.getShape();
 }
 
