@@ -10,12 +10,12 @@ void test_Vector2D();
 void test_Canvas();
 void test_Canvas_DrawVectorAndCollider();
 void test_Canvas_EraseAndClear();
+void test_TextImage();
 
 int main() {
     println("\nTest Start!\n\n");
     
-    test_Canvas_DrawVectorAndCollider();
-    test_Canvas_EraseAndClear();
+    test_TextImage();
 }
 
 
@@ -157,5 +157,13 @@ void test_Canvas_EraseAndClear() {
     canvas.erase(5, 5);
     println(canvas.getByString());
     canvas.clear();
+    println(canvas.getByString());
+}
+
+void test_TextImage() {
+    Canvas canvas;
+    canvas.title = "text images";
+    TextImage t { "src/test/test" };
+    canvas.draw(t.getByString(), 0, 0);
     println(canvas.getByString());
 }
