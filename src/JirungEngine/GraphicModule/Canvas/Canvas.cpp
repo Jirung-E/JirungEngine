@@ -114,42 +114,24 @@ void Canvas::draw(const Vector2D& vector2d, const Point& point) {
     Point start_point { point };
     Point end_point { point.x + vector2d.x, point.y + vector2d.y };
     
-    float pos_x = point.x;
-    int cursor_x = point.x;
-    float pos_y = point.y;
-    int cursor_y = point.y;
-    
     int abs_x = vector2d.x >= 0 ? vector2d.x : -vector2d.x;
-    int abs_y = vector2d.y >= 0 ? vector2d.y : -vector2d.y;    
+    int abs_y = vector2d.y >= 0 ? vector2d.y : -vector2d.y;
     int num_of_pixels = abs_x >= abs_y ? abs_x : abs_y;
     
+    auto round = [](float num) -> int { return static_cast<int>(num) + 0.5 <= num ? static_cast<int>(num+1) : static_cast<int>(num); };
+    println("0.4 -> " + to_string(round(0.4)));
+    println("0.5 -> " + to_string(round(0.5)));
+    println("0.6 -> " + to_string(round(0.6)));
+    
     if(num_of_pixels > 0) {
-        println("1");
         Point* points = new Point[num_of_pixels];
         for(int i=0; i<num_of_pixels; ++i) {
-            points[i] = Point { float(vector2d.x >= 0.0f ? i : -i), float(vector2d.y >= 0.0f ? i : -i) };
-            println("2");
-        }
-        
-        if(abs_x > abs_y) {
-            for(int i=0; i<num_of_pixels; ++i) {
-                points[i].y *= (abs_y / abs_x);
-            }
-        }
-        else if(abs_x < abs_y) {
-            for(int i=0; i<num_of_pixels; ++i) {
-                points[i].x *= (abs_x / abs_y);
-            }
-        }
-        println("4");
-        
-        for(int i=0; i<num_of_pixels; ++i) {
-            draw("*", static_cast<int>(point.x + points[i].x), static_cast<int>(point.y + points[i].y));
-            println("5");
+            points[i] = Point { start_point.x + i*(vector2d.x/num_of_pixels), start_point.y + i*(vector2d.y/num_of_pixels) };
+            draw("*", round(points[i].x), round(points[i].y));
         }
 
-        draw("@", static_cast<int>(start_point.x), static_cast<int>(start_point.y));
-        draw("+", static_cast<int>(end_point.x), static_cast<int>(end_point.y));
+        draw("@", round(start_point.x), round(start_point.y));
+        draw("+", round(end_point.x), round(end_point.y));
         
         delete[] points;
     }
