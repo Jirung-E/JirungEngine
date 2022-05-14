@@ -17,7 +17,7 @@ namespace JirungEngine {
         public: Point position;
         public: Physics physics;
         
-        public: Image* image;
+        public: TextImage* image;
         public: std::list<Collider*> collider;
         public: Object* parent_object;
         private: std::list<Object*> child_object;
