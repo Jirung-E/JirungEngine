@@ -13,10 +13,10 @@ namespace JirungEngine {
         Point(const Point& point);
 
         Point operator=(const Point& point);
-        Point operator+(const Point& point);
-        Point operator-(const Point& point);
-        Point operator*(float n);
-        Point operator/(float n);
+        Point operator+(const Point& point) const;
+        Point operator-(const Point& point) const;
+        Point operator*(float n) const;
+        Point operator/(float n) const;
     };
 }
 
