@@ -32,6 +32,7 @@ namespace JirungEngine {
         std::string getByString() const;
         std::string getByString(size_t width, size_t height) const;
         void draw(std::string content, int pos_x, int pos_y, bool draw_empty_char = true);
+        void draw(std::string content, const Point& point, bool draw_empty_char = true);
         void draw(const TextImage& text_image, const Point& point, bool draw_empty_char = true);
         void draw(const Object& object, const Point& point, bool draw_empty_char = true);
         void draw(const Canvas& canvas, const Point& point, bool draw_empty_char = true);
