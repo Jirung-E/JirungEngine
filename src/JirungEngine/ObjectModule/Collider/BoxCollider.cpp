@@ -4,7 +4,7 @@ using namespace JirungEngine;
 
 
 BoxCollider::BoxCollider(const Point& top_left, const Point& buttom_right) : Collider { top_left, Vector2D { } }, 
-    top_left { top_left }, buttom_right { buttom_right }, 
+    top_left { top_left }, top_right { Point(buttom_right.x, top_left.y) }, buttom_right { buttom_right }, buttom_left { Point(top_left.x, buttom_right.y) }, 
     side {
         Collider { top_left, Vector2D(buttom_right.x - top_left.x, 0) }, 
         Collider { Point(buttom_right.x, top_left.y), Vector2D(0, buttom_right.y - top_left.y) }, 
@@ -40,7 +40,7 @@ Point BoxCollider::getTopLeftPoint() const {
 }
 
 Point BoxCollider::getTopRightPoint() const {
-    return Point(buttom_right.x, top_left.y);
+    return top_right;
 }
 
 Point BoxCollider::getButtomRightPoint() const {
@@ -48,7 +48,7 @@ Point BoxCollider::getButtomRightPoint() const {
 }
 
 Point BoxCollider::getButtomLeftPoint() const {
-    return Point(top_left.x, buttom_right.y);
+    return buttom_left;
 }
 
 void BoxCollider::setTopLeftPoint(const Point& point) {
@@ -58,6 +58,7 @@ void BoxCollider::setTopLeftPoint(const Point& point) {
 }
 
 void BoxCollider::setTopRightPoint(const Point& point) {
+    top_right = point;
     side[0] = Collider { getTopLeftPoint(), Vector2D(point.x - getTopLeftPoint().x, point.y - getTopLeftPoint().y) };
     side[1] = Collider { point, Vector2D(getButtomRightPoint().x - point.x, getButtomRightPoint().y - point.x) };
 }
@@ -69,6 +70,7 @@ void BoxCollider::setButtomRightPoint(const Point& point) {
 }
 
 void BoxCollider::setButtomLeftPoint(const Point& point) {
+    buttom_left = point;
     side[2] = Collider { getButtomRightPoint(), Vector2D(point.x - getButtomRightPoint().x, point.y - getButtomRightPoint().y) };
     side[3] = Collider { point, Vector2D(getTopLeftPoint().x - point.x, getTopLeftPoint().y - point.x) };
 }
