@@ -104,6 +104,23 @@ void test_Canvas_DrawVectorAndCollider() {
     vector_canvas.draw(Vector(-3, -7, 0), Point(18, 18));
     vector_canvas.draw(Vector(3, -7, 0), Point(18, 18));
     vector_canvas.draw(Vector(7, -3, 0), Point(18, 18));
+
+    collider_canvas.draw(Collider(Point(18, 18), Vector2D(7, 0)), Point(0, 0));
+    collider_canvas.draw(Collider(Point(18, 18), Vector2D(7, 7)), Point(0, 0));
+    collider_canvas.draw(Collider(Point(18, 18), Vector2D(0, 7)), Point(0, 0));
+    collider_canvas.draw(Collider(Point(18, 18), Vector2D(-7, 7)), Point(0, 0));
+    collider_canvas.draw(Collider(Point(18, 18), Vector2D(-7, 0)), Point(0, 0));
+    collider_canvas.draw(Collider(Point(18, 18), Vector2D(-7, -7)), Point(0, 0));
+    collider_canvas.draw(Collider(Point(18, 18), Vector2D(0, -7)), Point(0, 0));
+    collider_canvas.draw(Collider(Point(18, 18), Vector2D(7, -7)), Point(0, 0));
+    collider_canvas.draw(Collider(Point(18, 18), Vector2D(7, 3)), Point(0, 0));
+    collider_canvas.draw(Collider(Point(18, 18), Vector2D(3, 7)), Point(0, 0));
+    collider_canvas.draw(Collider(Point(18, 18), Vector2D(-3, 7)), Point(0, 0));
+    collider_canvas.draw(Collider(Point(18, 18), Vector2D(-7, 3)), Point(0, 0));
+    collider_canvas.draw(Collider(Point(18, 18), Vector2D(-7, -3)), Point(0, 0));
+    collider_canvas.draw(Collider(Point(18, 18), Vector2D(-3, -7)), Point(0, 0));
+    collider_canvas.draw(Collider(Point(18, 18), Vector2D(3, -7)), Point(0, 0));
+    collider_canvas.draw(Collider(Point(18, 18), Vector2D(7, -3)), Point(0, 0));
     
     main_canvas.draw(vector_canvas, { 2, 1 });
     main_canvas.draw(collider_canvas, { 41, 1 });

@@ -143,10 +143,10 @@ void Canvas::draw(const Collider& collider, const Point& point) {
 }
 
 void Canvas::draw(const BoxCollider& collider, const Point& point) {
-    draw(collider.vector, point + collider.getTopSide().start_point);
-    draw(collider.vector, point + collider.getRightSide().start_point);
-    draw(collider.vector, point + collider.getButtomSide().start_point);
-    draw(collider.vector, point + collider.getLeftSide().start_point);
+    draw(collider.getTopSide(), point + collider.getTopSide().start_point);
+    draw(collider.getRightSide(), point + collider.getRightSide().start_point);
+    draw(collider.getButtomSide(), point + collider.getButtomSide().start_point);
+    draw(collider.getLeftSide(), point + collider.getLeftSide().start_point);
 }
 
 
