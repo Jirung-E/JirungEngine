@@ -4,11 +4,13 @@
 #include <string>
 
 #include "../Pixel/Pixel.hpp"
+#include "../Image/TextImage.hpp"
 #include "../../MathModule/Point/Point.hpp"
 #include "../../MathModule/Vector/Vector2D.hpp"
 #include "../../MathModule/Vector/Vector.hpp"
 #include "../../ObjectModule/Collider/Collider.hpp"
 #include "../../ObjectModule/Collider/BoxCollider.hpp"
+#include "../../ObjectModule/Object.hpp"
 
 
 namespace JirungEngine {
@@ -30,6 +32,8 @@ namespace JirungEngine {
         std::string getByString() const;
         std::string getByString(size_t width, size_t height) const;
         void draw(std::string content, int pos_x, int pos_y, bool draw_empty_char = true);
+        void draw(const TextImage& text_image, const Point& point, bool draw_empty_char = true);
+        void draw(const Object& object, const Point& point, bool draw_empty_char = true);
         void draw(const Canvas& canvas, const Point& point, bool draw_empty_char = true);
         void draw(const Vector2D& vector2d, const Point& point);
         void draw(const Vector& vector, const Point& point);

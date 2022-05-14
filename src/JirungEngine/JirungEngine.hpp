@@ -3,7 +3,7 @@
 
 #include "GraphicModule/Canvas/Canvas.hpp"
 #include "GraphicModule/Pixel/Pixel.hpp"
-#include "GraphicModule/TextImage/TextImage.hpp"
+#include "GraphicModule/Image/TextImage.hpp"
 #include "ObjectModule/Collider/Collider.hpp"
 #include "ObjectModule/Collider/BoxCollider.hpp"
 #include "ObjectModule/Physics/Physics.hpp"

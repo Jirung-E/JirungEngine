@@ -108,6 +108,14 @@ void Canvas::draw(string content, int pos_x, int pos_y, bool draw_empty_char) {
     }
 }
 
+void Canvas::draw(const TextImage& text_image, const Point& point, bool draw_empty_char = true) {
+    draw(text_image.getByString(), point, draw_empty_char);
+}
+
+void Canvas::draw(const Object& object, const Point& point, bool draw_empty_char = true) {
+
+}
+
 void Canvas::draw(const Canvas& canvas, const Point& point, bool draw_empty_char) {
     draw(canvas.getByString(canvas.width, canvas.height), point.x, point.y, draw_empty_char);
 }
