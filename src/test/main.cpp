@@ -14,6 +14,7 @@ void test_Canvas_EraseAndClear();
 int main() {
     println("\nTest Start!\n\n");
     
+    test_Canvas_DrawVectorAndCollider();
     test_Canvas_EraseAndClear();
 }
 
@@ -122,8 +123,15 @@ void test_Canvas_DrawVectorAndCollider() {
     collider_canvas.draw(Collider(Point(18, 9), Vector2D(-3, -7)), Point(0, 0));
     collider_canvas.draw(Collider(Point(18, 9), Vector2D(3, -7)), Point(0, 0));
     collider_canvas.draw(Collider(Point(18, 9), Vector2D(7, -3)), Point(0, 0));
-    collider_canvas.draw(BoxCollider(Point(-5, -3), Point(6, 2)), Point(18, 27));
-    collider_canvas.draw("#", 18, 27);
+    collider_canvas.draw(BoxCollider(Point(-5, -3), Point(6, 2)), Point(18, 21));
+    BoxCollider b { Point(-1, -1), Point(1, 1) };
+    collider_canvas.draw(BoxCollider(b), Point(18, 21));
+    b.setTopLeftPoint(Point(-2, -2));
+    b.setTopRightPoint(Point(3, -3));
+    b.setButtomRightPoint(Point(4, 4));
+    b.setButtomLeftPoint(Point(-5, 5));
+    collider_canvas.draw(b, Point(18, 30));
+    collider_canvas.draw("#", 18, 30);
     
     main_canvas.draw(vector_canvas, { 2, 1 });
     main_canvas.draw(collider_canvas, { 41, 1 });
