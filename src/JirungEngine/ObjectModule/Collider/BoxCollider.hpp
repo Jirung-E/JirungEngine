@@ -26,6 +26,11 @@ namespace JirungEngine {
         Point getTopRightPoint() const;
         Point getButtomRightPoint() const;
         Point getButtomLeftPoint() const;
+
+        void setTopLeftPoint(const Point& point);
+        void setTopRightPoint(const Point& point);
+        void setButtomRightPoint(const Point& point);
+        void setButtomLeftPoint(const Point& point);
     };
 }
 
