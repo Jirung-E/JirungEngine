@@ -181,9 +181,25 @@ void test_TextImageAndObject() {
 void test_Object_1() {
     Object player { "player", Point(5, 5) };
     TextImage player_front { "resource/player_front.txtimg" };
-    player.image = player_front;
+    player.image = &player_front;
+    player.collider.push_back(new BoxCollider { player.position, Point(player.position + Point(4, 3)) });
 
     Canvas canvas;
-    canvas.draw(player, 0, 0);
+    canvas.draw(player, Point(0, 0));
+    
+    TextImage player_back { "resource/player_back.txtimg" };
+    player.image = &player_back;
+    canvas.draw(player, Point(5, 0));
+    
+    TextImage player_left { "resource/player_left.txtimg" };
+    player.image = &player_left;
+    canvas.draw(player, Point(10, 0));
+    
+    TextImage player_right { "resource/player_right.txtimg" };
+    player.image = &player_right;
+    canvas.draw(player, Point(15, 0));
+    
+    canvas.draw(*player.collider.back(), Point(0, 0));
+    
     println(canvas.getByString());
 }
