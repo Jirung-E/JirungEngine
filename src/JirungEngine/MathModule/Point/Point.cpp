@@ -23,18 +23,18 @@ Point Point::operator=(const Point& point) {
     return *this;
 }
 
-Point Point::operator+(const Point& point) {
+Point Point::operator+(const Point& point) const {
     return Point { x + point.x, y + point.y, z + point.z };
 }
 
-Point Point::operator-(const Point& point) {
+Point Point::operator-(const Point& point) const {
     return Point { x - point.x, y - point.y, z - point.z };
 }
 
-Point Point::operator*(float n) {
+Point Point::operator*(float n) const {
     return Point { x*n, y*n, z*n };
 }
 
-Point Point::operator/(float n) {
+Point Point::operator/(float n) const {
     return Point { x/n, y/n, z/n };
 }
