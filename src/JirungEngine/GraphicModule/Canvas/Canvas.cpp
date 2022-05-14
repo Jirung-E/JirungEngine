@@ -43,14 +43,16 @@ string Canvas::getByString(size_t width, size_t height) const {
         height = height_max;
     }
 
-    string str_canvas = "";
-    for(int i=0; i<title.length() && i<width; ++i) {
-        str_canvas += title[i];
+    if(title != "") {
+        string str_canvas = "";
+        for(int i=0; i<title.length() && i<width; ++i) {
+            str_canvas += title[i];
+        }
+        while(str_canvas.length() < width) {
+            str_canvas += ' ';
+        }
+        str_canvas += '\n';
     }
-    while(str_canvas.length() < width) {
-        str_canvas += ' ';
-    }
-    str_canvas += '\n';
     
     for(int i=0; i<height; ++i) {
         for(int k=0; k<width; ++k) {
