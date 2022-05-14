@@ -52,15 +52,19 @@ unsigned short TextImage::getHeight() const {
 	return height;
 }
 
-char** TextImage::getByCharpp() const {
+Pixel** TextImage::get() const {
     return pixel;
+}
+
+char** TextImage::getByCharpp() const {
+    return pixel.getShape();
 }
 
 string TextImage::getByString() const {
     string result = "";
     for(int i=0; i<height; ++i) {
         for(int k=0; k<width; ++k) {
-            result += pixel[i][k];
+            result += pixel[i][k].getShape();
         }
         result += '\n';
     }
