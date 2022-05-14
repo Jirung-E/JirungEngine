@@ -21,7 +21,6 @@ namespace JirungEngine {
         unsigned short getWidth() const;
         unsigned short getHeight() const;
         Pixel** get() const;
-        char** getByChars() const;
         std::string getByString() const;
     };
 }

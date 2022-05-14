@@ -56,10 +56,6 @@ Pixel** TextImage::get() const {
     return pixel;
 }
 
-char** TextImage::getByChars() const {
-    return pixel.getShape();
-}
-
 string TextImage::getByString() const {
     string result = "";
     for(int i=0; i<height; ++i) {
