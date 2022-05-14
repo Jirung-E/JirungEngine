@@ -137,4 +137,17 @@ void test_Canvas_EraseAndClear() {
     canvas.erase(7, 7, 6, 6);
     canvas.erase(5, 5);
     println(canvas.getByString());
+    canvas.clear();
+    println(canvas.getByString());
+    
+    canvas.setDefaultBackground('.');
+    println(canvas.getByString());
+    
+    canvas.draw("Hello\nHello\nHello\nHi\nBye", 5, 5);
+    println(canvas.getByString());
+    canvas.erase(7, 7, 6, 6);
+    canvas.erase(5, 5);
+    println(canvas.getByString());
+    canvas.clear();
+    println(canvas.getByString());
 }
