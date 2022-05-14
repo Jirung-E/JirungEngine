@@ -151,11 +151,38 @@ void Canvas::draw(const BoxCollider& collider, const Point& point) {
 
 
 void Canvas::erase(unsigned int start_x, unsigned int start_y, unsigned int end_x, unsigned int end_y) {
-
+    Point top_left;
+    unsigned int width;
+    unsigned int height;
+    if(end_x >= start_x) {
+        top_left.x = start_x;
+        width = end_x - start_x + 1;
+    }
+    else {
+        top_left.x = end_x;
+        width = start_x - end_x + 1;
+    }
+    if(end_y >= start_y) {
+        top_left.y = start_y;
+        height = end_y - start_y + 1;
+    }
+    else {
+        top_left.y = end_y;
+        height = start_y - end_y + 1;
+    }
+    
+    string str = "";
+    for(int i=0; i<height; ++i) {
+        for(int k=0; k<width; ++k) {
+            str += default_background.getShape();
+        }
+        str += "\n";
+    }
+    draw(str, top_left.x, top_left.y, true);
 }
 
 void Canvas::erase(unsigned int pos_x, unsigned int pos_y) {
-    pixel[pos_y][pos_x] = default_background;
+    erase(pos_x, pos_y, pos_x, pos_y);
 }
 
 void Canvas::clear() {

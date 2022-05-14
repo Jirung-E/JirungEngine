@@ -9,11 +9,12 @@ using namespace Util;
 void test_Vector2D();
 void test_Canvas();
 void test_Canvas_DrawVectorAndCollider();
+void test_Canvas_EraseAndClear();
 
 int main() {
     println("\nTest Start!\n\n");
     
-    test_Canvas_DrawVectorAndCollider();
+    test_Canvas_EraseAndClear();
 }
 
 
@@ -127,4 +128,13 @@ void test_Canvas_DrawVectorAndCollider() {
     main_canvas.draw(vector_canvas, { 2, 1 });
     main_canvas.draw(collider_canvas, { 41, 1 });
     println(main_canvas.getByString());
+}
+
+void test_Canvas_EraseAndClear() {
+    Canvas canvas;
+    canvas.draw("Hello\nHello\nHello\nHi\nBye", 5, 5);
+    println(canvas.getByString());
+    canvas.erase(7, 7, 6, 6);
+    canvas.erase(5, 5);
+    println(canvas.getByString());
 }
