@@ -14,6 +14,12 @@ namespace JirungEngine {
 
     public:
         BoxCollider(const Point& top_left, const Point& buttom_right);
+
+    public:
+        Collider getTopSide() const;
+        Collider getRightSide() const;
+        Collider getButtomSide() const;
+        Collider getLeftSide() const;
     };
 }
 

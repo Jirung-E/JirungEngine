@@ -119,9 +119,6 @@ void Canvas::draw(const Vector2D& vector2d, const Point& point) {
     int num_of_pixels = abs_x >= abs_y ? abs_x : abs_y;
     
     auto round = [](float num) -> int { return static_cast<int>(num) + 0.5 <= num ? static_cast<int>(num+1) : static_cast<int>(num); };
-    println("0.4 -> " + to_string(round(0.4)));
-    println("0.5 -> " + to_string(round(0.5)));
-    println("0.6 -> " + to_string(round(0.6)));
     
     if(num_of_pixels > 0) {
         Point* points = new Point[num_of_pixels];
@@ -142,11 +139,14 @@ void Canvas::draw(const Vector& vector, const Point& point) {
 }
 
 void Canvas::draw(const Collider& collider, const Point& point) {
-
+    draw(collider.vector, point + collider.start_point);
 }
 
 void Canvas::draw(const BoxCollider& collider, const Point& point) {
-
+    draw(collider.vector, point + collider.getTopSide().start_point);
+    draw(collider.vector, point + collider.getRightSide().start_point);
+    draw(collider.vector, point + collider.getButtomSide().start_point);
+    draw(collider.vector, point + collider.getLeftSide().start_point);
 }
 
 

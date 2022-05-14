@@ -13,3 +13,20 @@ BoxCollider::BoxCollider(const Point& top_left, const Point& buttom_right) : Col
                              } {
 
 }
+
+
+Collider BoxCollider::getTopSide() const {
+    return side[0];
+}
+
+Collider BoxCollider::getRightSide() const {
+    return side[1];
+}
+
+Collider BoxCollider::getButtomSide() const {
+    return side[2];
+}
+
+Collider BoxCollider::getLeftSide() const {
+    return side[3];
+}
