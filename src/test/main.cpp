@@ -11,11 +11,12 @@ void test_Canvas();
 void test_Canvas_DrawVectorAndCollider();
 void test_Canvas_EraseAndClear();
 void test_TextImageAndObject();
+void test_Object_1();
 
 int main() {
     println("\nTest Start!\n\n");
     
-    test_TextImageAndObject();
+    test_Object_1();
 }
 
 
@@ -174,5 +175,15 @@ void test_TextImageAndObject() {
     canvas.draw(o.id, 9, 9);
     canvas.draw(o, Point(10, 10));
     
+    println(canvas.getByString());
+}
+
+void test_Object_1() {
+    Object player { "player", Point(5, 5) };
+    TextImage player_front { "resource/player_front.txtimg" };
+    player.image = player_front;
+
+    Canvas canvas;
+    canvas.draw(player, 0, 0);
     println(canvas.getByString());
 }
