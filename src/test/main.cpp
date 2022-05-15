@@ -12,12 +12,14 @@ void test_Canvas_DrawVectorAndCollider();
 void test_Canvas_EraseAndClear();
 void test_TextImageAndObject();
 void test_Object_1();
-void test_Game();
+void test_Game_1();
+void test_Game_2();
 
 int main() {
     println("\nTest Start!\n\n");
     
-    test_Game();
+    // test_Object_1();
+    test_Game_2();
 }
 
 
@@ -183,22 +185,23 @@ void test_Object_1() {
     Object player { "player", Point(5, 5) };
     TextImage player_front { "resource/player_front.txtimg" };
     player.image = &player_front;
-    player.collider.push_back(new BoxCollider { player.position, Point(player.position + Point(4, 3)) });
+    player.box_collider.push_back(BoxCollider { Point(0, 0), Point(3, 2) });
 
     Canvas canvas;
-    canvas.draw(player, Point(0, 0));
+    canvas.draw(player, player.position + Point(0, 0));
+    canvas.draw(player.box_collider.front(), player.position + Point(0, 0));
     
     TextImage player_back { "resource/player_back.txtimg" };
     player.image = &player_back;
-    canvas.draw(player, Point(5, 0));
+    canvas.draw(player, player.position + Point(5, 0));
     
     TextImage player_left { "resource/player_left.txtimg" };
     player.image = &player_left;
-    canvas.draw(player, Point(10, 0));
+    canvas.draw(player, player.position + Point(10, 0));
     
     TextImage player_right { "resource/player_right.txtimg" };
     player.image = &player_right;
-    canvas.draw(player, Point(15, 0));
+    canvas.draw(player, player.position + Point(15, 0));
     
     Object ground { "ground" };
     ground.image = new TextImage { "resource/ground.txtimg" };
@@ -209,7 +212,7 @@ void test_Object_1() {
     println(canvas.getByString());
 }
 
-void test_Game() {
+void test_Game_1() {
     class TestGame : public Game {
     public:
         void play() {
@@ -232,6 +235,52 @@ void test_Game() {
                 if(player.position.x > 100) {
                     break;
                 }
+            }
+        }
+    } tg;
+
+    tg.play();
+}
+
+void test_Game_2() {
+    class TestGame : public Game {
+    public:
+        void play() {
+            Object player { "player" };
+            Object tile { "tile" };
+            player.image = new TextImage { "resource/player_right.txtimg" };
+            tile.image = new TextImage { "resource/tile.txtimg" };
+            player.position.x = -4;
+            player.position.y = 30 - 3;
+            for(int i=0; i<100; i+=tile.image->getHeight()) {
+                for(int k=0; k<100; k+=tile.image->getWidth()) {
+                    canvas.draw(tile, Point(k, i));
+                }
+            }
+
+            while(true) {
+                canvas.draw(player, player.position);
+                println(canvas.getByString());
+                
+                if(player.position.x > 50 && player.position.y < 10) {
+                    break;
+                }
+                
+                if(player.position.x > 40) {
+                    player.position.x--;
+                    player.position.y--;
+                    canvas.erase(player.position.x, player.position.y+1, player.position.x + 3, player.position.y + 3);
+                }
+                else if(player.position.y < 20) {
+                    player.position.x--;
+                    canvas.erase(player.position.x+1, player.position.y, player.position.x + 4, player.position.y + 2);
+                }
+                else {
+                    player.position.x++;
+                    canvas.erase(player.position.x-1, player.position.y, player.position.x + 2, player.position.y + 2);
+                }
+                
+                sleep(500);
             }
         }
     } tg;
