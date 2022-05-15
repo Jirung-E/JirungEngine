@@ -12,11 +12,12 @@ void test_Canvas_DrawVectorAndCollider();
 void test_Canvas_EraseAndClear();
 void test_TextImageAndObject();
 void test_Object_1();
+void test_Game();
 
 int main() {
     println("\nTest Start!\n\n");
     
-    test_Object_1();
+    test_Game();
 }
 
 
@@ -206,4 +207,23 @@ void test_Object_1() {
     }
     
     println(canvas.getByString());
+}
+
+void test_Game() {
+    class TestGame : public Game {
+    public:
+        void play() {
+            Object player { "player" };
+            player.image = new TextImage { "resource/player_front.txtimg" };
+
+            while(true) {
+                canvas.draw(player, Point(0, 0));
+                println(canvas.getByString());
+                player.position.x++;
+                sleep(1000);
+            }
+        }
+    } tg;
+
+    tg.play();
 }

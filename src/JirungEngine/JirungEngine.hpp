@@ -14,4 +14,19 @@
 #include "MathModule/Vector/Vector2D.hpp"
 #include "MathModule/Vector/Vector.hpp"
 
+
+namespace JirungEngine {
+    class Game {
+    public:
+        Canvas canvas;
+        // Object object;
+
+    public:
+        // Game();
+
+    public:
+        virtual void play() = 0;
+    };
+}
+
 #endif

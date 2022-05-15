@@ -9,6 +9,8 @@
 namespace Util {
     void print(str_t text = " ");
     void println(str_t text = "");
+
+    void sleep(unsigned short time);
 }
 
 #endif
