@@ -259,7 +259,9 @@ void test_Game_2() {
             }
 
             while(true) {
-                canvas.draw(player, player.position);
+                Canvas temp;
+                temp.draw(player, player.position);
+                canvas.draw(temp, Point(0, 0), false);
                 println(canvas.getByString());
                 
                 if(player.position.x > 50 && player.position.y < 10) {
@@ -269,15 +271,15 @@ void test_Game_2() {
                 if(player.position.x > 40) {
                     player.position.x--;
                     player.position.y--;
-                    canvas.erase(player.position.x, player.position.y+1, player.position.x + 3, player.position.y + 3);
+                    temp.erase(player.position.x, player.position.y+1, player.position.x + 3, player.position.y + 3);
                 }
                 else if(player.position.y < 20) {
                     player.position.x--;
-                    canvas.erase(player.position.x+1, player.position.y, player.position.x + 4, player.position.y + 2);
+                    temp.erase(player.position.x+1, player.position.y, player.position.x + 4, player.position.y + 2);
                 }
                 else {
                     player.position.x++;
-                    canvas.erase(player.position.x-1, player.position.y, player.position.x + 2, player.position.y + 2);
+                    temp.erase(player.position.x-1, player.position.y, player.position.x + 2, player.position.y + 2);
                 }
                 
                 sleep(500);
