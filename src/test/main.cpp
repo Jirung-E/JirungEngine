@@ -199,7 +199,11 @@ void test_Object_1() {
     player.image = &player_right;
     canvas.draw(player, Point(15, 0));
     
-    canvas.draw(*player.collider.back(), Point(0, 0));
+    Object ground { "ground" };
+    ground.image = new TextImage { "resource/ground.txtimg" };
+    for(int i=0; i<100; i+=ground.image->getWidth()) {
+        canvas.draw(ground, Point(i, 30));
+    }
     
     println(canvas.getByString());
 }

@@ -85,7 +85,7 @@ void Canvas::draw(string content, int pos_x, int pos_y, bool draw_empty_char) {
             cursor_x++;
             continue;
         }
-        if(cursor_y >= height_max || cursor_x >= width_max) {
+        if(cursor_y >= height_max) {
             continue;
         }
 
@@ -101,6 +101,10 @@ void Canvas::draw(string content, int pos_x, int pos_y, bool draw_empty_char) {
                 cursor_x++;
                 continue;
             }
+        }
+        
+        if(cursor_x >= width_max) {
+            continue;
         }
 
         pixel[cursor_y][cursor_x] = Pixel(c);
