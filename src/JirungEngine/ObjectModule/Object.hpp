@@ -4,6 +4,7 @@
 #include "../MathModule/Point/Point.hpp"
 #include "../GraphicModule/Image/TextImage.hpp"
 #include "Collider/Collider.hpp"
+#include "Collider/BoxCollider.hpp"
 #include "Physics/Physics.hpp"
 
 #include "../../Util/UtilType.hpp"
@@ -18,11 +19,13 @@ namespace JirungEngine {
         public: Physics physics;
         
         public: TextImage* image;
-        public: std::list<Collider*> collider;
-        public: Object* parent_object;
-        private: std::list<Object*> child_object;
+        public: std::list<Collider> collider;
+        public: std::list<BoxCollider> box_collider;
 
-        private: static std::list<std::string> object_id_list;
+        public: Object* parent_object;
+        protected: std::list<Object*> child_object;
+
+        protected: static std::list<std::string> object_id_list;
 
     public:
         Object(std::string id, const Point& position = Point { 0, 0, 0 }, Object* parent_object = nullptr);

@@ -3,7 +3,7 @@
 using namespace JirungEngine;
 
 
-BoxCollider::BoxCollider(const Point& top_left, const Point& buttom_right) : Collider { top_left, Vector2D { } }, 
+BoxCollider::BoxCollider(const Point& top_left, const Point& buttom_right) : 
     top_left { top_left }, top_right { Point(buttom_right.x, top_left.y) }, buttom_right { buttom_right }, buttom_left { Point(top_left.x, buttom_right.y) }, 
     side {
         Collider { top_left, Vector2D(buttom_right.x - top_left.x, 0) }, 

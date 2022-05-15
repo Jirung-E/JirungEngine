@@ -7,7 +7,7 @@
 
 
 namespace JirungEngine {
-    class BoxCollider : public Collider {
+    class BoxCollider {
         private: Point top_left;
         private: Point top_right;
         private: Point buttom_right;
