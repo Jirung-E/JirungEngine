@@ -214,13 +214,24 @@ void test_Game() {
     public:
         void play() {
             Object player { "player" };
-            player.image = new TextImage { "resource/player_front.txtimg" };
+            Object ground { "ground" };
+            player.image = new TextImage { "resource/player_right.txtimg" };
+            ground.image = new TextImage { "resource/ground.txtimg" };
+            player.position.x = -4;
+            player.position.y = 30 - 3;
+            for(int i=0; i<100; i+=ground.image->getWidth()) {
+                canvas.draw(ground, Point(i, 30));
+            }
 
             while(true) {
-                canvas.draw(player, Point(0, 0));
+                canvas.draw(player, player.position);
                 println(canvas.getByString());
                 player.position.x++;
-                sleep(1000);
+                canvas.erase(player.position.x-1, player.position.y, player.position.x + 2, player.position.y + 2);
+                sleep(500);
+                if(player.position.x > 100) {
+                    break;
+                }
             }
         }
     } tg;

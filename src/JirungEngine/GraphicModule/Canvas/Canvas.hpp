@@ -40,8 +40,8 @@ namespace JirungEngine {
         void draw(const Vector& vector, const Point& point);
         void draw(const Collider& collider, const Point& point);
         void draw(const BoxCollider& collider, const Point& point);
-        void erase(unsigned int start_x, unsigned int start_y, unsigned int end_x, unsigned int end_y);
-        void erase(unsigned int pos_x, unsigned int pos_y);
+        void erase(int start_x, int start_y, int end_x, int end_y);
+        void erase(int pos_x, int pos_y);
         void clear();
     };
 }

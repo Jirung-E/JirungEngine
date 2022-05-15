@@ -78,17 +78,6 @@ void Canvas::draw(string content, int pos_x, int pos_y, bool draw_empty_char) {
     int cursor_y = pos_y;
 
     for(int i=0; i<content.length(); ++i) {
-        if(cursor_y < 0) {
-            continue;
-        }
-        if(cursor_x < 0) {
-            cursor_x++;
-            continue;
-        }
-        if(cursor_y >= height_max) {
-            continue;
-        }
-
         char c = content.at(i);
         if(c == '\n') {
             cursor_y++;
@@ -103,6 +92,16 @@ void Canvas::draw(string content, int pos_x, int pos_y, bool draw_empty_char) {
             }
         }
         
+        if(cursor_y < 0) {
+            continue;
+        }
+        if(cursor_x < 0) {
+            cursor_x++;
+            continue;
+        }
+        if(cursor_y >= height_max) {
+            continue;
+        }
         if(cursor_x >= width_max) {
             continue;
         }
@@ -168,7 +167,7 @@ void Canvas::draw(const BoxCollider& collider, const Point& point) {
 }
 
 
-void Canvas::erase(unsigned int start_x, unsigned int start_y, unsigned int end_x, unsigned int end_y) {
+void Canvas::erase(int start_x, int start_y, int end_x, int end_y) {
     Point top_left;
     unsigned int width;
     unsigned int height;
@@ -199,7 +198,7 @@ void Canvas::erase(unsigned int start_x, unsigned int start_y, unsigned int end_
     draw(str, top_left.x, top_left.y, true);
 }
 
-void Canvas::erase(unsigned int pos_x, unsigned int pos_y) {
+void Canvas::erase(int pos_x, int pos_y) {
     erase(pos_x, pos_y, pos_x, pos_y);
 }
 
