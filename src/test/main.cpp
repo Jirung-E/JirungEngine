@@ -15,6 +15,7 @@ void test_Object_1();
 void test_Game_1();
 void test_Game_2();
 void test_Object_2();
+void objectParty();
 
 
 int main() {
@@ -356,4 +357,79 @@ void test_Object_2() {
     } tg;
 
     tg.play();
+}
+
+void objectParty() {
+    Canvas canvas;
+    
+    Object o[] = {
+        {"1"}, 
+        {"2"},
+        {"3"},
+        {"4"},
+        {"5"},
+        {"6"},
+        {"7"},
+        {"8"},
+        {"9"},
+        {"10"},
+        {"11"},
+        {"12"},
+        {"13"},
+        {"14"},
+        {"15"},
+        {"16"},
+    }
+
+    for(Object& e : o) {
+        e.image = new TextImage { "o.txtimg" };
+        
+        e.position.x = getRandomInt(10, 20);
+        e.position.y = getRandomInt(10, 20);
+        
+        e.physics.velocity = Vector { getRandomFloat(-5.0, 5.0), getRandomFloat(-5.0, 5.0), 0 };
+        e.physics.gravity = Vector { 0, 1, 0 };
+        e.physics.elasticity = 1;
+    }
+    
+    Object ground { "ground" };
+    ground.image = new TextImage { "resource/ground.txtimg" };
+    ground.position.y = 30;
+
+    Canvas grounds;
+    for(int i=0; i<100; i+=ground.image->getWidth()) {
+        grounds.draw(ground, Point(i, ground.position.y));
+    }
+
+    while(true) {
+        canvas.draw(grounds, Point(0, 0));
+        for(const Object& e : o) {
+            canvas.draw(e, e.position);
+        }
+        println(canvas.getByString());
+
+        for(Object& e : o) {
+            Point prev_frame_position;
+            
+            e.physics.velocity = e.physics.velocity + e.physics.acceleration + e.physics.gravity;
+            e.position = e.position + Point { e.physics.velocity.x, e.physics.velocity.y, e.physics.velocity.z };
+
+            if(e.position.y + e.image->getHeight() >= ground.position.y) {
+                e.position.y = ground.position.y - (e.image->getHeight());
+                e.physics.velocity.y *= -e.physics.elasticity;
+            }
+            if(e.position.x-1 < 0) {
+                e.position.x = 0;
+                e.physics.velocity.x *= -e.physics.elasticity;
+            }
+            if(e.position.x + e.image->getWidth() >= canvas.width) {
+                e.position.x = canvas.width - e.image->getWidth();
+                e.physics.velocity.x *= -e.physics.elasticity;
+            }
+
+            canvas.erase(prev_frame_position.x, prev_frame_position.y, prev_frame_position.x + e.image->getWidth()-1, prev_frame_position.y + e.image->getHeight()-1);
+        }
+
+        sleep(100);
+    }
 }

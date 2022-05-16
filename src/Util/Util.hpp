@@ -11,6 +11,9 @@ namespace Util {
     void println(str_t text = "");
 
     void sleep(unsigned short time);
+    
+    int getRandomInt(int from, int to);
+    float getRandomFloat(float from, float to);
 }
 
 #endif
