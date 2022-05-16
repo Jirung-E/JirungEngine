@@ -14,12 +14,13 @@ void test_TextImageAndObject();
 void test_Object_1();
 void test_Game_1();
 void test_Game_2();
+void test_Object_2();
+
 
 int main() {
     println("\nTest Start!\n\n");
     
-    // test_Object_1();
-    test_Game_2();
+    test_Object_2();
 }
 
 
@@ -283,6 +284,73 @@ void test_Game_2() {
                 }
                 
                 sleep(500);
+            }
+        }
+    } tg;
+
+    tg.play();
+}
+
+void test_Object_2() {
+    class TestGame : public Game {
+    public:
+        void play() {
+            Object player { "player" };
+            Object ground { "ground" };
+            
+            player.image = new TextImage { "resource/player_right.txtimg" };
+            ground.image = new TextImage { "resource/ground.txtimg" };
+            
+            player.position.x = 10;
+            player.position.y = 5;
+            ground.position.y = 30;
+            
+            player.box_collider.push_back(BoxCollider { Point(0, 0), Point(player.image->getWidth()-1, player.image->getHeight()-1) });
+            ground.collider.push_back(Collider { Point(0, 0), Vector2D(ground.image->getWidth(), 0) });
+            
+            player.physics.velocity = Vector { 3, 0, 0 };
+            player.physics.gravity = Vector { 0, 1, 0 };
+            player.physics.elasticity = 0.98;
+            
+            Canvas grounds;
+            for(int i=0; i<100; i+=ground.image->getWidth()) {
+                grounds.draw(ground, Point(i, ground.position.y));
+            }
+            
+            while(true) {
+                canvas.draw(grounds, Point(0, 0));
+                canvas.draw(player, player.position);
+                canvas.draw("px:                     ", 1, 2, true);
+                canvas.draw("py:                     ", 1, 3, true);
+                canvas.draw("vx:                     ", 1, 4, true);
+                canvas.draw("vy:                     ", 1, 5, true);
+                canvas.draw(to_string(player.position.x), 4, 2);
+                canvas.draw(to_string(player.position.y), 4, 3);
+                canvas.draw(to_string(player.physics.velocity.x), 4, 4);
+                canvas.draw(to_string(player.physics.velocity.y), 4, 5);
+                println(canvas.getByString());
+                
+                Point prev_frame_player_position = player.position;
+                
+                player.physics.velocity = player.physics.velocity + player.physics.acceleration + player.physics.gravity;
+                player.position = player.position + Point { player.physics.velocity.x, player.physics.velocity.y, player.physics.velocity.z };
+                
+                if(player.position.y + player.image->getHeight() >= ground.position.y) {
+                    player.position.y = ground.position.y - (player.image->getHeight());
+                    player.physics.velocity.y *= -player.physics.elasticity;
+                }
+                if(player.position.x-1 < 0) {
+                    player.position.x = 0;
+                    player.physics.velocity.x *= -player.physics.elasticity;
+                }
+                if(player.position.x + player.image->getWidth() >= canvas.width) {
+                    player.position.x = canvas.width - player.image->getWidth();
+                    player.physics.velocity.x *= -player.physics.elasticity;
+                }
+                
+                canvas.erase(prev_frame_player_position.x, prev_frame_player_position.y, prev_frame_player_position.x + player.image->getWidth()-1, prev_frame_player_position.y + player.image->getHeight()-1);
+                
+                sleep(100);
             }
         }
     } tg;
