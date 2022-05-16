@@ -10,6 +10,8 @@ namespace JirungEngine {
         public: unsigned short int elasticity;  // max: 1   if x > 1   ->   x = 1
         public: unsigned short int density;     // max: 1
         public: Vector velocity;
+        public: Vector acceleration;
+        public: Vector gravity;
         public: float rotate_speed;
         public: Point rotate_pivot;
     };
