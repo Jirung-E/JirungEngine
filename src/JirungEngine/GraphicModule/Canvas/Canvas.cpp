@@ -7,7 +7,7 @@ using namespace JirungEngine;
 using namespace Util;
 
 
-Canvas::Canvas() : title { }, width_max { 80 }, height_max { 40 }, width { 0 }, height { 0 }, pixel { new Pixel*[height_max] }, default_background { ' ' } {
+Canvas::Canvas() : title { }, width_max { 80 }, height_max { 40 }, width { 80 }, height { 40 }, pixel { new Pixel*[height_max] }, default_background { ' ' } {
     for(int i=0; i<height_max; ++i) {
         pixel[i] = new Pixel[width_max];
     }
