@@ -21,7 +21,7 @@ void objectParty();
 int main() {
     println("\nTest Start!\n\n");
     
-    test_Object_2();
+    objectParty();
 }
 
 
@@ -379,10 +379,10 @@ void objectParty() {
         {"14"},
         {"15"},
         {"16"},
-    }
+    };
 
     for(Object& e : o) {
-        e.image = new TextImage { "o.txtimg" };
+        e.image = new TextImage { "resource/o.txtimg" };
         
         e.position.x = getRandomInt(10, 20);
         e.position.y = getRandomInt(10, 20);
@@ -430,6 +430,6 @@ void objectParty() {
             canvas.erase(prev_frame_position.x, prev_frame_position.y, prev_frame_position.x + e.image->getWidth()-1, prev_frame_position.y + e.image->getHeight()-1);
         }
 
-        sleep(100);
+        sleep(50);
     }
 }
