@@ -362,7 +362,7 @@ void test_Object_2() {
 void objectParty() {
     Canvas canvas;
     
-    Object o[] = {
+    Object o[] {
         {"1"}, 
         {"2"},
         {"3"},
@@ -411,8 +411,8 @@ void objectParty() {
         for(Object& e : o) {
             Point prev_frame_position;
             
-            e.physics.velocity = e.physics.velocity + e.physics.acceleration + e.physics.gravity;
-            e.position = e.position + Point { e.physics.velocity.x, e.physics.velocity.y, e.physics.velocity.z };
+            e.physics.velocity += e.physics.acceleration + e.physics.gravity;
+            e.position += Point { e.physics.velocity.x, e.physics.velocity.y, e.physics.velocity.z };
 
             if(e.position.y + e.image->getHeight() >= ground.position.y) {
                 e.position.y = ground.position.y - (e.image->getHeight());
