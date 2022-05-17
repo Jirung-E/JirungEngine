@@ -42,3 +42,31 @@ Vector Vector::operator*(float n) {
 Vector Vector::operator/(float n) {
     return Vector { x/n, y/n, z/n };
 }
+
+Vector Vector::operator+=(const Vector& vector) {
+    x += vector.x;
+    y += vector.y;
+    z += vector.z;
+    return *this;
+}
+
+Vector Vector::operator-=(const Vector& vector) {
+    x -= vector.x;
+    y -= vector.y;
+    z -= vector.z;
+    return *this;
+}
+
+Vector Vector::operator*=(float n) {
+    x *= n;
+    y *= n;
+    z *= n;
+    return *this;
+}
+
+Vector Vector::operator/=(float n) {
+    x /= n;
+    y /= n;
+    z /= n;
+    return *this;
+}

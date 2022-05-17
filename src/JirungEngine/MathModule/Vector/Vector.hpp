@@ -18,6 +18,10 @@ namespace JirungEngine {
         float operator*(const Vector& vector);            // scalar product
         Vector operator*(float n);
         Vector operator/(float n);
+        Vector operator+=(const Vector& vector);
+        Vector operator-=(const Vector& vector);
+        Vector operator*=(float n);
+        Vector operator/=(float n);
     };
 }
 

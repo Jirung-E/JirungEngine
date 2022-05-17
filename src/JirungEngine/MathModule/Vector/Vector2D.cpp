@@ -22,22 +22,46 @@ Vector2D Vector2D::operator=(const Vector2D& vector2d) {
     return *this;
 }
 
-Vector2D Vector2D::operator+(const Vector2D& vector2d) {
+Vector2D Vector2D::operator+(const Vector2D& vector2d) const {
     return Vector2D { x + vector2d.x, y + vector2d.y };
 }
 
-Vector2D Vector2D::operator-(const Vector2D& vector2d) {
+Vector2D Vector2D::operator-(const Vector2D& vector2d) const {
     return Vector2D { x - vector2d.x, y - vector2d.y };
 }
 
-float Vector2D::operator*(const Vector2D& vector2d) {
+float Vector2D::operator*(const Vector2D& vector2d) const {
     return x*vector2d.x + y*vector2d.y;
 }
 
-Vector2D Vector2D::operator*(float n) {
+Vector2D Vector2D::operator*(float n) const {
     return Vector2D { x*n, y*n };
 }
 
-Vector2D Vector2D::operator/(float n) {
+Vector2D Vector2D::operator/(float n) const {
     return Vector2D { x/n, y/n };
+}
+
+Vector2D Vector2D::operator+=(const Vector2D& vector2d) {
+    x += vector2d.x;
+    y += vector2d.y;
+    return *this;
+}
+
+Vector2D Vector2D::operator-=(const Vector2D& vector2d) {
+    x -= vector2d.x;
+    y -= vector2d.y;
+    return *this;
+}
+
+Vector2D Vector2D::operator*=(float n) {
+    x *= n;
+    y *= n;
+    return *this;
+}
+
+Vector2D Vector2D::operator/=(float n) {
+    x /= n;
+    y /= n;
+    return *this;
 }
