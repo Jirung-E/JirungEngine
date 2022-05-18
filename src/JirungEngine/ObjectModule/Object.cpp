@@ -38,5 +38,5 @@ bool Object::isCollide() const {
 }
 
 Object* Object::getCollidedObject() const {
-    return event_listener.getObjectThatCollidedWith(this);
+    //return event_listener.getObjectThatCollidedWith(this);
 }
