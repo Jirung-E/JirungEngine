@@ -6,7 +6,8 @@
 
 namespace JirungEngine {
     class EventListener {
-
+    public:
+        void collisionCheck();
     };
 }
 

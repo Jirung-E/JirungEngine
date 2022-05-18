@@ -5,6 +5,7 @@
 #include "../GraphicModule/Image/TextImage.hpp"
 #include "Collider/Collider.hpp"
 #include "Collider/BoxCollider.hpp"
+#include "EventListener/EventListener.hpp"
 #include "Physics/Physics.hpp"
 
 #include "../../Util/UtilType.hpp"
@@ -25,7 +26,8 @@ namespace JirungEngine {
         public: Object* parent_object;
         protected: std::list<Object*> child_object;
 
-        protected: static std::list<std::string> object_id_list;
+        protected: static std::list<Object*> object_list;
+        protected: static EventListener event_listener;
 
     public:
         Object(std::string id, const Point& position = Point { 0, 0, 0 }, Object* parent_object = nullptr);
@@ -36,6 +38,9 @@ namespace JirungEngine {
         Object* getChildById(std::string id);
 
         void update();
+
+        bool isCollide() const;
+        Object* getCollidedObject() const;
     };
 }
 
