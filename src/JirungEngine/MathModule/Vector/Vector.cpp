@@ -70,3 +70,7 @@ Vector Vector::operator/=(float n) {
     z /= n;
     return *this;
 }
+
+Point Vector::getPointOfContactWith(const Vector& vector) {
+    return
+}

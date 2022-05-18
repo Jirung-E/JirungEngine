@@ -27,7 +27,6 @@ namespace JirungEngine {
         protected: std::list<Object*> child_object;
 
         protected: static std::list<Object*> object_list;
-        protected: static EventListener event_listener;
 
     public:
         Object(std::string id, const Point& position = Point { 0, 0, 0 }, Object* parent_object = nullptr);

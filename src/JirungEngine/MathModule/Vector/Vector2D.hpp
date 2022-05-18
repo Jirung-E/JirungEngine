@@ -1,6 +1,9 @@
 #ifndef __Vector2D_hpp__
 #define __Vector2D_hpp__
 
+#include "../Point/Point.hpp"
+
+
 namespace JirungEngine {
     class Vector2D {
         public: float x;
@@ -21,6 +24,9 @@ namespace JirungEngine {
         Vector2D operator-=(const Vector2D& vector2d);
         Vector2D operator*=(float n);
         Vector2D operator/=(float n);
+
+    public:
+        Point getPointOfContactWith(const Vector2D& vector2d);
     };
 }
 
