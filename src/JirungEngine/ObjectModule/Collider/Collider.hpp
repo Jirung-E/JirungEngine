@@ -19,6 +19,10 @@ namespace JirungEngine {
 
     public:
         bool isCollidingWith(const Collider& other) const;
+        Point getEndPoint() const;
+
+    private:
+        //float x(float float_in_range_of_0_to_1) const;
     };
 }
 
