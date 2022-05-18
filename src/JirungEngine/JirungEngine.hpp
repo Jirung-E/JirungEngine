@@ -6,6 +6,7 @@
 #include "GraphicModule/Image/TextImage.hpp"
 #include "ObjectModule/Collider/Collider.hpp"
 #include "ObjectModule/Collider/BoxCollider.hpp"
+#include "ObjectModule/Collider/CollisionChecker/CollisionChecker.hpp"
 #include "ObjectModule/Physics/Physics.hpp"
 #include "ObjectModule/Object.hpp"
 #include "EventListener/EventListener.hpp"
