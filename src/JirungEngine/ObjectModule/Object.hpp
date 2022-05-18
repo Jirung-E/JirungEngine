@@ -34,6 +34,8 @@ namespace JirungEngine {
 
         Object* getParent();
         Object* getChildById(std::string id);
+
+        void update();
     };
 }
 

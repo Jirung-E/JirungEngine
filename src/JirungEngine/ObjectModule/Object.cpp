@@ -26,3 +26,8 @@ Object* Object::getParent() {
 Object* Object::getChildById(string id) {
     return nullptr;
 }
+
+void Object::update() {
+    physics.velocity += physics.acceleration + physics.gravity;
+    position += Point { physics.velocity.x, physics.velocity.y, physics.velocity.z };
+}
