@@ -123,6 +123,10 @@ void Canvas::draw(const Object& object, const Point& point, bool draw_empty_char
     draw(object.image->getByString(), point, draw_empty_char);
 }
 
+void Canvas::draw(const Object& object, bool draw_empty_char) {
+    draw(object.image->getByString(), object.position, draw_empty_char);
+}
+
 void Canvas::draw(const Canvas& canvas, const Point& point, bool draw_empty_char) {
     draw(canvas.getByString(canvas.width, canvas.height), point.x, point.y, draw_empty_char);
 }
