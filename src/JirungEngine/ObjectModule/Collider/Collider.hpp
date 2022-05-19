@@ -2,8 +2,8 @@
 #define __Collider_hpp__
 
 #include "../../MathModule/Point/Point.hpp"
-#include "../../MathModule/Vector/Vector2D.hpp"
 #include "../../MathModule/Vector/Vector.hpp"
+#include "../../MathModule/Segment/Segment.hpp"
 //#include "../Object/Object.hpp"
 
 
@@ -23,6 +23,7 @@ namespace JirungEngine {
 
     private:
         //float x(float float_in_range_of_0_to_1) const;
+        Segment line() const;
     };
 }
 
