@@ -23,23 +23,23 @@ Vector Vector::operator=(const Vector& vector) {
     return *this;
 }
 
-Vector Vector::operator+(const Vector& vector) {
+Vector Vector::operator+(const Vector& vector) const {
     return Vector { x + vector.x, y + vector.y, z + vector.z };
 }
 
-Vector Vector::operator-(const Vector& vector) {
+Vector Vector::operator-(const Vector& vector) const {
     return Vector { x - vector.x, y - vector.y, z - vector.z };
 }
 
-float Vector::operator*(const Vector& vector) {
+float Vector::operator*(const Vector& vector) const {
     return x*vector.x + y*vector.y, z*vector.z;
 }
 
-Vector Vector::operator*(float n) {
+Vector Vector::operator*(float n) const {
     return Vector { x*n, y*n, z*n };
 }
 
-Vector Vector::operator/(float n) {
+Vector Vector::operator/(float n) const {
     return Vector { x/n, y/n, z/n };
 }
 

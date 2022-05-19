@@ -16,11 +16,11 @@ namespace JirungEngine {
         Vector(float x, float y, float z = 0.0);
 
         Vector operator=(const Vector& vector);
-        Vector operator+(const Vector& vector);
-        Vector operator-(const Vector& vector);
-        float operator*(const Vector& vector);            // scalar product
-        Vector operator*(float n);
-        Vector operator/(float n);
+        Vector operator+(const Vector& vector) const;
+        Vector operator-(const Vector& vector) const;
+        float operator*(const Vector& vector) const;            // scalar product
+        Vector operator*(float n) const;
+        Vector operator/(float n) const;
         Vector operator+=(const Vector& vector);
         Vector operator-=(const Vector& vector);
         Vector operator*=(float n);
