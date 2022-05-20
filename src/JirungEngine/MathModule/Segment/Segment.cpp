@@ -41,6 +41,9 @@ bool Segment::isParallelTo(const Segment& other) const {
     if(this->direction.getUnitVector() == other.direction.getUnitVector()) {
         return true;
     }
+    if(this->direction.getUnitVector() == -other.direction.getUnitVector()) {
+        return true;
+    }
     return false;
 }
 
@@ -55,6 +58,9 @@ Segment Segment::getNormalOf(const Segment& line1, const Segment& line2) {
 
 bool Segment::isParallel(const Segment& line1, const Segment& line2) {
     if(line1.direction.getUnitVector() == line2.direction.getUnitVector()) {
+        return true;
+    }
+    if(line1.direction.getUnitVector() == -line2.direction.getUnitVector()) {
         return true;
     }
     return false;
