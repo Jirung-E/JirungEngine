@@ -25,6 +25,6 @@ Point Collider::getEndPoint() const {
 
 Segment Collider::line() const {
     Segment segment { start_point, vector };
-    segment.start_point = this->start_point;
-    segment.end_point = this->getEndPoint();
+    segment.start_point = new Point(this->start_point);
+    segment.end_point = new Point(this->getEndPoint());
 }

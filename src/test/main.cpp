@@ -113,22 +113,22 @@ void test_Canvas_DrawVectorAndCollider() {
     vector_canvas.draw(Vector(3, -7, 0), Point(18, 18));
     vector_canvas.draw(Vector(7, -3, 0), Point(18, 18));
 
-    collider_canvas.draw(Collider(Point(18, 9), Vector2D(7, 0)), Point(0, 0));
-    collider_canvas.draw(Collider(Point(18, 9), Vector2D(7, 7)), Point(0, 0));
-    collider_canvas.draw(Collider(Point(18, 9), Vector2D(0, 7)), Point(0, 0));
-    collider_canvas.draw(Collider(Point(18, 9), Vector2D(-7, 7)), Point(0, 0));
-    collider_canvas.draw(Collider(Point(18, 9), Vector2D(-7, 0)), Point(0, 0));
-    collider_canvas.draw(Collider(Point(18, 9), Vector2D(-7, -7)), Point(0, 0));
-    collider_canvas.draw(Collider(Point(18, 9), Vector2D(0, -7)), Point(0, 0));
-    collider_canvas.draw(Collider(Point(18, 9), Vector2D(7, -7)), Point(0, 0));
-    collider_canvas.draw(Collider(Point(18, 9), Vector2D(7, 3)), Point(0, 0));
-    collider_canvas.draw(Collider(Point(18, 9), Vector2D(3, 7)), Point(0, 0));
-    collider_canvas.draw(Collider(Point(18, 9), Vector2D(-3, 7)), Point(0, 0));
-    collider_canvas.draw(Collider(Point(18, 9), Vector2D(-7, 3)), Point(0, 0));
-    collider_canvas.draw(Collider(Point(18, 9), Vector2D(-7, -3)), Point(0, 0));
-    collider_canvas.draw(Collider(Point(18, 9), Vector2D(-3, -7)), Point(0, 0));
-    collider_canvas.draw(Collider(Point(18, 9), Vector2D(3, -7)), Point(0, 0));
-    collider_canvas.draw(Collider(Point(18, 9), Vector2D(7, -3)), Point(0, 0));
+    collider_canvas.draw(Collider(Point(18, 9), Vector(7, 0)), Point(0, 0));
+    collider_canvas.draw(Collider(Point(18, 9), Vector(7, 7)), Point(0, 0));
+    collider_canvas.draw(Collider(Point(18, 9), Vector(0, 7)), Point(0, 0));
+    collider_canvas.draw(Collider(Point(18, 9), Vector(-7, 7)), Point(0, 0));
+    collider_canvas.draw(Collider(Point(18, 9), Vector(-7, 0)), Point(0, 0));
+    collider_canvas.draw(Collider(Point(18, 9), Vector(-7, -7)), Point(0, 0));
+    collider_canvas.draw(Collider(Point(18, 9), Vector(0, -7)), Point(0, 0));
+    collider_canvas.draw(Collider(Point(18, 9), Vector(7, -7)), Point(0, 0));
+    collider_canvas.draw(Collider(Point(18, 9), Vector(7, 3)), Point(0, 0));
+    collider_canvas.draw(Collider(Point(18, 9), Vector(3, 7)), Point(0, 0));
+    collider_canvas.draw(Collider(Point(18, 9), Vector(-3, 7)), Point(0, 0));
+    collider_canvas.draw(Collider(Point(18, 9), Vector(-7, 3)), Point(0, 0));
+    collider_canvas.draw(Collider(Point(18, 9), Vector(-7, -3)), Point(0, 0));
+    collider_canvas.draw(Collider(Point(18, 9), Vector(-3, -7)), Point(0, 0));
+    collider_canvas.draw(Collider(Point(18, 9), Vector(3, -7)), Point(0, 0));
+    collider_canvas.draw(Collider(Point(18, 9), Vector(7, -3)), Point(0, 0));
     collider_canvas.draw(BoxCollider(Point(-5, -3), Point(6, 2)), Point(18, 21));
     BoxCollider b { Point(-1, -1), Point(1, 1) };
     collider_canvas.draw(BoxCollider(b), Point(18, 21));
@@ -307,7 +307,7 @@ void test_Object_2() {
             ground.position.y = 30;
             
             player.box_collider.push_back(BoxCollider { Point(0, 0), Point(player.image->getWidth()-1, player.image->getHeight()-1) });
-            ground.collider.push_back(Collider { Point(0, 0), Vector2D(ground.image->getWidth(), 0) });
+            ground.collider.push_back(Collider { Point(0, 0), Vector(ground.image->getWidth(), 0) });
             
             player.physics.velocity = Vector { 3, 0, 0 };
             player.physics.gravity = Vector { 0, 1, 0 };
@@ -402,17 +402,16 @@ void objectParty() {
     }
 
     while(true) {
-        canvas.draw(grounds, Point(0, 0));
+        canvas.draw(grounds);
         for(const Object& e : o) {
-            canvas.draw(e, e.position);
+            canvas.draw(e);
         }
         println(canvas.getByString());
 
         for(Object& e : o) {
             Point prev_frame_position;
             
-            e.physics.velocity += e.physics.acceleration + e.physics.gravity;
-            e.position += Point { e.physics.velocity.x, e.physics.velocity.y, e.physics.velocity.z };
+            e.update();
 
             if(e.position.y + e.image->getHeight() >= ground.position.y) {
                 e.position.y = ground.position.y - (e.image->getHeight());
