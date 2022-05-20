@@ -153,6 +153,9 @@ void Canvas::draw(const Vector2D& vector2d, const Point& point) {
         
         delete[] points;
     }
+    else {
+        draw("@", round(start_point.x), round(start_point.y));
+    }
 }
 
 void Canvas::draw(const Vector& vector, const Point& point) {
