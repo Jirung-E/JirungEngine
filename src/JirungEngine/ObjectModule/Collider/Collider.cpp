@@ -13,7 +13,7 @@ Collider::Collider(const Collider& new_collider) : start_point { new_collider.st
 
 
 bool Collider::isCollidingWith(const Collider& other) const {
-    if(isExistPointOfContactWith(other.line())) {
+    if(this->line().isExistPointOfContactWith(other.line())) {
         return true;
     }
     return false;
