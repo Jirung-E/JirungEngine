@@ -30,7 +30,8 @@ bool Segment::isExistPointOfContactWith(const Segment& other) const {
 }
 
 float Segment::getDistanceTo(const Segment& other) const {
-    
+    Vector start_point_to_start_point { other.point.x - this->point.x, other.point.y - this->point.y, other.point.z - this->point.z };
+    return start_point_to_start_point * this->direction.crossProduct(other.direction).getUnitVector();
 }
 
 bool Segment::isParallelTo(const Segment& other) const {
@@ -41,7 +42,8 @@ bool Segment::isParallelTo(const Segment& other) const {
 }
 
 float Segment::getDistanceBetween(const Segment& line1, const Segment& line2) {
-
+    Vector start_point_to_start_point { line2.point.x - line1.point.x, line2.point.y - line1.point.y, line2.point.z - line1.point.z };
+    return start_point_to_start_point * Vector::crossProduct(line1.direction, line2.direction).getUnitVector();
 }
 
 Segment Segment::getNormalOf(const Segment& line1, const Segment& line2) {
