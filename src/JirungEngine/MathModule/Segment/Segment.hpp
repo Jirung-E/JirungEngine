@@ -18,6 +18,9 @@ namespace JirungEngine {
         float x(float parameter) const;
         float y(float parameter) const;
         float z(float parameter) const;
+
+        bool isExistPointOfContactWith(const Segment& other) const;
+        Point* getPointOfContactWith(const Segment& other) const;
     };
 }
 

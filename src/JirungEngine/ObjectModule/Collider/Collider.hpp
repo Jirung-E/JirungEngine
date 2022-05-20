@@ -22,7 +22,6 @@ namespace JirungEngine {
         Point getEndPoint() const;
 
     private:
-        //float x(float float_in_range_of_0_to_1) const;
         Segment line() const;
     };
 }
