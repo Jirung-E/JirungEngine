@@ -160,8 +160,8 @@ void Canvas::draw(const Vector& vector, const Point& point) {
 }
 
 void Canvas::draw(const Segment& segment, const Point& origin) {
-    draw(segment.direction.getUnitVector()*100, segment.point + origin);
-    draw(segment.direction.getUnitVector()*-100, segment.point + origin);
+    draw(segment.direction.getUnitVector()*1000, segment.point + origin);
+    draw(segment.direction.getUnitVector()*-1000, segment.point + origin);
 }
 
 void Canvas::draw(const Collider& collider, const Point& point) {
