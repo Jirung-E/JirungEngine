@@ -30,8 +30,9 @@ namespace JirungEngine {
         Vector operator*=(float n);
         Vector operator/=(float n);
 
-    public:
-    
+        float magnitude() const;
+        Vector getUnitVector() const;
+        static Vector unitVectorOf(const Vector& vector);
     };
 }
 

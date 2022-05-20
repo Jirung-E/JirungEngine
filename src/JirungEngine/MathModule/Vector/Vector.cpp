@@ -1,5 +1,7 @@
 #include "Vector.hpp"
 
+#include <cmath>
+
 using namespace JirungEngine;
 
 
@@ -85,4 +87,16 @@ Vector Vector::operator/=(float n) {
     y /= n;
     z /= n;
     return *this;
+}
+
+float Vector::magnitude() const {
+    return sqrt(pow(x, 2) + pow(y, 2) + pow(z, 2));
+}
+
+Vector Vector::getUnitVector() const {
+    return *this / magnitude();
+}
+
+Vector::Vector unitVectorOf(const Vector& vector) {
+    return vector / vector.magnitude();
 }
