@@ -442,12 +442,15 @@ void test_Segment() {
     Segment s3 { Point(10, -20, -7), Vector(-6, -4, -10) };
     Segment s4 { Point(40, 30, 100), Vector(0, 0, 100) };
     Segment s5 { Point(40, 30, 100), Vector::crossProduct(s4.direction, s2.direction) };
+    Segment s6 { Point(30, 10), Vector(1, 0, 1) };
     
     canvas.draw(s1);
     canvas.draw(s2);
     canvas.draw(s3);
     canvas.draw(s4);
     canvas.draw(s5);
+    canvas.draw(s6);
+    canvas.draw(Segment(Point(30, 10), s6.direction.crossProduct(s4.direction)));
     
     println(canvas.getByString());
     
@@ -455,5 +458,13 @@ void test_Segment() {
     println("distance: " + to_string(Segment::getDistanceBetween(s1, s2)));
     println("is paraller: " + to_string(s1.isParallelTo(s3)));
     println("is paraller: " + to_string(Segment::isParallel(s1, s3)));
+    println("is paraller: " + to_string(Segment::isParallel(s6, s4)));
     println("scalar s2, s5: " + to_string(s2.direction * s5.direction));
+    println("distance s6, s4: " + to_string(s6.getDistanceTo(s4)));
+    println("distance s5, s4: " + to_string(s5.getDistanceTo(s4)));
+    println("poc s6, s4: " + to_string(s6.isExistPointOfContactWith(s4)));
+    println("poc s5, s4: " + to_string(s5.isExistPointOfContactWith(s4)));
+    println(to_string(Vector(0, 1, 0) == Vector(1, 0, 0)));
+    println(to_string(Vector(1, 1, 0) == Vector(1, 0, 0)));
+    println(to_string(Vector(1, 0, 0) == Vector(1, 0, 0)));
 }
