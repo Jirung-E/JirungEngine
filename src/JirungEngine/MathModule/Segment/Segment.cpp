@@ -26,7 +26,7 @@ float Segment::z(float parameter) const {
 }
 
 bool Segment::isExistPointOfContactWith(const Segment& other) const {
-    Vector normal { Vector::crossProduct(*this, other) };
+    Vector normal { Vector::crossProduct(this->direction, other.direction) };
 }
 
 float Segment::getDistanceTo(const Segment& other) const {
