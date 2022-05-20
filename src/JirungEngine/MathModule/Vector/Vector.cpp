@@ -61,6 +61,13 @@ Vector Vector::operator/(float n) const {
     return Vector { x/n, y/n, z/n };
 }
 
+bool Vector::operator==(const Vector& vector) const {
+    if(x == vector.x && y == vector.y && z == vector.z) {
+        return true;
+    }
+    return false;
+}
+
 Vector Vector::operator+=(const Vector& vector) {
     x += vector.x;
     y += vector.y;
