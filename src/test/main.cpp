@@ -16,12 +16,13 @@ void test_Game_1();
 void test_Game_2();
 void test_Object_2();
 void objectParty();
+void test_Segment();
 
 
 int main() {
     println("\nTest Start!\n\n");
     
-    objectParty();
+    test_Segment();
 }
 
 
@@ -431,4 +432,28 @@ void objectParty() {
 
         sleep(50);
     }
+}
+
+void test_Segment() {
+    Canvas canvas;
+    
+    Segment s1 { Point(20, 20, 3), Vector(3, 2, 5) };
+    Segment s2 { Point(20, 20, -2), Vector(1, -6, -10) };
+    Segment s3 { Point(10, -20, -7), Vector(-6, -4, -10) };
+    Segment s4 { Point(40, 30, 100), Vector(0, 0, 100) };
+    Segment s5 { Point(40, 30, 100), Vector::crossProduct(s4.direction, s2.direction) };
+    
+    canvas.draw(s1);
+    canvas.draw(s2);
+    canvas.draw(s3);
+    canvas.draw(s4);
+    canvas.draw(s5);
+    
+    println(canvas.getByString());
+    
+    println("distance: " + to_string(s1.getDistanceTo(s2)));
+    println("distance: " + to_string(Segment::getDistanceBetween(s1, s2)));
+    println("is paraller: " + to_string(s1.isParallelTo(s3)));
+    println("is paraller: " + to_string(Segment::isParallel(s1, s3)));
+    println("scalar s2, s5: " + to_string(s2.direction * s5.direction));
 }
