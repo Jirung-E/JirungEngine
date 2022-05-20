@@ -49,5 +49,8 @@ Segment Segment::getNormalOf(const Segment& line1, const Segment& line2) {
 }
 
 bool Segment::isParallel(const Segment& line1, const Segment& line2) {
-
+    if(line1.direction.x / line2.direction.x == line1.direction.y / line2.direction.y && line1.direction.y / line2.direction.y == line1.direction.z / line2.direction.z) {
+        return true;
+    }
+    return false;
 }
