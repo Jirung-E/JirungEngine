@@ -41,7 +41,7 @@ bool Segment::isParallelTo(const Segment& other) const {
     if(this->direction.getUnitVector() == other.direction.getUnitVector()) {
         return true;
     }
-    if(this->direction.getUnitVector() == -other.direction.getUnitVector()) {
+    if(this->direction.getUnitVector() == -1*other.direction.getUnitVector()) {
         return true;
     }
     return false;
@@ -60,7 +60,7 @@ bool Segment::isParallel(const Segment& line1, const Segment& line2) {
     if(line1.direction.getUnitVector() == line2.direction.getUnitVector()) {
         return true;
     }
-    if(line1.direction.getUnitVector() == -line2.direction.getUnitVector()) {
+    if(line1.direction.getUnitVector() == -1*line2.direction.getUnitVector()) {
         return true;
     }
     return false;
