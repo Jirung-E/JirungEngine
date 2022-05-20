@@ -13,6 +13,7 @@
 #include "MathModule/Point/Point.hpp"
 #include "MathModule/Vector/Vector2D.hpp"
 #include "MathModule/Vector/Vector.hpp"
+#include "MathModule/Segment/Segment.hpp"
 
 
 namespace JirungEngine {
