@@ -12,11 +12,13 @@ void EventListener::collisionCheck() {
             if(e == other) {
                 continue;
             }
-            if(e->collider.isCollidingWith(other)) {
-                
-            }
-            else {
-                
+            for(Collider c : e->collider) {
+                if(c.isCollidingWith(other)) {
+                    
+                }
+                else {
+                    
+                }
             }
         }
     }
