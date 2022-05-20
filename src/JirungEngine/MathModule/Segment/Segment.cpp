@@ -38,7 +38,7 @@ float Segment::getDistanceTo(const Segment& other) const {
 }
 
 bool Segment::isParallelTo(const Segment& other) const {
-    if(this->direction.x / other.direction.x == this->direction.y / other.direction.y && this->direction.y / other.direction.y == this->direction.z / other.direction.z) {
+    if(this->direction.getUnitVector() == other.direction.getUnitVector()) {
         return true;
     }
     return false;
@@ -54,7 +54,7 @@ Segment Segment::getNormalOf(const Segment& line1, const Segment& line2) {
 }
 
 bool Segment::isParallel(const Segment& line1, const Segment& line2) {
-    if(line1.direction.x / line2.direction.x == line1.direction.y / line2.direction.y && line1.direction.y / line2.direction.y == line1.direction.z / line2.direction.z) {
+    if(line1.direction.getUnitVector() == line2.direction.getUnitVector()) {
         return true;
     }
     return false;
