@@ -34,9 +34,10 @@ void Object::update() {
 }
 
 bool Object::isCollide() const {
-
+    return false;
 }
 
 Object* Object::getCollidedObject() const {
     //return event_listener.getObjectThatCollidedWith(this);
+    return nullptr;
 }
