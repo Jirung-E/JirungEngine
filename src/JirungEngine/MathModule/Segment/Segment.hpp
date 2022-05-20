@@ -21,11 +21,15 @@ namespace JirungEngine {
         float x(float parameter) const;
         float y(float parameter) const;
         float z(float parameter) const;
-        Point getPointWhenXIs(float value) const;
-        Point getPointWhenYIs(float value) const;
-        Point getPointWhenZIs(float value) const;
-
+        
         bool isExistPointOfContactWith(const Segment& other) const;
+
+        float getDistanceTo(const Segment& other) const;
+        bool isParallelTo(const Segment& other) const;
+
+        static float getDistanceBetween(const Segment& line1, const Segment& line2);
+        static Segment getNormalOf(const Segment& line1, const Segment& line2);
+        static bool isParallel(const Segment& line1, const Segment& line2);
     };
 }
 
