@@ -94,9 +94,12 @@ float Vector::magnitude() const {
 }
 
 Vector Vector::getUnitVector() const {
+    if(magnitude() == 0.0f) {
+        return *this;
+    }
     return *this / magnitude();
 }
 
 Vector Vector::unitVectorOf(const Vector& vector) {
-    return vector / vector.magnitude();
+    return vector.getUnitVector();
 }
