@@ -97,6 +97,6 @@ Vector Vector::getUnitVector() const {
     return *this / magnitude();
 }
 
-Vector::Vector unitVectorOf(const Vector& vector) {
+Vector Vector::unitVectorOf(const Vector& vector) {
     return vector / vector.magnitude();
 }
