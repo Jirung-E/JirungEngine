@@ -39,6 +39,7 @@ namespace JirungEngine {
         void draw(const Canvas& canvas, const Point& point = Point { 0, 0, 0 }, bool draw_empty_char = true);
         void draw(const Vector2D& vector2d, const Point& point);
         void draw(const Vector& vector, const Point& point);
+        void draw(const Segment& segment, const Point& origin = Point { 0, 0, 0 });
         void draw(const Collider& collider, const Point& point);
         void draw(const BoxCollider& collider, const Point& point);
         void erase(int start_x, int start_y, int end_x, int end_y);

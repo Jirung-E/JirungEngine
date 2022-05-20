@@ -159,6 +159,10 @@ void Canvas::draw(const Vector& vector, const Point& point) {
     draw(Vector2D(vector.x, vector.y), point);
 }
 
+void Canvas::draw(const Segment& segment, const Point& origin) {
+    draw(segment.direction, segment.point + origin);
+}
+
 void Canvas::draw(const Collider& collider, const Point& point) {
     draw(collider.vector, collider.start_point + point);
 }
