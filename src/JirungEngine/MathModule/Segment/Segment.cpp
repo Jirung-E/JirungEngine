@@ -26,9 +26,9 @@ float Segment::z(float parameter) const {
 }
 
 bool Segment::isExistPointOfContactWith(const Segment& other) const {
-    float tx = (-this->point.x + other.x) / (this->direction.x - other.direction.x);                    // -> 분모가 0인경우 예외처리 해야함
-    float ty = (-this->point.y + other.y) / (this->direction.y - other.direction.y);
-    float tz = (-this->point.z + other.z) / (this->direction.z - other.direction.z);
+    float tx = (-this->point.x + other.point.x) / (this->direction.x - other.direction.x);                    // -> 분모가 0인경우 예외처리 해야함
+    float ty = (-this->point.y + other.point.y) / (this->direction.y - other.direction.y);
+    float tz = (-this->point.z + other.point.z) / (this->direction.z - other.direction.z);
 
     if(tx == ty && ty == tz) {
         return true;
@@ -37,9 +37,9 @@ bool Segment::isExistPointOfContactWith(const Segment& other) const {
 }
 
 Point* Segment::getPointOfContactWith(const Segment& other) const {
-    float tx = (-this->point.x + other.x) / (this->direction.x - other.direction.x);
-    float ty = (-this->point.y + other.y) / (this->direction.y - other.direction.y);
-    float tz = (-this->point.z + other.z) / (this->direction.z - other.direction.z);
+    float tx = (-this->point.x + other.point.x) / (this->direction.x - other.direction.x);
+    float ty = (-this->point.y + other.point.y) / (this->direction.y - other.direction.y);
+    float tz = (-this->point.z + other.point.z) / (this->direction.z - other.direction.z);
 
     if(tx == ty && ty == tz) {
         return new Point { x(tx), y(ty), z(tz) };
