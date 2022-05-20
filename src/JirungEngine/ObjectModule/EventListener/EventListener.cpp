@@ -13,7 +13,8 @@ void EventListener::collisionCheck() {
                 continue;
             }
             for(Collider c : e->collider) {
-                if(c.isCollidingWith(*other)) {
+                for(Collider other_c : other->collider)
+                if(c.isCollidingWith(other_c)) {
                     
                 }
                 else {
