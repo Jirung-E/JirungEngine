@@ -31,8 +31,24 @@ Vector Vector::operator-(const Vector& vector) const {
     return Vector { x - vector.x, y - vector.y, z - vector.z };
 }
 
+float Vector::scalarProduct(const Vector& vector) const {
+    return x*vector.x + y*vector.y + z*vector.z;
+}
+
+float Vector::scalarProduct(const Vector& vector1, const Vector& vector2) const {
+    return vector1.x*vector2.x + vector1.y*vector2.y + vector1.z*vector2.z;
+}
+
+Vector Vector::crossProduct(const Vector& vector) const {
+    return Vector { y*vector.z - z*vector.y, z*vector.x - x*vector.z, x*vector.y - y*vector.x };
+}
+
+Vector Vector::crossProduct(const Vector& vector1, const Vector& vector2) const {
+    return Vector { vector1.y*vector2.z - vector1.z*vector2.y, vector1.z*vector2.x - vector1.x*vector2.z, vector1.x*vector2.y - vector1.y*vector2.x };
+}
+
 float Vector::operator*(const Vector& vector) const {
-    return x*vector.x + y*vector.y, z*vector.z;
+    return x*vector.x + y*vector.y + z*vector.z;
 }
 
 Vector Vector::operator*(float n) const {
