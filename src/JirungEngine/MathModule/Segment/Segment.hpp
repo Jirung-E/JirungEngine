@@ -10,6 +10,9 @@ namespace JirungEngine {
         public: Point point;
         public: Vector direction;
 
+        public: Point* start_point;
+        public: Point* end_point;
+
     public:
         Segment(Point point, Vector direction);
         Segment(Vector direction);
@@ -20,7 +23,6 @@ namespace JirungEngine {
         float z(float parameter) const;
 
         bool isExistPointOfContactWith(const Segment& other) const;
-        Point* getPointOfContactWith(const Segment& other) const;
     };
 }
 

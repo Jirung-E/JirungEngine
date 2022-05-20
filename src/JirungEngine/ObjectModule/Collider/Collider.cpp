@@ -13,21 +13,10 @@ Collider::Collider(const Collider& new_collider) : start_point { new_collider.st
 
 
 bool Collider::isCollidingWith(const Collider& other) const {
-    Point* contact = line().getPointOfContactWith(other.line());
-    if(contact == nullptr) {
-        return false;
+    if(isExistPointOfContactWith(other.line())) {
+        return true;
     }
-    if(!(start_point.x <= contact->x && contact->x <= getEndPoint().x)) {
-        return false;
-    }
-    if(!(start_point.y <= contact->y && contact->y <= getEndPoint().y)) {
-        return false;
-    }
-    if(!(start_point.z <= contact->z && contact->z <= getEndPoint().z)) {
-        return false;
-    }
-
-    return true;
+    return false;
 }
 
 Point Collider::getEndPoint() const {
@@ -35,5 +24,7 @@ Point Collider::getEndPoint() const {
 }
 
 Segment Collider::line() const {
-    return Segment { start_point, vector };
+    Segment segment { start_point, vector };
+    segment.start_point = this->start_point;
+    segment.end_point = this->getEndPoint();
 }
