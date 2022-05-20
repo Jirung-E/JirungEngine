@@ -27,7 +27,7 @@ namespace JirungEngine {
         Vector operator/=(float n);
 
     public:
-        Point getPointOfContactWith(const Vector& vector);
+    
     };
 }
 
