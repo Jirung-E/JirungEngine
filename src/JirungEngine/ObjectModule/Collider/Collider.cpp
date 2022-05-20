@@ -13,9 +13,9 @@ Collider::Collider(const Collider& new_collider) : start_point { new_collider.st
 
 
 bool Collider::isCollidingWith(const Collider& other) const {
-    if(isExistPointOfContactWith(other.line())) {
-        return true;
-    }
+    // if(isExistPointOfContactWith(other.line())) {
+    //     return true;
+    // }
     return false;
 }
 
@@ -27,4 +27,5 @@ Segment Collider::line() const {
     Segment segment { start_point, vector };
     segment.start_point = new Point(this->start_point);
     segment.end_point = new Point(this->getEndPoint());
+    return segment;
 }
