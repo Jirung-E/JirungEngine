@@ -19,9 +19,9 @@ namespace JirungEngine {
         Vector operator+(const Vector& vector) const;
         Vector operator-(const Vector& vector) const;
         float scalarProduct(const Vector& vector) const;
-        static float scalarProduct(const Vector& vector1, const Vector& vector2) const;
+        static float scalarProduct(const Vector& vector1, const Vector& vector2);
         Vector crossProduct(const Vector& vector) const;
-        static Vector crossProduct(const Vector& vector1, const Vector& vector2) const;
+        static Vector crossProduct(const Vector& vector1, const Vector& vector2);
         float operator*(const Vector& vector) const;            // scalar product
         Vector operator*(float n) const;
         Vector operator/(float n) const;
