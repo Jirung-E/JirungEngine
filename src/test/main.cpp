@@ -17,12 +17,16 @@ void test_Game_2();
 void test_Object_2();
 void objectParty();
 void test_Segment();
+void test_Segment2();
+void test_Object_3();
+void gravity();
+void test_Object_5();
 
 
 int main() {
     println("\nTest Start!\n\n");
     
-    test_Segment();
+    gravity();
 }
 
 
@@ -135,8 +139,8 @@ void test_Canvas_DrawVectorAndCollider() {
     collider_canvas.draw(BoxCollider(b), Point(18, 21));
     b.setTopLeftPoint(Point(-2, -2));
     b.setTopRightPoint(Point(3, -3));
-    b.setButtomRightPoint(Point(4, 4));
-    b.setButtomLeftPoint(Point(-5, 5));
+    b.setBottomRightPoint(Point(4, 4));
+    b.setBottomLeftPoint(Point(-5, 5));
     collider_canvas.draw(b, Point(18, 30));
     collider_canvas.draw("#", 18, 30);
     
@@ -383,7 +387,7 @@ void objectParty() {
     };
 
     for(Object& e : o) {
-        e.image = new TextImage { "resource/o.txtimg" };
+        e.image = new TextImage { "resource/circle.txtimg" };
         
         e.position.x = getRandomInt(10, 20);
         e.position.y = getRandomInt(10, 20);
@@ -467,4 +471,155 @@ void test_Segment() {
     println(to_string(Vector(0, 1, 0) == Vector(1, 0, 0)));
     println(to_string(Vector(1, 1, 0) == Vector(1, 0, 0)));
     println(to_string(Vector(1, 0, 0) == Vector(1, 0, 0)));
+}
+
+void test_Segment2() {
+    Canvas canvas;
+    Point origin { 40, 20, 0 };
+    
+    Segment s1 { origin, Vector(1, 2, 3) };
+    Segment s2 { origin + Point(1, 1, 1), Vector(1, -2, -1) };
+    
+    canvas.draw(s1);
+    canvas.draw(s2);
+    canvas.draw(Segment::getNormalOf(s1, s2));
+    
+    println(canvas.getByString());
+    println("distance Between s1, s2 : " + to_string(s1.getDistanceTo(s2)));
+    println("distance Between s1, s2 : " + to_string(s2.getDistanceTo(s1)));
+}
+
+void test_Object_3() {
+    Canvas canvas;
+    Object o1 { "o1" };
+    Object o2 { "o2" };
+    Object o3 { "o3" };
+    Object o4 { "o4" };
+    o1.image = new TextImage { "resource/o.txtimg" };
+    o2.image = new TextImage { "resource/x.txtimg" };
+    o3.image = new TextImage { "resource/o.txtimg" };
+    o4.image = new TextImage { "resource/x.txtimg" };
+    o1.box_collider.push_back(BoxCollider(o1.position, o1.position + Point(1, 1, 1)));
+    o2.box_collider.push_back(BoxCollider(o2.position, o2.position + Point(1, 1, 1)));
+    o3.box_collider.push_back(BoxCollider(o1.position, o1.position + Point(1, 1, 1)));
+    o4.box_collider.push_back(BoxCollider(o2.position, o2.position + Point(1, 1, 1)));
+    o1.position = Point { 10, 20, 0 };
+    o2.position = Point { 70, 20, 0 };
+    o3.position = Point { 40, 20, 0 };
+    o4.position = Point { 40, 30, 0 };
+    o1.physics.acceleration.x = 1;
+    o2.physics.acceleration.x = -1;
+    o4.physics.velocity.x = -2;
+
+    while(true) {
+        canvas.clear();
+        // canvas.draw(o1);
+        // canvas.draw(o2);
+        canvas.draw(o3);
+        canvas.draw(o4);
+        // canvas.draw(o1.box_collider.front(), o1.box_collider.front().getTopLeftPoint());
+        // canvas.draw(o2.box_collider.front(), o2.box_collider.front().getTopLeftPoint());
+        canvas.draw(to_string(o1.position.x), 1, 5);
+        
+        println(canvas.getByString());
+        
+        if(o1.position.x > o2.position.x) {
+            o1.physics.acceleration.x = -1;
+            o2.physics.acceleration.x = 1;
+        }
+        else {
+            o1.physics.acceleration.x = 1;
+            o2.physics.acceleration.x = -1;
+        }
+        
+        Vector o4_to_o3 { o3.position - o4.position };
+        float r = o4_to_o3.getUnitVector().magnitude();
+        o4.physics.gravity = o4_to_o3.getUnitVector().getUnitVector() / (r * r);
+        
+        o1.update();
+        o1.box_collider.front().setPosition(o1.position);
+        o2.update();
+        o2.box_collider.front().setPosition(o2.position);
+        o3.update();
+        o3.box_collider.front().setPosition(o3.position);
+        o4.update();
+        o4.box_collider.front().setPosition(o4.position);
+        
+        sleep(100);
+    }
+}
+
+void gravity() {
+    Canvas canvas;
+    
+    Object center { "o1" };
+    Object o[] { 
+        { "o" }, 
+        { "o" },
+        { "o" },
+        { "o" },
+        { "o" },
+        { "o" },
+        { "o" },
+        { "o" },
+        { "o" },
+        { "o" },
+    };
+    Object big { "big" };
+    
+    center.image = new TextImage { "resource/x.txtimg" };
+    center.position = Point { 40, 20, 0 };
+    
+    for(Object& e : o) {
+        e.image = new TextImage { "resource/o.txtimg" };
+        e.position = Point { getRandomFloat(20, 30), getRandomFloat(5, 15), 0 };
+        e.physics.velocity = Vector { getRandomFloat(0, 3), getRandomFloat(-3, 3), 0 };
+    }
+    
+    big.image = new TextImage { "resource/circle.txtimg" };
+    big.position = Point { 20, 20, 0 };
+    big.physics.velocity = Vector { 0, 5, 0 };
+
+    while(true) {
+        canvas.clear();
+        canvas.draw(center);
+        for(const Object& e : o) {
+            canvas.draw(e);
+        }
+        canvas.draw(big);
+        println(canvas.getByString());
+        
+        for(Object& e : o) {
+            Vector e_to_center { center.position - e.position };
+            float r = e_to_center.getUnitVector().magnitude();
+            e.physics.gravity = e_to_center.getUnitVector()*3 / (r * r);
+        }
+        Vector big_to_center { center.position - big.position };
+        float r = big_to_center.getUnitVector().magnitude();
+        big.physics.gravity = big_to_center.getUnitVector()*9 / (r * r);
+        
+        center.update();
+        for(Object& e : o) {
+            e.update();
+        }
+        big.update();
+        
+        sleep(100);
+    }
+}
+
+void test_Object_5() {
+    Canvas canvas;
+    
+    Object cage { "cage" };
+    Object cage_side[] {
+        { "cage_top" },
+        { "cage_right" },
+        { "cage_bottom" },
+        { "cage_left" },
+    };
+    for(Object& e : cage_side) {
+        e.image = new TextImage { "resource/fence.txtimg" };
+        cage.addChild(e);
+    }
 }
