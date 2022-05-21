@@ -23,7 +23,7 @@ namespace JirungEngine {
         public: std::list<Collider> collider;
         public: std::list<BoxCollider> box_collider;
 
-        public: Object* parent_object;
+        protected: Object* parent_object;
         protected: std::list<Object*> child_object;
 
         public: static std::list<Object*> object_list;
@@ -34,6 +34,8 @@ namespace JirungEngine {
         Object(std::string id, Object* parent_object);
         ~Object();
 
+        void addChild(Object& object);
+        void setParent(Object& object);
         Object* getParent();
         Object* getChildById(std::string id);
 

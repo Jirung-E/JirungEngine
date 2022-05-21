@@ -20,6 +20,16 @@ Object::~Object() {
 }
 
 
+void Object::addChild(Object& object) {
+    object.setParent(*this);
+    child_object.push_back(&object);
+}
+
+void Object::setParent(Object& object) {
+    object.child_object.push_back(this);
+    parent_object = &object;
+}
+
 Object* Object::getParent() {
     return parent_object;
 }
