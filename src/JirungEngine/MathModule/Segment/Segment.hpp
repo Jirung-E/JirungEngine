@@ -23,6 +23,9 @@ namespace JirungEngine {
         float z(float parameter) const;
         
         bool isExistPointOfContactWith(const Segment& other) const;
+        Point* getPointOfContactWith(const Segment& other) const;
+        Point getFootOfPerpendicularFrom(const Point& point) const;
+        Point getFootOfPerpendicularFrom(const Segment& line) const;
 
         float getDistanceTo(const Segment& other) const;
         bool isParallelTo(const Segment& other) const;
@@ -30,6 +33,7 @@ namespace JirungEngine {
         static float getDistanceBetween(const Segment& line1, const Segment& line2);
         // static Segment getNormalOf(const Segment& line1, const Segment& line2);
         static bool isParallel(const Segment& line1, const Segment& line2);
+        static Point getFootOfPerpendicular(const Segment& line, const Point& point);
     };
 }
 

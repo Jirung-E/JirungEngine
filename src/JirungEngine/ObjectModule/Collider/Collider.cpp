@@ -14,7 +14,10 @@ Collider::Collider(const Collider& new_collider) : start_point { new_collider.st
 
 bool Collider::isCollidingWith(const Collider& other) const {
     if(this->line().isExistPointOfContactWith(other.line())) {
-        return true;
+        Point point_of_contact { Segment::getFootOfPerpendicular(this->line(), other.line()) };
+        if(start_point <= point_of_contact && point_of_contact <= getEndPoint()) {
+            return true;
+        }
     }
     return false;
 }

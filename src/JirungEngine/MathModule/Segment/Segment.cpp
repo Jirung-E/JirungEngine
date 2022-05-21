@@ -32,6 +32,19 @@ bool Segment::isExistPointOfContactWith(const Segment& other) const {
     return false;
 }
 
+Point* Segment::getPointOfContactWith(const Segment& other) const {
+    return nullptr;
+}
+
+Point Segment::getFootOfPerpendicularFrom(const Point& point) const {
+    return getFootOfPerpendicular(*this, point);
+}
+
+Point Segment::getFootOfPerpendicularFrom(const Segment& line) const {
+
+}
+
+
 float Segment::getDistanceTo(const Segment& other) const {
     Vector start_point_to_start_point { other.point.x - this->point.x, other.point.y - this->point.y, other.point.z - this->point.z };
     return start_point_to_start_point * this->direction.crossProduct(other.direction).getUnitVector();
@@ -64,4 +77,12 @@ bool Segment::isParallel(const Segment& line1, const Segment& line2) {
         return true;
     }
     return false;
+}
+
+Point Segment::getFootOfPerpendicular(const Segment& line, const Point& point) {
+    Point P { line.point };
+    Vector V { line.direction };
+    Point A { point };
+
+    return P + V * (((A - P) * V) / (V*V));
 }
