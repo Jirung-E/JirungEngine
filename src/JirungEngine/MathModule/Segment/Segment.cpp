@@ -1,10 +1,12 @@
 #include "Segment.hpp"
 
+#include <cmath>
+
 using namespace std;
 using namespace JirungEngine;
 
 
-Segment::Segment(Point point, Vector direction) : point { point }, direction { direction }, start_point { nullptr }, end_point { nullptr } {
+Segment::Segment(Point point, Vector direction) : point { point }, direction { direction } {
 
 }
 
@@ -41,13 +43,15 @@ Point Segment::getFootOfPerpendicularFrom(const Point& point) const {
 }
 
 Point Segment::getFootOfPerpendicularFrom(const Segment& line) const {
-
+    return getFootOfPerpendicular(*this, line);
 }
 
+float Segment::getDistanceTo(const Point& point) const {
+    return getDistanceBetween(*this, point);
+}
 
 float Segment::getDistanceTo(const Segment& other) const {
-    Vector start_point_to_start_point { other.point.x - this->point.x, other.point.y - this->point.y, other.point.z - this->point.z };
-    return start_point_to_start_point * this->direction.crossProduct(other.direction).getUnitVector();
+    return getDistanceBetween(*this, other);
 }
 
 bool Segment::isParallelTo(const Segment& other) const {
@@ -58,6 +62,16 @@ bool Segment::isParallelTo(const Segment& other) const {
         return true;
     }
     return false;
+}
+
+float Segment::getDistanceBetween(const Point& point, const Segment& line) {
+    return getDistanceBetween(line, point);
+}
+
+float Segment::getDistanceBetween(const Segment& line, const Point& point) {
+    Point H { getFootOfPerpendicular(line, point) };
+    Vector AH { H.x - point.x, H.y - point.y, H.z - point.z };
+    return AH.magnitude();
 }
 
 float Segment::getDistanceBetween(const Segment& line1, const Segment& line2) {
@@ -85,4 +99,14 @@ Point Segment::getFootOfPerpendicular(const Segment& line, const Point& point) {
     Point A { point };
 
     return P + V * (((A - P) * V) / (V*V));
+}
+
+Point Segment::getFootOfPerpendicular(const Segment& to, const Segment& from) {
+    Point H { getFootOfPerpendicular(to, from.point) };
+    float HS = sqrt(pow(getDistanceBetween(to, from.point), 2) - pow(getDistanceBetween(to, from), 2));
+    float theta = getAngleBetween(to.direction, from.direction);
+    float AH = HS / tan(theta);
+    Vector AtoH { to.direction.getUnitVector() * AH };
+    Point A { H.x - AtoH.x, H.y - AtoH.y, H.z - AtoH.z };
+    return A;
 }
