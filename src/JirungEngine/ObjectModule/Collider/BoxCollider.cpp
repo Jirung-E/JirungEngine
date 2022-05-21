@@ -51,6 +51,13 @@ Point BoxCollider::getBottomLeftPoint() const {
     return bottom_left;
 }
 
+void BoxCollider::setPosition(const Point& point) {
+    top_left += point - top_left;
+    top_right += point - top_left;
+    bottom_right += point - top_left;
+    bottom_left += point - top_left;
+}
+
 void BoxCollider::setTopLeftPoint(const Point& point) {
     top_left = point;
     side[3] = Collider { getBottomLeftPoint(), Vector(point.x - getBottomLeftPoint().x, point.y - getBottomLeftPoint().y) };
