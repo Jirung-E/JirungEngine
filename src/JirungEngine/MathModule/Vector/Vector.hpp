@@ -26,6 +26,7 @@ namespace JirungEngine {
         Vector operator*(float n) const;
         Vector operator/(float n) const;
         bool operator==(const Vector& vector) const;
+        bool operator!=(const Vector& vector) const;
         Vector operator+=(const Vector& vector);
         Vector operator-=(const Vector& vector);
         Vector operator*=(float n);

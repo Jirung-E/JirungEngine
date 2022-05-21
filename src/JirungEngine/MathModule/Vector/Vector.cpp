@@ -68,6 +68,10 @@ bool Vector::operator==(const Vector& vector) const {
     return false;
 }
 
+bool Vector::operator!=(const Vector& vector) const {
+    return !(*this == vector);
+}
+
 Vector Vector::operator+=(const Vector& vector) {
     x += vector.x;
     y += vector.y;

@@ -46,6 +46,10 @@ bool Point::operator==(const Point& point) const {
     return false;
 }
 
+bool Point::operator!=(const Point& point) const {
+    return !(*this == point);
+}
+
 Point Point::operator+=(const Point& point) {
     x += point.x;
     y += point.y;
