@@ -39,6 +39,13 @@ Point Point::operator/(float n) const {
     return Point { x/n, y/n, z/n };
 }
 
+bool Point::operator==(const Point& point) const {
+    if(x == point.x && y == point.y && z == point.z) {
+        return true;
+    }
+    return false;
+}
+
 Point Point::operator+=(const Point& point) {
     x += point.x;
     y += point.y;

@@ -17,6 +17,7 @@ namespace JirungEngine {
         Point operator-(const Point& point) const;
         Point operator*(float n) const;
         Point operator/(float n) const;
+        bool operator==(const Point& point) const;
         Point operator+=(const Point& point);
         Point operator-=(const Point& point);
         Point operator*=(float n);
