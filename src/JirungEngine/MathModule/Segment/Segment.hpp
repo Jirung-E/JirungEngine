@@ -30,7 +30,7 @@ namespace JirungEngine {
         static float getDistanceBetween(const Point& point, const Segment& line);
         static float getDistanceBetween(const Segment& line, const Point& point);
         static float getDistanceBetween(const Segment& line1, const Segment& line2);
-        // static Segment getNormalOf(const Segment& line1, const Segment& line2);
+        static Segment getNormalOf(const Segment& line1, const Segment& line2);
         static bool isParallel(const Segment& line1, const Segment& line2);
         static Point getFootOfPerpendicular(const Segment& line, const Point& point);
         static Point getFootOfPerpendicular(const Segment& to, const Segment& from);
