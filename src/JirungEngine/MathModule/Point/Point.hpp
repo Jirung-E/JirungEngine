@@ -21,6 +21,8 @@ namespace JirungEngine {
         Point operator-=(const Point& point);
         Point operator*=(float n);
         Point operator/=(float n);
+
+        bool isInRange(const Point& point1, const Point& point2) const;
     };
 }
 

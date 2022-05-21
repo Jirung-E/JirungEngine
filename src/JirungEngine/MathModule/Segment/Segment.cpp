@@ -97,14 +97,16 @@ Point Segment::getFootOfPerpendicular(const Segment& line, const Point& point) {
     Point P { line.point };
     Vector V { line.direction };
     Point A { point };
-
-    return P + V * (((A - P) * V) / (V*V));
+    Vector PA { A.x - P.x, A.y - P.y, A.z - P.z};
+    Vector add { V * ((PA * V) / (V*V)) };
+    Point H { P.x + add.x, P.y + add.y, P.z + add.z };
+    return H;
 }
 
 Point Segment::getFootOfPerpendicular(const Segment& to, const Segment& from) {
     Point H { getFootOfPerpendicular(to, from.point) };
     float HS = sqrt(pow(getDistanceBetween(to, from.point), 2) - pow(getDistanceBetween(to, from), 2));
-    float theta = getAngleBetween(to.direction, from.direction);
+    float theta = Vector::getAngleBetween(to.direction, from.direction);
     float AH = HS / tan(theta);
     Vector AtoH { to.direction.getUnitVector() * AH };
     Point A { H.x - AtoH.x, H.y - AtoH.y, H.z - AtoH.z };

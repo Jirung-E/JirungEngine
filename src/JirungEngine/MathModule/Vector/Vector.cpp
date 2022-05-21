@@ -112,7 +112,7 @@ Vector Vector::unitVectorOf(const Vector& vector) {
 }
 
 float Vector::getAngleWith(const Vector& other) const {
-    return acos((this * other) / (this->magnitude() * other.magnitude()));
+    return acos(((*this) * other) / (this->magnitude() * other.magnitude()));
 }
 
 float Vector::getAngleBetween(const Vector& vector1, const Vector& vector2) {
