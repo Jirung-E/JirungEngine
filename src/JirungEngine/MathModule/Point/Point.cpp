@@ -67,7 +67,7 @@ Point Point::operator/=(float n) {
     return *this;
 }
 
-bool isInRange(const Point& point1, const Point& point2) const {
+bool Point::isInRange(const Point& point1, const Point& point2) const {
     if(point1.x < point2.x) {
         if(x < point1.x && point2.x < x) {
             return false;
