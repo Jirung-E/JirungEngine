@@ -28,7 +28,7 @@ namespace JirungEngine {
         bool isParallelTo(const Segment& other) const;
 
         static float getDistanceBetween(const Segment& line1, const Segment& line2);
-        static Segment getNormalOf(const Segment& line1, const Segment& line2);
+        // static Segment getNormalOf(const Segment& line1, const Segment& line2);
         static bool isParallel(const Segment& line1, const Segment& line2);
     };
 }

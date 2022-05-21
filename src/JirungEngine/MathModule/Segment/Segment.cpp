@@ -52,9 +52,9 @@ float Segment::getDistanceBetween(const Segment& line1, const Segment& line2) {
     return start_point_to_start_point * Vector::crossProduct(line1.direction, line2.direction).getUnitVector();
 }
 
-Segment Segment::getNormalOf(const Segment& line1, const Segment& line2) {
+// Segment Segment::getNormalOf(const Segment& line1, const Segment& line2) {
     
-}
+// }
 
 bool Segment::isParallel(const Segment& line1, const Segment& line2) {
     if(line1.direction.getUnitVector() == line2.direction.getUnitVector()) {
