@@ -34,6 +34,8 @@ namespace JirungEngine {
         float magnitude() const;
         Vector getUnitVector() const;
         static Vector unitVectorOf(const Vector& vector);
+        float getAngleWith(const Vector& other) const;
+        static float getAngleBetween(const Vector& vector1, const Vector& vector2);
     };
 }
 
