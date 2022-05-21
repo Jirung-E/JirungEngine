@@ -13,6 +13,10 @@ Vector::Vector(const Vector& vector) : x { vector.x }, y { vector.y }, z { vecto
 
 }
 
+Vector::Vector(const Point& point) : x { point.x }, y { point.y }, z { point.z } {
+
+}
+
 Vector::Vector(float x, float y, float z) : x { x }, y { y }, z { z } {
 
 }

@@ -13,6 +13,7 @@ namespace JirungEngine {
     public:
         Vector();
         Vector(const Vector& vector);
+        Vector(const Point& point);
         Vector(float x, float y, float z = 0.0);
 
         Vector operator=(const Vector& vector);
