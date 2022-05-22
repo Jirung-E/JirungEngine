@@ -48,7 +48,7 @@ void test() {
 void segmentTest() {
     Segment s1 { Point(1, 1, 1), Vector(1, -1, 1) };
     Segment s2 { Point(0, 0, 0), Vector(1, -1, 1) };
-    Segment s3 { Point(0, 0, 0), Vector(1, 2, 1) };
+    Segment s3 { Point(1, 0, 0), Vector(1, 2, 1) };
     
     Canvas canvas;
     Point origin { 40, 20 };
@@ -60,6 +60,7 @@ void segmentTest() {
     
     println("s1, s2 distance: " + to_string(Segment::getDistanceBetween(s1, s2)));
     println("s1, s3 distance: " + to_string(s1.getDistanceTo(s3)));
+    println("s1, s2.point distance: " + to_string(s1.getDistanceTo(s2.point)));
 }
 
 int main() {

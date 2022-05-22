@@ -75,8 +75,14 @@ float Segment::getDistanceBetween(const Segment& line, const Point& point) {
 }
 
 float Segment::getDistanceBetween(const Segment& line1, const Segment& line2) {
+    if(line1.point == line2.point) {
+        return 0.0f;
+    }
+    if(isParallel(line1, line2)) {
+        return getDistanceBetween(line1, line2.point);
+    }
     Vector start_point_to_start_point { line2.point - line1.point };
-    return start_point_to_start_point * Vector::crossProduct(line1.direction, line2.direction).getUnitVector();
+    return abs(start_point_to_start_point * Vector::crossProduct(line1.direction, line2.direction).getUnitVector());
 }
 
 Segment Segment::getNormalOf(const Segment& line1, const Segment& line2) {
