@@ -25,14 +25,16 @@ namespace JirungEngine {
         protected: std::list<BoxCollider> box_collider;
 
     public:
-        Object(std::string id = "object", const Point& position = Point { 0, 0, 0 }, Object* parent_object = nullptr);
-        Object(std::string id, Object* parent_object);
+        Object(std::string id = "object", const Point& position = Point { 0, 0, 0 });
+        Object(std::string id);
         ~Object();
 
         void update();
 
         void addCollider(const Point& start_point, const Vector& vector);
         //void addCollider(BoxCollider& collider);
+        
+        bool isCollidingWith(const Object& other) const;
     };
 }
 
