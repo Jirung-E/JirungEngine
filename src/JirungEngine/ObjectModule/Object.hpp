@@ -26,7 +26,11 @@ namespace JirungEngine {
 
         protected: Collider prev_to_current;
         protected: std::list<Collider> collider;
-        protected: std::list<BoxCollider*> box_collider;
+        protected: std::list<BoxCollider> box_collider;
+        
+        public: EventListener event_listener;
+        
+        public: static std::list<Object*> object_list;
 
     public:
         Object(std::string id = "object", const Point& position = Point { 0, 0, 0 });
@@ -39,7 +43,8 @@ namespace JirungEngine {
         void addCollider(const Point& start_point, const Vector& vector);
         //void addCollider(BoxCollider& collider);
         
-        bool isCollidingWith(const Object& other) const;
+        bool isCollidingWith(const Object& other);
+        bool isCollide() const;
     };
 }
 

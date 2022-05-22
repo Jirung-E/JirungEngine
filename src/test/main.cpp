@@ -33,13 +33,11 @@ void test() {
         canvas.draw(to_string(obj1.physics.velocity.x), 1, 3);
         println(canvas.getByString());
         
-        if(obj1.isCollidingWith(obj2)) {
-            obj1.back();
-            // obj1.physics.velocity *= -1;
-        }
-        if(obj2.isCollidingWith(obj1)) {
-            obj2.back();
-            // obj2.physics.velocity *= -1;
+        if(obj1.isCollide()) {
+            obj1.backToPrevFrame();
+            obj1.physics.velocity *= -1;
+            obj2.backToPrevFrame();
+            obj2.physics.velocity *= -1;
         }
         
         Vector obj1_to_obj2 { obj2.position - obj1.position };
