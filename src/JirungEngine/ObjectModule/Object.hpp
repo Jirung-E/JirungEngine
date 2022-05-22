@@ -34,7 +34,7 @@ namespace JirungEngine {
         ~Object();
 
         void update();
-        void back();
+        void backToPrevFrame();
 
         void addCollider(const Point& start_point, const Vector& vector);
         //void addCollider(BoxCollider& collider);

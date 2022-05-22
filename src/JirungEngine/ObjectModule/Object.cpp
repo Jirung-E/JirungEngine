@@ -31,8 +31,10 @@ void Object::update() {
     collider.push_back(prev_to_current);
 }
 
-void Object::back() {
+void Object::backToPrevFrame() {
     position = prev_frame_position;
+    physics = prev_frame_physics;
+    collider.remove(prev_to_current);
 }
 
 void Object::addCollider(const Point& start_point, const Vector& vector) {
