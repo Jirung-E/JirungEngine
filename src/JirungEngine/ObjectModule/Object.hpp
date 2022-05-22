@@ -20,29 +20,19 @@ namespace JirungEngine {
         public: Physics physics;
         
         public: TextImage* image;
-        public: std::list<Collider> collider;
-        public: std::list<BoxCollider> box_collider;
 
-        protected: Object* parent_object;
-        protected: std::list<Object*> child_object;
-
-        public: static std::list<Object*> object_list;
-        public: static EventListener event_listener;
+        protected: std::list<Collider> collider;
+        protected: std::list<BoxCollider> box_collider;
 
     public:
         Object(std::string id = "object", const Point& position = Point { 0, 0, 0 }, Object* parent_object = nullptr);
         Object(std::string id, Object* parent_object);
         ~Object();
 
-        void addChild(Object& object);
-        void setParent(Object& object);
-        Object* getParent();
-        Object* getChildById(std::string id);
-
         void update();
 
-        bool isCollide() const;
-        Object* getCollidedObject() const;
+        void addCollider(const Point& start_point, const Vector& vector);
+        //void addCollider(BoxCollider& collider);
     };
 }
 
