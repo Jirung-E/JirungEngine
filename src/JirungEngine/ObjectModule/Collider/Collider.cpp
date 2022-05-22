@@ -12,6 +12,20 @@ Collider::Collider(const Collider& new_collider) : start_point { new_collider.st
 }
 
 
+Collider Collider::operator=(const Collider& new_collider) {
+    start_point = new_collider.start_point;
+    vector = new_collider.vector;
+    return *this;
+}
+
+bool Collider::operator==(const Collider& new_collider) const {
+    if(this == &new_collider) {
+        return true;
+    }
+    return false;
+}
+
+
 bool Collider::isCollidingWith(const Collider& other) const {
     if(this->line().isExistPointOfContactWith(other.line())) {
         Point point_of_contact { Segment::getFootOfPerpendicular(this->line(), other.line()) };

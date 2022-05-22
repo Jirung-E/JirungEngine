@@ -14,14 +14,17 @@ void test() {
     Object obj1;
     obj1.image = new TextImage { "resource/o.txtimg" };
     obj1.position = Point { 30, 20 };
-    //obj1.physics.velocity = Vector { 0, 0.1 };
-    obj1.addCollider(obj1.position, Vector(1, 0));
+    // obj1.physics.velocity = Vector { 0, 0.1 };
+    //obj1.addCollider(obj1.position, Vector(1, 0));
     
     Object obj2;
     obj2.image = new TextImage { "resource/x.txtimg" };
     obj2.position = Point { 70, 20 };
-    //obj2.physics.velocity = Vector { 0, -0.1 };
-    obj2.addCollider(obj2.position, Vector(-1, 0));
+    // obj2.physics.velocity = Vector { 0, -0.1 };
+    //obj2.addCollider(obj2.position, Vector(-1, 0));
+    
+    obj1.update();
+    obj2.update();
     
     while(true) {
         canvas.clear();
@@ -31,7 +34,12 @@ void test() {
         println(canvas.getByString());
         
         if(obj1.isCollidingWith(obj2)) {
-            break;
+            obj1.back();
+            // obj1.physics.velocity *= -1;
+        }
+        if(obj2.isCollidingWith(obj1)) {
+            obj2.back();
+            // obj2.physics.velocity *= -1;
         }
         
         Vector obj1_to_obj2 { obj2.position - obj1.position };

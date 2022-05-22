@@ -19,10 +19,14 @@ namespace JirungEngine {
         public: Point position;
         public: Physics physics;
         
+        protected: Point prev_frame_position;
+        protected: Physics prev_frame_physics;
+        
         public: TextImage* image;
 
+        protected: Collider prev_to_current;
         protected: std::list<Collider> collider;
-        protected: std::list<BoxCollider> box_collider;
+        protected: std::list<BoxCollider*> box_collider;
 
     public:
         Object(std::string id = "object", const Point& position = Point { 0, 0, 0 });
@@ -30,6 +34,7 @@ namespace JirungEngine {
         ~Object();
 
         void update();
+        void back();
 
         void addCollider(const Point& start_point, const Vector& vector);
         //void addCollider(BoxCollider& collider);

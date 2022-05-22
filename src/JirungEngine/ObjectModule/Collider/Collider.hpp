@@ -16,6 +16,9 @@ namespace JirungEngine {
     public:
         Collider(const Point& start_point, const Vector& vector);
         Collider(const Collider& new_collider);
+        
+        Collider operator=(const Collider& new_collider);
+        bool operator==(const Collider& new_collider) const;
 
     public:
         bool isCollidingWith(const Collider& other) const;

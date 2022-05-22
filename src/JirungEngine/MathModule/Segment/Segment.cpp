@@ -69,6 +69,9 @@ float Segment::getDistanceBetween(const Point& point, const Segment& line) {
 }
 
 float Segment::getDistanceBetween(const Segment& line, const Point& point) {
+    if(line.direction.magnitude() == 0.0f) {
+        return Vector(line.point - point).magnitude();
+    }
     Point H { getFootOfPerpendicular(line, point) };
     Vector AH { H - point };
     return AH.magnitude();
@@ -100,6 +103,9 @@ bool Segment::isParallel(const Segment& line1, const Segment& line2) {
 }
 
 Point Segment::getFootOfPerpendicular(const Segment& line, const Point& point) {
+    if(line.direction.magnitude() == 0.0f) {
+        return line.point;
+    }
     Point P { line.point };
     Vector V { line.direction };
     Point A { point };
@@ -110,6 +116,12 @@ Point Segment::getFootOfPerpendicular(const Segment& line, const Point& point) {
 }
 
 Point Segment::getFootOfPerpendicular(const Segment& to, const Segment& from) {
+    if(from.direction.magnitude() == 0.0f) {
+        return getFootOfPerpendicular(to, from.point);
+    }
+    if(to.direction.magnitude() == 0.0f) {
+        return getFootOfPerpendicular(from, to.point);
+    }
     Point H { getFootOfPerpendicular(to, from.point) };
     float HS = sqrt(pow(getDistanceBetween(to, from.point), 2) - pow(getDistanceBetween(to, from), 2));
     float theta = Vector::getAngleBetween(to.direction, from.direction);

@@ -4,8 +4,9 @@ using namespace std;
 using namespace JirungEngine;
 
 
-Object::Object(string id, const Point& position) : id { id }, position { position }, image { nullptr } {
-    
+Object::Object(string id, const Point& position) : id { id }, position { position }, image { nullptr }, 
+    prev_frame_position { position }, prev_to_current { prev_frame_position, Vector(position - prev_frame_position) } {
+    collider.push_back(prev_to_current);
 }
 
 Object::~Object() {
@@ -14,11 +15,24 @@ Object::~Object() {
 
 
 void Object::update() {
+    collider.remove(prev_to_current);
+    
+    prev_frame_position = position;
+    prev_frame_physics = physics;
+    
     physics.velocity += physics.acceleration + physics.gravity;
     position += Point { physics.velocity.x, physics.velocity.y, physics.velocity.z };
     for(Collider& c : collider) {
         c.start_point += Point { physics.velocity.x, physics.velocity.y, physics.velocity.z };
     }
+
+    prev_to_current.start_point = prev_frame_position;
+    prev_to_current.vector = Vector(position - prev_frame_position);
+    collider.push_back(prev_to_current);
+}
+
+void Object::back() {
+    position = prev_frame_position;
 }
 
 void Object::addCollider(const Point& start_point, const Vector& vector) {
