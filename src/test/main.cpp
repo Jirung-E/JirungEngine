@@ -27,6 +27,7 @@ void test() {
         canvas.clear();
         canvas.draw(obj1);
         canvas.draw(obj2);
+        canvas.draw(to_string(obj1.physics.velocity.x), 1, 3);
         println(canvas.getByString());
         
         if(obj1.isCollidingWith(obj2)) {
@@ -66,6 +67,6 @@ void segmentTest() {
 int main() {
     println("\nTest Start!\n\n");
     
-    segmentTest();
-    //test();
+    //segmentTest();
+    test();
 }

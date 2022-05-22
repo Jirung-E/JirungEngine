@@ -80,34 +80,34 @@ Point Point::operator/=(float n) {
 
 bool Point::isInRange(const Point& point1, const Point& point2) const {
     if(point1.x < point2.x) {
-        if(x < point1.x && point2.x < x) {
+        if(x < point1.x || point2.x < x) {
             return false;
         }
     }
     else {
-        if(x < point2.x && point1.x < x) {
+        if(x < point2.x || point1.x < x) {
             return false;
         }
     }
 
     if(point1.y < point2.y) {
-        if(y < point1.y && point2.y < y) {
+        if(y < point1.y || point2.y < y) {
             return false;
         }
     }
     else {
-        if(y < point2.y && point1.y < y) {
+        if(y < point2.y || point1.y < y) {
             return false;
         }
     }
 
     if(point1.z < point2.z) {
-        if(z < point1.z && point2.z < z) {
+        if(z < point1.z || point2.z < z) {
             return false;
         }
     }
     else {
-        if(z < point2.z && point1.z < z) {
+        if(z < point2.z || point1.z < z) {
             return false;
         }
     }
