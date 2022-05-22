@@ -70,12 +70,12 @@ float Segment::getDistanceBetween(const Point& point, const Segment& line) {
 
 float Segment::getDistanceBetween(const Segment& line, const Point& point) {
     Point H { getFootOfPerpendicular(line, point) };
-    Vector AH { H.x - point.x, H.y - point.y, H.z - point.z };
+    Vector AH { H - point };
     return AH.magnitude();
 }
 
 float Segment::getDistanceBetween(const Segment& line1, const Segment& line2) {
-    Vector start_point_to_start_point { line2.point.x - line1.point.x, line2.point.y - line1.point.y, line2.point.z - line1.point.z };
+    Vector start_point_to_start_point { line2.point - line1.point };
     return start_point_to_start_point * Vector::crossProduct(line1.direction, line2.direction).getUnitVector();
 }
 

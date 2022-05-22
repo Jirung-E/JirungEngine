@@ -33,6 +33,8 @@ namespace JirungEngine {
 
         void addCollider(const Point& start_point, const Vector& vector);
         //void addCollider(BoxCollider& collider);
+        
+        bool isCollidingWith(const Object& other) const;
     };
 }
 
