@@ -573,12 +573,12 @@ void gravity() {
     for(Object& e : o) {
         e.image = new TextImage { "resource/o.txtimg" };
         e.position = Point { getRandomFloat(20, 30), getRandomFloat(5, 15), 0 };
-        e.physics.velocity = Vector { getRandomFloat(0, 3), getRandomFloat(-3, 3), 0 };
+        e.physics.velocity = Vector { getRandomFloat(0, 0.5), getRandomFloat(-0.5, 0.5), 0 };
     }
     
     big.image = new TextImage { "resource/circle.txtimg" };
-    big.position = Point { 20, 20, 0 };
-    big.physics.velocity = Vector { 0, 5, 0 };
+    big.position = Point { 40, 10, 0 };
+    big.physics.velocity = Vector { 0.45, 0, 0 };
 
     while(true) {
         canvas.clear();
@@ -592,11 +592,11 @@ void gravity() {
         for(Object& e : o) {
             Vector e_to_center { center.position - e.position };
             float r = e_to_center.getUnitVector().magnitude();
-            e.physics.gravity = e_to_center.getUnitVector()*3 / (r * r);
+            e.physics.gravity = e_to_center.getUnitVector()*0.01 / (r * r);
         }
         Vector big_to_center { center.position - big.position };
         float r = big_to_center.getUnitVector().magnitude();
-        big.physics.gravity = big_to_center.getUnitVector()*9 / (r * r);
+        big.physics.gravity = big_to_center.getUnitVector()*0.01 / (r * r);
         
         center.update();
         for(Object& e : o) {
@@ -604,7 +604,7 @@ void gravity() {
         }
         big.update();
         
-        sleep(100);
+        sleep(1000/60);
     }
 }
 
