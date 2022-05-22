@@ -21,11 +21,17 @@ namespace JirungEngine {
         
         public: TextImage* image;
 
+        protected: std::list<Collider> collider;
+        protected: std::list<BoxCollider> box_collider;
+
     public:
         Object(std::string id, const Point& position = Point { 0, 0, 0 });
         ~Object();
 
         void update();
+
+        void addCollider(const Point& start_point, const Vector& vector);
+        //void addCollider(BoxCollider& collider);
     };
 }
 

@@ -17,3 +17,11 @@ void Object::update() {
     physics.velocity += physics.acceleration + physics.gravity;
     position += Point { physics.velocity.x, physics.velocity.y, physics.velocity.z };
 }
+
+void Object::addCollider(const Point& start_point, const Vector& vector) {
+    this->collider.push_back(Collider(start_point, vector));
+}
+
+// void Object::addCollider(BoxCollider& collider) {
+
+// }
