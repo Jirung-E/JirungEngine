@@ -30,7 +30,7 @@ namespace JirungEngine {
         public: static EventListener event_listener;
 
     public:
-        Object(std::string id, const Point& position = Point { 0, 0, 0 }, Object* parent_object = nullptr);
+        Object(std::string id = "object", const Point& position = Point { 0, 0, 0 }, Object* parent_object = nullptr);
         Object(std::string id, Object* parent_object);
         ~Object();
 

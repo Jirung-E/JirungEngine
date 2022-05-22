@@ -24,6 +24,7 @@ namespace JirungEngine {
         private: Pixel default_background;
 
     public:
+        Canvas(size_t width, size_t height);
         Canvas();
         ~Canvas();
 
