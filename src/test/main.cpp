@@ -6,40 +6,49 @@ using namespace JirungEngine;
 using namespace Util;
 
 
-void test() {
-    Canvas canvas(100, 40);
-    //canvas.setDefaultBackground('.');
-    println(canvas.getByString());
-    
+class TestGame : public Game {
+private:
     Object obj1;
-    obj1.image = new TextImage { "resource/o.txtimg" };
-    obj1.position = Point { 30, 20 };
-    // obj1.physics.velocity = Vector { 0, 0.1 };
-    //obj1.addCollider(obj1.position, Vector(1, 0));
-    
     Object obj2;
-    obj2.image = new TextImage { "resource/x.txtimg" };
-    obj2.position = Point { 70, 20 };
-    // obj2.physics.velocity = Vector { 0, -0.1 };
-    //obj2.addCollider(obj2.position, Vector(-1, 0));
-    
     Object obj3;
-    obj3.image = new TextImage { "resource/o.txtimg" };
-    obj3.position = Point { 50, 10, 1 };
-    obj3.physics.gravity.y = 9.8f / 1000;
-    obj3.addCollider(Point(0, 0, 0), Vector(0, 10, 0));
-    
     Object ground;
-    ground.image = new TextImage { "resource/ground.txtimg" };
-    ground.position = Point { 48, 25, 1 };
-    ground.addCollider(Point(0, 0, 0), Vector(ground.image->getWidth()-1, 0, 0));
     
-    obj1.update();
-    obj2.update();
-    obj3.update();
-    ground.update();
+public:
+    TestGame() : Game { Canvas(120, 45) } {
+        play();
+    }
     
-    while(true) {
+public:
+    void play() {
+        obj1.image = new TextImage { "resource/o.txtimg" };
+        obj1.position = Point { 30, 20 };
+
+        obj2.image = new TextImage { "resource/x.txtimg" };
+        obj2.position = Point { 70, 20 };
+
+        obj3.image = new TextImage { "resource/o.txtimg" };
+        obj3.position = Point { 50, 10, 1 };
+        obj3.physics.gravity.y = 9.8f / 1000;
+        obj3.addCollider(Point(0, 0, 0), Vector(0, 10, 0));
+
+        ground.image = new TextImage { "resource/ground.txtimg" };
+        ground.position = Point { 48, 25, 1 };
+        ground.addCollider(Point(0, 0, 0), Vector(ground.image->getWidth()-1, 0, 0));
+
+        obj1.update();
+        obj2.update();
+        obj3.update();
+        ground.update();
+        
+        while(true) {
+            update();
+            
+            sleep(1000/60);
+        }
+    }
+    
+private:
+    void update() {
         canvas.clear();
         canvas.draw(obj1);
         canvas.draw(obj2);
@@ -62,9 +71,10 @@ void test() {
         obj1.physics.gravity = obj1_to_obj2 / (r * r);
         obj2.physics.gravity = (obj1_to_obj2 / (r * r)) * -1;
         
-        obj1.update();
-        obj2.update();
-        obj3.update();
+
+        for(Object* o : Object::object_list) {
+            o->update();
+        }
         
         EventListener::collisionCheck();
         
@@ -82,16 +92,14 @@ void test() {
             println("3!");
             obj3.backToPrevFrame();
             obj3.physics.velocity *= -1;
-            break;
         }
-        
-        sleep(1000/60);
     }
-}
+};
 
 int main() {
     println("\nTest Start!\n\n");
     
     //segmentTest();
-    test();
+    //test();
+    TestGame();
 }

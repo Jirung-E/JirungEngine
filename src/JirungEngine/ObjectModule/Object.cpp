@@ -12,6 +12,10 @@ Object::Object(string id, const Point& position) : id { id }, position { positio
     object_list.push_back(this);
 }
 
+Object::Object(const Object& object) : Object { id + "-clone", position } {
+    
+}
+
 Object::~Object() {
     object_list.remove(this);
 }

@@ -33,7 +33,7 @@ namespace JirungEngine {
 
     public:
         Object(std::string id = "object", const Point& position = Point { 0, 0, 0 });
-        Object(std::string id);
+        Object(const Object& object);
         ~Object();
 
         void update();
