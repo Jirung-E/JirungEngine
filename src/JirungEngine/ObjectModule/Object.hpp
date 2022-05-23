@@ -23,9 +23,8 @@ namespace JirungEngine {
         protected: Physics prev_frame_physics;
         
         public: TextImage* image;
-
-        protected: Collider prev_to_current;
-        protected: std::list<Collider> collider;
+        
+        protected: public: std::list<Collider> collider;
         protected: std::list<BoxCollider> box_collider;
         
         public: EventListener event_listener;

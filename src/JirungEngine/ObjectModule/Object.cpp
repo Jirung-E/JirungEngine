@@ -7,8 +7,8 @@ using namespace JirungEngine;
 list<Object*> Object::object_list;
 
 Object::Object(string id, const Point& position) : id { id }, position { position }, image { nullptr }, 
-    prev_frame_position { position }, prev_to_current { prev_frame_position, Vector(position - prev_frame_position) } {
-    collider.push_front(prev_to_current);
+    prev_frame_position { position } {
+    collider.push_front(Collider(prev_frame_position, Vector(position - prev_frame_position)));
     object_list.push_back(this);
 }
 
@@ -27,9 +27,7 @@ void Object::update() {
         c.start_point += Point { physics.velocity.x, physics.velocity.y, physics.velocity.z };
     }
 
-    prev_to_current.start_point = prev_frame_position;
-    prev_to_current.vector = Vector(position - prev_frame_position);
-    collider.front() = prev_to_current;
+    collider.front() = Collider { prev_frame_position, Vector(position - prev_frame_position) };
 }
 
 void Object::backToPrevFrame() {

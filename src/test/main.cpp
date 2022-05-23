@@ -25,13 +25,14 @@ void test() {
     
     Object obj3;
     obj3.image = new TextImage { "resource/o.txtimg" };
-    obj3.position = Point { 40, 10 };
-    obj3.physics.gravity.y = 9.0f / 1000;
+    obj3.position = Point { 50, 10, 1 };
+    obj3.physics.gravity.y = 9.8f / 1000;
+    obj3.addCollider(Point(0, 0, 0), Vector(0, 10, 0));
     
     Object ground;
     ground.image = new TextImage { "resource/ground.txtimg" };
-    ground.position = Point { 38, 35 };
-    ground.addCollider(Point(0, 0), Vector(ground.image->getWidth(), 0, 0));
+    ground.position = Point { 48, 25, 1 };
+    ground.addCollider(Point(0, 0, 0), Vector(ground.image->getWidth()-1, 0, 0));
     
     obj1.update();
     obj2.update();
@@ -42,27 +43,19 @@ void test() {
         canvas.clear();
         canvas.draw(obj1);
         canvas.draw(obj2);
-        canvas.draw(obj3);
+        canvas.draw(obj2);
         canvas.draw(ground);
+        canvas.draw(obj3);
         canvas.draw(to_string(obj1.position.x), 1, 2);
         canvas.draw(to_string(obj1.physics.velocity.x), 1, 3);
-        canvas.draw(to_string(obj1.getNumOfColliders()), 1, 4);
+        canvas.draw(to_string(obj3.getNumOfColliders()), 1, 4);
+        canvas.draw(to_string(ground.getNumOfColliders()), 5, 4);
+        canvas.draw(to_string(obj1.collider.front().start_point.z), 90, 1);
+        canvas.draw(to_string(obj2.collider.front().start_point.z), 90, 2);
+        canvas.draw(to_string(obj3.collider.front().start_point.z), 90, 3);
+        canvas.draw(to_string(ground.collider.front().start_point.z), 90, 4);
+        
         println(canvas.getByString());
-        
-        EventListener::collisionCheck();
-        
-        if(obj1.isCollide()) {
-            obj1.backToPrevFrame();
-            // obj1.physics.velocity *= -1;
-        }
-        if(obj2.isCollide()) {
-            obj2.backToPrevFrame();
-            // obj2.physics.velocity *= -1;
-        }
-        if(obj3.isCollide()) {
-            obj3.backToPrevFrame();
-            obj3.physics.velocity *= -1;
-        }
         
         Vector obj1_to_obj2 { obj2.position - obj1.position };
         float r = obj1_to_obj2.magnitude();
@@ -73,26 +66,27 @@ void test() {
         obj2.update();
         obj3.update();
         
+        EventListener::collisionCheck();
+        
+        if(obj1.isCollide()) {
+            println("1!");
+            obj1.backToPrevFrame();
+            obj1.physics.velocity *= -1;
+        }
+        if(obj2.isCollide()) {
+            println("2!");
+            obj2.backToPrevFrame();
+            obj2.physics.velocity *= -1;
+        }
+        if(obj3.isCollide()) {
+            println("3!");
+            obj3.backToPrevFrame();
+            obj3.physics.velocity *= -1;
+            break;
+        }
+        
         sleep(1000/60);
     }
-}
-
-void segmentTest() {
-    Segment s1 { Point(1, 1, 1), Vector(1, -1, 1) };
-    Segment s2 { Point(0, 0, 0), Vector(1, -1, 1) };
-    Segment s3 { Point(1, 0, 0), Vector(1, 2, 1) };
-    
-    Canvas canvas;
-    Point origin { 40, 20 };
-    canvas.draw(s1, origin);
-    canvas.draw(s2, origin);
-    canvas.draw(s3, origin);
-    
-    println(canvas.getByString());
-    
-    println("s1, s2 distance: " + to_string(Segment::getDistanceBetween(s1, s2)));
-    println("s1, s3 distance: " + to_string(s1.getDistanceTo(s3)));
-    println("s1, s2.point distance: " + to_string(s1.getDistanceTo(s2.point)));
 }
 
 int main() {

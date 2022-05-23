@@ -12,16 +12,15 @@ Condition EventListener::getEvent() {
 
 void EventListener::collisionCheck() {
     for(Object* e : Object::object_list) {
+        Condition current_condition = Condition::None;
         for(Object* other : Object::object_list) {
             if(e == other) {
                 continue;
             }
             if(e->isCollidingWith(*other)) {
-                e->event_listener.condition = Condition::Collide;
-            }
-            else {
-                e->event_listener.condition = Condition::None;
+                current_condition = Condition::Collide;
             }
         }
+        e->event_listener.condition = current_condition;
     }
 }
