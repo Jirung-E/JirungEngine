@@ -8,7 +8,7 @@ list<Object*> Object::object_list;
 
 Object::Object(string id, const Point& position) : id { id }, position { position }, image { nullptr }, 
     prev_frame_position { position }, prev_to_current { prev_frame_position, Vector(position - prev_frame_position) } {
-    collider.push_back(prev_to_current);
+    collider.push_front(prev_to_current);
     object_list.push_back(this);
 }
 
@@ -18,8 +18,6 @@ Object::~Object() {
 
 
 void Object::update() {
-    collider.remove(prev_to_current);
-    
     prev_frame_position = position;
     prev_frame_physics = physics;
     
@@ -31,13 +29,12 @@ void Object::update() {
 
     prev_to_current.start_point = prev_frame_position;
     prev_to_current.vector = Vector(position - prev_frame_position);
-    collider.push_back(prev_to_current);
+    collider.front() = prev_to_current;
 }
 
 void Object::backToPrevFrame() {
     position = prev_frame_position;
     physics = prev_frame_physics;
-    collider.remove(prev_to_current);
 }
 
 void Object::addCollider(const Point& start_point, const Vector& vector) {
@@ -64,4 +61,8 @@ bool Object::isCollide() {
         return true;
     }
     return false;
+}
+
+size_t Object::getNumOfColliders() const {
+    return collider.size();
 }

@@ -23,21 +23,45 @@ void test() {
     // obj2.physics.velocity = Vector { 0, -0.1 };
     //obj2.addCollider(obj2.position, Vector(-1, 0));
     
+    Object obj3;
+    obj3.image = new TextImage { "resource/o.txtimg" };
+    obj3.position = Point { 40, 10 };
+    obj3.physics.gravity.y = 9.0f / 1000;
+    
+    Object ground;
+    ground.image = new TextImage { "resource/ground.txtimg" };
+    ground.position = Point { 38, 35 };
+    ground.addCollider(Point(0, 0), Vector(ground.image->getWidth(), 0, 0));
+    
     obj1.update();
     obj2.update();
+    obj3.update();
+    ground.update();
     
     while(true) {
         canvas.clear();
         canvas.draw(obj1);
         canvas.draw(obj2);
+        canvas.draw(obj3);
+        canvas.draw(ground);
+        canvas.draw(to_string(obj1.position.x), 1, 2);
         canvas.draw(to_string(obj1.physics.velocity.x), 1, 3);
+        canvas.draw(to_string(obj1.getNumOfColliders()), 1, 4);
         println(canvas.getByString());
+        
+        EventListener::collisionCheck();
         
         if(obj1.isCollide()) {
             obj1.backToPrevFrame();
-            obj1.physics.velocity *= -1;
+            // obj1.physics.velocity *= -1;
+        }
+        if(obj2.isCollide()) {
             obj2.backToPrevFrame();
-            obj2.physics.velocity *= -1;
+            // obj2.physics.velocity *= -1;
+        }
+        if(obj3.isCollide()) {
+            obj3.backToPrevFrame();
+            obj3.physics.velocity *= -1;
         }
         
         Vector obj1_to_obj2 { obj2.position - obj1.position };
@@ -47,6 +71,7 @@ void test() {
         
         obj1.update();
         obj2.update();
+        obj3.update();
         
         sleep(1000/60);
     }

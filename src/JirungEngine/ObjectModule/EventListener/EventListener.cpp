@@ -7,7 +7,6 @@ using namespace JirungEngine;
 
 
 Condition EventListener::getEvent() {
-    collisionCheck();
     return condition;
 }
 

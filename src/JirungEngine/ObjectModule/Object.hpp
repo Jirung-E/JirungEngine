@@ -45,6 +45,8 @@ namespace JirungEngine {
         
         bool isCollidingWith(const Object& other) const;
         bool isCollide();
+        
+        size_t getNumOfColliders() const;
     };
 }
 
