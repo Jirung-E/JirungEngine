@@ -15,7 +15,7 @@
 
 namespace JirungEngine {
     class Object {
-        public: std::string id;
+        private: std::string id;
         public: Point position;
         public: Physics physics;
         
@@ -36,6 +36,13 @@ namespace JirungEngine {
         Object(const Object& object);
         ~Object();
 
+    private:
+        void setId(std::string id);
+        
+    public:
+        void changeId(std::string id);
+        std::string getId() const;
+
         void update();
         void backToPrevFrame();
 
@@ -46,6 +53,9 @@ namespace JirungEngine {
         bool isCollide();
         
         size_t getNumOfColliders() const;
+        
+    public:
+        static Object* getById(std::string id);
     };
 }
 

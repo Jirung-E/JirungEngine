@@ -23,8 +23,8 @@ namespace JirungEngine {
         // Object object;
 
     public:
-        Game();
         Game(const Canvas& canvas);
+        Game();
 
     public:
         virtual void play() = 0;

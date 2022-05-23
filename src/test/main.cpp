@@ -99,7 +99,5 @@ private:
 int main() {
     println("\nTest Start!\n\n");
     
-    //segmentTest();
-    //test();
     TestGame();
 }
