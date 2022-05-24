@@ -14,10 +14,6 @@ namespace JirungEngine {
         public: Vector gravity;
         public: float rotate_speed;
         public: Point rotate_pivot;
-        
-    public:
-        Physics() = default;
-        Physics(const Physics&) = default;
     };
 }
 

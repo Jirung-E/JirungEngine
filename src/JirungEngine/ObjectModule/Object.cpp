@@ -13,8 +13,8 @@ Object::Object(string id, const Point& position) : id { id }, position { positio
     object_list.push_back(this);
 }
 
-Object::Object(const Object& object) : Object { id + "-clone", position }, physics { object.physics }, image { object.image }, 
-    collider { object.collider }, box_collider { object.box_collider } {
+Object::Object(const Object& object) : Object { object.id + "-clone", object.position } {
+    image = new TextImage { *object.image };
     
 }
 

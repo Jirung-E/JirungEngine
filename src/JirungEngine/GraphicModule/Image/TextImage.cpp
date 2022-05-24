@@ -37,6 +37,23 @@ TextImage::TextImage(string file_name) : width { 0 }, height { 0 }, pixel { } {
     file.close();
 }
 
+TextImage::TextImage(char c) : TextImage() {
+    pixel[0][0] = c;
+}
+
+TextImage::TextImage(const TextImage& other) : width { other.width }, height { other.height }, pixel { } {
+    pixel = new Pixel*[height];
+    for(int i=0; i<height; ++i) {
+        pixel[i] = new Pixel[width];
+    }
+    
+    for(int i=0; i<height; ++i) {
+        for(int k=0; k<width; ++k) {
+            pixel[i][k] = other.pixel[i][k];
+        }
+    }
+}
+
 TextImage::~TextImage() {
     for(int i=0; i<height; ++i) {
         delete[] pixel[i];

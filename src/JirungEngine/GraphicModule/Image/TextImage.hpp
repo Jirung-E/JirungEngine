@@ -15,6 +15,8 @@ namespace JirungEngine {
     public:
         TextImage(std::string file_name);
         TextImage();
+        TextImage(char c);
+        TextImage(const TextImage& other);
         ~TextImage();
         
     public:
