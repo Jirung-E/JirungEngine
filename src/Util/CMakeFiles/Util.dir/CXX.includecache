@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/workspace/JirungEngine/src/Util/Util.cpp
+Util.hpp
+/workspace/JirungEngine/src/Util/Util.hpp
+chrono
+-
+thread
+-
+random
+-
+
+/workspace/JirungEngine/src/Util/Util.hpp
+iostream
+-
+UtilType.hpp
+/workspace/JirungEngine/src/Util/UtilType.hpp
+
+/workspace/JirungEngine/src/Util/UtilType.hpp
+string
+-
+
