@@ -1,4 +1,7 @@
 # GameEngine
+- - -
+### 참고자료
+ - [직선 사이의 거리](https://suhak.tistory.com/470)  
 
-직선 사이의 거리 : https://suhak.tistory.com/470  
-좋은거 찾았다 - 게임수학 : https://rito15.github.io/posts/foot-of-perpendicular-in-three-vectors/
+### 나중에 볼것
+ - [게임수학](https://rito15.github.io/categories/game-mathematics/)  
