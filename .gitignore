@@ -1,4 +1,6 @@
 bin/
+build/
+library/
 goorm.*
 
 # Prerequisites
