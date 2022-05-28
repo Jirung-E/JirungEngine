@@ -68,8 +68,22 @@ int main() {
     println("\nTest Start!\n\n");
     
     //TestGame();
-    Canvas3D canvas;
-    canvas.draw(Vector(0, 0, 20), Point(-5, 5, 5));
+    Canvas3D canvas { 120, 90 };
+    canvas.draw(Vector(0, 0, 20), Point(-10, 5, -15));
+    canvas.draw(Vector(0, 0, 20), Point(10, 5, -15));
+    canvas.draw(Vector(0, 0, 20), Point(-10, -10, -15));
+    canvas.draw(Vector(0, 0, 20), Point(10, -10, -15));
+    
+    canvas.draw(Vector(20, 0, 0), Point(-10, 5, -15));
+    canvas.draw(Vector(20, 0, 0), Point(-10, 5, 5));
+    canvas.draw(Vector(20, 0, 0), Point(-10, -10, -15));
+    canvas.draw(Vector(20, 0, 0), Point(-10, -10, 5));
+    
+    canvas.draw(Vector(0, 15, 0), Point(-10, -10, -15));
+    canvas.draw(Vector(0, 15, 0), Point(-10, -10, 5));
+    canvas.draw(Vector(0, 15, 0), Point(10, -10, -15));
+    canvas.draw(Vector(0, 15, 0), Point(10, -10, 5));
+    
     println(canvas.getByString());
     
     println("░▒▓█");

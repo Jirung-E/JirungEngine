@@ -8,6 +8,8 @@ namespace JirungEngine {
     class Canvas3D : public Canvas {
     private:
         const Point camera_position;
+        const Point origin;
+        const float focal_length;
         
     public:
         Canvas3D(size_t width, size_t height);
