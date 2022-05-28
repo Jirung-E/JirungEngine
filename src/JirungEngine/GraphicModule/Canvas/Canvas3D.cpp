@@ -26,7 +26,7 @@ void Canvas3D::draw(const Vector& vector, const Point& point) {
     auto round = [](float num) -> int { return static_cast<int>(num) + 0.5 <= num ? static_cast<int>(num+1) : static_cast<int>(num); };
     
     if(vector.isParallelTo(Vector(camera_position - point)) || vector.magnitude() == 0) {
-        Canvas::draw("*", round(start_point.x + origin.x), round(start_point.y + origin.y));
+        Canvas::draw("# ", round(start_point.x + origin.x), round(start_point.y + origin.y));
         return;
     }
     
@@ -47,7 +47,24 @@ void Canvas3D::draw(const Vector& vector, const Point& point) {
             Point E { camera_position.x + focal_length*(end_point.x - camera_position.x)/(camera_position.z - end_point.z),
                   camera_position.y + focal_length*(end_point.y - camera_position.y)/(camera_position.z - end_point.z), 
                   camera_position.z - focal_length };
-            Canvas::draw(Vector(E-S), S + origin);
+            Vector vec { E - S };
+            
+            int abs_x = vec.x >= 0 ? vec.x : -vec.x;
+            int abs_y = vec.y >= 0 ? vec.y : -vec.y;
+            int num_of_pixels = abs_x >= abs_y ? abs_x : abs_y;
+            for(int i=0; i<num_of_pixels; ++i) {
+                Point temp { S.x + i*(vec.x/num_of_pixels), S.y + i*(vec.y/num_of_pixels) };
+                temp += origin;
+                Canvas::draw("# ", round(temp.x), round(temp.y));
+            }
+            Canvas::draw("# ", round(E.x), round(E.y));
+            
+            // for(int i=0; i<=round(vec.magnitude()); ++i) {
+            //     Point temp { S.x + i*(vec.x/vec.magnitude()), S.y + i*(vec.y/vec.magnitude()) };
+            //     temp += origin;
+            //     Canvas::draw("*", round(temp.x), round(temp.y));
+            // }
+            
             return;
         }
     }
