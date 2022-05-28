@@ -25,6 +25,9 @@ namespace JirungEngine {
         Point operator/=(float n);
 
         bool isInRange(const Point& point1, const Point& point2) const;
+        
+        float getDistanceTo(const Point& other) const;
+        static float getDistanceBetween(const Point& point1, const Point& point2);
     };
 }
 
