@@ -2,6 +2,7 @@
 #define __JirungEngine_hpp__
 
 #include "GraphicModule/Canvas/Canvas.hpp"
+#include "GraphicModule/Canvas/Canvas3D.hpp"
 #include "GraphicModule/Pixel/Pixel.hpp"
 #include "GraphicModule/Image/TextImage.hpp"
 #include "GraphicModule/Viewer/Viewer.hpp"

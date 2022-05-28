@@ -67,5 +67,10 @@ private:
 int main() {
     println("\nTest Start!\n\n");
     
-    TestGame();
+    //TestGame();
+    Canvas3D canvas;
+    canvas.draw(Vector(0, 0, 20), Point(-5, 5, 5));
+    println(canvas.getByString());
+    
+    println("░▒▓█");
 }
