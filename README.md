@@ -10,5 +10,3 @@
  - [modoo](https://modoocode.com/332)
 
 
-https://user-images.githubusercontent.com/73751952/170856537-c2a4bb61-c54b-45fe-85bb-7eb35803f1a6.mp4
-
