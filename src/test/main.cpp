@@ -69,22 +69,76 @@ int main() {
     
     //TestGame();
     Canvas3D canvas { 120, 90 };
-    canvas.draw(Vector(0, 0, 20), Point(-10, 5, -15));
-    canvas.draw(Vector(0, 0, 20), Point(10, 5, -15));
-    canvas.draw(Vector(0, 0, 20), Point(-10, -10, -15));
-    canvas.draw(Vector(0, 0, 20), Point(10, -10, -15));
     
-    canvas.draw(Vector(20, 0, 0), Point(-10, 5, -15));
-    canvas.draw(Vector(20, 0, 0), Point(-10, 5, 5));
-    canvas.draw(Vector(20, 0, 0), Point(-10, -10, -15));
-    canvas.draw(Vector(20, 0, 0), Point(-10, -10, 5));
+    for(int i=0; i<10000; ++i) {
+        canvas.draw(Vector(0, 0, 20), Point(-10, 5, -15) + Point(-22, 0, 0));
+        canvas.draw(Vector(0, 0, 20), Point(10, 5, -15) + Point(-22, 0, 0));
+        canvas.draw(Vector(0, 0, 20), Point(-10, -10, -15) + Point(-22, 0, 0));
+        canvas.draw(Vector(0, 0, 20), Point(10, -10, -15) + Point(-22, 0, 0));
+
+        canvas.draw(Vector(20, 0, 0), Point(-10, 5, -15) + Point(-22, 0, 0));
+        canvas.draw(Vector(20, 0, 0), Point(-10, 5, 5) + Point(-22, 0, 0));
+        canvas.draw(Vector(20, 0, 0), Point(-10, -10, -15) + Point(-22, 0, 0));
+        canvas.draw(Vector(20, 0, 0), Point(-10, -10, 5) + Point(-22, 0, 0));
+
+        canvas.draw(Vector(0, 15, 0), Point(-10, -10, -15) + Point(-22, 0, 0));
+        canvas.draw(Vector(0, 15, 0), Point(-10, -10, 5) + Point(-22, 0, 0));
+        canvas.draw(Vector(0, 15, 0), Point(10, -10, -15) + Point(-22, 0, 0));
+        canvas.draw(Vector(0, 15, 0), Point(10, -10, 5) + Point(-22, 0, 0));
+        
+        
+        canvas.draw(Vector(0, 0, 20), Point(-10, 5, -15) + Point(5, 0, 0));
+        canvas.draw(Vector(0, 0, 20), Point(10, 5, -15) + Point(5, 0, 0));
+        canvas.draw(Vector(0, 0, 20), Point(-10, -10, -15) + Point(5, 0, 0));
+        canvas.draw(Vector(0, 0, 20), Point(10, -10, -15) + Point(5, 0, 0));
+
+        canvas.draw(Vector(20, 0, 0), Point(-10, 5, -15) + Point(5, 0, 0));
+        canvas.draw(Vector(20, 0, 0), Point(-10, 5, 5) + Point(5, 0, 0));
+        canvas.draw(Vector(20, 0, 0), Point(-10, -10, -15) + Point(5, 0, 0));
+        canvas.draw(Vector(20, 0, 0), Point(-10, -10, 5) + Point(5, 0, 0));
+
+        canvas.draw(Vector(0, 15, 0), Point(-10, -10, -15) + Point(5, 0, 0));
+        canvas.draw(Vector(0, 15, 0), Point(-10, -10, 5) + Point(5, 0, 0));
+        canvas.draw(Vector(0, 15, 0), Point(10, -10, -15) + Point(5, 0, 0));
+        canvas.draw(Vector(0, 15, 0), Point(10, -10, 5) + Point(5, 0, 0));
+
+        println("\n\n\n\n\n\n\n\n\n");
+        println(canvas.getByString());
+        
+        canvas.moveCameraTo(canvas.getCameraPosition() + Point(0, 0, -0.2));
+        
+        sleep(1000/30);
+    }
     
-    canvas.draw(Vector(0, 15, 0), Point(-10, -10, -15));
-    canvas.draw(Vector(0, 15, 0), Point(-10, -10, 5));
-    canvas.draw(Vector(0, 15, 0), Point(10, -10, -15));
-    canvas.draw(Vector(0, 15, 0), Point(10, -10, 5));
+    canvas.clear();
+    
+    Point p[] { 
+        { 0, 0, 0 },
+        { 0, 10, 0 },
+        { 0, 0, 10 },
+        { 0, 10, 10 },
+        { 10, 0, 0 },
+        { 10, 10, 0 },
+        { 10, 0, 10 },
+        { 10, 10, 10 },
+    };
+    
+    Vector v[] { 
+        { p[0] - p[1] },
+        { p[1] - p[3] },
+        { p[3] - p[2] },
+        { p[2] - p[0] },
+        { p[4] - p[5] },
+        { p[5] - p[7] },
+        { p[7] - p[6] },
+        { p[6] - p[4] },
+    };
+    
+    for(int i=0; i<8; ++i) {
+        canvas.draw(v[i], p[i] + Point(0, 0, -10));
+    }
     
     println(canvas.getByString());
     
-    println("░▒▓█");
+    //println("░▒▓█");
 }
