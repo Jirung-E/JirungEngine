@@ -3,6 +3,7 @@
 
 #include "../Point/Point.hpp"
 #include "../Vector/Vector.hpp"
+#include "../Line/Line.hpp"
 
 
 namespace JirungEngine {
@@ -11,7 +12,19 @@ namespace JirungEngine {
         Point point;
         Vector normal_vector;
         
-    
+    public:
+        Plane(Point point = { 0, 0, 0 }, Vector normal_vector = { 0, 0, 1 });
+        Plane(Vector normal_vector);
+        
+    public:
+        bool isExistPointOfContactWith(const Line& line) const;
+        Point* getPointOfContactWith(const Line& line) const;
+        Point getFootOfPerpendicularFrom(const Point& point) const;
+        float getDistanceTo(const Point& point) const;
+        float getDistanceTo(const Line& line) const;
+        float getDistanceTo(const Plane& other) const;
+        bool isParallelTo(const Line& line) const;
+        bool isParallelTo(const Plane& other) const;
     };
 }
 
