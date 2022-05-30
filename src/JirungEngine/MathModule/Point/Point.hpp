@@ -28,6 +28,8 @@ namespace JirungEngine {
         
         float getDistanceTo(const Point& other) const;
         static float getDistanceBetween(const Point& point1, const Point& point2);
+
+        static Point origin();
     };
 }
 
