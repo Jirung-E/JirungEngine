@@ -28,7 +28,7 @@ void Canvas3D::draw(const Vector& vector, const Point& point) {
     auto round = [](float num) -> int { return static_cast<int>(num) + 0.5 <= num ? static_cast<int>(num+1) : static_cast<int>(num); };
     
     if(vector.isParallelTo(Vector(camera_position - point)) || vector.magnitude() == 0) {
-        Canvas::draw("#", round(start_point.x + origin.x), round(start_point.y + origin.y));
+        Canvas::draw("#", round(start_point.x + origin.x), height_max-1 - round(start_point.y + origin.y));
         return;
     }
     
@@ -69,7 +69,7 @@ void Canvas3D::draw(const Vector& vector, const Point& point) {
         Point temp { S.x + i*(vec.x/num_of_pixels), S.y + i*(vec.y/num_of_pixels) };
         temp += origin;
         temp -= camera_position;
-        Canvas::draw("#", round(temp.x), round(temp.y));
+        Canvas::draw("#", round(temp.x), height_max-1 - round(temp.y));
     }
     //Canvas::draw("#", round(E.x), round(E.y));
 }

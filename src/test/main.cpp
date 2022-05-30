@@ -101,6 +101,9 @@ int main() {
         canvas.draw(Vector(0, 15, 0), Point(-10, -10, 5) + Point(5, 0, 0));
         canvas.draw(Vector(0, 15, 0), Point(10, -10, -15) + Point(5, 0, 0));
         canvas.draw(Vector(0, 15, 0), Point(10, -10, 5) + Point(5, 0, 0));
+        
+        
+        canvas.draw(Vector(0, 150, 0), Point(0, 0, 0));
 
         println("\n\n\n\n\n\n\n\n\n");
         println(canvas.getByString());
