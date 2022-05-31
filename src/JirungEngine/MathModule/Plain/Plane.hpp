@@ -17,7 +17,7 @@ namespace JirungEngine {
         Plane(Vector normal_vector);
         
     public:
-        bool isExistPointOfContactWith(const Line& line) const;
+        bool isContactWith(const Point& point) const;
         Point* getPointOfContactWith(const Line& line) const;
         Point getFootOfPerpendicularFrom(const Point& point) const;
         float getDistanceTo(const Point& point) const;
