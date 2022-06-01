@@ -23,12 +23,29 @@ bool Plane::isContactWith(const Point& point) const {
     return false;
 }
 
-Point* Plane::getPointOfContactWith(const Line& line) const {           // 미완
-    return nullptr;
+Point* Plane::getPointOfContactWith(const Line& line) const {
+    if(this->isParallelTo(line)) {
+        if(this->getDistanceTo(line) == 0.0f) {
+            return line.point;
+        }
+        return nullptr;
+    }
+    
+    // Point A { line.point };
+    // Point H { getFootOfPerpendicularFrom(line.point) };
+    float AH = getDistanceTo(line.point);
+    float theta = Vector::getAngleBetween(this->normal_vector, line.vector);
+    float AP = AH / cos(theta);
+    Vector V { line.vector.getUnitVector() * AP };
+    return Point { A - Point(V.x, V.y, V.z) };
 }
 
-Point Plane::getFootOfPerpendicularFrom(const Point& point) const {     // 미완
-    return Point();
+Point Plane::getFootOfPerpendicularFrom(const Point& point) const {
+    Vector v { this->normal_vector.getUnitVector() * this->getDistanceTo(point) };
+    if(this->normal_vector * Vector(point - this->point) > 0.0f) {
+        return point - Point { v.x, v.y, v.z };
+    }
+    return point + Point { v.x, v.y, v.z };
 }
 
 float Plane::getDistanceTo(const Point& point) const {
