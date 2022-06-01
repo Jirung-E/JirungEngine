@@ -121,6 +121,9 @@ Vector Vector::unitVectorOf(const Vector& vector) {
 }
 
 float Vector::getAngleWith(const Vector& other) const {
+    if(this->magnitude() == 0 || other.magnitude() == 0) {
+        return 0.0f;
+    }
     return acos(((*this) * other) / (this->magnitude() * other.magnitude()));
 }
 
