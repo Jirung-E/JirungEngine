@@ -64,10 +64,7 @@ private:
     }
 };
 
-int main() {
-    println("\nTest Start!\n\n");
-    
-    //TestGame();
+void nemo() {
     Canvas3D canvas { 120, 90 };
     
     for(int i=0; i<10000; ++i) {
@@ -112,34 +109,19 @@ int main() {
         
         sleep(1000/30);
     }
+}
+
+int main() {
+    println("\nTest Start!\n\n");
     
-    canvas.clear();
+    //TestGame();
+    Canvas3D canvas { 120, 40 };
     
-    Point p[] { 
-        { 0, 0, 0 },
-        { 0, 10, 0 },
-        { 0, 0, 10 },
-        { 0, 10, 10 },
-        { 10, 0, 0 },
-        { 10, 10, 0 },
-        { 10, 0, 10 },
-        { 10, 10, 10 },
-    };
-    
-    Vector v[] { 
-        { p[0] - p[1] },
-        { p[1] - p[3] },
-        { p[3] - p[2] },
-        { p[2] - p[0] },
-        { p[4] - p[5] },
-        { p[5] - p[7] },
-        { p[7] - p[6] },
-        { p[6] - p[4] },
-    };
-    
-    for(int i=0; i<8; ++i) {
-        canvas.draw(v[i], p[i] + Point(0, 0, -10));
-    }
+    Panel panel;
+    // panel.point = { -5, 10, 2 };
+    panel.normal_vector = { 10, 10, 10 };
+    canvas.draw(panel);
+    canvas.draw('@', Point(0, 0));
     
     println(canvas.getByString());
     

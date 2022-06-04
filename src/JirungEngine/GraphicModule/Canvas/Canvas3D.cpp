@@ -21,11 +21,12 @@ Canvas3D::~Canvas3D() {
 
 
 void Canvas3D::draw(char c, const Point& point) {
-    if(point.x < 0 || point.x >= width_max || point.y < 0 || point.y >= height_max) {
+    Point p { point + origin };
+    if(p.x < 0 || p.x >= width_max || p.y < 0 || p.y >= height_max) {
         return;
     }
     
-    pixel[static_cast<int>(round(point.y))][static_cast<int>(round(point.x))] = c;
+    pixel[height_max-1 - static_cast<int>(round(p.y))][static_cast<int>(round(p.x))] = c;
 }
 
 void Canvas3D::draw(const Vector& vector, const Point& point) {
@@ -33,10 +34,8 @@ void Canvas3D::draw(const Vector& vector, const Point& point) {
     Point end_point { point.x + vector.x, point.y + vector.y, point.z + vector.z };
     Vector direction { vector };
     
-    auto round = [](float num) -> int { return static_cast<int>(num) + 0.5 <= num ? static_cast<int>(num+1) : static_cast<int>(num); };
-    
     if(vector.isParallelTo(Vector(camera_position - point)) || vector.magnitude() == 0) {
-        draw('#', Point(round(start_point.x + origin.x), height_max-1 - round(start_point.y + origin.y)));
+        draw('#', Point(start_point.x, start_point.y));
         return;
     }
     
@@ -75,14 +74,15 @@ void Canvas3D::draw(const Vector& vector, const Point& point) {
     int num_of_pixels = abs_x >= abs_y ? abs_x : abs_y;
     for(int i=0; i<num_of_pixels; ++i) {
         Point temp { S.x + i*(vec.x/num_of_pixels), S.y + i*(vec.y/num_of_pixels) };
-        temp += origin;
         temp -= camera_position;
-        draw('#', Point(round(temp.x), height_max-1 - round(temp.y)));
+        draw('#', Point(temp.x, temp.y));
     }
 }
 
 void Canvas3D::draw(const Panel& panel) {
-    
+    Point A { panel.point };
+    Vector N { panel.normal_vector };
+    draw(N, A);                    // 도와줘요!ㅠㅠ
 }
 
 
