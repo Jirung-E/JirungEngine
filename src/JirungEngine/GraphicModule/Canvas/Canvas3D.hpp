@@ -17,6 +17,7 @@ namespace JirungEngine {
         ~Canvas3D();
         
     public:
+        void draw(char c, const Point& point);
         void draw(const Vector& vector, const Point& point);
         
         void moveCameraTo(const Point& point);
