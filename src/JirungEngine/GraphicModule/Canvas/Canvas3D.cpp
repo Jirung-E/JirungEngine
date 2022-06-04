@@ -81,6 +81,10 @@ void Canvas3D::draw(const Vector& vector, const Point& point) {
     }
 }
 
+void Canvas3D::draw(const Panel& panel) {
+    
+}
+
 
 void Canvas3D::moveCameraTo(const Point& point) {
     camera_position = point;

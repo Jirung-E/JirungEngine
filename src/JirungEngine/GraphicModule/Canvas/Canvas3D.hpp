@@ -3,6 +3,8 @@
 
 #include "Canvas.hpp"
 
+#include "../../MathModule/Panel/Panel.hpp"
+
 
 namespace JirungEngine {
     class Canvas3D : public Canvas {
@@ -19,6 +21,7 @@ namespace JirungEngine {
     public:
         void draw(char c, const Point& point);
         void draw(const Vector& vector, const Point& point);
+        void draw(const Panel& panel);
         
         void moveCameraTo(const Point& point);
         
