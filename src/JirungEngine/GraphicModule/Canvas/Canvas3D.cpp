@@ -80,28 +80,32 @@ void Canvas3D::draw(const Vector& vector, const Point& point) {
 }
 
 void Canvas3D::draw(const Panel& panel) {
+    Vector N { panel.normal_vector.getUnitVector() };
     Point A { panel.point };
-    Vector N { panel.normal_vector };
 
-    Point LT { -width/2, height/2, 0 };
-    Vector O_LT { LT - Point::origin() };
-    Vector N_proj_to_xz_plane { N.x, 0, N.z };
-    float angle_between_N_and_proj = Vector::getAngleBetween(N, N_proj_to_xz_plane);
-    if(N * Vector::j() > 0.0f) {
-        LT.y = LT.y * cos(angle_between_N_and_proj);
-        LT.z = -LT.y * sin(angle_between_N_and_proj);
-    }
-    else {
-        LT.y = LT.y * cos(angle_between_N_and_proj);
-        LT.z = LT.y * sin(angle_between_N_and_proj);
-    }
+    Vector N_xz { N.x, 0, N.z };
+    N_xz = N_xz.getUnitVector();
+    float theta = N.getAngleWith(N_xz);
 
-    float angle_between_z_and_N_proj = Vector::getAngleBetween(Vector::k(), N_proj_to_xz_plane);
-    if(N_proj_to_xz_plane * Vector::k() > 0.0f) {
-        N_proj_to_xz_plane * ? == 0
-    }
+    Vector A_to_CT { (N * -1) * (panel.height/2) };    // center top
+    A_to_CT.y *= -1;
+    Point CT { A + Point(A_to_CT.x, A_to_CT.y, A_to_CT.z) };
 
-    // z, x, y 순
+    // 이부분, N이 XZ평면에서 몇사분면에 있는지에 따라 계산법이 달라져야할수도.. 밑에줄은 1사분면..
+    Vector A_to_LC { Vector(-N.z, 0, N.x) * (panel.width/2) };     // left center
+    Point LT { CT + Point(A_to_LC.x, A_to_LC.y, A_to_LC.z) };
+    Point RT { CT - Point(A_to_LC.x, A_to_LC.y, A_to_LC.z) };
+
+    Point LB { CT * -1 + Point(A_to_LC.x, A_to_LC.y, A_to_LC.z) };
+    Point RB { CT * -1 - Point(A_to_LC.x, A_to_LC.y, A_to_LC.z) };
+    // 이 위쪽 코드는 Panel로 옮겨도 될듯
+
+    draw(Vector(RT - LT), LT);
+    draw(Vector(RB - LB), LB);
+    draw(Vector(LB - LT), LT);
+    draw(Vector(RB - RT), RT);
+    draw(Vector(RB - LT), LT);
+    draw(Vector(LB - RT), RT);
 }
 
 
