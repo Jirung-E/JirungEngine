@@ -22,7 +22,7 @@ Canvas3D::~Canvas3D() {
 
 void Canvas3D::draw(char c, const Point& point) {
     Point p { point + origin };
-    if(p.x < 0 || p.x >= width_max || p.y < 0 || p.y >= height_max) {
+    if(static_cast<int>(round(p.x)) < 0 || static_cast<int>(round(p.x)) >= width_max || static_cast<int>(round(p.y)) < 0 || static_cast<int>(round(p.y)) >= height_max) {
         return;
     }
     
@@ -82,7 +82,7 @@ void Canvas3D::draw(const Vector& vector, const Point& point) {
 void Canvas3D::draw(const Panel& panel) {
     Point A { panel.point };
     Vector N { panel.normal_vector };
-    draw(N, A);                    // 도와줘요!ㅠㅠ
+    draw(N, A);                    // 으아아 싯팔
 }
 
 

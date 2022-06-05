@@ -64,6 +64,7 @@ private:
     }
 };
 
+
 void nemo() {
     Canvas3D canvas { 120, 90 };
     
@@ -111,6 +112,7 @@ void nemo() {
     }
 }
 
+
 int main() {
     println("\nTest Start!\n\n");
     
@@ -118,7 +120,7 @@ int main() {
     Canvas3D canvas { 120, 40 };
     
     Panel panel;
-    // panel.point = { -5, 10, 2 };
+    panel.point = { -5, 10, 2 };
     panel.normal_vector = { 10, 10, 10 };
     canvas.draw(panel);
     canvas.draw('@', Point(0, 0));
