@@ -82,7 +82,26 @@ void Canvas3D::draw(const Vector& vector, const Point& point) {
 void Canvas3D::draw(const Panel& panel) {
     Point A { panel.point };
     Vector N { panel.normal_vector };
-    draw(N, A);                    // 으아아 싯팔
+
+    Point LT { -width/2, height/2, 0 };
+    Vector O_LT { LT - Point::origin() };
+    Vector N_proj_to_xz_plane { N.x, 0, N.z };
+    float angle_between_N_and_proj = Vector::getAngleBetween(N, N_proj_to_xz_plane);
+    if(N * Vector::j() > 0.0f) {
+        LT.y = LT.y * cos(angle_between_N_and_proj);
+        LT.z = -LT.y * sin(angle_between_N_and_proj);
+    }
+    else {
+        LT.y = LT.y * cos(angle_between_N_and_proj);
+        LT.z = LT.y * sin(angle_between_N_and_proj);
+    }
+
+    float angle_between_z_and_N_proj = Vector::getAngleBetween(Vector::k(), N_proj_to_xz_plane);
+    if(N_proj_to_xz_plane * Vector::k() > 0.0f) {
+        N_proj_to_xz_plane * ? == 0
+    }
+
+    // z, x, y 순
 }
 
 
