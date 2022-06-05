@@ -40,6 +40,10 @@ namespace JirungEngine {
         static float getAngleBetween(const Vector& vector1, const Vector& vector2);
         bool isParallelTo(const Vector& other) const;
         static bool isParallel(const Vector& vector1, const Vector& vector2);
+
+        static Vector i();
+        static Vector j();
+        static Vector k();
     };
 }
 
