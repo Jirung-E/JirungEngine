@@ -118,14 +118,28 @@ int main() {
     
     //TestGame();
     Canvas3D canvas { 120, 40 };
+    Point custom_point { canvas.getCameraPosition() };
+    custom_point.x += 10;
+    custom_point.y += 10;
+    canvas.moveCameraTo(custom_point);
     
     Panel panel;
     panel.point = { -5, 10, 2 };
-    panel.normal_vector = { 10, 10, 10 };
-    canvas.draw(panel);
-    canvas.draw('@', Point(0, 0));
     
-    println(canvas.getByString());
+    for(int i=0; i<1000; ++i) {
+        canvas.clear();
+        canvas.draw(Vector::i()*1000, Point::origin());
+        canvas.draw(Vector::j()*1000, Point::origin());
+        canvas.draw(Vector::k()*1000, Point::origin());
+        canvas.draw(Panel(64, 64));
+        
+        panel.normal_vector = { 10.0f - i/10.0f, 10.0f - i/10.0f, 10.0f };
+        canvas.draw(panel);
+        //canvas.draw('@', Point(0, 0));
+
+        println(canvas.getByString());
+        sleep(1000/30);
+    }
     
     //println("░▒▓█");
 }
