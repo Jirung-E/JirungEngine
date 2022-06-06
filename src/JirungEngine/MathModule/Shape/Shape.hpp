@@ -14,7 +14,7 @@ namespace JirungEngine {
         Vector normal_vector;
     
     public:
-        virtual std::list<Point> getVertexes() const;
+        
     };
 }
 
