@@ -16,7 +16,17 @@ namespace JirungEngine {
         Panel();
 
     public:
-    
+        Point leftTop() const;
+        Point leftBottom() const;
+        Point rightTop() const;
+        Point rightBottom() const;
+
+    private:
+        Point centerTop() const;
+        Point leftCenter() const;
+
+        Vector toTop() const;
+        Vector toLeft() const;
     };
 }
 
