@@ -87,8 +87,8 @@ void Canvas3D::draw(const Panel& panel) {
     N_xz = N_xz.getUnitVector();
     float theta = N.getAngleWith(N_xz);
 
-    Vector A_to_CT { (N * -1) * (panel.height/2) };    // center top
-    A_to_CT.y *= -1;
+    Vector A_to_CT { (N_xz * -1) * (panel.height/2)*sin(theta) };    // center top
+    A_to_CT.y = (panel.height/2)*cos(theta);
     Point CT { A + Point(A_to_CT.x, A_to_CT.y, A_to_CT.z) };
 
     // 이부분, N이 XZ평면에서 몇사분면에 있는지에 따라 계산법이 달라져야할수도.. 밑에줄은 1사분면..
