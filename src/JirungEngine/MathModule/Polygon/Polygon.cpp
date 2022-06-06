@@ -54,3 +54,26 @@ void Polygon::rotate(const Line& axis, float radian) {
     p2 = Line::rotate(p2, axis, radian);
     p3 = Line::rotate(p3, axis, radian);
 }
+
+
+Polygon Polygon::operator*(float n) const {
+    return Polygon { p1 * n, p2 * n, p3 * n };
+}
+
+Polygon Polygon::operator/(float n) const {
+    return Polygon { p1 / n, p2 / n, p3 / n };
+}
+
+Polygon Polygon::operator*=(float n) {
+    p1 *= n;
+    p2 *= n;
+    p3 *= n;
+    return *this;
+}
+
+Polygon Polygon::operator/=(float n) {
+    p1 /= n;
+    p2 /= n;
+    p3 /= n;
+    return *this;
+}

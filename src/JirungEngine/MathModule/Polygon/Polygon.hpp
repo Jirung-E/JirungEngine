@@ -24,6 +24,11 @@ namespace JirungEngine {
         void transformNormalVectorTo(const Vector& vector);
         void rotate(float radian);
         void rotate(const Line& axis, float radian);
+
+        Polygon operator*(float n) const;
+        Polygon operator/(float n) const;
+        Polygon operator*=(float n);
+        Polygon operator/=(float n);
     };
 }
 
