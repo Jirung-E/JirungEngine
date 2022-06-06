@@ -61,23 +61,45 @@ void Polygon::rotate(const Line& axis, float radian) {
 
 
 Polygon Polygon::operator*(float n) const {
-    return Polygon { p1 * n, p2 * n, p3 * n };
+    Polygon poly { *this };
+
+    Vector v1 { Vector(p2-p1) * n };
+    Vector v2 { Vector(p3-p1) * n };
+
+    poly.p2 = p1 + Point {v1.x, v1.y, v1.z };
+    poly.p3 = p1 + Point {v2.x, v2.y, v2.z };
+    
+    return poly;
 }
 
 Polygon Polygon::operator/(float n) const {
-    return Polygon { p1 / n, p2 / n, p3 / n };
+    Polygon poly { *this };
+
+    Vector v1 { Vector(p2-p1) / n };
+    Vector v2 { Vector(p3-p1) / n };
+
+    poly.p2 = p1 + Point {v1.x, v1.y, v1.z };
+    poly.p3 = p1 + Point {v2.x, v2.y, v2.z };
+    
+    return poly;
 }
 
 Polygon Polygon::operator*=(float n) {
-    p1 *= n;
-    p2 *= n;
-    p3 *= n;
+    Vector v1 { Vector(p2-p1) * n };
+    Vector v2 { Vector(p3-p1) * n };
+
+    p2 = p1 + Point {v1.x, v1.y, v1.z };
+    p3 = p1 + Point {v2.x, v2.y, v2.z };
+    
     return *this;
 }
 
 Polygon Polygon::operator/=(float n) {
-    p1 /= n;
-    p2 /= n;
-    p3 /= n;
+    Vector v1 { Vector(p2-p1) / n };
+    Vector v2 { Vector(p3-p1) / n };
+
+    p2 = p1 + Point {v1.x, v1.y, v1.z };
+    p3 = p1 + Point {v2.x, v2.y, v2.z };
+    
     return *this;
 }
