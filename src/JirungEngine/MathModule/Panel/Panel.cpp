@@ -51,12 +51,12 @@ Vector Panel::toTop() const {
 
     if(normal_vector.getUnitVector() == Vector { 0, 1, 0 } || normal_vector.magnitude() == 0.0f) {
         to_top.z -= height/2;
-        // 회전
+        to_top = Vector { Line::rotate(Point(to_top.x, to_top.y, to_top.z), Line(normal_vector), rotate_angle) };
         return to_top;
     }
     if(normal_vector.getUnitVector() == Vector { 0, -1, 0 }) {
         to_top.z += height/2;
-        // 회전
+        to_top = Vector { Line::rotate(Point(to_top.x, to_top.y, to_top.z), Line(normal_vector), rotate_angle) };
         return to_top;
     }
 
@@ -67,7 +67,7 @@ Vector Panel::toTop() const {
     to_top = Vector { (N_xz * -1) * (height/2) * cos(theta) };
     to_top.y = (height/2)*sin(theta);
     
-    // 회전
+    to_top = Vector { Line::rotate(Point(to_top.x, to_top.y, to_top.z), Line(normal_vector), rotate_angle) };
 
     return to_top;
 }
@@ -77,7 +77,7 @@ Vector Panel::toLeft() const {
 
     if(normal_vector.isParallelTo(Vector::j()) || normal_vector.magnitude() == 0.0f) {
         to_left.x -= width/2;
-        // 회전
+        to_left = Vector { Line::rotate(Point(to_left.x, to_left.y, to_left.z), Line(normal_vector), rotate_angle) };
         return to_left;
     }
 
@@ -89,7 +89,7 @@ Vector Panel::toLeft() const {
         to_left = Vector(normal_vector.z, 0, -normal_vector.x).getUnitVector() * (width/2);
     }
 
-    // 회전
+    to_left = Vector { Line::rotate(Point(to_left.x, to_left.y, to_left.z), Line(normal_vector), rotate_angle) };
 
     return to_left;
 }

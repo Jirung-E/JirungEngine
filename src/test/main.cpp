@@ -136,7 +136,9 @@ int main() {
         canvas.draw(p);
         
         panel.normal_vector = { 10.0f - i/10.0f, 10.0f - i/10.0f, 10.0f };
+        panel.rotate_angle = i/10.0f;
         canvas.draw(panel);
+        canvas.draw(panel.normal_vector, panel.point);
         canvas.Canvas::draw(to_string(i), 0, 0);
 
         println(canvas.getByString());
