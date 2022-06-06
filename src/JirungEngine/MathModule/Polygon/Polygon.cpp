@@ -28,11 +28,11 @@ Point Polygon::getCenterOfGravity() const {
 
 
 void Polygon::moveTo(const Point& point) {
-    p1 = point;
     p2 -= p1;
     p2 += point;
     p3 -= p1;
     p3 += point;
+    p1 = point;
 }
 
 void Polygon::transformNormalVectorTo(const Vector& vector) {
