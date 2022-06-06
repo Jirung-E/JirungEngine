@@ -3,6 +3,7 @@
 
 #include "../Point/Point.hpp"
 #include "../Vector/Vector.hpp"
+#include "../Line/Line.hpp"
 
 
 namespace JirungEngine {

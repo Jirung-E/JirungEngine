@@ -2,8 +2,6 @@
 
 #include <cmath>
 
-#include "../Line/Line.hpp"
-
 using namespace std;
 using namespace JirungEngine;
 
