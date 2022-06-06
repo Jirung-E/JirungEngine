@@ -1,5 +1,8 @@
 #include "Panel.hpp"
 
+#include <cmath>
+
+using namespace std;
 using namespace JirungEngine;
 
 
@@ -46,12 +49,12 @@ Point Panel::leftCenter() const {
 Vector Panel::toTop() const {
     Vector to_top { 0, 0, 0 };
 
-    if(normal_vector.getUnitVector() == { 0, 1, 0 } || normal_vector.magnitude() == 0.0f) {
+    if(normal_vector.getUnitVector() == Vector { 0, 1, 0 } || normal_vector.magnitude() == 0.0f) {
         to_top.z -= height/2;
         // 회전
         return to_top;
     }
-    if(normal_vector.getUnitVector() == { 0, -1, 0 }) {
+    if(normal_vector.getUnitVector() == Vector { 0, -1, 0 }) {
         to_top.z += height/2;
         // 회전
         return to_top;
