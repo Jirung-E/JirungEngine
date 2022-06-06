@@ -62,8 +62,9 @@ Vector Panel::toTop() const {
 
     float theta = Vector::getAngleBetween(Vector::j(), normal_vector);
     Vector N_xz { normal_vector.x, 0, normal_vector.z };
+    N_xz = N_xz.getUnitVector();
 
-    to_top = Vector { (N_xz * -1) * (height/2)*cos(theta) };
+    to_top = Vector { (N_xz * -1) * (height/2) * cos(theta) };
     to_top.y = (height/2)*sin(theta);
     
     // 회전
