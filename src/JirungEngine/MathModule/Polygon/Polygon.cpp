@@ -40,8 +40,6 @@ void Polygon::transformNormalVectorTo(const Vector& vector) {
     p1 = Line::rotate(p1, n, theta);
     p2 = Line::rotate(p2, n, theta);
     p3 = Line::rotate(p3, n, theta);
-
-    normal_vector = vector;
 }
 
 void Polygon::rotate(float radian) {
