@@ -98,6 +98,15 @@ void Canvas3D::draw(const Panel& panel) {
     draw(Vector(LB - RT), RT);
 }
 
+void Canvas3D::draw(const Polygon& polygon) {
+    draw(Vector(polygon.p2 - polygon.p1), polygon.p1);
+    draw(Vector(polygon.p3 - polygon.p1), polygon.p1);
+    draw(Vector(polygon.p3 - polygon.p2), polygon.p2);
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 void Canvas3D::moveCameraTo(const Point& point) {
     camera_position = point;
