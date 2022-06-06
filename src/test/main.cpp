@@ -131,11 +131,13 @@ int main() {
         canvas.draw(Vector::i()*1000, Point::origin());
         canvas.draw(Vector::j()*1000, Point::origin());
         canvas.draw(Vector::k()*1000, Point::origin());
-        canvas.draw(Panel(64, 64));
+        Panel p(64, 64);
+        p.normal_vector = { 0, 1, 0 };
+        canvas.draw(p);
         
         panel.normal_vector = { 10.0f - i/10.0f, 10.0f - i/10.0f, 10.0f };
         canvas.draw(panel);
-        //canvas.draw('@', Point(0, 0));
+        canvas.Canvas::draw(to_string(i), 0, 0);
 
         println(canvas.getByString());
         sleep(1000/30);

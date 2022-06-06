@@ -93,6 +93,7 @@ void Canvas3D::draw(const Panel& panel) {
     draw(Vector(RB - LB), LB);
     draw(Vector(LB - LT), LT);
     draw(Vector(RB - RT), RT);
+    
     draw(Vector(RB - LT), LT);
     draw(Vector(LB - RT), RT);
 }
