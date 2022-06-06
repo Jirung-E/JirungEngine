@@ -80,28 +80,14 @@ void Canvas3D::draw(const Vector& vector, const Point& point) {
 }
 
 void Canvas3D::draw(const Panel& panel) {
-    Vector N { panel.normal_vector.getUnitVector() };
-    Point A { panel.point };
-
-    Vector N_xz { N.x, 0, N.z };
-    N_xz = N_xz.getUnitVector();
-    float theta = N.getAngleWith(N_xz);
-
-    Vector A_to_CT { (N_xz * -1) * (panel.height/2)*sin(theta) };    // center top
-    A_to_CT.y = (panel.height/2)*cos(theta);
-    Point CT { A + Point(A_to_CT.x, A_to_CT.y, A_to_CT.z) };
-
-    // 이부분, N이 XZ평면에서 몇사분면에 있는지에 따라 계산법이 달라져야할수도.. 밑에줄은 1사분면..
-    Vector A_to_LC { Vector(-N.z, 0, N.x) * (panel.width/2) };     // left center
-    if(N_xz.magnitude() == 0.0f) {
-        A_to_LC.x = -(panel.width/2);
+    if(panel.normal_vector.magnitude() == 0.0f) {
+        return;
     }
-    Point LT { CT + Point(A_to_LC.x, A_to_LC.y, A_to_LC.z) };
-    Point RT { CT - Point(A_to_LC.x, A_to_LC.y, A_to_LC.z) };
-
-    Point LB { CT * -1 + Point(A_to_LC.x, A_to_LC.y, A_to_LC.z) };
-    Point RB { CT * -1 - Point(A_to_LC.x, A_to_LC.y, A_to_LC.z) };
-    // 이 위쪽 코드는 Panel로 옮겨도 될듯
+    
+    Point LT { panel.leftTop() };
+    Point RT { panel.rightTop() };
+    Point LB { panel.leftBottom() };
+    Point RB { panel.rightBottom() };
 
     draw(Vector(RT - LT), LT);
     draw(Vector(RB - LB), LB);
