@@ -110,3 +110,12 @@ Point Line::getFootOfPerpendicular(const Line& to, const Line& from) {
     Point A { H.x - AtoH.x, H.y - AtoH.y, H.z - AtoH.z };
     return A;
 }
+
+
+Point Line::rotate(const Point& point, const Line& axis, float radian) {
+    Vector v { point - axis.getFootOfPerpendicularFrom(point) };
+    float t = radian;
+    Vector n { axis.vector };
+    Vector result { (v*cos(t)) + n*(1-cos(t))*(v*n) + (n.crossProduct(v) * sin(t)) };
+    return point + Point { result.x, result.y, result.z };
+}

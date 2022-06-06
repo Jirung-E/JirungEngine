@@ -31,6 +31,8 @@ namespace JirungEngine {
         static bool isParallel(const Line& line1, const Line& line2);
         static Point getFootOfPerpendicular(const Line& line, const Point& point);
         static Point getFootOfPerpendicular(const Line& to, const Line& from);
+        
+        static Point rotate(const Point& point, const Line& axis, float radian);
     };
 }
 
