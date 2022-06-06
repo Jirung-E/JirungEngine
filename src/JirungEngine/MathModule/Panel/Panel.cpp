@@ -13,20 +13,25 @@ Panel::Panel() : Panel { 10, 10 } {
 
 
 Point Panel::leftTop() const {
-
+    Vector v { toLeft() + toTop() };
+    return point + Point { v.x, v.y, v.z };
 }
 
 Point Panel::leftBottom() const {
-
+    Vector v { toLeft() - toTop() };
+    return point + Point { v.x, v.y, v.z };
 }
 
 Point Panel::rightTop() const {
-
+    Vector v { (toLeft() * -1) + toTop() };
+    return point + Point { v.x, v.y, v.z };
 }
 
 Point Panel::rightBottom() const {
-
+    Vector v { (toLeft() * -1) - toTop() };
+    return point + Point { v.x, v.y, v.z };
 }
+
 
 Point Panel::centerTop() const {
     Vector v { toTop() };
