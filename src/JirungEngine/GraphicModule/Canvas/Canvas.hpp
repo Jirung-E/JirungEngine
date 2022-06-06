@@ -5,9 +5,7 @@
 
 #include "../Pixel/Pixel.hpp"
 #include "../Image/TextImage.hpp"
-#include "../../MathModule/Point/Point.hpp"
-#include "../../MathModule/Vector/Vector2D.hpp"
-#include "../../MathModule/Vector/Vector.hpp"
+#include "../../MathModule/Math.hpp"
 #include "../../ObjectModule/Collider/Collider.hpp"
 #include "../../ObjectModule/Collider/BoxCollider.hpp"
 #include "../../ObjectModule/Object.hpp"
