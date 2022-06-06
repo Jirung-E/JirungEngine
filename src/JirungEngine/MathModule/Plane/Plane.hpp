@@ -25,6 +25,10 @@ namespace JirungEngine {
         float getDistanceTo(const Plane& other) const;
         bool isParallelTo(const Line& line) const;
         bool isParallelTo(const Plane& other) const;
+
+        static Plane xy();
+        static Plane xz();
+        static Plane yz();
     };
 }
 

@@ -85,3 +85,16 @@ bool Plane::isParallelTo(const Plane& other) const {
     }
     return false;
 }
+
+
+Plane Plane::xy() {
+    return Plane { 0, 0, 1 };
+}
+
+Plane Plane::xz() {
+    return Plane { 0, 1, 0 };
+}
+
+Plane Plane::yz() {
+    return Plane { 1, 0, 0 };
+}
