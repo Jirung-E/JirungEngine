@@ -9,6 +9,3 @@ Rectangle::Rectangle() : Shape { } {
 }
 
 
-list<Point> Rectangle::getVertexes() const {
-
-}

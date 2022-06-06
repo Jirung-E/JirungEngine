@@ -9,6 +9,3 @@ Triangle::Triangle() : Shape { } {
 }
 
 
-list<Point> Triangle::getVertexes() const {
-
-}

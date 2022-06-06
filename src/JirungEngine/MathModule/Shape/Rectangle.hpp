@@ -10,7 +10,7 @@ namespace JirungEngine {
         Rectangle();
 
     public:
-        std::list<Point> getVertexes() const;
+    
     };
 }
 
