@@ -15,6 +15,8 @@ namespace JirungEngine {
 
     public:
         Polygon();
+        Polygon(const Point& p1, const Point& p2, const Point& p3);
+        Polygon(const Polygon&) = default;
 
     public:
         Vector getNormal() const;

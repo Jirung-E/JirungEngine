@@ -10,6 +10,10 @@ Polygon::Polygon() : p1 { 0, 1, 0 }, p2 { -1.0f*cos(M_PI/6), -1.0f/2, 0 }, p3 { 
 
 }
 
+Polygon::Polygon(const Point& p1, const Point& p2, const Point& p3) : p1 { p1 }, p2 { p2 }, p3 { p3 } {
+
+}
+
 
 Vector Polygon::getNormal() const {
     return Vector::crossProduct(Vector(p2-p1), Vector(p3-p1)).getUnitVector();
