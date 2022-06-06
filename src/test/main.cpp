@@ -112,11 +112,7 @@ void nemo() {
     }
 }
 
-
-int main() {
-    println("\nTest Start!\n\n");
-    
-    //TestGame();
+void bingle() {
     Canvas3D canvas { 120, 40 };
     Point custom_point { canvas.getCameraPosition() };
     custom_point.x += 10;
@@ -144,6 +140,18 @@ int main() {
         println(canvas.getByString());
         sleep(1000/30);
     }
+}
+
+
+int main() {
+    println("\nTest Start!\n\n");
     
-    //println("░▒▓█");
+    Canvas3D canvas { 120, 40 };
+    
+    for(int i=0; i<1000; ++i) {
+        canvas.clear();
+
+        println(canvas.getByString());
+        sleep(1000/30);
+    }
 }
