@@ -21,7 +21,8 @@ namespace JirungEngine {
 
         void moveTo(const Point& point);
         void transformNormalVectorTo(const Vector& vector);
-        void rotate(const Line& axis = { p1, getNormal() }, float radian);
+        void rotate(float radian);
+        void rotate(const Line& axis, float radian);
     };
 }
 

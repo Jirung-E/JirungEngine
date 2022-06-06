@@ -44,6 +44,13 @@ void Polygon::transformNormalVectorTo(const Vector& vector) {
     p3 = Line::rotate(p3, n, theta);
 }
 
+void Polygon::rotate(float radian) {
+    Line n { p1, getNormal() };
+    p1 = Line::rotate(p1, n, radian);
+    p2 = Line::rotate(p2, n, radian);
+    p3 = Line::rotate(p3, n, radian);
+}
+
 void Polygon::rotate(const Line& axis, float radian) {
     p1 = Line::rotate(p1, axis, radian);
     p2 = Line::rotate(p2, axis, radian);
