@@ -93,6 +93,9 @@ void Canvas3D::draw(const Panel& panel) {
 
     // 이부분, N이 XZ평면에서 몇사분면에 있는지에 따라 계산법이 달라져야할수도.. 밑에줄은 1사분면..
     Vector A_to_LC { Vector(-N.z, 0, N.x) * (panel.width/2) };     // left center
+    if(N_xz.magnitude() == 0.0f) {
+        A_to_LC.x = -(panel.width/2);
+    }
     Point LT { CT + Point(A_to_LC.x, A_to_LC.y, A_to_LC.z) };
     Point RT { CT - Point(A_to_LC.x, A_to_LC.y, A_to_LC.z) };
 
