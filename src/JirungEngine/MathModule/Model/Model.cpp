@@ -7,7 +7,7 @@ using namespace JirungEngine;
 Model::Model() : position { 0, 0, 0 }, 
 pivot { 0, 0, 0 }, x_axis { pivot, Vector::i() }, y_axis { pivot, Vector::j() }, z_axis { pivot, Vector::k() }, 
 polygons { Polygon { } } {
-
+    polygons[0].moveTo({ 0, 1, 0 });
 }
 
 
