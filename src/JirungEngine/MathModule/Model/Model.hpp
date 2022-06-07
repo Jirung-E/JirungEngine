@@ -16,7 +16,8 @@ namespace JirungEngine {
         Line y_axis;
         Line z_axis;
 
-        unsigned int num_of_polygons;
+        // unsigned int num_of_polygons;
+    public:
         vector<Polygon> polygons;
 
     public:

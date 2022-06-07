@@ -6,7 +6,7 @@ using namespace JirungEngine;
 
 Model::Model() : position { 0, 0, 0 }, 
 pivot { 0, 0, 0 }, x_axis { pivot, Vector::i() }, y_axis { pivot, Vector::j() }, z_axis { pivot, Vector::k() }, 
-num_of_polygons { 1 }, polygons { Polygon { } } {
+polygons { Polygon { } } {
 
 }
 
