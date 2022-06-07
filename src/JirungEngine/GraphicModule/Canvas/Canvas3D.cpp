@@ -104,6 +104,12 @@ void Canvas3D::draw(const Polygon& polygon) {
     draw(Vector(polygon.p3 - polygon.p2), polygon.p2);
 }
 
+void Canvas3D::draw(const Model& model) {
+    for(const Polygon& e : model.polygons) {
+        draw(e);
+    }
+}
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
