@@ -37,6 +37,10 @@ namespace JirungEngine {
         void rotateZ(float radian);
         void rotate(const Line& axis, float radian);
 
+        Line getXAxis() const;
+        Line getYAxis() const;
+        Line getZAxis() const;
+
         Model operator*(float n) const;
         Model operator/(float n) const;
         Model operator*=(float n);

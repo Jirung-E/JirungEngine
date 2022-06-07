@@ -17,6 +17,9 @@ Point Model::getPivot() const {
 
 void Model::setPivot(const Point& point) {
     pivot = point;
+    x_axis.point = point;
+    y_axis.point = point;
+    z_axis.point = point;
 }
 
 
@@ -60,6 +63,19 @@ void Model::rotate(const Line& axis, float radian) {
     x_axis.vector = Vector { Line::rotate(x_axis.point + Point(x_axis.vector.x, x_axis.vector.y, x_axis.vector.z), axis, radian) - x_axis.point };
     y_axis.vector = Vector { Line::rotate(y_axis.point + Point(y_axis.vector.x, y_axis.vector.y, y_axis.vector.z), axis, radian) - y_axis.point };
     z_axis.vector = Vector { Line::rotate(z_axis.point + Point(z_axis.vector.x, z_axis.vector.y, z_axis.vector.z), axis, radian) - z_axis.point };
+}
+
+
+Line Model::getXAxis() const {
+    return x_axis;
+}
+
+Line Model::getYAxis() const {
+    return y_axis;
+}
+
+Line Model::getZAxis() const {
+    return z_axis;
 }
 
 
