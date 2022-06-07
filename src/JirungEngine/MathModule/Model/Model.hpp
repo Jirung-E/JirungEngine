@@ -43,3 +43,5 @@ namespace JirungEngine {
         Model operator/=(float n);
     };
 }
+
+#endif
