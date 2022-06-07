@@ -46,11 +46,11 @@ void Model::rotateX(float radian) {
 }
 
 void Model::rotateY(float radian) {
-    rotate(x_axis, radian);
+    rotate(y_axis, radian);
 }
 
 void Model::rotateZ(float radian) {
-    rotate(x_axis, radian);
+    rotate(z_axis, radian);
 }
 
 void Model::rotate(const Line& axis, float radian) {
