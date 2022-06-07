@@ -57,6 +57,9 @@ void Model::rotate(const Line& axis, float radian) {
     for(Polygon& e : polygons) {
         e.rotate(axis, radian);
     }
+    Line::rotate(Point(x_axis.x, x_axis.y, x_axis.z), axis, radian);
+    Line::rotate(Point(y_axis.x, y_axis.y, y_axis.z), axis, radian);
+    Line::rotate(Point(z_axis.x, z_axis.y, z_axis.z), axis, radian);
 }
 
 
