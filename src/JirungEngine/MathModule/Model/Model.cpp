@@ -31,7 +31,7 @@ void Model::moveTo(const Point& point) {
     z_axis.point += p;
 
     for(Polygon& e : polygons) {
-        //?
+        e.moveTo(e.p1 + p);
     }
 
     position = point;
@@ -40,19 +40,32 @@ void Model::moveTo(const Point& point) {
 
 // void Model::addPolygon(const Polygon& polygon) { }
 
-void Model::rotate(float radian) {
 
+void Model::rotateX(float radian) {
+    rotate(x_axis, radian);
+}
+
+void Model::rotateY(float radian) {
+    rotate(x_axis, radian);
+}
+
+void Model::rotateZ(float radian) {
+    rotate(x_axis, radian);
 }
 
 void Model::rotate(const Line& axis, float radian) {
-
+    for(Polygon& e : polygons) {
+        e.rotate(axis, radian);
+    }
 }
 
 
 Polygon Model::operator*(float n) const {
     Polygon poly { *this };
 
-
+    for(Polygon& e : poly.polygons) {
+        e *= n;
+    }
     
     return poly;
 }
@@ -60,23 +73,25 @@ Polygon Model::operator*(float n) const {
 Polygon Model::operator/(float n) const {
     Polygon poly { *this };
 
-
+    for(Polygon& e : poly.polygons) {
+        e /= n;
+    }
     
     return poly;
 }
 
 Polygon Model::operator*=(float n) {
-    Polygon poly { *this };
-
-
+    for(Polygon& e : polygons) {
+        e *= n;
+    }
     
-    return poly;
+    return *this;
 }
 
 Polygon Model::operator/=(float n) {
-    Polygon poly { *this };
+    for(Polygon& e : polygons) {
+        e /= n;
+    }
     
-    
-    
-    return poly;
+    return *this;
 }

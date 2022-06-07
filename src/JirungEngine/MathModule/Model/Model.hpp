@@ -30,7 +30,9 @@ namespace JirungEngine {
 
         // void addPolygon(const Polygon& polygon);     // 이게 필요할까?
 
-        void rotate(float radian);
+        void rotateX(float radian);
+        void rotateY(float radian);
+        void rotateZ(float radian);
         void rotate(const Line& axis, float radian);
 
         Polygon operator*(float n) const;
