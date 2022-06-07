@@ -18,7 +18,8 @@ namespace JirungEngine {
 
         // unsigned int num_of_polygons;
     public:
-        vector<Polygon> polygons;
+        std::vector<Polygon> polygons;
+        
 
     public:
         Model();
