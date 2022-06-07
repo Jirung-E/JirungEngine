@@ -60,7 +60,7 @@ void Model::rotate(const Line& axis, float radian) {
 }
 
 
-Polygon Model::operator*(float n) const {
+Model Model::operator*(float n) const {
     Polygon poly { *this };
 
     for(Polygon& e : poly.polygons) {
@@ -70,7 +70,7 @@ Polygon Model::operator*(float n) const {
     return poly;
 }
 
-Polygon Model::operator/(float n) const {
+Model Model::operator/(float n) const {
     Polygon poly { *this };
 
     for(Polygon& e : poly.polygons) {
@@ -80,7 +80,7 @@ Polygon Model::operator/(float n) const {
     return poly;
 }
 
-Polygon Model::operator*=(float n) {
+Model Model::operator*=(float n) {
     for(Polygon& e : polygons) {
         e *= n;
     }
@@ -88,7 +88,7 @@ Polygon Model::operator*=(float n) {
     return *this;
 }
 
-Polygon Model::operator/=(float n) {
+Model Model::operator/=(float n) {
     for(Polygon& e : polygons) {
         e /= n;
     }

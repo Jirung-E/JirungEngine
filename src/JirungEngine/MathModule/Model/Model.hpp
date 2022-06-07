@@ -36,9 +36,9 @@ namespace JirungEngine {
         void rotateZ(float radian);
         void rotate(const Line& axis, float radian);
 
-        Polygon operator*(float n) const;
-        Polygon operator/(float n) const;
-        Polygon operator*=(float n);
-        Polygon operator/=(float n);
+        Model operator*(float n) const;
+        Model operator/(float n) const;
+        Model operator*=(float n);
+        Model operator/=(float n);
     };
 }
