@@ -19,9 +19,3 @@
 
 
 
-
-
-
-
-https://user-images.githubusercontent.com/73751952/172578198-4c44cb95-647c-4557-8222-9bd01813a005.mp4
-
