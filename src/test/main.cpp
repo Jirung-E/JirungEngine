@@ -27,8 +27,11 @@ int main() {
         
         canvas.Canvas::draw(to_string(i), 0, 0);
         canvas.draw(model);
+        canvas.draw(model.getXAxis());
+        canvas.draw(model.getYAxis());
+        canvas.draw(model.getZAxis());
         
-        model.rotateX(0.12);
+        model.rotateX(0.05);
 
         println(canvas.getByString());
         sleep(1000/30);
@@ -39,8 +42,11 @@ int main() {
         
         canvas.Canvas::draw(to_string(i), 0, 0);
         canvas.draw(model);
+        canvas.draw(model.getXAxis());
+        canvas.draw(model.getYAxis());
+        canvas.draw(model.getZAxis());
         
-        model.rotateY(0.12);
+        model.rotateY(0.05);
 
         println(canvas.getByString());
         sleep(1000/30);
@@ -51,8 +57,11 @@ int main() {
         
         canvas.Canvas::draw(to_string(i), 0, 0);
         canvas.draw(model);
+        canvas.draw(model.getXAxis());
+        canvas.draw(model.getYAxis());
+        canvas.draw(model.getZAxis());
         
-        model.rotateZ(0.12);
+        model.rotateZ(0.05);
 
         println(canvas.getByString());
         sleep(1000/30);

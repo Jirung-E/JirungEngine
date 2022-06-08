@@ -79,6 +79,10 @@ void Canvas3D::draw(const Vector& vector, const Point& point) {
     }
 }
 
+void Canvas3D::draw(const Line& line) {
+    draw(line.vector.getUnitVector() * 1000, line.point);
+}
+
 void Canvas3D::draw(const Panel& panel) {
     if(panel.normal_vector.magnitude() == 0.0f) {
         return;

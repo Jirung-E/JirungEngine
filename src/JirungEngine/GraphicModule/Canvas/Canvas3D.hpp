@@ -19,6 +19,7 @@ namespace JirungEngine {
     public:
         void draw(char c, const Point& point);
         void draw(const Vector& vector, const Point& point);
+        void draw(const Line& line);
         void draw(const Panel& panel);
         void draw(const Polygon& polygon);
         void draw(const Model& model);
