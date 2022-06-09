@@ -7,25 +7,17 @@
 namespace JirungEngine {
     class Segment : public Line {
     public:
-        Segment(Point point, Vector direction);
-        Segment(Vector direction);
+        Segment(Point point, Vector vector);
+        Segment(Vector vector);
 
     public:
-        bool isExistPointOfContactWith(const Segment& other) const;
-        Point* getPointOfContactWith(const Segment& other) const;
-        Point getFootOfPerpendicularFrom(const Point& point) const;
-        Point getFootOfPerpendicularFrom(const Segment& line) const;
-        float getDistanceTo(const Point& point) const;
-        float getDistanceTo(const Segment& other) const;
+        // Point getNearestPointFrom(const Point& point) const;
+        // Point getNearestPointFrom(const Segment& segment) const;
         bool isParallelTo(const Segment& other) const;
 
-        static float getDistanceBetween(const Point& point, const Segment& line);
-        static float getDistanceBetween(const Segment& line, const Point& point);
-        static float getDistanceBetween(const Segment& line1, const Segment& line2);
-        static Segment getNormalOf(const Segment& line1, const Segment& line2);
-        static bool isParallel(const Segment& line1, const Segment& line2);
-        static Point getFootOfPerpendicular(const Segment& line, const Point& point);
-        static Point getFootOfPerpendicular(const Segment& to, const Segment& from);
+        static bool isParallel(const Segment& segment1, const Segment& segment2);
+        // static Point getNearestPoint(const Segment& segment, const Point& point);
+        // static Point getNearestPoint(const Segment& to, const Segment& from);
     };
 }
 
