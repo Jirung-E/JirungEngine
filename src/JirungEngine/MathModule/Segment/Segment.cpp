@@ -6,7 +6,7 @@ using namespace std;
 using namespace JirungEngine;
 
 
-Segment::Segment(Point point, Vector direction) : point { point }, direction { direction } {
+Segment::Segment(Point point, Vector direction) : Line { point, direction } {
 
 }
 
@@ -14,18 +14,6 @@ Segment::Segment(Vector direction) : Segment { Point(0, 0, 0), direction } {
 
 }
 
-
-float Segment::x(float parameter) const {
-    return point.x + direction.x*parameter;
-}
-
-float Segment::y(float parameter) const {
-    return point.y + direction.y*parameter;
-}
-
-float Segment::z(float parameter) const {
-    return point.z + direction.z*parameter;
-}
 
 bool Segment::isExistPointOfContactWith(const Segment& other) const {
     if(getDistanceTo(other) == 0.0f) {

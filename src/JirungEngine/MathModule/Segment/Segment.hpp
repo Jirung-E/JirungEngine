@@ -1,24 +1,16 @@
 #ifndef __Segment_hpp__
 #define __Segment_hpp__
 
-#include "../Point/Point.hpp"
-#include "../Vector/Vector.hpp"
+#include "../Line/Line.hpp"
 
 
 namespace JirungEngine {
-    class Segment {
-        public: Point point;
-        public: Vector direction;
-
+    class Segment : public Line {
     public:
         Segment(Point point, Vector direction);
         Segment(Vector direction);
 
     public:
-        float x(float parameter) const;
-        float y(float parameter) const;
-        float z(float parameter) const;
-        
         bool isExistPointOfContactWith(const Segment& other) const;
         Point* getPointOfContactWith(const Segment& other) const;
         Point getFootOfPerpendicularFrom(const Point& point) const;
