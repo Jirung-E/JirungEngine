@@ -7,18 +7,20 @@ using namespace JirungEngine;
 using namespace Util;
 
 
-std::string ConsoleViewer::current_color = "WHITE";
+ConsoleViewer::ConsoleViewer() : current_color { "WHITE" } {
+
+}
 
 void ConsoleViewer::changeTextColor(std::string color) {
     if(color == current_color) {
         return;
     }
-    system("echo -e \"\x1b[31m\"")
+    system("echo -e \"\x1b[31m\"");
 }
 
 void ConsoleViewer::printPixel(const Pixel& pixel) {
     changeTextColor(pixel.color);
-    print(pixel.shape);
+    print(to_string(pixel.shape));
 }
 
 void ConsoleViewer::show(const Canvas* canvas) {
