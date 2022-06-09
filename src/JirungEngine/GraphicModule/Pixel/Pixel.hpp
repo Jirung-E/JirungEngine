@@ -6,15 +6,12 @@
 
 namespace JirungEngine {
     class Pixel {
-        private: char shape;
-        private: std::string color;
+    public:
+        char shape;
+        std::string color;
 
     public:
-        Pixel(char shape = ' ');
-        ~Pixel();
-
-    public:
-        char getShape() const;
+        Pixel(char shape = ' ', std::string color = "WHITE");
     };
 }
 
