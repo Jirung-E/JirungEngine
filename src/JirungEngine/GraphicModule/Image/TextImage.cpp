@@ -77,7 +77,7 @@ string TextImage::getByString() const {
     string result = "";
     for(int i=0; i<height; ++i) {
         for(int k=0; k<width; ++k) {
-            result += pixel[i][k].getShape();
+            result += pixel[i][k].shape;
         }
         result += '\n';
     }
