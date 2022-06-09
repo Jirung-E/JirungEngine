@@ -35,6 +35,21 @@ void Canvas::setDefaultBackground(char c) {
     }
 }
 
+Pixel** Canvas::get() const {
+    Pixel** copy = new Pixel*[height_max];
+    for(int i=0; i<height_max; ++i) {
+        copy[i] = new Pixel[width_max];
+    }
+
+    for(int i=0; i<height_max; ++i) {
+        for(int k=0; k<width_max; ++k) {
+            copy[i][k] = pixel[i][k];
+        }
+    }
+    
+    return copy;
+}
+
 string Canvas::getByString() const {
     return getByString(width_max, height_max);
 }

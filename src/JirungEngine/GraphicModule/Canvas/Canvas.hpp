@@ -28,6 +28,7 @@ namespace JirungEngine {
 
     public:
         void setDefaultBackground(char c = ' ');
+        Pixel** get() const;
         std::string getByString() const;
         std::string getByString(size_t width, size_t height) const;
         void draw(std::string content, int pos_x, int pos_y, bool draw_empty_char = true);
