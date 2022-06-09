@@ -9,6 +9,7 @@ using namespace Util;
 int main() {
     println("\nTest Start!\n\n");
     
+    ConsoleViewer cv;
     Canvas3D canvas { 120, 40 };
     
     Model model;
@@ -33,37 +34,7 @@ int main() {
         
         model.rotateX(0.05);
 
-        println(canvas.getByString());
-        sleep(1000/30);
-    }
-    
-    for(int i=0; i<200; ++i) {
-        canvas.clear();
-        
-        canvas.Canvas::draw(to_string(i), 0, 0);
-        canvas.draw(model);
-        canvas.draw(model.getXAxis());
-        canvas.draw(model.getYAxis());
-        canvas.draw(model.getZAxis());
-        
-        model.rotateY(0.05);
-
-        println(canvas.getByString());
-        sleep(1000/30);
-    }
-    
-    for(int i=0; i<200; ++i) {
-        canvas.clear();
-        
-        canvas.Canvas::draw(to_string(i), 0, 0);
-        canvas.draw(model);
-        canvas.draw(model.getXAxis());
-        canvas.draw(model.getYAxis());
-        canvas.draw(model.getZAxis());
-        
-        model.rotateZ(0.05);
-
-        println(canvas.getByString());
+        cv.show(&canvas);
         sleep(1000/30);
     }
 }
