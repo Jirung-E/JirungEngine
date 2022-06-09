@@ -7,7 +7,7 @@
 namespace JirungEngine {
     class Viewer {
     public:
-        virtual void show(const Canvas& canvas) = 0;
+        virtual void show(const Canvas* canvas) = 0;
 
     };
 }
