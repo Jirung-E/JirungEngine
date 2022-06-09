@@ -6,7 +6,11 @@
 
 namespace JirungEngine {
     class ConsoleViewer : public Viewer {
-        
+    private:
+        static void changeTextColor(std::string color);
+
+    public:
+        static void show(const Canvas* canvas);
     };
 }
 

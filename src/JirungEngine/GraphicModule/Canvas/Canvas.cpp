@@ -75,7 +75,7 @@ string Canvas::getByString(size_t width, size_t height) const {
     
     for(int i=0; i<height; ++i) {
         for(int k=0; k<width; ++k) {
-            str_canvas += pixel[i][k].getShape();
+            str_canvas += pixel[i][k].shape;
         }
         str_canvas += '\n';
     }
@@ -222,7 +222,7 @@ void Canvas::erase(int start_x, int start_y, int end_x, int end_y) {
     string str = "";
     for(int i=0; i<height; ++i) {
         for(int k=0; k<width; ++k) {
-            str += default_background.getShape();
+            str += default_background.shape;
         }
         str += "\n";
     }
@@ -234,5 +234,5 @@ void Canvas::erase(int pos_x, int pos_y) {
 }
 
 void Canvas::clear() {
-    setDefaultBackground(default_background.getShape());
+    setDefaultBackground(default_background.shape);
 }
