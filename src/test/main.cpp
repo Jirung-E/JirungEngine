@@ -20,7 +20,7 @@ int main() {
     model.polygons[0] = Polygon { p1, p2, p3 };
     model.polygons.push_back(Polygon(p1, p2, p4));
     model.polygons.push_back(Polygon(p1, p3, p4));
-    //model.polygons.push_back(Polygon(p2, p3, p4));
+    model.polygons.push_back(Polygon(p2, p3, p4));
     model *= 10;
     
     for(int i=0; i<200; ++i) {
