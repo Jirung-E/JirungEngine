@@ -7,7 +7,7 @@ using namespace JirungEngine;
 
 
 Canvas3D::Canvas3D(size_t width, size_t height) : Canvas { width, height }, origin { static_cast<float>(width)/2, static_cast<float>(height)/2 }, 
-camera_position { 0, 0, 64 }, focal_length { 64.0f } {
+camera_position { 0, 0, 64 }, camera_direction { 0, 0, -1 }, focal_length { 64.0f } {
     
 }
 
