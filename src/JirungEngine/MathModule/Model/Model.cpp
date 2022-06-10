@@ -84,7 +84,7 @@ Model Model::operator*(float n) const {
 
     for(Polygon& e : m.polygons) {
         Point pivot_to_polygon { e.p1 - pivot };
-        e.moveTo(e.p1 + pivot_to_polygon * n);
+        e.moveTo(pivot + pivot_to_polygon * n);
         e *= n;
     }
     
@@ -96,7 +96,7 @@ Model Model::operator/(float n) const {
 
     for(Polygon& e : m.polygons) {
         Point pivot_to_polygon { e.p1 - pivot };
-        e.moveTo(e.p1 + pivot_to_polygon / n);
+        e.moveTo(pivot + pivot_to_polygon / n);
         e /= n;
     }
     
@@ -106,7 +106,7 @@ Model Model::operator/(float n) const {
 Model Model::operator*=(float n) {
     for(Polygon& e : polygons) {
         Point pivot_to_polygon { e.p1 - pivot };
-        e.moveTo(e.p1 + pivot_to_polygon * n);
+        e.moveTo(pivot + pivot_to_polygon * n);
         e *= n;
     }
     
@@ -116,7 +116,7 @@ Model Model::operator*=(float n) {
 Model Model::operator/=(float n) {
     for(Polygon& e : polygons) {
         Point pivot_to_polygon { e.p1 - pivot };
-        e.moveTo(e.p1 + pivot_to_polygon / n);
+        e.moveTo(pivot + pivot_to_polygon / n);
         e /= n;
     }
     
