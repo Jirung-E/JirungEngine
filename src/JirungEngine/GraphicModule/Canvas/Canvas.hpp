@@ -19,10 +19,15 @@ namespace JirungEngine {
         Canvas();
         Canvas(const Canvas& canvas);
         ~Canvas();
+        
+        Canvas operator=(const Canvas& other);
 
     public:
         void clear();
         std::string getByString() const;
+        
+    private:
+        void terminate();
     };
 }
 

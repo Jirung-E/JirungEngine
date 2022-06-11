@@ -26,10 +26,30 @@ Canvas::Canvas(const Canvas& canvas) : Canvas { canvas.width, canvas.height } {
 }
 
 Canvas::~Canvas() {
+    terminate();
+}
+
+
+Canvas Canvas::operator=(const Canvas& other) {
+    terminate();
+    
+    width = other.width;
+    height = other.height;
+    
+    default_background = other.default_background;
+    
+    pixels = new Pixel*[height];
     for(int i=0; i<height; ++i) {
-        delete[] pixels[i];
+        pixels[i] = new Pixel[width];
     }
-    delete[] pixels;
+    
+    for(int i=0; i<height; ++i) {
+        for(int k=0; k<width; ++k) {
+            pixels[i][k] = other.pixels[i][k];
+        }
+    }
+    
+    return *this;
 }
 
 
@@ -50,4 +70,12 @@ std::string Canvas::getByString() const {
         result += "\n";
     }
     return result;
+}
+
+
+void Canvas::terminate() {
+    for(int i=0; i<height; ++i) {
+        delete[] pixels[i];
+    }
+    delete[] pixels;
 }
