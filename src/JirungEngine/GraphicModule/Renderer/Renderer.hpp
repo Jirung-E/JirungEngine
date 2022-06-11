@@ -24,8 +24,8 @@ namespace JirungEngine {
         Renderer();
         
     public:
-        void renderGeneral(const Polygon& polygon);
-        void renderClear(const Polygon& polygon);
+        Canvas renderGeneral(const Polygon& polygon);
+        Canvas renderClear(const Polygon& polygon);
 
     private:
         void clearImage();

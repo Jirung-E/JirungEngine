@@ -17,12 +17,16 @@ Renderer::Renderer() : Renderer { 160, 45 } {
 }
 
 
-void Renderer::renderGeneral(const Polygon& polygon) {
-    
+Canvas Renderer::renderGeneral(const Polygon& polygon) {
+    image.clear();
+
+    return image;
 }
 
-void Renderer::renderClear(const Polygon& polygon) {
+Canvas Renderer::renderClear(const Polygon& polygon) {
+    image.clear();
 
+    return image;
 }
 
 

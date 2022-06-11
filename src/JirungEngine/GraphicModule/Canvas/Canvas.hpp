@@ -17,10 +17,12 @@ namespace JirungEngine {
     public:
         Canvas(unsigned short int width, unsigned short int height);
         Canvas();
+        Canvas(const Canvas& canvas);
         ~Canvas();
 
     public:
         void clear();
+        std::string getByString() const;
     };
 }
 
