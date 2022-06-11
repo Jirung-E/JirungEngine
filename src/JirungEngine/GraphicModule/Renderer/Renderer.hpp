@@ -29,6 +29,9 @@ namespace JirungEngine {
 
     private:
         void clearImage();
+
+        void renderPoint(const Point& point);
+        void renderSegment(const Segment& segment);
     };
 }
 

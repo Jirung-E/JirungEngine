@@ -1,11 +1,11 @@
-#ifndef __Canvas_hpp__
-#define __Canvas_hpp__
+#ifndef __Display_hpp__
+#define __Display_hpp__
 
 #include "../Pixel/Pixel.hpp"
 
 
 namespace JirungEngine {
-    class Canvas {
+    class Display {
     public:
         Pixel** pixels;
 
@@ -15,12 +15,12 @@ namespace JirungEngine {
         unsigned short int backlight_brightness;
     
     public:
-        Canvas(unsigned short int width, unsigned short int height);
-        Canvas();
-        Canvas(const Canvas& canvas);
-        ~Canvas();
+        Display(unsigned short int width, unsigned short int height);
+        Display();
+        Display(const Display& display);
+        ~Display();
         
-        Canvas operator=(const Canvas& other);
+        Display operator=(const Display& other);
 
     public:
         void clear();

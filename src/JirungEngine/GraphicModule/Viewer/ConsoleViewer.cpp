@@ -7,6 +7,6 @@ using namespace JirungEngine;
 using namespace Util;
 
 
-void ConsoleViewer::show(const Canvas& canvas) {
-    println(canvas.getByString());
+void ConsoleViewer::show(const Display& display) {
+    println(display.getByString());
 }

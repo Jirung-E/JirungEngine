@@ -1,10 +1,10 @@
-#include "Canvas.hpp"
+#include "Display.hpp"
 
 using namespace std;
 using namespace JirungEngine;
 
 
-Canvas::Canvas(unsigned short int width, unsigned short int height) : width { width }, height { height }, 
+Display::Display(unsigned short int width, unsigned short int height) : width { width }, height { height }, 
 pixels { new Pixel*[height] }, backlight_brightness { 0 } {
     for(int i=0; i<height; ++i) {
         pixels[i] = new Pixel[width];
@@ -12,25 +12,25 @@ pixels { new Pixel*[height] }, backlight_brightness { 0 } {
     clear();
 }
 
-Canvas::Canvas() : Canvas { 80, 40 } {
+Display::Display() : Display { 80, 40 } {
 
 }
 
-Canvas::Canvas(const Canvas& canvas) : Canvas { canvas.width, canvas.height } {
-    backlight_brightness = canvas.backlight_brightness;
+Display::Display(const Display& display) : Display { display.width, display.height } {
+    backlight_brightness = display.backlight_brightness;
     for(int i=0; i<height; ++i) {
         for(int k=0; k<width; ++k) {
-            pixels[i][k] = canvas.pixels[i][k];
+            pixels[i][k] = display.pixels[i][k];
         }
     }
 }
 
-Canvas::~Canvas() {
+Display::~Display() {
     terminate();
 }
 
 
-Canvas Canvas::operator=(const Canvas& other) {
+Display Display::operator=(const Display& other) {
     terminate();
     
     width = other.width;
@@ -53,7 +53,7 @@ Canvas Canvas::operator=(const Canvas& other) {
 }
 
 
-void Canvas::clear() {
+void Display::clear() {
     for(int i=0; i<height; ++i) {
         for(int k=0; k<width; ++k) {
             pixels[i][k].setBrightness(backlight_brightness);
@@ -61,7 +61,7 @@ void Canvas::clear() {
     }
 }
 
-std::string Canvas::getByString() const {
+std::string Display::getByString() const {
     string result = "";
     for(int i=0; i<height; ++i) {
         for(int k=0; k<width; ++k) {
@@ -73,7 +73,7 @@ std::string Canvas::getByString() const {
 }
 
 
-void Canvas::terminate() {
+void Display::terminate() {
     for(int i=0; i<height; ++i) {
         delete[] pixels[i];
     }

@@ -7,7 +7,7 @@
 namespace JirungEngine {
     class ConsoleViewer : public Viewer {
     public:
-        void show(const Canvas& canvas);
+        void show(const Display& display);
     };
 }
 
