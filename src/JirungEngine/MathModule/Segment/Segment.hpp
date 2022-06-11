@@ -11,6 +11,9 @@ namespace JirungEngine {
         Segment(Vector vector);
 
     public:
+        Point getStartPoint() const;
+        Point getEndPoint() const;
+
         // Point getNearestPointFrom(const Point& point) const;
         // Point getNearestPointFrom(const Segment& segment) const;
         bool isParallelTo(const Segment& other) const;

@@ -15,6 +15,15 @@ Segment::Segment(Vector vector) : Segment { Point(0, 0, 0), vector } {
 }
 
 
+Point Segment::getStartPoint() const {
+    return point;
+}
+
+Point Segment::getEndPoint() const {
+    return point + Point { vector.x, vector.y, vector.z };
+}
+
+
 bool Segment::isParallelTo(const Segment& other) const {
     return this->vector.isParallelTo(other.vector);
 }
