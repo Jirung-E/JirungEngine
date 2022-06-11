@@ -16,7 +16,8 @@ Canvas::Canvas() : Canvas { 80, 40 } {
 
 }
 
-Canvas::Canvas(const Canvas& canvas) : Canvas { canvas.width, canvas.height }, default_background { canvas.default_background } {
+Canvas::Canvas(const Canvas& canvas) : Canvas { canvas.width, canvas.height } {
+    default_background = canvas.default_background;
     for(int i=0; i<height; ++i) {
         for(int k=0; k<width; ++k) {
             pixels[i][k] = canvas.pixels[i][k];

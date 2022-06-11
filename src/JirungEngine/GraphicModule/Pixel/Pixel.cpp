@@ -15,6 +15,7 @@ Pixel::Pixel(const Pixel& pixel) : Pixel { pixel.pixel } {
 
 Pixel Pixel::operator=(const Pixel& other) {
     pixel = other.pixel;
+    return *this;
 }
 
 
