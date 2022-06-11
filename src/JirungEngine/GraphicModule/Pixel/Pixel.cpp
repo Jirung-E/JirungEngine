@@ -22,7 +22,6 @@ Pixel Pixel::operator=(const Pixel& other) {
 string Pixel::get() const {
     string result = "";
     result += pixel;
-    result += safe_null;
     return result;
 }
 
