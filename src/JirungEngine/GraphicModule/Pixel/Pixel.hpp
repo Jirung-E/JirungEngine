@@ -13,6 +13,8 @@ namespace JirungEngine {
     public:
         Pixel(char c = ' ');
         Pixel(const Pixel& pixel);
+        
+        Pixel operator=(const Pixel& other);
 
     public:
         std::string get() const;

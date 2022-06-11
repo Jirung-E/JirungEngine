@@ -46,6 +46,7 @@ std::string Canvas::getByString() const {
         for(int k=0; k<width; ++k) {
             result += pixels[i][k].get();
         }
+        result += "\n";
     }
     return result;
 }
