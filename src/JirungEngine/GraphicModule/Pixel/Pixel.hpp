@@ -11,7 +11,7 @@ namespace JirungEngine {
         const char safe_null = '\0';
 
     public:
-        Pixel(char c);
+        Pixel(char c = ' ');
         Pixel(const Pixel& pixel);
 
     public:
