@@ -2,7 +2,7 @@
 #define __Renderer_hpp__
 
 #include "../../MathModule/Math.hpp"
-#include "../Canvas/Canvas.hpp"
+#include "../Display/Display.hpp"
 
 
 namespace JirungEngine {
@@ -13,19 +13,21 @@ namespace JirungEngine {
             Point position;
             Vector direction;
 
+            unsigned short int view_distance;
+
         public: 
             Camera();
         } camera;
 
-        Canvas image;
+        Display* image;
 
     public:
         Renderer(unsigned short int width, unsigned short int height);
         Renderer();
         
     public:
-        Canvas renderGeneral(const Polygon& polygon);
-        Canvas renderClear(const Polygon& polygon);
+        Display renderGeneral(const Polygon& polygon);
+        Display renderClear(const Polygon& polygon);
 
     private:
         void clearImage();
