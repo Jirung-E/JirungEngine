@@ -12,7 +12,7 @@ namespace JirungEngine {
         unsigned short int width;
         unsigned short int height;
 
-        char default_background;
+        unsigned short int backlight_brightness;
     
     public:
         Canvas(unsigned short int width, unsigned short int height);

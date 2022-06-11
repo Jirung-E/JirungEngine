@@ -5,7 +5,7 @@ using namespace JirungEngine;
 
 
 Canvas::Canvas(unsigned short int width, unsigned short int height) : width { width }, height { height }, 
-pixels { new Pixel*[height] }, default_background { ' ' } {
+pixels { new Pixel*[height] }, backlight_brightness { 0 } {
     for(int i=0; i<height; ++i) {
         pixels[i] = new Pixel[width];
     }
@@ -17,7 +17,7 @@ Canvas::Canvas() : Canvas { 80, 40 } {
 }
 
 Canvas::Canvas(const Canvas& canvas) : Canvas { canvas.width, canvas.height } {
-    default_background = canvas.default_background;
+    backlight_brightness = canvas.backlight_brightness;
     for(int i=0; i<height; ++i) {
         for(int k=0; k<width; ++k) {
             pixels[i][k] = canvas.pixels[i][k];
@@ -36,7 +36,7 @@ Canvas Canvas::operator=(const Canvas& other) {
     width = other.width;
     height = other.height;
     
-    default_background = other.default_background;
+    backlight_brightness = other.backlight_brightness;
     
     pixels = new Pixel*[height];
     for(int i=0; i<height; ++i) {
@@ -56,7 +56,7 @@ Canvas Canvas::operator=(const Canvas& other) {
 void Canvas::clear() {
     for(int i=0; i<height; ++i) {
         for(int k=0; k<width; ++k) {
-            pixels[i][k].set(default_background);
+            pixels[i][k].setBrightness(backlight_brightness);
         }
     }
 }
