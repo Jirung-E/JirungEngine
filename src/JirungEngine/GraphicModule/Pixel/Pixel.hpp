@@ -8,7 +8,7 @@ namespace JirungEngine {
     class Pixel {
     private:
         char pixel;
-        const char safe_null = '\0';
+        const char safe_null = ' ';
 
     public:
         Pixel(char c = ' ');
