@@ -4,17 +4,20 @@ using namespace std;
 using namespace JirungEngine;
 
 
-Pixel::Pixel(char c) : pixel { c } {
+const Pixel::vector<char> pixel_set { ' ', '.', '+', '#' };
+
+Pixel::Pixel(char c) : pixel { c }, brightness { 0 } {
 
 }
 
 Pixel::Pixel(const Pixel& pixel) : Pixel { pixel.pixel } {
-
+    bightness = pixel.brightness;
 }
 
 
 Pixel Pixel::operator=(const Pixel& other) {
     pixel = other.pixel;
+    brightness = other.brightness;
     return *this;
 }
 
@@ -25,6 +28,8 @@ string Pixel::get() const {
     return result;
 }
 
-void Pixel::set(char c) {
-    pixel = c;
+void Pixel::setBrightness(unsigned short int brightness) {
+    unsigned short int brightness_max = pixel_set.length() - 1;
+    brightness = brightness_max;
+    pixel = pixel_set[brightness];
 }

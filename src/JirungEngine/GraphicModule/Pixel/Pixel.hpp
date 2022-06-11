@@ -2,12 +2,15 @@
 #define __Pixel_hpp__
 
 #include <string>
+#include <vector>
 
 
 namespace JirungEngine {
     class Pixel {
     private:
         char pixel;
+        static vector<char> pixel_set;
+        unsigned short int brightness;
 
     public:
         Pixel(char c = ' ');
@@ -17,7 +20,9 @@ namespace JirungEngine {
 
     public:
         std::string get() const;
-        void set(char c);
+        void setBrightness(unsigned short int brightness);
+
+    private:
     };
 }
 
