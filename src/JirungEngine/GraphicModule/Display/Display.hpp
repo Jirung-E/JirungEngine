@@ -6,7 +6,7 @@
 
 namespace JirungEngine {
     class Display {
-    public:
+    private:
         Pixel** pixels;
 
         unsigned short int width;
@@ -25,6 +25,8 @@ namespace JirungEngine {
     public:
         void clear();
         std::string getByString() const;
+
+        void setPixelBrightness(unsigned short int level, const Point& point);
         
     private:
         void terminate();

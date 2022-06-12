@@ -72,6 +72,14 @@ std::string Display::getByString() const {
     return result;
 }
 
+void Display::setPixelBrightness(unsigned short int level, const Point& point) {
+    if(static_cast<int>(round(point.x)) < 0 || static_cast<int>(round(point.x)) >= width || static_cast<int>(round(point.y)) < 0 || static_cast<int>(round(point.y)) >= height) {
+        return;
+    }
+
+    pixels[height-1 - static_cast<int>(round(point.y))][static_cast<int>(round(point.x))].setBrightness(level);
+}
+
 
 void Display::terminate() {
     for(int i=0; i<height; ++i) {
