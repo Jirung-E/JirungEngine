@@ -3,6 +3,7 @@
 
 #include "../Point/Point.hpp"
 #include "../Vector/Vector.hpp"
+#include "../Line/Line.hpp"
 
 
 namespace JirungEngine {
@@ -13,6 +14,8 @@ namespace JirungEngine {
         Line x_axis;
         Line y_axis;
         Line z_axis;
+
+        
     };
 }
 
