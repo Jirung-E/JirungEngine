@@ -13,10 +13,22 @@ namespace JirungEngine {
             Point position;
             Vector direction;
 
+            Line x_axis;
+            Line y_axis;
+            Line z_axis;
+
+        private:
             unsigned short int view_distance;
+            float field_of_view;                // radian
 
         public: 
             Camera();
+
+        public:
+            Vector getLeftLimit() const;
+            Vector getRightLimit() const;
+            Vector getTopLimit() const;
+            Vector getBottomLimit() const;
         } camera;
 
         Display* image;

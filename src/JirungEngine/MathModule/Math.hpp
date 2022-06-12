@@ -9,5 +9,6 @@
 #include "Panel/Panel.hpp"
 #include "Polygon/Polygon.hpp"
 #include "Model/Model.hpp"
+#include "MathematicalObject/MathematicalObject.hpp"
 
 #endif

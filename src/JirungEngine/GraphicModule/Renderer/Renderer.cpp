@@ -4,9 +4,27 @@ using namespace std;
 using namespace JirungEngine;
 
 
-Renderer::Camera::Camera() : position { 0, 0, 64 }, direction { 0, 0, -1 }, view_distance { 128 } {
+Renderer::Camera::Camera() : position { 0, 0, 64 }, direction { 0, 0, -1 }, view_distance { 128 }, field_of_view { 100.0f } {
 
 }
+
+
+Vector Renderer::Camera::getLeftLimit() const {
+    return Vector { };
+}
+
+Vector Renderer::Camera::getRightLimit() const {
+
+}
+
+Vector Renderer::Camera::getTopLimit() const {
+
+}
+
+Vector Renderer::Camera::getBottomLimit() const {
+
+}
+
 
 Renderer::Renderer(unsigned short int width, unsigned short int height) : camera { }, image { new Display { width, height } } {
     
@@ -46,7 +64,7 @@ void Renderer::renderPoint(const Point& point) {
     unsigned short int level_max = Pixel::getBrightnessMax();
     for(int i=level_max; i>=1; --i) {
         if(Point::getDistanceBetween(camera.position, point) <= camera.view_distance / i) {
-            //draw
+            image->setPixelBrightness(i, point);
         }
     }
 }
