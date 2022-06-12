@@ -1,12 +1,12 @@
-#ifndef __MathematicalObject_hpp__
-#define __MathematicalObject_hpp__
+#ifndef __Geometry_hpp__
+#define __Geometry_hpp__
 
 #include "../Point/Point.hpp"
 #include "../Vector/Vector.hpp"
 
 
 namespace JirungEngine {
-    class MathematicalObject {
+    class Geometry {
     public:
         Point position;
         Point pivot;
