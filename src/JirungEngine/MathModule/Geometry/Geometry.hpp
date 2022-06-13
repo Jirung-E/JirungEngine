@@ -14,9 +14,6 @@ namespace JirungEngine {
         Line x_axis;
         Line y_axis;
         Line z_axis;
-        float rotation_x;
-        float rotation_y;
-        float rotation_z;
 
     public:
         Geometry();
