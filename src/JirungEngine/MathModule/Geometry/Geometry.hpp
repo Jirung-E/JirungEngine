@@ -14,8 +14,18 @@ namespace JirungEngine {
         Line x_axis;
         Line y_axis;
         Line z_axis;
+        float rotation_x;
+        float rotation_y;
+        float rotation_z;
 
-        
+    public:
+        Geometry();
+
+    public:
+        void moveTo(const Point& point);
+        void rotateX(float radian);
+        void rotateY(float radian);
+        void rotateZ(float radian);
     };
 }
 
