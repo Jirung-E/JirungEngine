@@ -8,7 +8,7 @@
 
 namespace JirungEngine {
     class Geometry {
-    public:
+    private:
         Point position;
         Point pivot;
         Line x_axis;
@@ -22,10 +22,20 @@ namespace JirungEngine {
         Geometry();
 
     public:
+        Point getPosition() const;
         void moveTo(const Point& point);
+
+        Point getPivot() const;
+        void setPivot(const Point& point);
+
+        Line getXAxis() const;
+        Line getYAxis() const;
+        Line getZAxis() const;
+
         void rotateX(float radian);
         void rotateY(float radian);
         void rotateZ(float radian);
+        void rotate(const Line& axis, float radian);
     };
 }
 
