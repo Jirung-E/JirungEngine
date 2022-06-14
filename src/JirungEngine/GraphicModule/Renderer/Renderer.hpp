@@ -9,10 +9,7 @@ namespace JirungEngine {
     class Renderer {
     public:
         class Camera : public Geometry {
-        private:
-            Vector direction;
-
-        private:
+        public:
             unsigned short int view_distance;
             float field_of_view;                // radian
 
@@ -20,6 +17,8 @@ namespace JirungEngine {
             Camera();
 
         public:
+            Vector direction() const;
+
             Vector getLeftLimit() const;
             Vector getRightLimit() const;
             Vector getTopLimit() const;
@@ -41,6 +40,8 @@ namespace JirungEngine {
 
         void renderPoint(const Point& point);
         void renderSegment(const Segment& segment);
+
+        bool isOutOfAngle(const Point& point) const;
     };
 }
 
