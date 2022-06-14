@@ -3,8 +3,8 @@
 3D Rendering, Physics, ...
 - - -
 
-![](https://github.com/Jirung-E/JirungEngine/blob/main/20220529_161112.gif)
-![](https://github.com/Jirung-E/JirungEngine/blob/main/20220608_181345.gif)
+![](https://github.com/Jirung-E/JirungEngine/blob/main/screenshots/20220529_161112.gif)
+![](https://github.com/Jirung-E/JirungEngine/blob/main/screenshots/20220608_181345.gif)
 
 
 - - -
