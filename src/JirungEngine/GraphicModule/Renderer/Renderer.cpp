@@ -4,12 +4,13 @@ using namespace std;
 using namespace JirungEngine;
 
 
-Renderer::Camera::Camera() : position { 0, 0, 64 }, direction { 0, 0, -1 }, view_distance { 128 }, field_of_view { 100.0f } {
-
+Renderer::Camera::Camera() : direction { 0, 0, -1 }, view_distance { 128 }, field_of_view { 100.0f } {
+    moveTo(Point { 0, 0, 64 });
 }
 
 
 Vector Renderer::Camera::getLeftLimit() const {
+    Vector ll { Line::rotate(Point { direction.x, direction.y, direction.z }, Line { Point { getPosition(), Vector { } }, field_of_view/2.0f }) };
     return Vector { };
 }
 
@@ -60,7 +61,6 @@ void Renderer::renderPoint(const Point& point) {
     if(Point::getDistanceBetween(camera.position, point) > camera.view_distance) {
         return;
     }
-    // ###+++++++++........................... -> x^2 느낌으로.. 이런식으로, 멀어질수록 표현되는 밝기는 줄어드는데, 가까울떄 더 빠르게 바뀌는 느낌? 이걸 픽셀에 의존하기 않고 구현...
     unsigned short int level_max = Pixel::getBrightnessMax();
     for(int i=level_max; i>=1; --i) {
         if(Point::getDistanceBetween(camera.position, point) <= camera.view_distance / i) {

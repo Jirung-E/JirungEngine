@@ -8,14 +8,9 @@
 namespace JirungEngine {
     class Renderer {
     public:
-        class Camera {
-        public:
-            Point position;
+        class Camera : public Geometry {
+        private:
             Vector direction;
-
-            Line x_axis;
-            Line y_axis;
-            Line z_axis;
 
         private:
             unsigned short int view_distance;
