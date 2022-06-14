@@ -25,6 +25,8 @@ namespace JirungEngine {
     public:
         void clear();
         std::string getByString() const;
+        unsigned short int getWidth() const;
+        unsigned short int getHeight() const;
 
         void setPixelBrightness(unsigned short int level, const Point& point);
         

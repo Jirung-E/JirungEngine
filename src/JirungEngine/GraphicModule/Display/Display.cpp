@@ -72,6 +72,15 @@ std::string Display::getByString() const {
     return result;
 }
 
+unsigned short int Display::getWidth() const {
+    return width;
+}
+
+unsigned short int Display::getHeight() const {
+    return height;
+}
+
+
 void Display::setPixelBrightness(unsigned short int level, const Point& point) {
     if(static_cast<int>(round(point.x)) < 0 || static_cast<int>(round(point.x)) >= width || static_cast<int>(round(point.y)) < 0 || static_cast<int>(round(point.y)) >= height) {
         return;
