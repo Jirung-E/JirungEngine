@@ -21,6 +21,7 @@ namespace JirungEngine {
 
     public:
         std::string get() const;
+        unsigned short int getBrightness() const;
         void setBrightness(unsigned short int level);
 
         static unsigned short int getBrightnessMax() const;

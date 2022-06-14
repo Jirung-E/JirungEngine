@@ -28,6 +28,10 @@ string Pixel::get() const {
     return result;
 }
 
+unsigned short int Pixel::getBrightness() const {
+    return brightness;
+}
+
 void Pixel::setBrightness(unsigned short int level) {
     if(level > getBrightnessMax()) {
         level = getBrightnessMax();
