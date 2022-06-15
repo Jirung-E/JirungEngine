@@ -92,7 +92,7 @@ unsigned short int Display::getPixelBrightness(unsigned short int x, unsigned sh
 
 void Display::setPixelBrightness(unsigned short int level, unsigned short int x, unsigned short int y) {
     if(x >= width || y >= height) {
-        return 0;
+        return;
     }
 
     pixels[height-1 - y][x].setBrightness(level);

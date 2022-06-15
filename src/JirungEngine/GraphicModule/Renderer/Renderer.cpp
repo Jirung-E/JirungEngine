@@ -85,10 +85,13 @@ Point Renderer::renderPoint(const Point& point) {
     // to_apparent_point -> 이놈을 camera.vector.x, camera.vector.y와 평행한 성분으로 나눌수 있으면....
     Vector to_apparent_point_proj_to_xz { to_apparent_point - camera.getYAxis().vector*(to_apparent_point*camera.getYAxis().vector) };
     Vector to_apparent_point_proj_to_yz { to_apparent_point - camera.getXAxis().vector*(to_apparent_point*camera.getXAxis().vector) };
-    float x = image->getWidth()/2.0f + camera.getXAxis().vector * to_apparent_point_proj_to_xz;
-    float y = image->getHeight()/2.0f + camera.getYAxis().vector * to_apparent_point_proj_to_yz;
+    float image_x = image->getWidth()/2.0f + camera.getXAxis().vector * to_apparent_point_proj_to_xz;
+    float image_y = image->getHeight()/2.0f + camera.getYAxis().vector * to_apparent_point_proj_to_yz;
 
-    image->setPixelBrightness(image->getPixelBrightness(Point { x, y })+1, Point { x, y });
+    unsigned short int x = static_cast<int>(round(image_x));
+    unsigned short int y = static_cast<int>(round(image_y));
+    image->setPixelBrightness(image->getPixelBrightness(x, y)+1, x, y);
+    
     return Point { x, y };
 }
 
