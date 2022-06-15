@@ -35,9 +35,9 @@ namespace JirungEngine {
         Display renderGeneral(const Polygon& polygon);
         Display renderClear(const Polygon& polygon);
 
-    private:
         void clearImage();
-
+        
+    private:
         Point getApparentPoint(const Point& point) const;
         void renderPoint(const Point& point);
         void renderSegment(const Segment& segment);

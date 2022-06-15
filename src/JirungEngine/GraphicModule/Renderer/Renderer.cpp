@@ -54,7 +54,7 @@ Display Renderer::renderGeneral(const Polygon& polygon) {
 }
 
 Display Renderer::renderClear(const Polygon& polygon) {
-    image->clear();
+    //image->clear();
 
     renderSegment(Segment { polygon.p1, Vector { polygon.p2 - polygon.p1 } });
     renderSegment(Segment { polygon.p2, Vector { polygon.p3 - polygon.p2 } });
@@ -105,6 +105,9 @@ void Renderer::renderPoint(const Point& point) {
 void Renderer::renderSegment(const Segment& segment) {
     Point start_point { getApparentPoint(segment.getStartPoint()) };
     Point end_point { getApparentPoint(segment.getEndPoint()) };
+    if(isOutOfAngle(segment.getStartPoint()) || isOutOfAngle(segment.getEndPoint())) {
+        return;
+    }
     Vector direction { end_point - start_point };
     
     for(int i=0; i<direction.magnitude(); ++i) {
