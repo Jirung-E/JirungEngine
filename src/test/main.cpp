@@ -12,6 +12,14 @@ int main() {
     Viewer* viewer = new ConsoleViewer();
     Renderer renderer;
     Polygon p;
-    renderer.renderGeneral(p);
-    viewer->show(&renderer.image);
+    
+    for(int i=0; i<1000; ++i) {
+        renderer.renderClear(p);
+        viewer->show(*renderer.image);
+        
+        p.moveTo(p.p1 + Point(0, 0, -1));
+        p.rotate(Line(p.getCenterOfGravity(), p.getNormal()), 0.1);
+        
+        sleep(1000/30);
+    }
 }

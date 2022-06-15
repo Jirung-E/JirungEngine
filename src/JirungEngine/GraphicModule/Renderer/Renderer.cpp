@@ -95,12 +95,14 @@ Point Renderer::renderPoint(const Point& point) {
 }
 
 void Renderer::renderSegment(const Segment& segment) {
-    Point start_point { segment.getStartPoint() };
-    Point end_point { segment.getEndPoint() };
+    Point start_point { renderPoint(segment.getStartPoint()) };
+    Point end_point { renderPoint(segment.getEndPoint()) };
     Vector direction { end_point - start_point };
-
-    for(int i=1; i<direction.magnitude(); ++i) {
-        renderPoint(start_point + Point(direction.x, direction.y, direction.z)/i);
+    
+    for(int i=0; i<direction.magnitude(); ++i) {
+        unsigned short int x = static_cast<int>(round(i * (direction.x/direction.magnitude())) + start_point.x);
+        unsigned short int y = static_cast<int>(round(i * (direction.y/direction.magnitude())) + start_point.y);
+        image->setPixelBrightness(image->getPixelBrightness(x, y)+1, x, y);
     }
 }
 
