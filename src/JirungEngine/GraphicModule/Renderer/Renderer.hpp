@@ -38,7 +38,8 @@ namespace JirungEngine {
     private:
         void clearImage();
 
-        Point renderPoint(const Point& point);
+        Point getApparentPoint(const Point& point) const;
+        void renderPoint(const Point& point);
         void renderSegment(const Segment& segment);
 
         bool isOutOfAngle(const Point& point) const;

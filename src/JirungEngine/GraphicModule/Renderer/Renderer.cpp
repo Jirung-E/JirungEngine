@@ -69,7 +69,7 @@ void Renderer::clearImage() {
 }
 
 
-Point Renderer::renderPoint(const Point& point) {
+Point Renderer::getApparentPoint(const Point& point) const {
     if(isOutOfAngle(point)) {
         return { -1, -1, -1 };
     }
@@ -87,16 +87,24 @@ Point Renderer::renderPoint(const Point& point) {
     float image_x = image->getWidth()/2.0f + camera.getXAxis().vector * to_apparent_point_proj_to_xz;
     float image_y = image->getHeight()/2.0f + camera.getYAxis().vector * to_apparent_point_proj_to_yz;
 
-    unsigned short int x = static_cast<int>(round(image_x));
-    unsigned short int y = static_cast<int>(round(image_y));
-    image->setPixelBrightness(image->getPixelBrightness(x, y)+1, x, y);
+    return Point { image_x, image_y };
+}
 
-    return Point { float(x), float(y) };
+void Renderer::renderPoint(const Point& point) {
+    if(isOutOfAngle(point)) {
+        return;
+    }
+
+    Point p = getApparentPoint(point);
+
+    unsigned short int x = static_cast<int>(round(p.x));
+    unsigned short int y = static_cast<int>(round(p.y));
+    image->setPixelBrightness(image->getPixelBrightness(x, y)+1, x, y);
 }
 
 void Renderer::renderSegment(const Segment& segment) {
-    Point start_point { renderPoint(segment.getStartPoint()) };
-    Point end_point { renderPoint(segment.getEndPoint()) };
+    Point start_point { getApparentPoint(segment.getStartPoint()) };
+    Point end_point { getApparentPoint(segment.getEndPoint()) };
     Vector direction { end_point - start_point };
     
     for(int i=0; i<direction.magnitude(); ++i) {
