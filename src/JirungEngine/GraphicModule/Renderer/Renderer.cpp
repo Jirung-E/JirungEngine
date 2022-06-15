@@ -91,8 +91,8 @@ Point Renderer::renderPoint(const Point& point) {
     unsigned short int x = static_cast<int>(round(image_x));
     unsigned short int y = static_cast<int>(round(image_y));
     image->setPixelBrightness(image->getPixelBrightness(x, y)+1, x, y);
-    
-    return Point { x, y };
+
+    return Point { float(x), float(y) };
 }
 
 void Renderer::renderSegment(const Segment& segment) {
