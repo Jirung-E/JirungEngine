@@ -13,5 +13,5 @@ int main() {
     Renderer renderer;
     Polygon p;
     renderer.renderGeneral(p);
-    viewer->show(renderer.image);
+    viewer->show(&renderer.image);
 }

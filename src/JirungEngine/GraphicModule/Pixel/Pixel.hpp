@@ -11,7 +11,7 @@ namespace JirungEngine {
         char pixel;
         unsigned short int brightness;
 
-        static vector<char> pixel_set;
+        static std::vector<char> pixel_set;
 
     public:
         Pixel(char c = ' ');
@@ -24,7 +24,7 @@ namespace JirungEngine {
         unsigned short int getBrightness() const;
         void setBrightness(unsigned short int level);
 
-        static unsigned short int getBrightnessMax() const;
+        static unsigned short int getBrightnessMax();
 
     private:
     };

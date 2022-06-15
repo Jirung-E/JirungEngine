@@ -40,6 +40,6 @@ void Pixel::setBrightness(unsigned short int level) {
     pixel = pixel_set[brightness];
 }
 
-unsigned short int Pixel::getBrightnessMax() const {
+unsigned short int Pixel::getBrightnessMax() {
     return pixel_set.length() - 1;
 }
