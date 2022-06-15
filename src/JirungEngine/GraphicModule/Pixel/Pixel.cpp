@@ -4,7 +4,7 @@ using namespace std;
 using namespace JirungEngine;
 
 
-const vector<char> Pixel::pixel_set { ' ', '.', '+', '#' };
+vector<char> Pixel::pixel_set { ' ', '.', '+', '#' };
 
 Pixel::Pixel(char c) : pixel { c }, brightness { 0 } {
 
