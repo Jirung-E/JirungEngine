@@ -71,7 +71,7 @@ void Renderer::clearImage() {
 
 Point Renderer::renderPoint(const Point& point) {
     if(isOutOfAngle(point)) {
-        return;
+        return { -1, -1, -1 };
     }
 
     float m = image->getWidth() > image->getHeight() ? image->getWidth() : image->getHeight();
@@ -83,12 +83,10 @@ Point Renderer::renderPoint(const Point& point) {
     Point apparent_point { camera.getPosition() + Point { to_apparent_point.x, to_apparent_point.y, to_apparent_point.z } };
     // 이건 전체적인 공간에서의 겉보기 위치고 카메라가 볼때의 왼쪽 위에서부터의 좌표는 따로 또 구해야함...
     // to_apparent_point -> 이놈을 camera.vector.x, camera.vector.y와 평행한 성분으로 나눌수 있으면....
-    float theta_y = Vector::getAngleBetween(camera.getYAxis().vector, to_apparent_point);
-    float theta_x = Vector::getAngleBetween(camera.getXAxis().vector, to_apparent_point);
-    Vector to_apparent_point_proj_to_xz { to_apparent_point - camera.getYAxis().vector*(to_apparent_point*cos(theta_y)) };
-    Vector to_apparent_point_proj_to_yz { to_apparent_point - camera.getXAxis().vector*(to_apparent_point*cos(theta_x)) };
-    float x = image.getWidth()/2.0f + camera.getXAxis().vector * to_apparent_point_proj_to_xz;
-    float y = image.getHeight()/2.0f + camera.getYAxis().vector * to_apparent_point_proj_to_yz;
+    Vector to_apparent_point_proj_to_xz { to_apparent_point - camera.getYAxis().vector*(to_apparent_point*camera.getYAxis().vector) };
+    Vector to_apparent_point_proj_to_yz { to_apparent_point - camera.getXAxis().vector*(to_apparent_point*camera.getXAxis().vector) };
+    float x = image->getWidth()/2.0f + camera.getXAxis().vector * to_apparent_point_proj_to_xz;
+    float y = image->getHeight()/2.0f + camera.getYAxis().vector * to_apparent_point_proj_to_yz;
 
     image->setPixelBrightness(image->getPixelBrightness(Point { x, y })+1, Point { x, y });
     return Point { x, y };
