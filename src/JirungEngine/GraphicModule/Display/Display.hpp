@@ -28,8 +28,8 @@ namespace JirungEngine {
         unsigned short int getWidth() const;
         unsigned short int getHeight() const;
 
-        unsigned short int getPixelBrightness(const Point& point) const;
-        void setPixelBrightness(unsigned short int level, const Point& point);
+        unsigned short int getPixelBrightness(unsigned short int x, unsigned short int y) const;
+        void setPixelBrightness(unsigned short int level, unsigned short int x, unsigned short int y);
         
     private:
         void terminate();

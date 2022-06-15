@@ -82,20 +82,20 @@ unsigned short int Display::getHeight() const {
     return height;
 }
 
-unsigned short int Display::getPixelBrightness(const Point& point) const {
-    if(static_cast<int>(round(point.x)) < 0 || static_cast<int>(round(point.x)) >= width || static_cast<int>(round(point.y)) < 0 || static_cast<int>(round(point.y)) >= height) {
+unsigned short int Display::getPixelBrightness(unsigned short int x, unsigned short int y) const {
+    if(x >= width || y >= height) {
         return 0;
     }
 
-    return pixels[height-1 - static_cast<int>(round(point.y))][static_cast<int>(round(point.x))].getBrightness();
+    return pixels[height-1 - y][x].getBrightness();
 }
 
-void Display::setPixelBrightness(unsigned short int level, const Point& point) {
-    if(static_cast<int>(round(point.x)) < 0 || static_cast<int>(round(point.x)) >= width || static_cast<int>(round(point.y)) < 0 || static_cast<int>(round(point.y)) >= height) {
-        return;
+void Display::setPixelBrightness(unsigned short int level, unsigned short int x, unsigned short int y) {
+    if(x >= width || y >= height) {
+        return 0;
     }
 
-    pixels[height-1 - static_cast<int>(round(point.y))][static_cast<int>(round(point.x))].setBrightness(level);
+    pixels[height-1 - y][x].setBrightness(level);
 }
 
 

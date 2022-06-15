@@ -4,14 +4,14 @@ using namespace std;
 using namespace JirungEngine;
 
 
-const Pixel::vector<char> pixel_set { ' ', '.', '+', '#' };
+const vector<char> Pixel::pixel_set { ' ', '.', '+', '#' };
 
 Pixel::Pixel(char c) : pixel { c }, brightness { 0 } {
 
 }
 
 Pixel::Pixel(const Pixel& pixel) : Pixel { pixel.pixel } {
-    bightness = pixel.brightness;
+    brightness = pixel.brightness;
 }
 
 
@@ -41,5 +41,5 @@ void Pixel::setBrightness(unsigned short int level) {
 }
 
 unsigned short int Pixel::getBrightnessMax() {
-    return pixel_set.length() - 1;
+    return pixel_set.size() - 1;
 }
