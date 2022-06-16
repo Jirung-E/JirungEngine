@@ -1,13 +1,14 @@
 #include "Renderer.hpp"
 
 #include <cmath>
+#include <iostream>
 
 using namespace std;
 using namespace JirungEngine;
 
 
 // <Camera> ---------------------------------------------------------------------------------------------------------------------------
-Renderer::Camera::Camera() : view_distance { 128 }, field_of_view { 100.0f } {
+Renderer::Camera::Camera() : view_distance { 128 }, field_of_view { M_PI/1.5f } {
     moveTo(Point { 0, 0, 64 });
 }
 
@@ -70,17 +71,21 @@ void Renderer::clearImage() {
 
 
 Point Renderer::getApparentPoint(const Point& point) const {
-    if(isOutOfAngle(point)) {
-        return { -1, -1, -1 };
-    }
-
     float m = image->getWidth() > image->getHeight() ? image->getWidth() : image->getHeight();
     float t = (m/2) / tan(camera.field_of_view/2);
 
     float theta = Vector::getAngleBetween(camera.direction(), point - camera.getPosition());
     float distance_to_apparent_point = t / cos(theta);
     Vector to_apparent_point { Vector(point - camera.getPosition()).getUnitVector() * distance_to_apparent_point };
-    Point apparent_point { camera.getPosition() + Point { to_apparent_point.x, to_apparent_point.y, to_apparent_point.z } };
+    return Point { camera.getPosition() + Point { to_apparent_point.x, to_apparent_point.y, to_apparent_point.z } };
+}
+
+Point Renderer::transformToPointOfDisplay(const Point& point) const {
+    if(isOutOfAngle(point)) {
+        return { -1, -1, -1 };
+    }
+
+    Vector to_apparent_point { getApparentPoint(point) - camera.getPosition() };
     
     Vector to_apparent_point_proj_to_xz { to_apparent_point - camera.getYAxis().vector*(to_apparent_point*camera.getYAxis().vector) };
     Vector to_apparent_point_proj_to_yz { to_apparent_point - camera.getXAxis().vector*(to_apparent_point*camera.getXAxis().vector) };
@@ -91,29 +96,34 @@ Point Renderer::getApparentPoint(const Point& point) const {
 }
 
 void Renderer::renderPoint(const Point& point) {
-    if(isOutOfAngle(point)) {
+    Point p { transformToPointOfDisplay(point) };
+    if(p.x < 0.0f || p.y < 0.0f) {
         return;
     }
 
-    Point p = getApparentPoint(point);
-
-    unsigned short int x = static_cast<int>(round(p.x));
-    unsigned short int y = static_cast<int>(round(p.y));
+    unsigned short int x = static_cast<unsigned short int>(round(p.x));
+    unsigned short int y = static_cast<unsigned short int>(round(p.y));
     image->setPixelBrightness(image->getPixelBrightness(x, y)+1, x, y);
 }
 
 void Renderer::renderSegment(const Segment& segment) {
-    Point start_point { getApparentPoint(segment.getStartPoint()) };
-    Point end_point { getApparentPoint(segment.getEndPoint()) };
-    if(isOutOfAngle(segment.getStartPoint()) || isOutOfAngle(segment.getEndPoint())) {
+    Point start_point { segment.getStartPoint() };
+    Point end_point { segment.getEndPoint() };
+    if(isOutOfAngle(start_point) || isOutOfAngle(end_point)) {
         return;
     }
-    Vector direction { end_point - start_point };
+    printf("start_point: { %f, %f, %f }\n", start_point.x, start_point.y, start_point.z);
+    printf("   apparent: { %f, %f, %f }\n", getApparentPoint(start_point).x, getApparentPoint(start_point).y, getApparentPoint(start_point).z);
+    printf("    display: { %f, %f, %f }\n", transformToPointOfDisplay(start_point).x, transformToPointOfDisplay(start_point).y, transformToPointOfDisplay(start_point).z);
+    printf("end_point:   { %f, %f, %f }\n", end_point.x, end_point.y, end_point.z);
+    printf("   apparent: { %f, %f, %f }\n", getApparentPoint(end_point).x, getApparentPoint(end_point).y, getApparentPoint(end_point).z);
+    printf("    display: { %f, %f, %f }\n", transformToPointOfDisplay(end_point).x, transformToPointOfDisplay(end_point).y, transformToPointOfDisplay(end_point).z);
+    Vector direction { getApparentPoint(end_point) - getApparentPoint(start_point) };
+    float distance = Point::getDistanceBetween(transformToPointOfDisplay(start_point), transformToPointOfDisplay(end_point));
     
-    for(int i=0; i<direction.magnitude(); ++i) {
-        unsigned short int x = static_cast<int>(round(i * (direction.x/direction.magnitude())) + start_point.x);
-        unsigned short int y = static_cast<int>(round(i * (direction.y/direction.magnitude())) + start_point.y);
-        image->setPixelBrightness(image->getPixelBrightness(x, y)+1, x, y);
+    for(int i=1; i<=distance; ++i) {
+        Vector d { direction.getUnitVector() / i };
+        renderPoint(getApparentPoint(start_point) + Point { d.x, d.y, d.z });
     }
 }
 

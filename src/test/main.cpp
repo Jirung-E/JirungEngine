@@ -14,8 +14,8 @@ int main() {
     Polygon pol[10];
     int cnt = 0;
     for(Polygon& e : pol) {
-        e.moveTo(e.p1 + Point { 0, 0, -float(cnt) });
-        e.rotate(Line(e.getCenterOfGravity(), e.getNormal()), cnt/2.0f);
+        e.moveTo(e.p1 + Point { 0, 0, cnt * 3.0f });
+        e.rotate(Line(e.getCenterOfGravity(), e.getNormal()), cnt/10.0f);
         cnt++;
     }
     
@@ -23,6 +23,7 @@ int main() {
         for(const Polygon& e : pol) {
             renderer.renderClear(e);
         }
+        println(to_string(i));
         viewer->show(*renderer.image);
         for(Polygon& e : pol) {
             e.moveTo(e.p1 + Point(0, 0, 0.5));
