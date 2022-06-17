@@ -73,14 +73,14 @@ float Plane::getDistanceTo(const Plane& other) const {
 }
 
 bool Plane::isParallelTo(const Line& line) const {
-    if(Vector::scalarProduct(this->normal_vector, line.vector) == 0.0f) {
+    if(Vector::isOrthogonal(this->normal_vector, line.vector)) {
         return true;
     }
     return false;
 }
 
 bool Plane::isParallelTo(const Plane& other) const {
-    if(this->normal_vector.getUnitVector() == other.normal_vector.getUnitVector()) {
+    if(Vector::isParallel(this->normal_vector, other.normal_vector)) {
         return true;
     }
     return false;
