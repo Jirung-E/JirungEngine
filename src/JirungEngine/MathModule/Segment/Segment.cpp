@@ -10,6 +10,10 @@ Segment::Segment(Point point, Vector vector) : Line { point, vector } {
 
 }
 
+Segment::Segment(Point from, Point to) : Segment { from, Vector { to - from } } {
+
+}
+
 Segment::Segment(Vector vector) : Segment { Point(0, 0, 0), vector } {
 
 }

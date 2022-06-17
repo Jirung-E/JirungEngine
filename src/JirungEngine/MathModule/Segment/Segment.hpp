@@ -8,7 +8,10 @@ namespace JirungEngine {
     class Segment : public Line {
     public:
         Segment(Point point, Vector vector);
+        Segment(Point from, Point to);
         Segment(Vector vector);
+
+        Segment operator=(const Segment& segment) = default;
 
     public:
         Point getStartPoint() const;
