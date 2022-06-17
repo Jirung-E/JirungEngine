@@ -39,6 +39,12 @@ Point Segment::getNearestPointTo(const Point& point) const {
     return getEndPoint();
 }
 
+Point Segment::getNearestPointTo(const Segment& other) const {
+    Point this_H { this->Line::getFootOfPerpendicularFrom(segment) };
+    Point other_nearest { other.getNearestPointTo(this_H) };
+    return getNearestPointTo(other_nearest);
+}
+
 bool Segment::isParallelTo(const Segment& other) const {
     return this->vector.isParallelTo(other.vector);
 }

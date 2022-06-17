@@ -18,6 +18,7 @@ namespace JirungEngine {
         Point getEndPoint() const;
 
         Point getNearestPointTo(const Point& point) const;
+        Point getNearestPointTo(const Segment& other) const;
         bool isParallelTo(const Segment& other) const;
 
         static bool isParallel(const Segment& segment1, const Segment& segment2);
