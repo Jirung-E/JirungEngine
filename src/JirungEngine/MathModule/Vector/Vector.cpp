@@ -146,6 +146,13 @@ bool Vector::isParallel(const Vector& vector1, const Vector& vector2) {
     return vector1.isParallelTo(vector2);
 }
 
+bool Vector::isOrthogonal(const Vector& vector1, const Vector& vector2) {
+    if(vector1 * vector2 == 0.0f) {
+        return true;
+    }
+    return false;
+}
+
 
 Vector Vector::i() {
     return Vector { 1, 0, 0 };
