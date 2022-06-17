@@ -110,9 +110,7 @@ void Renderer::renderPoint(const Point& point) {
         return;
     }
 
-    unsigned short int x = static_cast<unsigned short int>(round(p.x));
-    unsigned short int y = static_cast<unsigned short int>(round(p.y));
-    image->setPixelBrightness(image->getPixelBrightness(x, y)+1, x, y);
+    showPointOnImage(p);
 }
 
 void Renderer::renderSegment(const Segment& segment) {
@@ -131,9 +129,7 @@ void Renderer::renderSegment(const Segment& segment) {
             return;
         }
 
-        unsigned short int x = static_cast<unsigned short int>(round(p.x));
-        unsigned short int y = static_cast<unsigned short int>(round(p.y));
-        image->setPixelBrightness(image->getPixelBrightness(x, y)+1, x, y);
+        showPointOnImage(p);
     }
 }
 
