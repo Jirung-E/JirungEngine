@@ -28,9 +28,21 @@ Point Segment::getEndPoint() const {
 }
 
 
+Point Segment::getNearestPointTo(const Point& point) const {
+    Point H { this->Line::getFootOfPerpendicularFrom(point) };
+    if(H.isInRange(getStartPoint(), getEndPoint())) {
+        return H;
+    }
+    if(H.getDistanceTo(getStartPoint()) < H.getDistanceTo(getEndPoint())) {
+        return getStartPoint();
+    }
+    return getEndPoint();
+}
+
 bool Segment::isParallelTo(const Segment& other) const {
     return this->vector.isParallelTo(other.vector);
 }
+
 
 bool Segment::isParallel(const Segment& segment1, const Segment& segment2) {
     return segment1.isParallelTo(segment2);

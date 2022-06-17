@@ -17,13 +17,10 @@ namespace JirungEngine {
         Point getStartPoint() const;
         Point getEndPoint() const;
 
-        // Point getNearestPointFrom(const Point& point) const;
-        // Point getNearestPointFrom(const Segment& segment) const;
+        Point getNearestPointTo(const Point& point) const;
         bool isParallelTo(const Segment& other) const;
 
         static bool isParallel(const Segment& segment1, const Segment& segment2);
-        // static Point getNearestPoint(const Segment& segment, const Point& point);
-        // static Point getNearestPoint(const Segment& to, const Segment& from);
     };
 }
 
