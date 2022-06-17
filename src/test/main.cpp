@@ -11,10 +11,10 @@ int main() {
 
     Viewer* viewer = new ConsoleViewer();
     Renderer renderer;
-    Polygon pol[10];
+    Polygon pol[50];
     int cnt = 0;
     for(Polygon& e : pol) {
-        e.moveTo(e.p1 + Point { 0, 0, cnt * 3.0f });
+        e.moveTo(e.p1 - Point { 0, 0, cnt * 3.0f });
         e.rotate(Line(e.getCenterOfGravity(), e.getNormal()), cnt/10.0f);
         cnt++;
     }

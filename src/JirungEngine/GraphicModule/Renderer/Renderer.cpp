@@ -1,14 +1,13 @@
 #include "Renderer.hpp"
 
 #include <cmath>
-#include <iostream>
 
 using namespace std;
 using namespace JirungEngine;
 
 
 // <Camera> ---------------------------------------------------------------------------------------------------------------------------
-Renderer::Camera::Camera() : view_distance { 128 }, field_of_view { M_PI/1.5f } {
+Renderer::Camera::Camera() : view_distance { 128 }, field_of_view { M_PI/1.8f } {
     moveTo(Point { 0, 0, 64 });
 }
 
@@ -95,9 +94,19 @@ Point Renderer::transformToPointOfDisplay(const Point& point) const {
     return Point { image_x, image_y };
 }
 
+void Renderer::showPointOnImage(const Point& point) {
+    if(point.x < 0.0f || point.y < 0.0f || point.x >= image->getWidth() || point.y >= image->getHeight()) {
+        return;
+    }
+
+    unsigned short int x = static_cast<unsigned short int>(round(point.x));
+    unsigned short int y = static_cast<unsigned short int>(round(point.y));
+    image->setPixelBrightness(image->getPixelBrightness(x, y)+1, x, y);
+}
+
 void Renderer::renderPoint(const Point& point) {
     Point p { transformToPointOfDisplay(point) };
-    if(p.x < 0.0f || p.y < 0.0f) {
+    if(p.x < 0.0f || p.y < 0.0f || p.x >= image->getWidth() || p.y >= image->getHeight()) {
         return;
     }
 
@@ -112,18 +121,19 @@ void Renderer::renderSegment(const Segment& segment) {
     if(isOutOfAngle(start_point) || isOutOfAngle(end_point)) {
         return;
     }
-    printf("start_point: { %f, %f, %f }\n", start_point.x, start_point.y, start_point.z);
-    printf("   apparent: { %f, %f, %f }\n", getApparentPoint(start_point).x, getApparentPoint(start_point).y, getApparentPoint(start_point).z);
-    printf("    display: { %f, %f, %f }\n", transformToPointOfDisplay(start_point).x, transformToPointOfDisplay(start_point).y, transformToPointOfDisplay(start_point).z);
-    printf("end_point:   { %f, %f, %f }\n", end_point.x, end_point.y, end_point.z);
-    printf("   apparent: { %f, %f, %f }\n", getApparentPoint(end_point).x, getApparentPoint(end_point).y, getApparentPoint(end_point).z);
-    printf("    display: { %f, %f, %f }\n", transformToPointOfDisplay(end_point).x, transformToPointOfDisplay(end_point).y, transformToPointOfDisplay(end_point).z);
-    Vector direction { getApparentPoint(end_point) - getApparentPoint(start_point) };
+    Vector direction { transformToPointOfDisplay(end_point) - transformToPointOfDisplay(start_point) };
     float distance = Point::getDistanceBetween(transformToPointOfDisplay(start_point), transformToPointOfDisplay(end_point));
     
-    for(int i=1; i<=distance; ++i) {
-        Vector d { direction.getUnitVector() / i };
-        renderPoint(getApparentPoint(start_point) + Point { d.x, d.y, d.z });
+    for(int i=0; i<distance; ++i) {
+        Vector d { direction.getUnitVector() * i };
+        Point p { transformToPointOfDisplay(start_point) + Point { d.x, d.y, d.z } };
+        if(p.x < 0.0f || p.y < 0.0f || p.x >= image->getWidth() || p.y >= image->getHeight()) {
+            return;
+        }
+
+        unsigned short int x = static_cast<unsigned short int>(round(p.x));
+        unsigned short int y = static_cast<unsigned short int>(round(p.y));
+        image->setPixelBrightness(image->getPixelBrightness(x, y)+1, x, y);
     }
 }
 

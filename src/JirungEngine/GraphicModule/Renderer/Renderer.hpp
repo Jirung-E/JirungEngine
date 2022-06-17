@@ -40,6 +40,7 @@ namespace JirungEngine {
     private:
         Point getApparentPoint(const Point& point) const;
         Point transformToPointOfDisplay(const Point& point) const;
+        void showPointOnImage(const Point& point);
         void renderPoint(const Point& point);
         void renderSegment(const Segment& segment);
 
