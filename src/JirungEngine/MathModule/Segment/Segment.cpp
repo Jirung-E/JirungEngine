@@ -19,6 +19,11 @@ Segment::Segment(Vector vector) : Segment { Point(0, 0, 0), vector } {
 }
 
 
+Line Segment::getLine() const {
+    return Line { segment.point, segment.vector };
+}
+
+
 Point Segment::getStartPoint() const {
     return point;
 }
@@ -40,7 +45,7 @@ Point Segment::getNearestPointTo(const Point& point) const {
 }
 
 Point Segment::getNearestPointTo(const Segment& other) const {
-    Point this_H { this->Line::getFootOfPerpendicularFrom(segment) };
+    Point this_H { this->Line::getFootOfPerpendicularFrom(other.getLine()) };
     Point other_nearest { other.getNearestPointTo(this_H) };
     return getNearestPointTo(other_nearest);
 }

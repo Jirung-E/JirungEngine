@@ -11,9 +11,11 @@ namespace JirungEngine {
         Segment(Point from, Point to);
         Segment(Vector vector);
 
-        Segment operator=(const Segment& segment) = default;
+        Segment& operator=(const Segment& segment) = default;
 
     public:
+        Line getLine() const;
+
         Point getStartPoint() const;
         Point getEndPoint() const;
 
