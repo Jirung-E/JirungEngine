@@ -20,7 +20,7 @@ Segment::Segment(Vector vector) : Segment { Point(0, 0, 0), vector } {
 
 
 Line Segment::getLine() const {
-    return Line { segment.point, segment.vector };
+    return Line { point, vector };
 }
 
 
