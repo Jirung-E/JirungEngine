@@ -40,6 +40,38 @@ Point* Plane::getPointOfContactWith(const Line& line) const {
     return new Point { line.point - Point(V.x, V.y, V.z) };
 }
 
+Line* Plane::getLineOfIntersectionWith(const Plane& other) const {
+    if(this->isParallelTo(other)) {
+        return nullptr;
+    }
+
+    Point S { other.point };
+    Point E { Segment(S, other.normal_vector).getEndPoint() };
+    Point H { getFootOfPerpendicularFrom(S) };
+    Point F { getFootOfPerpendicularFrom(E) };
+
+    Vector line_vector { Vector::crossProduct(this->normal_vector, other.normal_vector) };
+    Point line_point;
+
+    if(this->getDistanceTo(S) == 0.0f) {
+        return new Line { S, line_vector };
+    }
+
+    float theta = Vector::getAngleBetween(this->normal_vector, other.normal_vector);
+    if(theta == M_PI/2.0f) {
+        return new Line { H, line_vector };
+    }
+    
+    float dist = abs(Point::getDistanceBetween(S, H)/tan(theta));
+    Vector vec { Vector(F-H).getUnitVector() };
+    if(theta > M_PI/2.0f) {
+        vec *= -1;
+    }
+    line_point = H + Point(vec.x, vec.y, vec.z)*dist;
+
+    return new Line { line_point, line_vector };
+}
+
 Point Plane::getFootOfPerpendicularFrom(const Point& point) const {
     Vector v { this->normal_vector.getUnitVector() * this->getDistanceTo(point) };
     if(this->normal_vector * Vector(point - this->point) > 0.0f) {
