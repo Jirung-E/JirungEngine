@@ -46,7 +46,7 @@ Line* Plane::getLineOfIntersectionWith(const Plane& other) const {
     }
 
     Point S { other.point };
-    Point E { Segment(S, other.normal_vector).getEndPoint() };
+    Point E { S + Point { other.normal_vector.x, other.normal_vector.y, other.normal_vector.z } };
     Point H { getFootOfPerpendicularFrom(S) };
     Point F { getFootOfPerpendicularFrom(E) };
 
