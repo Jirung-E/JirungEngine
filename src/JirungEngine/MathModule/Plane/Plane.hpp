@@ -19,11 +19,18 @@ namespace JirungEngine {
     public:
         bool isContactWith(const Point& point) const;
         Point* getPointOfContactWith(const Line& line) const;
+
         Line* getLineOfIntersectionWith(const Plane& other) const;
+
         Point getFootOfPerpendicularFrom(const Point& point) const;
+
         float getDistanceTo(const Point& point) const;
         float getDistanceTo(const Line& line) const;
         float getDistanceTo(const Plane& other) const;
+
+        float getAngleWith(const Line& line) const;
+        float getAngleWith(const Plane& other) const;
+
         bool isParallelTo(const Line& line) const;
         bool isParallelTo(const Plane& other) const;
 

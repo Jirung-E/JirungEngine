@@ -16,8 +16,7 @@ Plane::Plane(Vector normal_vector) : Plane { Point { 0, 0, 0 }, normal_vector } 
 
 
 bool Plane::isContactWith(const Point& point) const {
-    Vector ptop { point - this->point };
-    if(Vector::scalarProduct(normal_vector, ptop) == 0.0f) {
+    if(normal_vector * Vector { point - this->point } == 0.0f) {
         return true;
     }
     return false;
@@ -31,13 +30,13 @@ Point* Plane::getPointOfContactWith(const Line& line) const {
         return nullptr;
     }
     
-    // Point A { line.point };
-    // Point H { getFootOfPerpendicularFrom(line.point) };
-    float AH = getDistanceTo(line.point);
+    Point A { line.point };
+    // Point H { getFootOfPerpendicularFrom(A) };
+    float AH = getDistanceTo(A);
     float theta = Vector::getAngleBetween(this->normal_vector, line.vector);
     float AP = AH / cos(theta);
     Vector V { line.vector.getUnitVector() * AP };
-    return new Point { line.point - Point(V.x, V.y, V.z) };
+    return new Point { A - Point(V.x, V.y, V.z) };
 }
 
 Line* Plane::getLineOfIntersectionWith(const Plane& other) const {
@@ -102,6 +101,18 @@ float Plane::getDistanceTo(const Plane& other) const {
     }
 
     return 0.0f;
+}
+
+float Plane::getAngleWith(const Line& line) const {
+    return abs(M_PI/2.0f - Vector::getAngleBetween(this->normal_vector, line.vector));
+}
+
+float Plane::getAngleWith(const Plane& other) const {
+    float theta = Vector::getAngleBetween(this->normal_vector, other.normal_vector);
+    if(theta > M_PI/2.0f) {
+        theta = M_PI - theta;
+    }
+    return theta;
 }
 
 bool Plane::isParallelTo(const Line& line) const {
