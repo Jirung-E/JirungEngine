@@ -21,4 +21,7 @@ int main() {
     
     Point po { v };
     printf("%f %f %f\n", po.x, po.y, po.z);
+
+    Vector vec { 3.2 * v };
+    printf("%f %f %f\n", vec.x, vec.y, vec.z);
 }
