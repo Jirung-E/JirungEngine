@@ -11,4 +11,8 @@
 #include "Model/Model.hpp"
 #include "Geometry/Geometry.hpp"
 
+namespace JirungEngine {
+    
+}
+
 #endif
