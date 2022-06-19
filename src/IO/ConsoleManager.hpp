@@ -3,7 +3,7 @@
 
 namespace IO {
     class ConsoleManager {
-        
+        void setxy(int x, int y);
     };
 }
 
