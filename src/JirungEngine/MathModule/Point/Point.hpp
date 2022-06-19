@@ -2,6 +2,8 @@
 #define __Point_hpp__
 
 namespace JirungEngine {
+    class Vector;
+
     class Point {
         public: float x;
         public: float y;
@@ -11,6 +13,7 @@ namespace JirungEngine {
         Point();
         Point(float x, float y, float z = 0);
         Point(const Point& point);
+        Point(const Vector& vector);
 
         Point operator=(const Point& point);
         Point operator+(const Point& point) const;

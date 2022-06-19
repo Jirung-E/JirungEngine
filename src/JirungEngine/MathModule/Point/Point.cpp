@@ -2,6 +2,9 @@
 
 #include <cmath>
 
+#include "../Vector/Vector.hpp"
+
+using namespace std;
 using namespace JirungEngine;
 
 
@@ -13,7 +16,11 @@ Point::Point(float x, float y, float z) : x { x }, y { y }, z { z } {
 
 }
 
-Point::Point(const Point& point) : x { point.x }, y { point.y }, z { point.z } {
+Point::Point(const Point& point) : Point { point.x, point.y, point.z } {
+
+}
+
+Point::Point(const Vector& vector) : Point { vector.x, vector.y, vector.z } {
 
 }
 
