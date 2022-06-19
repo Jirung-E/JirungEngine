@@ -1,5 +1,7 @@
 #include "Point.hpp"
 
+#include <cmath>
+
 using namespace JirungEngine;
 
 
@@ -113,4 +115,17 @@ bool Point::isInRange(const Point& point1, const Point& point2) const {
     }
 
     return true;
+}
+
+float Point::getDistanceTo(const Point& other) const {
+    return getDistanceBetween(*this, other);
+}
+
+float Point::getDistanceBetween(const Point& point1, const Point& point2) {
+    return sqrt(pow(point1.x - point2.x, 2) + pow(point1.y - point2.y, 2) + pow(point1.z - point2.z, 2));
+}
+
+
+Point Point::origin() {
+    return Point { 0, 0, 0 };
 }

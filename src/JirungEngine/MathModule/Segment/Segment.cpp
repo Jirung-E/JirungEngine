@@ -6,115 +6,55 @@ using namespace std;
 using namespace JirungEngine;
 
 
-Segment::Segment(Point point, Vector direction) : point { point }, direction { direction } {
+Segment::Segment(Point point, Vector vector) : Line { point, vector } {
 
 }
 
-Segment::Segment(Vector direction) : Segment { Point(0, 0, 0), direction } {
+Segment::Segment(Point from, Point to) : Segment { from, Vector { to - from } } {
+
+}
+
+Segment::Segment(Vector vector) : Segment { Point(0, 0, 0), vector } {
 
 }
 
 
-float Segment::x(float parameter) const {
-    return point.x + direction.x*parameter;
+Line Segment::getLine() const {
+    return Line { point, vector };
 }
 
-float Segment::y(float parameter) const {
-    return point.y + direction.y*parameter;
+
+Point Segment::getStartPoint() const {
+    return point;
 }
 
-float Segment::z(float parameter) const {
-    return point.z + direction.z*parameter;
+Point Segment::getEndPoint() const {
+    return point + Point { vector.x, vector.y, vector.z };
 }
 
-bool Segment::isExistPointOfContactWith(const Segment& other) const {
-    if(getDistanceTo(other) == 0.0f) {
-        return true;
+
+Point Segment::getNearestPointTo(const Point& point) const {
+    Point H { this->Line::getFootOfPerpendicularFrom(point) };
+    if(H.isInRange(getStartPoint(), getEndPoint())) {
+        return H;
     }
-    return false;
+    if(H.getDistanceTo(getStartPoint()) < H.getDistanceTo(getEndPoint())) {
+        return getStartPoint();
+    }
+    return getEndPoint();
 }
 
-Point* Segment::getPointOfContactWith(const Segment& other) const {
-    return nullptr;
-}
-
-Point Segment::getFootOfPerpendicularFrom(const Point& point) const {
-    return getFootOfPerpendicular(*this, point);
-}
-
-Point Segment::getFootOfPerpendicularFrom(const Segment& line) const {
-    return getFootOfPerpendicular(*this, line);
-}
-
-float Segment::getDistanceTo(const Point& point) const {
-    return getDistanceBetween(*this, point);
-}
-
-float Segment::getDistanceTo(const Segment& other) const {
-    return getDistanceBetween(*this, other);
+Point Segment::getNearestPointTo(const Segment& other) const {
+    Point this_H { this->Line::getFootOfPerpendicularFrom(other.getLine()) };
+    Point other_nearest { other.getNearestPointTo(this_H) };
+    return getNearestPointTo(other_nearest);
 }
 
 bool Segment::isParallelTo(const Segment& other) const {
-    return this->direction.isParallelTo(other.direction);
+    return this->vector.isParallelTo(other.vector);
 }
 
-float Segment::getDistanceBetween(const Point& point, const Segment& line) {
-    return getDistanceBetween(line, point);
-}
 
-float Segment::getDistanceBetween(const Segment& line, const Point& point) {
-    if(line.direction.magnitude() == 0.0f) {
-        return Vector(line.point - point).magnitude();
-    }
-    Point H { getFootOfPerpendicular(line, point) };
-    Vector AH { H - point };
-    return AH.magnitude();
-}
-
-float Segment::getDistanceBetween(const Segment& line1, const Segment& line2) {
-    if(line1.point == line2.point) {
-        return 0.0f;
-    }
-    if(isParallel(line1, line2)) {
-        return getDistanceBetween(line1, line2.point);
-    }
-    Vector start_point_to_start_point { line2.point - line1.point };
-    return abs(start_point_to_start_point * Vector::crossProduct(line1.direction, line2.direction).getUnitVector());
-}
-
-Segment Segment::getNormalOf(const Segment& line1, const Segment& line2) {
-    return Segment { getFootOfPerpendicular(line1, line2), Vector::crossProduct(line1.direction, line2.direction) };
-}
-
-bool Segment::isParallel(const Segment& line1, const Segment& line2) {
-    return line1.isParallelTo(line2);
-}
-
-Point Segment::getFootOfPerpendicular(const Segment& line, const Point& point) {
-    if(line.direction.magnitude() == 0.0f) {
-        return line.point;
-    }
-    Point P { line.point };
-    Vector V { line.direction };
-    Point A { point };
-    Vector PA { A.x - P.x, A.y - P.y, A.z - P.z};
-    Vector add { V * ((PA * V) / (V*V)) };
-    Point H { P.x + add.x, P.y + add.y, P.z + add.z };
-    return H;
-}
-
-Point Segment::getFootOfPerpendicular(const Segment& to, const Segment& from) {
-    if(from.direction.magnitude() == 0.0f) {
-        return getFootOfPerpendicular(to, from.point);
-    }
-    if(to.direction.magnitude() == 0.0f) {
-        return getFootOfPerpendicular(from, to.point);
-    }
-    Point H { getFootOfPerpendicular(to, from.point) };
-    float HS = sqrt(pow(getDistanceBetween(to, from.point), 2) - pow(getDistanceBetween(to, from), 2));
-    float theta = Vector::getAngleBetween(to.direction, from.direction);
-    float AH = HS / tan(theta);
-    Vector AtoH { to.direction.getUnitVector() * AH };
-    Point A { H.x - AtoH.x, H.y - AtoH.y, H.z - AtoH.z };
-    return A;
+bool Segment::isParallel(const Segment& segment1, const Segment& segment2) {
+    return segment1.isParallelTo(segment2);
 }

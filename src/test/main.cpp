@@ -6,66 +6,31 @@ using namespace JirungEngine;
 using namespace Util;
 
 
-class TestGame : public Game {
-private:
-    Object o[10];
-    Object ground { "ground" };
-    
-public:
-    TestGame() : Game { Canvas(120, 45) } {
-        play();
-    }
-    
-public:
-    void play() {
-        for(Object& e : o) {
-            e.image = new TextImage { "resource/o.txtimg" };
-            e.position = Point { getRandomFloat(20, canvas.width - 20), getRandomFloat(10, canvas.height - 10) };
-            e.physics.velocity = Vector { getRandomFloat(-0.2, 0.2), getRandomFloat(-0.2, 0.2) };
-            e.physics.gravity = Vector { 0, 9.8f / 1000 };
-        }
-        
-        ground.image = new TextImage { "resource/ground.txtimg" };
-        ground.addCollider(ground.position, Vector(canvas.width, 0, 0));
-        for(int i=0; i<canvas.width; i+=canvas.width) {
-            ground.position = Point { static_cast<float>(i), 40 };
-        }
-        
-        for(Object* o : Object::object_list) {
-            o->update();
-        }
-        
-        while(true) {
-            update();
-            
-            sleep(1000/60);
-        }
-    }
-    
-private:
-    void update() {
-        canvas.clear();
-        for(Object* o : Object::object_list) {
-            canvas.draw(*o);
-        }
-        println(canvas.getByString());
-
-        for(Object* o : Object::object_list) {
-            o->update();
-        }
-        
-        EventListener::collisionCheck();
-        
-        for(Object* o : Object::object_list) {
-            if(o->isCollide()) {
-                o->image = new TextImage { "resource/x.txtimg" };
-            }
-        }
-    }
-};
-
 int main() {
     println("\nTest Start!\n\n");
+
+    Viewer* viewer = new ConsoleViewer();
+    Renderer renderer;
+    Polygon pol[50];
+    int cnt = 0;
+    for(Polygon& e : pol) {
+        e.moveTo(e.p1 - Point { 0, 0, cnt * 3.0f });
+        e.rotate(Line(e.getCenterOfGravity(), e.getNormal()), cnt/10.0f);
+        cnt++;
+    }
     
-    TestGame();
+    for(int i=0; i<1000; ++i) {
+        for(const Polygon& e : pol) {
+            renderer.renderClear(e);
+        }
+        println(to_string(i));
+        viewer->show(*renderer.image);
+        for(Polygon& e : pol) {
+            e.moveTo(e.p1 + Point(0, 0, 0.5));
+            e.rotate(Line(e.getCenterOfGravity(), e.getNormal()), 0.1);
+        }
+        
+        renderer.clearImage();
+        sleep(1000/30);
+    }
 }

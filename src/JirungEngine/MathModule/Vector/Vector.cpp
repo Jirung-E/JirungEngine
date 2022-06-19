@@ -121,6 +121,9 @@ Vector Vector::unitVectorOf(const Vector& vector) {
 }
 
 float Vector::getAngleWith(const Vector& other) const {
+    if(this->magnitude() == 0 || other.magnitude() == 0) {
+        return 0.0f;
+    }
     return acos(((*this) * other) / (this->magnitude() * other.magnitude()));
 }
 
@@ -141,4 +144,22 @@ bool Vector::isParallelTo(const Vector& other) const {
 
 bool Vector::isParallel(const Vector& vector1, const Vector& vector2) {
     return vector1.isParallelTo(vector2);
+}
+
+bool Vector::isOrthogonal(const Vector& vector1, const Vector& vector2) {
+    if(vector1 * vector2 == 0.0f) {
+        return true;
+    }
+    return false;
+}
+
+
+Vector Vector::i() {
+    return Vector { 1, 0, 0 };
+}
+Vector Vector::j() {
+    return Vector { 0, 1, 0 };
+}
+Vector Vector::k() {
+    return Vector { 0, 0, 1 };
 }
