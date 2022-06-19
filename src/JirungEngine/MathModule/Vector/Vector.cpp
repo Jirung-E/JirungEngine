@@ -163,3 +163,8 @@ Vector Vector::j() {
 Vector Vector::k() {
     return Vector { 0, 0, 1 };
 }
+
+
+Vector operator*(float n, const Vector& vector) {
+    return vector * n;
+}

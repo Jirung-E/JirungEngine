@@ -46,6 +46,8 @@ namespace JirungEngine {
         static Vector j();
         static Vector k();
     };
+
+    Vector operator*(float n, const Vector& vector);
 }
 
 #endif
