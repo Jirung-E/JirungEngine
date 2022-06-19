@@ -21,3 +21,9 @@
 
 
 
+### 나중에 적용할지도?
+```
+void setxy(int x,int y){
+    printf("\x1b[%d;%dH",y,x);
+}
+```
