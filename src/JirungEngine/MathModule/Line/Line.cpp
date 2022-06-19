@@ -89,9 +89,9 @@ Point Line::getFootOfPerpendicular(const Line& line, const Point& point) {
     Point P { line.point };
     Vector V { line.vector };
     Point A { point };
-    Vector PA { A.x - P.x, A.y - P.y, A.z - P.z};
+    Vector PA { A - P};
     Vector add { V * ((PA * V) / (V*V)) };
-    Point H { P.x + add.x, P.y + add.y, P.z + add.z };
+    Point H { P + add };
     return H;
 }
 
@@ -107,7 +107,7 @@ Point Line::getFootOfPerpendicular(const Line& to, const Line& from) {
     float theta = Vector::getAngleBetween(to.vector, from.vector);
     float AH = HS / tan(theta);
     Vector AtoH { to.vector.getUnitVector() * AH };
-    Point A { H.x - AtoH.x, H.y - AtoH.y, H.z - AtoH.z };
+    Point A { H - AtoH };
     return A;
 }
 
@@ -115,8 +115,7 @@ Point Line::getFootOfPerpendicular(const Line& to, const Line& from) {
 Point Line::rotate(const Point& point, const Line& axis, float radian) {
     Point p { axis.getFootOfPerpendicularFrom(point) };
     Vector v { point - p };
-    float t = radian;
     Vector n { axis.vector.getUnitVector() };
-    Vector result { (v*cos(t)) + n*(1-cos(t))*(v*n) + (n.crossProduct(v) * sin(t)) };
-    return p + Point { result.x, result.y, result.z };
+    Vector result { (v*cos(radian)) + n*(1-cos(radian))*(v*n) + (n.crossProduct(v) * sin(radian)) };
+    return p + result;
 }
