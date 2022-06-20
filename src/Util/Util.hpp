@@ -7,8 +7,8 @@
 
 
 namespace Util {
-    void print(str_t text = " ");
-    void println(str_t text = "");
+    void print(std::string text = " ");
+    void println(std::string text = "");
 
     void sleep(unsigned short time);
     

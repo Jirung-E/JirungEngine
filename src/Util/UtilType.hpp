@@ -7,7 +7,6 @@
 namespace Util {
     using num_t = unsigned int;
     using index_t = unsigned int;
-    using str_t = std::string;
 }
 
 #endif
