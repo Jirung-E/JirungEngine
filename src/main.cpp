@@ -6,11 +6,14 @@ using namespace Util;
 
 int main() {
     cout << "Test Start" << endl;
-    print("testing");
     
-    for(int i=0; i<3; ++i) {
-        sleep(1000);
-        print(".");
+    for(int i=0; i<100; ++i) {
+        float f = getRandomFloat(-10.0f, 14.4f);
+        println(to_string(f));
+    }
+    for(int i=0; i<100; ++i) {
+        int in = getRandomInt(-5, 20);
+        println(to_string(in));
     }
     println();
     
