@@ -168,3 +168,7 @@ Vector Vector::k() {
 Vector Math::operator*(float n, const Vector& vector) {
     return vector * n;
 }
+
+Vector Math::operator-(const Vector& vector) {
+    return vector * -1;
+}
