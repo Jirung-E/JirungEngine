@@ -62,6 +62,12 @@ void testVector() {
     cout << "p // q ? -> " << Vector::isParallel(p, q) << endl;
     cout << "-p == q ? -> " << (-p == q) << endl;
     cout << "v3 * -1 == -1 * v3 ? -> " << (v3 * -1 == -1 * v3) << endl;
+    
+    cout << "p ㅗ v1 ? -> " << Vector::isOrthogonal(v1, p) << endl;
+    cout << "angle between v1, v2 = " << v1.getAngleWith(v2) << endl;
+    
+    cout << "v2\'s length = " << v2.magnitude() << endl;
+    cout << "v2.unit\'s length = " << v2.getUnitVector().magnitude() << endl;
 }
 
 void testLine() {
