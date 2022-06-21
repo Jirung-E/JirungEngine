@@ -4,5 +4,6 @@
 #include "Point/Point.hpp"
 #include "Vector/Vector.hpp"
 #include "Line/Line.hpp"
+#include "Plane/Plane.hpp"
 
 #endif
