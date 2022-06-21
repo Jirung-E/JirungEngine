@@ -5,5 +5,7 @@
 #include "Vector/Vector.hpp"
 #include "Line/Line.hpp"
 #include "Plane/Plane.hpp"
+#include "Segment/Segment.hpp"
+#include "Panel/Panel.hpp"
 
 #endif
