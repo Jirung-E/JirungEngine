@@ -48,6 +48,7 @@ namespace Math {
     };
 
     Vector operator*(float n, const Vector& vector);
+    Vector operator-(const Vector& vector);
 }
 
 #endif
