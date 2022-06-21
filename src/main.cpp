@@ -68,10 +68,6 @@ void testVector() {
     
     cout << "v2\'s length = " << v2.magnitude() << endl;
     cout << "v2.unit\'s length = " << v2.getUnitVector().magnitude() << endl;
-    
-    printf("<%6.2f, %6.2f, %6.2f>\n", Vector::i().x, Vector::i().y, Vector::i().z);
-    printf("<%6.2f, %6.2f, %6.2f>\n", Vector::j().x, Vector::j().y, Vector::j().z);
-    printf("<%6.2f, %6.2f, %6.2f>\n", Vector::k().x, Vector::k().y, Vector::k().z);
 }
 
 void testLine() {
