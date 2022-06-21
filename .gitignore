@@ -2,7 +2,6 @@ bin/
 build/
 library/
 goorm.*
-src/main.cpp
 
 
 # Prerequisites
