@@ -10,5 +10,6 @@
 #include "Polygon/Polygon.hpp"
 #include "Model/Model.hpp"
 #include "Geometry/Geometry.hpp"
+#include "Random/Random.hpp"
 
 #endif
