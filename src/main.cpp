@@ -106,7 +106,7 @@ void testGeometry() {
 int main() {
     cout << "Test" << endl;
     
-    // testPoint();
+    testPoint();
     testVector();
     testLine();
     testSegment();
