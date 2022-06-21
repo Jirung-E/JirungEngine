@@ -1,8 +1,8 @@
-#include <iostream>
-
+#include "Util/Util.hpp"
 #include "MathModule/Math.hpp"
 
 using namespace std;
+using namespace Util;
 using namespace Math;
 
 
@@ -103,6 +103,21 @@ void testGeometry() {
 }
 
 
+void testUtil() {
+    cout << "Test Start" << endl;
+    print("testing");
+    
+    for(int i=0; i<3; ++i) {
+        sleep(1000);
+        print(".");
+    }
+    println();
+    
+    sleep(5000);
+    println("Test End");
+}
+
+
 int main() {
     cout << "Test" << endl;
     
@@ -115,4 +130,6 @@ int main() {
     testPanel();
     testModel();
     testGeometry();
+  
+    TestUtil();
 }
