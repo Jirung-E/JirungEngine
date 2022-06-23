@@ -8,6 +8,10 @@ void IO::setxy(int x, int y) {
     printf("\x1b[%d;%dH", y, x);
 }
 
+void clear() {
+    system("clear");
+}
+
 
 void IO::print(std::string str) {
     printf("%s", str.c_str());
