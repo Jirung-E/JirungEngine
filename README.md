@@ -29,4 +29,4 @@ void setxy(int x,int y){
 ```
 
 #### kbhit() and getch()
-https://anythink.tistory.com/entry/Linux-linux%EC%97%90%EC%84%9C-getch-%EB%B0%8F-kbhit-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0?category=516290
+https://blog.naver.com/0lovehinaru0/100057065433
