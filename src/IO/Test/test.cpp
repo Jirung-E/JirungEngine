@@ -14,16 +14,16 @@ int main() {
     
     KeyboardListener kl;
     
-    while(1) {
-        int id = kl.getPressedKeyId();
-        if(id == 27) {
-            setxy(1, 1);
-            print("Bye");
+    while(true) {
+        clear();
+        KeyID id = kl.getPressedKeyId();
+        setxy(1, 1);
+        putchar((char)id);
+        
+        if(id == KeyID::ESC) {
+            setxy(50, 5);
+            println("Bye");
             break;
-        }
-        else {
-            setxy(1, 1);
-            print(to_string(id));
         }
     }
 }

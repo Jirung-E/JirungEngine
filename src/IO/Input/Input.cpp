@@ -8,7 +8,7 @@
 using namespace IO;
 
 
-int KeyboardListener::getPressedKeyId() {
+KeyID KeyboardListener::getPressedKeyId() {
     struct termios oldt;
     tcgetattr(STDIN_FILENO, &oldt);
     struct termios newt = oldt;
@@ -17,18 +17,18 @@ int KeyboardListener::getPressedKeyId() {
     int ch = getchar();
     tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
     
-    return ch;
+    return KeyID(ch);
 }
 
 
-bool KeyboardListener::getKeyDown(int id) {
-    
+bool KeyboardListener::getKeyDown(KeyID id) {
+    return false;
 }
 
-bool KeyboardListener::getKeyPressed(int id) {
-    
+bool KeyboardListener::getKeyPressed(KeyID id) {
+    return false;
 }
 
-bool KeyboardListener::getKeyUp(int id) {
-    
+bool KeyboardListener::getKeyUp(KeyID id) {
+    return false;
 }
