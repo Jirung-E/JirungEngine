@@ -5,6 +5,7 @@ using namespace IO;
 
 
 void IO::setxy(int x, int y) {
+    putchar('\0');
     printf("\x1b[%d;%dH", y, x);
 }
 
