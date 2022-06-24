@@ -6,14 +6,19 @@ using namespace IO;
 
 
 int main() {
+    clear();
     setxy(5, 3);
     print("Hello");
     println("Hi");
     print("lol");
     
+    KeyboardListener kl;
+    
     while(1) {
-        int id = getPressedKeyId();
+        int id = kl.getPressedKeyId();
         if(id == 27) {
+            setxy(1, 1);
+            print("Bye");
             break;
         }
         else {

@@ -5,7 +5,10 @@
 #include <unistd.h>
 
 
-int IO::getPressedKeyId() {
+using namespace IO;
+
+
+int KeyboardListener::getPressedKeyId() {
     struct termios oldt;
     tcgetattr(STDIN_FILENO, &oldt);
     struct termios newt = oldt;
@@ -15,4 +18,17 @@ int IO::getPressedKeyId() {
     tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
     
     return ch;
+}
+
+
+bool KeyboardListener::getKeyDown(int id) {
+    
+}
+
+bool KeyboardListener::getKeyPressed(int id) {
+    
+}
+
+bool KeyboardListener::getKeyUp(int id) {
+    
 }

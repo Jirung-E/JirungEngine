@@ -8,7 +8,7 @@ void IO::setxy(int x, int y) {
     printf("\x1b[%d;%dH", y, x);
 }
 
-void clear() {
+void IO::clear() {
     system("clear");
 }
 
