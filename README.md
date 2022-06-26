@@ -16,6 +16,7 @@
  - [게임수학](https://luv-n-interest.tistory.com/category/Game%20Developer%2C%20%EA%B2%8C%EC%9E%84%EA%B0%9C%EB%B0%9C%EC%9E%90)
  - [컴퓨터 그래픽스](https://professorleejaeman.tistory.com/category/Computer%20Graphics)
  - [kbhit()](https://blog.naver.com/0lovehinaru0/100057065433)
+ - [위에꺼 이상하네;](https://corsa.tistory.com/18)
 
 ### CMake
  - [modoo](https://modoocode.com/332)  
