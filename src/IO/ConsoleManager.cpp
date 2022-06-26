@@ -14,10 +14,10 @@ void IO::clear() {
 }
 
 
-void IO::print(std::string str) {
+void IO::print(string str) {
     printf("%s", str.c_str());
 }
 
-void IO::println(std::string str) {
+void IO::println(string str) {
     printf("%s\n", str.c_str());
 }
