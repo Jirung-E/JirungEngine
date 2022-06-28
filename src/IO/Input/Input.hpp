@@ -18,25 +18,16 @@ namespace IO {
     private:
         static struct termios oldt;
         
-        KeyID recent_input;
+        int recent_input;
         
     public:
         void inputModeOn();
         void inputModeOff();
         
-        KeyID getPressedKeyId();
+        KeyID getInput();
         bool detectKeyPress();
         
-        bool getKeyDown(KeyID id);
-        bool getKeyDownNow(KeyID id);
-        bool getKeyUpNow(KeyID id);
-        
-        KeyState getCurrentKeyState(KeyID id);
-    };
-    
-    class Key {
-    public:
-        static KeyState getState(KeyID id);
+        int getPressedKeyID();
     };
 }
 
