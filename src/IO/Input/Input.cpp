@@ -36,7 +36,7 @@ KeyID KeyboardListener::getInput() {
 
     tcsetattr(STDIN_FILENO, TCSAFLUSH, &buf);
     int ch = getchar();
-    recent_input = ch;
+    recent_input = KeyID(ch);
     tcsetattr(STDIN_FILENO, TCSAFLUSH, &oldt);
 
     return KeyID(ch);
@@ -53,7 +53,7 @@ bool KeyboardListener::detectKeyPress() {
     //inputModeOff();
 
     if(ch != EOF) {
-        recent_input = ch;
+        recent_input = KeyID(ch);
         // tcflush(STDIN_FILENO, TCIFLUSH);
         //ungetc(ch, stdin);
         return true;
@@ -61,6 +61,6 @@ bool KeyboardListener::detectKeyPress() {
     return false;
 }
 
-int KeyboardListener::getPressedKeyID() {
+KeyID KeyboardListener::getPressedKeyID() {
     return recent_input;
 }

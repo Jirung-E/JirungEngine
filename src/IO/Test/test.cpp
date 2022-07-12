@@ -32,9 +32,10 @@ void testDetectKeyPress() {
     
     while(true) {
         if(in->detectKeyPress()) {
-            println(to_string(in->getPressedKeyID()));
+            println(to_string((int)in->getPressedKeyID()));
             //break;
-            if(KeyID(in->getPressedKeyID()) == KeyID::ESC) {
+            if(in->getPressedKeyID() == KeyID::ESC) {
+                println("ESC");
                 break;
             }
         }

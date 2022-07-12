@@ -15,7 +15,7 @@ namespace IO {
         virtual KeyID getInput() = 0;
         virtual bool detectKeyPress() = 0;
         
-        virtual int getPressedKeyID() = 0;
+        virtual KeyID getPressedKeyID() = 0;
     };
     
     
@@ -23,7 +23,7 @@ namespace IO {
     private:
         struct termios oldt;
         
-        int recent_input;
+        KeyID recent_input;
         
     public:
         KeyboardListener();
@@ -36,7 +36,7 @@ namespace IO {
         KeyID getInput();
         bool detectKeyPress();
         
-        int getPressedKeyID();
+        KeyID getPressedKeyID();
     };
 }
 
