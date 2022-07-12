@@ -8,11 +8,16 @@
 using namespace IO;
 
 
-struct termios KeyboardListener::oldt;
+KeyboardListener::KeyboardListener() : recent_input { 0 } {
+    tcgetattr(STDIN_FILENO, &oldt);
+}
+
+KeyboardListener::~KeyboardListener() {
+    inputModeOff();
+}
 
 
 void KeyboardListener::inputModeOn() {
-    tcgetattr(STDIN_FILENO, &oldt);
     struct termios newt = oldt;
     newt.c_lflag &= ~(ICANON | ECHO);
     tcsetattr(STDIN_FILENO, TCSANOW, &newt);
@@ -53,6 +58,7 @@ bool KeyboardListener::detectKeyPress() {
 
     if(ch != EOF) {
         recent_input = ch;
+        // tcflush(STDIN_FILENO, TCIFLUSH);
         //ungetc(ch, stdin);
         return true;
     }

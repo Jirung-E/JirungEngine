@@ -14,37 +14,50 @@ void sleep(unsigned short time) {
 }
 
 
-int main() {
+void test() {
     clear();
     setxy(5, 3);
     print("Hello");
     println("Hi");
     print("lol");
-    
-    KeyboardListener kl;
+
+    Input* in = new KeyboardListener { };
     
     int count = 0;
     while(true) {
-        if(kl.detectKeyPress()) {
-            //KeyID id = kl.getInput();
+        if(in->detectKeyPress()) {
             setxy(1, 1);
             println("      ");
+            
             setxy(1, 2);
             println("      ");
             setxy(1, 2);
-            println(to_string(kl.getPressedKeyID()));
-            if(kl.getPressedKeyID() == (int)KeyID::ESC) {
-                break;
+            println(to_string(in->getPressedKeyID()));
+            
+            if(in->getPressedKeyID() == (int)KeyID::ESC) {
+                setxy(5, 3);
+                print("Exit? : ");
+                if(in->getInput() == KeyID('Y')) {
+                    break;
+                }
+                else {
+                    setxy(5, 3);
+                    print("         ");
+                }
             }
-            if(kl.getPressedKeyID() == (int)KeyID::BACKSPACE) {
+            if(in->getPressedKeyID() == (int)KeyID::BACKSPACE) {
                 setxy(40, 1);
                 println("<-");
             }
         }
+        
         setxy(1, 1);
-        println(to_string(count++));
-        sleep(1000/30);
+        //println(to_string(count++));
+        //sleep(1000/3);
     }
-    
-    kl.inputModeOff();
+}
+
+
+int main() {
+    test();
 }

@@ -9,16 +9,25 @@ namespace IO {
         UNKNOWN = -1, NONE = 0, ESC = 27, SPACE = 32, ENTER = 10, BACKSPACE = 127, TAB = 9, 
     };
     
-    enum class KeyState {
-        UP, DOWN
+    
+    class Input {
+    public:
+        virtual KeyID getInput() = 0;
+        virtual bool detectKeyPress() = 0;
+        
+        virtual int getPressedKeyID() = 0;
     };
     
     
-    class KeyboardListener {
+    class KeyboardListener : public Input {
     private:
-        static struct termios oldt;
+        struct termios oldt;
         
         int recent_input;
+        
+    public:
+        KeyboardListener();
+        ~KeyboardListener();
         
     public:
         void inputModeOn();
