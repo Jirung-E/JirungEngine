@@ -14,47 +14,57 @@ void sleep(unsigned short time) {
 }
 
 
-void test() {
-    clear();
-    setxy(5, 3);
-    print("Hello");
-    println("Hi");
-    print("lol");
-
+void testGetInput() {
     Input* in = new KeyboardListener { };
     
-    int count = 0;
+    for(int i=0; i<5; ++i) {
+        KeyID id = in->getInput();
+        println(to_string((int)id));
+
+        if(id == KeyID::BACKSPACE) {
+            println("<-");
+        }
+    }
+}
+
+void testDetectKeyPress() {
+    Input* in = new KeyboardListener { };
+    
     while(true) {
         if(in->detectKeyPress()) {
-            setxy(1, 1);
-            println("      ");
-            
-            setxy(1, 2);
-            println("      ");
-            setxy(1, 2);
             println(to_string(in->getPressedKeyID()));
-            
-            if(in->getPressedKeyID() == (int)KeyID::ESC) {
-                setxy(5, 3);
-                print("Exit? : ");
-                if(in->getInput() == KeyID('Y')) {
-                    break;
-                }
-                else {
-                    setxy(5, 3);
-                    print("         ");
-                }
-            }
-            if(in->getPressedKeyID() == (int)KeyID::BACKSPACE) {
-                setxy(40, 1);
-                println("<-");
+            //break;
+            if(KeyID(in->getPressedKeyID()) == KeyID::ESC) {
+                break;
             }
         }
-        
-        setxy(1, 1);
-        //println(to_string(count++));
-        //sleep(1000/3);
     }
+}
+
+void showNums() {
+    for(int i=0; i<100; ++i) {
+        println(to_string(i));
+        sleep(500);
+    }
+}
+
+void testGetInputByAnotherThread() {
+    thread input_thread { testDetectKeyPress };
+    thread view_thread { showNums };
+    view_thread.join();
+    input_thread.join();
+}
+
+void test() {
+    clear();
+    println("Starting Tests!!");
+    testGetInput();
+    println("--------------------------");
+    //testDetectKeyPress();
+    println("--------------------------");
+    sleep(1000);
+    testGetInputByAnotherThread();
+    println("--------------------------");
 }
 
 

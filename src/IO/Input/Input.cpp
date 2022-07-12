@@ -29,8 +29,6 @@ void KeyboardListener::inputModeOff() {
 
 
 KeyID KeyboardListener::getInput() {
-    inputModeOn();
-    
     struct termios buf = oldt;
     buf.c_lflag &= ~(ICANON | ECHO);
     buf.c_cc[VMIN] = 1;
@@ -40,8 +38,6 @@ KeyID KeyboardListener::getInput() {
     int ch = getchar();
     recent_input = ch;
     tcsetattr(STDIN_FILENO, TCSAFLUSH, &oldt);
-    
-    inputModeOff();
 
     return KeyID(ch);
 }
