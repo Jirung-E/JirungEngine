@@ -9,11 +9,26 @@ using namespace IO;
 
 
 KeyboardListener::KeyboardListener() : recent_input { 0 } {
+    tcflush(STDIN_FILENO, TCIFLUSH);
     tcgetattr(STDIN_FILENO, &oldt);
 }
 
 KeyboardListener::~KeyboardListener() {
     inputModeOff();
+}
+
+
+int KeyboardListener::getKey() {
+    int ch = getchar();
+    if(ch == 27) {
+        if(detectKeyPress()) {
+            ch = getchar();
+            if(ch == 91) {
+                ch = getchar();
+            }
+        }
+    }
+    return ch;
 }
 
 
@@ -35,7 +50,7 @@ KeyID KeyboardListener::getInput() {
     buf.c_cc[VTIME] = 0;
 
     tcsetattr(STDIN_FILENO, TCSAFLUSH, &buf);
-    int ch = getchar();
+    int ch = getKey();
     recent_input = KeyID(ch);
     tcsetattr(STDIN_FILENO, TCSAFLUSH, &oldt);
 
@@ -54,7 +69,6 @@ bool KeyboardListener::detectKeyPress() {
 
     if(ch != EOF) {
         recent_input = KeyID(ch);
-        // tcflush(STDIN_FILENO, TCIFLUSH);
         //ungetc(ch, stdin);
         return true;
     }

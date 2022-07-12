@@ -17,7 +17,7 @@ void sleep(unsigned short time) {
 void testGetInput() {
     Input* in = new KeyboardListener { };
     
-    for(int i=0; i<5; ++i) {
+    for(int i=0; i<50; ++i) {
         KeyID id = in->getInput();
         println(to_string((int)id));
 
@@ -33,7 +33,6 @@ void testDetectKeyPress() {
     while(true) {
         if(in->detectKeyPress()) {
             println(to_string((int)in->getPressedKeyID()));
-            //break;
             if(in->getPressedKeyID() == KeyID::ESC) {
                 println("ESC");
                 break;
@@ -44,6 +43,8 @@ void testDetectKeyPress() {
 
 void showNums() {
     for(int i=0; i<100; ++i) {
+        clear();
+        setxy(1, 1);
         println(to_string(i));
         sleep(500);
     }
