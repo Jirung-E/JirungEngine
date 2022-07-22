@@ -32,8 +32,9 @@ void testDetectKeyPress() {
     
     while(true) {
         if(in->detectKeyPress()) {
-            println(to_string((int)in->getPressedKeyID()));
-            if(in->getPressedKeyID() == KeyID::ESC) {
+            KeyID id = in->getInput();
+            println(to_string((int)id));
+            if(id == KeyID::ESC) {
                 println("ESC");
                 break;
             }
@@ -46,7 +47,7 @@ void showNums() {
         clear();
         setxy(1, 1);
         println(to_string(i));
-        sleep(500);
+        sleep(250);
     }
 }
 

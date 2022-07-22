@@ -7,7 +7,7 @@
 namespace IO {
     enum class KeyID {
         UNKNOWN = -1, NONE = 0, ESC = 27, SPACE = 32, ENTER = 10, BACKSPACE = 127, TAB = 9, 
-        UPARROW = 65, DOWNARROW = 66, RIGHTARROW = 67, LEFTARROW = 68, 
+        UPARROW = 183, DOWNARROW = 184, RIGHTARROW = 185, LEFTARROW = 186, 
         A = 97, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, 
     };
     

@@ -25,7 +25,9 @@ int KeyboardListener::getKey() {
             ch = getchar();
             if(ch == 91) {
                 ch = getchar();
+                ch += 27;
             }
+            ch += 91;
         }
     }
     return ch;
@@ -68,8 +70,8 @@ bool KeyboardListener::detectKeyPress() {
     //inputModeOff();
 
     if(ch != EOF) {
-        recent_input = KeyID(ch);
-        //ungetc(ch, stdin);
+        //recent_input = KeyID(ch);
+        ungetc(ch, stdin);
         return true;
     }
     return false;
