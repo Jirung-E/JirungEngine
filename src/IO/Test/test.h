@@ -69,8 +69,3 @@ void test() {
     testGetInputByAnotherThread();
     println("--------------------------");
 }
-
-
-int main() {
-    test();
-}
