@@ -23,6 +23,6 @@ void testPoint() {
 }
 
 
-int main() {
+void test() {
     testPoint();
 }
