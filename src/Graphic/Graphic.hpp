@@ -3,5 +3,6 @@
 
 #include "Display/Display.hpp"
 #include "Pixel/Pixel.hpp"
+#include "Renderer/Renderer.hpp"
 
 #endif

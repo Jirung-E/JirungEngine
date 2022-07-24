@@ -1,6 +1,7 @@
 #include "Math/Math.hpp"
 #include "IO/Input/Input.hpp"
 #include "IO/ConsoleManager.hpp"
+#include "Graphic/Graphic.hpp"
 
 #include <thread>
 #include <chrono>
@@ -8,6 +9,7 @@
 using namespace std;
 using namespace Math;
 using namespace IO;
+using namespace Graphic;
 
 
 void sleep(unsigned short time) {
@@ -65,8 +67,7 @@ void showLoadingAnimation() {
     print(" ");
 }
 
-
-int main() {
+void testIOandMath() {
     clear(); 
     
     Point p[2];
@@ -105,4 +106,17 @@ int main() {
     }
     
     graphic_thread.detach();
+}
+
+
+void testRenderer() {
+    Renderer r;
+    Polygon p;
+    r.renderClear(p);
+    print(r.image->getByString());
+}
+
+
+int main() {
+    testRenderer();
 }
