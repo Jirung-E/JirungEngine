@@ -110,13 +110,67 @@ void testIOandMath() {
 
 
 void testRenderer() {
-    Renderer r;
-    Polygon p;
-    r.renderClear(p);
-    print(r.image->getByString());
+	println("\nTest Start!\n\n");
+
+    Renderer renderer;
+    Polygon pol[50];
+    int cnt = 0;
+    for(Polygon& e : pol) {
+        e.moveTo(e.p1 - Point { 0, 0, -50.0f + cnt * 3.0f });
+        e.rotate(Line(e.getCenterOfGravity(), e.getNormal()), cnt/10.0f);
+        cnt++;
+    }
+    
+    Input* in = new KeyboardListener { };
+    
+    while(true) {
+        if(in->detectKeyPress()) {
+            in->getInput();
+            
+            switch(in->getPressedKeyID()) {
+                case KeyID::W:
+                    renderer.camera.moveTo(renderer.camera.getPosition() + Point { renderer.camera.direction() * 0.3f });
+                    break;
+                case KeyID::S:
+                    renderer.camera.moveTo(renderer.camera.getPosition() - Point { renderer.camera.direction() * 0.3f });
+                    break;
+                case KeyID::A:
+                    renderer.camera.moveTo(renderer.camera.getPosition() - Point { renderer.camera.getXAxis().vector * 0.3f });
+                    break;
+                case KeyID::D:
+                    renderer.camera.moveTo(renderer.camera.getPosition() + Point { renderer.camera.getXAxis().vector * 0.3f });
+                    break;
+                case KeyID::UPARROW:
+                    renderer.camera.rotateX(0.02f);
+                    break;
+                case KeyID::DOWNARROW:
+                    renderer.camera.rotateX(-0.02f);
+                    break;
+                case KeyID::LEFTARROW:
+                    renderer.camera.rotateY(0.02f);
+                    break;
+                case KeyID::RIGHTARROW:
+                    renderer.camera.rotateY(-0.02f);
+                    break;
+                case KeyID::SPACE:
+                    renderer.camera.moveTo(renderer.camera.getPosition() + Point { 0, 0.2f, 0 });
+                    break;
+                case KeyID::C:
+                    renderer.camera.moveTo(renderer.camera.getPosition() - Point { 0, 0.2f, 0 });
+                    break;
+            }
+            
+            renderer.clearImage();
+            for(const Polygon& e : pol) {
+                renderer.renderClear(e);
+            }
+            print(renderer.image->getByString());
+        }
+    }
 }
 
 
 int main() {
     testRenderer();
+    
 }

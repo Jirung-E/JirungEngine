@@ -45,8 +45,6 @@ Renderer::Renderer() : Renderer { 160, 45 } {
 
 
 Display Renderer::renderGeneral(const Polygon& polygon) {
-    image->clear();
-
     renderSegment(Segment { polygon.p1, Vector { polygon.p2 - polygon.p1 } });
     // to
     renderSegment(Segment { polygon.p1, Vector { polygon.p3 - polygon.p1 } });
@@ -55,8 +53,6 @@ Display Renderer::renderGeneral(const Polygon& polygon) {
 }
 
 Display Renderer::renderClear(const Polygon& polygon) {
-    //image->clear();
-
     renderSegment(Segment { polygon.p1, Vector { polygon.p2 - polygon.p1 } });
     renderSegment(Segment { polygon.p2, Vector { polygon.p3 - polygon.p2 } });
     renderSegment(Segment { polygon.p3, Vector { polygon.p1 - polygon.p3 } });
