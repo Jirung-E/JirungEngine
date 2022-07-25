@@ -1,7 +1,5 @@
 #include "Display.hpp"
 
-#include <cmath>
-
 using namespace std;
 using namespace Graphic;
 
