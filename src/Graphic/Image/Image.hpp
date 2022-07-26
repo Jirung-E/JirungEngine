@@ -22,6 +22,12 @@ namespace Graphic {
 
     public:
         void clear();
+        std::string getByString() const;
+        unsigned short int getWidth() const;
+        unsigned short int getHeight() const;
+
+        unsigned short int getPixelBrightness(unsigned short int x, unsigned short int y) const;
+        void setPixelBrightness(unsigned short int level, unsigned short int x, unsigned short int y);
         
     private:
         void terminate();

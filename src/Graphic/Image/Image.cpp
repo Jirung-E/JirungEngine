@@ -1,5 +1,6 @@
 #include "Image.hpp"
 
+using namespace std;
 using namespace Graphic;
 
 
@@ -55,6 +56,41 @@ void Image::clear() {
             pixels[i][k].setBrightness(0);
         }
     }
+}
+
+std::string Image::getByString() const {
+    string result = "";
+    for(int i=0; i<height; ++i) {
+        for(int k=0; k<width; ++k) {
+            result += pixels[i][k].get();
+        }
+        result += "\n";
+    }
+    return result;
+}
+
+unsigned short int Image::getWidth() const {
+    return width;
+}
+
+unsigned short int Image::getHeight() const {
+    return height;
+}
+
+unsigned short int Image::getPixelBrightness(unsigned short int x, unsigned short int y) const {
+    if(x >= width || y >= height) {
+        return 0;
+    }
+
+    return pixels[height-1 - y][x].getBrightness();
+}
+
+void Image::setPixelBrightness(unsigned short int level, unsigned short int x, unsigned short int y) {
+    if(x >= width || y >= height) {
+        return;
+    }
+
+    pixels[height-1 - y][x].setBrightness(level);
 }
 
 

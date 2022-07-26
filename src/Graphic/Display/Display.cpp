@@ -53,6 +53,15 @@ Display Display::operator=(const Display& other) {
 }
 
 
+void Display::showImage(const Image* image) {
+    for(int i=0; i<height; ++i) {
+        for(int k=0; k<width; ++k) {
+            setPixelBrightness(image->getPixelBrightness(k, i), k, i);
+        }
+    }
+}
+
+
 void Display::clear() {
     for(int i=0; i<height; ++i) {
         for(int k=0; k<width; ++k) {
