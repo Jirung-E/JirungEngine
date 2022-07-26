@@ -13,6 +13,9 @@ void test() {
     display.setPixelBrightness(3, 7, 5);
     display.setPixelBrightness(4, 8, 5);
     display.setPixelBrightness(5, 9, 5);
+    display.setPixelBrightness(6, 10, 5);
+    display.setPixelBrightness(7, 11, 5);
+    display.setPixelBrightness(8, 12, 5);
     puts(display.getByString().c_str());
     
     puts("\n-------------------------------------------------------------------------\n");
