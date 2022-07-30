@@ -6,7 +6,7 @@ using namespace std;
 using namespace Graphic;
 
 
-vector<char> ConsolePixel::pixel_set { ' ', '.', '-', '+', '*', '#' };
+vector<char> ConsolePixel::pixel_set { ' ', '.', ':', '|', '$', '#', '&', '%', '@' };
 
 ConsolePixel::ConsolePixel() : pixel { ' ' } {
 
@@ -34,15 +34,12 @@ string ConsolePixel::get() const {
 }
 
 float ConsolePixel::getBrightness() const {
-    int index = 0;
-    for(char e : pixel_set) {
-        if(pixel == e) {
-            break;
+    for(int i=0; i<pixel_set.size(); ++i) {
+        if(pixel == pixel_set[i]) {
+            return (float(i) / getBrightnessMax()) * 100.0f;
         }
-        index++;
     }
-    
-    return (index / getBrightnessMax()) * 100.0f;
+    return 0.0f;
 }
 
 void ConsolePixel::setBrightness(float level) {

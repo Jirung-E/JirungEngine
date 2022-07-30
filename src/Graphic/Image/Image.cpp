@@ -9,7 +9,6 @@ pixels { new Pixel**[height] } {
     for(int i=0; i<height; ++i) {
         pixels[i] = new Pixel*[width];
     }
-    clear();
 }
 
 Image::Image() : Image { 80, 40 } {
@@ -26,27 +25,6 @@ Image::Image(const Image& image) : Image { image.width, image.height } {
 
 Image::~Image() {
     terminate();
-}
-
-
-Image Image::operator=(const Image& other) {
-    terminate();
-    
-    width = other.width;
-    height = other.height;
-    
-    pixels = new Pixel**[height];
-    for(int i=0; i<height; ++i) {
-        pixels[i] = new Pixel*[width];
-    }
-    
-    for(int i=0; i<height; ++i) {
-        for(int k=0; k<width; ++k) {
-            pixels[i][k] = other.pixels[i][k];
-        }
-    }
-    
-    return *this;
 }
 
 
@@ -67,15 +45,15 @@ unsigned short int Image::getHeight() const {
     return height;
 }
 
-unsigned short int Image::getPixelBrightness(unsigned short int x, unsigned short int y) const {
+float Image::getPixelBrightness(unsigned short int x, unsigned short int y) const {
     if(x >= width || y >= height) {
-        return 0;
+        return 0.0f;
     }
 
     return pixels[height-1 - y][x]->getBrightness();
 }
 
-void Image::setPixelBrightness(unsigned short int level, unsigned short int x, unsigned short int y) {
+void Image::setPixelBrightness(float level, unsigned short int x, unsigned short int y) {
     if(x >= width || y >= height) {
         return;
     }

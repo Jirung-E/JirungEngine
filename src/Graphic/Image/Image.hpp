@@ -6,7 +6,7 @@
 
 namespace Graphic {
     class Image {
-    private:
+    protected:
         Pixel*** pixels;
         
         unsigned short int width;
@@ -17,18 +17,16 @@ namespace Graphic {
         Image();
         Image(const Image& image);
         ~Image();
-        
-        Image operator=(const Image& other);
 
     public:
         void clear();
         unsigned short int getWidth() const;
         unsigned short int getHeight() const;
 
-        unsigned short int getPixelBrightness(unsigned short int x, unsigned short int y) const;
-        void setPixelBrightness(unsigned short int level, unsigned short int x, unsigned short int y);
+        float getPixelBrightness(unsigned short int x, unsigned short int y) const;
+        void setPixelBrightness(float level, unsigned short int x, unsigned short int y);
         
-    private:
+    protected:
         void terminate();
     };
 }
