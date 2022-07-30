@@ -1,30 +1,39 @@
-#ifndef __Image_hpp__
-#define __Image_hpp__
+#ifndef __ConsoleDisplay_hpp__
+#define __ConsoleDisplay_hpp__
+
+#include "Display.hpp"
 
 #include "../Pixel/Pixel.hpp"
+#include "../Image/Image.hpp"
 
 
 namespace Graphic {
-    class Image {
+    class ConsoleDisplay : public Display {
     private:
-        Pixel*** pixels;
-        
+        Pixel** pixels;
+
         unsigned short int width;
         unsigned short int height;
-        
+
+        unsigned short int backlight_brightness;
+    
     public:
-        Image(unsigned short int width, unsigned short int height);
-        Image();
-        Image(const Image& image);
-        ~Image();
+        Display(unsigned short int width, unsigned short int height);
+        Display();
+        Display(const Display& display);
+        ~Display();
         
-        Image operator=(const Image& other);
+        Display operator=(const Display& other);
 
     public:
+        void showImage(const Image* image);
+        
         void clear();
+        std::string getByString() const;
         unsigned short int getWidth() const;
         unsigned short int getHeight() const;
 
+    private:
         unsigned short int getPixelBrightness(unsigned short int x, unsigned short int y) const;
         void setPixelBrightness(unsigned short int level, unsigned short int x, unsigned short int y);
         

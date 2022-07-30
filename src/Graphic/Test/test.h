@@ -6,7 +6,7 @@ using namespace std;
 using namespace Graphic;
 
 
-void test() {
+void test1() {
     Display display;
     Image image;
     image.setPixelBrightness(1, 5, 5);
@@ -24,4 +24,15 @@ void test() {
     
     display.clear();
     puts(display.getByString().c_str());
+}
+
+void test2() {
+    Display* display = new ConsoleDisplay { };
+    Image* img = new ConsoleImage { };
+    
+}
+
+
+void test() {
+
 }

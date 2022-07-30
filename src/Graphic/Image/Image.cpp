@@ -5,9 +5,9 @@ using namespace Graphic;
 
 
 Image::Image(unsigned short int width, unsigned short int height) : width { width }, height { height }, 
-pixels { new Pixel*[height] } {
+pixels { new Pixel**[height] } {
     for(int i=0; i<height; ++i) {
-        pixels[i] = new Pixel[width];
+        pixels[i] = new Pixel*[width];
     }
     clear();
 }
@@ -35,9 +35,9 @@ Image Image::operator=(const Image& other) {
     width = other.width;
     height = other.height;
     
-    pixels = new Pixel*[height];
+    pixels = new Pixel**[height];
     for(int i=0; i<height; ++i) {
-        pixels[i] = new Pixel[width];
+        pixels[i] = new Pixel*[width];
     }
     
     for(int i=0; i<height; ++i) {
@@ -53,21 +53,11 @@ Image Image::operator=(const Image& other) {
 void Image::clear() {
     for(int i=0; i<height; ++i) {
         for(int k=0; k<width; ++k) {
-            pixels[i][k].setBrightness(0);
+            pixels[i][k]->setBrightness(0);
         }
     }
 }
 
-std::string Image::getByString() const {
-    string result = "";
-    for(int i=0; i<height; ++i) {
-        for(int k=0; k<width; ++k) {
-            result += pixels[i][k].get();
-        }
-        result += "\n";
-    }
-    return result;
-}
 
 unsigned short int Image::getWidth() const {
     return width;
@@ -82,7 +72,7 @@ unsigned short int Image::getPixelBrightness(unsigned short int x, unsigned shor
         return 0;
     }
 
-    return pixels[height-1 - y][x].getBrightness();
+    return pixels[height-1 - y][x]->getBrightness();
 }
 
 void Image::setPixelBrightness(unsigned short int level, unsigned short int x, unsigned short int y) {
@@ -90,7 +80,7 @@ void Image::setPixelBrightness(unsigned short int level, unsigned short int x, u
         return;
     }
 
-    pixels[height-1 - y][x].setBrightness(level);
+    pixels[height-1 - y][x]->setBrightness(level);
 }
 
 
