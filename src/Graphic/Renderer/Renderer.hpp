@@ -2,7 +2,7 @@
 #define __Renderer_hpp__
 
 #include "../../Math/Math.hpp"
-#include "../Display/Display.hpp"
+#include "../Image/Image.hpp"
 
 
 namespace Graphic {
@@ -25,15 +25,15 @@ namespace Graphic {
             Math::Vector getBottomLimit() const;
         } camera;
 
-        Display* image;
+        Image* image;
 
     public:
         Renderer(unsigned short int width, unsigned short int height);
         Renderer();
         
     public:
-        Display renderGeneral(const Math::Polygon& polygon);
-        Display renderClear(const Math::Polygon& polygon);
+        Image renderGeneral(const Math::Polygon& polygon);
+        Image renderClear(const Math::Polygon& polygon);
 
         void clearImage();
         

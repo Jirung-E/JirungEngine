@@ -35,7 +35,7 @@ Vector Renderer::Camera::getBottomLimit() const {
 // </Camera> --------------------------------------------------------------------------------------------------------------------------
 
 
-Renderer::Renderer(unsigned short int width, unsigned short int height) : camera { }, image { new Display { width, height } } {
+Renderer::Renderer(unsigned short int width, unsigned short int height) : camera { }, image { new Image { width, height } } {
     
 }
 
@@ -44,7 +44,7 @@ Renderer::Renderer() : Renderer { 160, 45 } {
 }
 
 
-Display Renderer::renderGeneral(const Polygon& polygon) {
+Image Renderer::renderGeneral(const Polygon& polygon) {
     renderSegment(Segment { polygon.p1, Vector { polygon.p2 - polygon.p1 } });
     // to
     renderSegment(Segment { polygon.p1, Vector { polygon.p3 - polygon.p1 } });
@@ -52,7 +52,7 @@ Display Renderer::renderGeneral(const Polygon& polygon) {
     return *image;
 }
 
-Display Renderer::renderClear(const Polygon& polygon) {
+Image Renderer::renderClear(const Polygon& polygon) {
     renderSegment(Segment { polygon.p1, Vector { polygon.p2 - polygon.p1 } });
     renderSegment(Segment { polygon.p2, Vector { polygon.p3 - polygon.p2 } });
     renderSegment(Segment { polygon.p3, Vector { polygon.p1 - polygon.p3 } });

@@ -2,6 +2,7 @@
 #include "IO/Input/Input.hpp"
 #include "IO/ConsoleManager.hpp"
 #include "Graphic/Graphic.hpp"
+#include "Graphic/Image/ConsoleImage.hpp"
 
 #include <thread>
 #include <chrono>
@@ -164,7 +165,8 @@ void testRenderer() {
             for(const Polygon& e : pol) {
                 renderer.renderClear(e);
             }
-            print(renderer.image->getByString());
+            ConsoleImage* ci = new ConsoleImage { renderer.image };
+            print(ci->getByString());
         }
     }
 }
