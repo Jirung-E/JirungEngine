@@ -11,10 +11,6 @@ pixels { new Pixel**[height] } {
     }
 }
 
-Image::Image() : Image { 80, 40 } {
-
-}
-
 Image::Image(const Image& image) : Image { image.width, image.height } {
     for(int i=0; i<height; ++i) {
         for(int k=0; k<width; ++k) {

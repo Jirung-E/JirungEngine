@@ -14,7 +14,6 @@ namespace Graphic {
         
     public:
         Image(unsigned short int width, unsigned short int height);
-        Image();
         Image(const Image& image);
         ~Image();
 
