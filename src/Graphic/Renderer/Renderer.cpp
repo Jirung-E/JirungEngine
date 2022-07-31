@@ -98,7 +98,7 @@ void Renderer::showPointOnImage(const Point& point) {
 
     unsigned short int x = static_cast<unsigned short int>(round(point.x));
     unsigned short int y = static_cast<unsigned short int>(round(point.y));
-    image->setPixelBrightness(image->getPixelBrightness(x, y)+1, x, y);
+    image->setPixelBrightness(100, x, y);
 }
 
 void Renderer::renderPoint(const Point& point) {
