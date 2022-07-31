@@ -175,7 +175,36 @@ void testRenderer() {
 }
 
 
+void testGraphicThread() {
+    Renderer* renderer = new ConsoleRenderer { };
+    
+    int num_of_polygons = 50;
+    Polygon pol[num_of_polygons];
+    for(int i=0; i<num_of_polygons; ++i) {
+        pol[i].moveTo(pol[i].p1 - Point { 0, 0, -50.0f + i*3.0f });
+        pol[i].rotate(Line(pol[i].getCenterOfGravity(), pol[i].getNormal()), i/10.0f);
+    }
+    
+    thread graphic_thread { [&]() { 
+        while(true) {
+            renderer->clearImage();
+            for(const Polygon& e : pol) {
+                renderer->renderClear(e);
+            }
+
+            ConsoleImage* ci = new ConsoleImage { renderer->image };
+            print(ci->getByString());
+            sleep(1000/30);
+        }
+    } };
+    
+    sleep(10000);
+    
+    graphic_thread.detach();
+}
+
+
 int main() {
-    testRenderer();
+    testGraphicThread();
     
 }
