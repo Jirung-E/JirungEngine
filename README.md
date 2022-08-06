@@ -3,7 +3,7 @@
 3D Rendering, Physics, Mathematics...
 - - -
 
-![](https://github.com/Jirung-E/JirungEngine/blob/main/screenshots/20220529_161112.gif)
+![](screenshots/20220529_161112.gif)
 ![](screenshots/20220608_181345.gif)
 
 
