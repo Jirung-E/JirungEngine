@@ -123,6 +123,8 @@ void testRenderer() {
     }
     
     Renderer* renderer = new ConsoleRenderer { };
+    Renderer* axis_renderer = new ConsoleRenderer { };
+    Polygon xax;
     
     Input* in = new KeyboardListener { };
     
@@ -163,13 +165,23 @@ void testRenderer() {
                     break;
             }
             
+            if(in->getPressedKeyID() == KeyID::ESC) {
+                break;
+            }
+            
             renderer->clearImage();
             for(const Polygon& e : pol) {
                 renderer->renderClear(e);
             }
             
+            axis_renderer->clearImage();
+            axis_renderer->renderClear(xax);
+            
             ConsoleImage* ci = new ConsoleImage { renderer->image };
             print(ci->getByString());
+            
+            ConsoleImage* aci = new ConsoleImage { axis_renderer->image };
+            print(aci->getByString());
         }
     }
 }
@@ -201,4 +213,9 @@ void testGraphicThread() {
     sleep(10000);
     
     graphic_thread.detach();
+}
+
+
+void test() {
+    testRenderer();
 }

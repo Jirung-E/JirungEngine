@@ -2,6 +2,5 @@
 
 
 int main() {
-    testRenderer();
-    
+    test();
 }
