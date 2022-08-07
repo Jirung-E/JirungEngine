@@ -125,6 +125,8 @@ void testRenderer() {
     Renderer* renderer = new ConsoleRenderer { };
     Renderer* axis_renderer = new ConsoleRenderer { };
     Polygon xax;
+    Polygon yax;
+    Polygon zax;
     
     Input* in = new KeyboardListener { };
     
@@ -153,9 +155,11 @@ void testRenderer() {
                     break;
                 case KeyID::LEFTARROW:
                     renderer->camera.rotateY(0.02f);
+                    xax.rotate(-0.02f);
                     break;
                 case KeyID::RIGHTARROW:
                     renderer->camera.rotateY(-0.02f);
+                    xax.rotate(0.02f);
                     break;
                 case KeyID::SPACE:
                     renderer->camera.moveTo(renderer->camera.getPosition() + Point { 0, 0.2f, 0 });
@@ -177,11 +181,13 @@ void testRenderer() {
             axis_renderer->clearImage();
             axis_renderer->renderClear(xax);
             
+            ImageEditor ie;
+            Image* ai = new ConsoleImage { 20, 10 };
+            ie.draw(ai, axis_renderer->image, -(axis_renderer->image->getWidth()/2) + ai->getWidth()/2, -(axis_renderer->image->getHeight()/2) + ai->getHeight()/2);
+            ie.draw(renderer->image, ai, 0, renderer->image->getHeight()-1 - ai->getHeight());
+            
             ConsoleImage* ci = new ConsoleImage { renderer->image };
             print(ci->getByString());
-            
-            ConsoleImage* aci = new ConsoleImage { axis_renderer->image };
-            print(aci->getByString());
         }
     }
 }
