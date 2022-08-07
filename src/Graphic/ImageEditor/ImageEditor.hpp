@@ -7,7 +7,7 @@
 namespace Graphic {
     class ImageEditor {
     public:
-        static void draw(Image* base, Image* other);
+        static void draw(Image* base, Image* other, int point_x, int point_y);
     };
 }
 
