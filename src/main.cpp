@@ -1,4 +1,4 @@
-#include "Test/RenderingTest.h"
+#include "Engine/Test/test.h"
 
 
 int main() {

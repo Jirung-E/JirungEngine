@@ -9,10 +9,9 @@
 
 
 namespace Engine {
-    class Object {
+    class Object : public Math::Geometry {
     public:
         std::vector<Math::Polygon*> polygons;
-        Math::Geometry geometry;
         Physics physics;
         
     public:
@@ -20,7 +19,14 @@ namespace Engine {
         ~Object();
         
     public:
-        void addPolygon(Math::Polygon& polygon, Math::Point& point);
+        void addPolygon(Math::Polygon* polygon, Math::Point point = { 0, 0, 0 });
+        
+        void rotateX(float radian);
+        void rotateY(float radian);
+        void rotateZ(float radian);
+        void rotate(const Math::Line& axis, float radian);
+        
+        void moveTo(const Point& point);
     };
 }
 
