@@ -3,6 +3,7 @@
 
 #include "../../Math/Geometry/Geometry.hpp"
 #include "../../Math/Polygon/Polygon.hpp"
+#include "../Physics/Physics.hpp"
 
 #include <vector>
 
@@ -10,16 +11,16 @@
 namespace Engine {
     class Object {
     public:
-        std::vector<Math::Polygon> polygons;
+        std::vector<Math::Polygon*> polygons;
         Math::Geometry geometry;
+        Physics physics;
         
     public:
         Object();
         ~Object();
         
     public:
-        void setPolygons(std::vector<Math::Polygon> polygons);
-        void addPolygon(Math::Polygon polygon, Math::Point point);
+        void addPolygon(Math::Polygon& polygon, Math::Point& point);
     };
 }
 
