@@ -12,7 +12,7 @@ using namespace Math;
 using namespace IO;
 
 
-void test() {
+void testObject() {
     println("\n\n\nTest Start!\n\n\n");
     
     Object ball1;
@@ -83,4 +83,9 @@ void test() {
             print(ci->getByString());
         }
     }
+}
+
+
+void test() {
+    testObject();
 }

@@ -1,6 +1,6 @@
-#include "Engine/Test/test.h"
+#include "Test/ThreadTest.h"
 
 
 int main() {
-    test();
+    testThread();
 }
