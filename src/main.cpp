@@ -1,6 +1,6 @@
-#include "Test/RenderingTest.h"
+#include "Test/ThreadTest.h"
 
 
 int main() {
-    test();
+    testThread();
 }

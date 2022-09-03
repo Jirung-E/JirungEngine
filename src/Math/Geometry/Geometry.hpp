@@ -8,7 +8,7 @@
 
 namespace Math {
     class Geometry {
-    private:
+    protected:
         Point position;
         Line x_axis;
         Line y_axis;

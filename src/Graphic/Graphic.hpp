@@ -7,5 +7,6 @@
 #include "ImageEditor/ImageEditor.hpp"
 #include "Pixel/Pixel.hpp"
 #include "Renderer/Renderer.hpp"
+#include "Renderer/ConsoleRenderer.hpp"
 
 #endif
