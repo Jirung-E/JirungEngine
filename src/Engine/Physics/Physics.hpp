@@ -14,6 +14,8 @@ namespace Engine {
         
     public:
         // Physics();
+        
+        void update();
     };
 }
 

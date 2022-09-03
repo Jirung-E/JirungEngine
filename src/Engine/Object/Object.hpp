@@ -26,7 +26,9 @@ namespace Engine {
         void rotateZ(float radian);
         void rotate(const Math::Line& axis, float radian);
         
-        void moveTo(const Point& point);
+        void moveTo(const Math::Point& point);
+        
+        void update();
     };
 }
 

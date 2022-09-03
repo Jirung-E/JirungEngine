@@ -60,3 +60,8 @@ void Object::moveTo(const Point& point) {
     }
     Geometry::moveTo(point);
 }
+
+void Object::update() {
+    physics.update();
+    moveTo(position + physics.velocity);
+}

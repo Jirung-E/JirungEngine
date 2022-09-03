@@ -18,9 +18,10 @@ void test() {
     Object ball1;
     ball1.addPolygon(new Polygon { });
     Object ball2;
-    ball1.addPolygon(new Polygon { });
+    ball2.addPolygon(new Polygon { });
     ball2.rotateY(M_PI/2);
-    ball2.moveTo(10, 0, 0);
+    ball2.moveTo({ 2, 0, 0 });
+    ball2.physics.velocity = { 0, 1, 0 };
     
     Renderer* renderer = new ConsoleRenderer { };
     
@@ -29,6 +30,9 @@ void test() {
     while(true) {
         if(in->detectKeyPress()) {
             in->getInput();
+            
+            ball2.physics.acceleration = (ball1.getPosition() - ball2.getPosition()) / pow(Point::getDistanceBetween(ball1.getPosition(), ball2.getPosition()), 2);
+            ball2.update();
             
             switch(in->getPressedKeyID()) {
                 case KeyID::W:
