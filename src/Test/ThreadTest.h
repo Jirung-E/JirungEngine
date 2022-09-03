@@ -4,27 +4,42 @@
 #include "../IO/Input/Input.hpp"
 
 #include <thread>
+#include <chrono>
 
 using namespace std;
 using namespace Engine;
 using namespace Graphic;
+using namespace Math;
 using namespace IO;
 
 
+bool flag = true;
+
 Renderer* renderer;
 Input* input;
+
+Object obj1;
+Object obj2;
+
+
+void sleep(unsigned short time) {
+    this_thread::sleep_for(chrono::milliseconds(time));
+}
 
 
 void io() {
     println("io");
     input = new KeyboardListener { };
     
-    while(true) {
+    while(flag) {
         if(input->detectKeyPress()) {
             input->getInput();
             
             if(input->getPressedKeyID() == KeyID::ESC) {
-                break;
+                flag = false;
+            }
+            if(input->getPressedKeyID() == KeyID::M) {
+                obj1.addPolygon(new Polygon { });
             }
         }
     }
@@ -32,6 +47,18 @@ void io() {
 
 void graphic() {
     println("graphic");
+    renderer = new ConsoleRenderer { };
+    
+    while(flag) {
+        for(auto e : obj1.polygons) {
+            renderer->renderClear(*e);
+        }
+        
+        ConsoleImage* ci = new ConsoleImage { renderer->image };
+        print(ci->getByString());
+        
+        sleep(1000/30);
+    }
 }
 
 void engine() {
