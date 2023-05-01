@@ -1,3 +1,6 @@
+# develop 브랜치가 최신버전입니다.
+# 리눅스에서만 돌아갑니다.
+
 # GameEngine
 
 3D Rendering, Physics, Mathematics...
