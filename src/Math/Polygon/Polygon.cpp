@@ -1,11 +1,16 @@
 #include "Polygon.hpp"
 
+#ifdef _WIN32
+#define _USE_MATH_DEFINES
+#endif
 #include <cmath>
 
 using namespace Math;
 
 
-Polygon::Polygon() : p1 { 0, 1, 0 }, p2 { -1.0f*cos(M_PI/6), -1.0f/2, 0 }, p3 { 1.0f*cos(M_PI/6), -1.0f/2, 0 } {
+Polygon::Polygon() : p1 { 0, 1, 0 }, 
+p2 { static_cast<float>(-1.0f*cos(M_PI/6)), -1.0f/2, 0 }, 
+p3 { static_cast<float>(1.0f*cos(M_PI/6)), -1.0f/2, 0 } {
 
 }
 

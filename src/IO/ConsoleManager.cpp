@@ -10,7 +10,12 @@ void IO::setxy(int x, int y) {
 }
 
 void IO::clear() {
+#ifdef __linux__
     system("clear");
+#endif
+#ifdef _WIN32
+    system("cls");
+#endif
 }
 
 

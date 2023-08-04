@@ -57,7 +57,7 @@ void graphic() {
         ConsoleImage* ci = new ConsoleImage { renderer->image };
         print(ci->getByString());
         
-        sleep(1000/30);
+        ::sleep(1000/30);
     }
 }
 

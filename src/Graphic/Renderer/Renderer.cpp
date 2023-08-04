@@ -1,6 +1,9 @@
 #include "Renderer.hpp"
 
-#include <cmath>
+#ifdef _WIN32
+#define _USE_MATH_DEFINES
+#endif
+#include <math.h>
 
 using namespace std;
 using namespace Math;
@@ -8,7 +11,7 @@ using namespace Graphic;
 
 
 // <Camera> ---------------------------------------------------------------------------------------------------------------------------
-Renderer::Camera::Camera() : view_distance { 128 }, field_of_view { M_PI/1.8f } {
+Renderer::Camera::Camera() : view_distance { 128 }, field_of_view { static_cast<float>(M_PI/1.8) } {
     moveTo(Point { 0, 0, 64 });
 }
 
@@ -120,7 +123,7 @@ void Renderer::renderSegment(const Segment& segment) {
     float distance = Point::getDistanceBetween(transformToPointOfDisplay(start_point), transformToPointOfDisplay(end_point));
     
     for(int i=0; i<distance; ++i) {
-        Vector d { direction.getUnitVector() * i };
+        Vector d { direction.getUnitVector() * (float)i };
         Point p { transformToPointOfDisplay(start_point) + Point { d.x, d.y, d.z } };
         if(p.x < 0.0f || p.y < 0.0f || p.x >= image->getWidth() || p.y >= image->getHeight()) {
             return;
