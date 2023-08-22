@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Test">
+      <UniqueIdentifier>{1401fe95-1cec-45f8-bea9-640b407ae826}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine">
+      <UniqueIdentifier>{555c77b0-1e83-4435-ab35-e0c97bcddc98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphic">
+      <UniqueIdentifier>{464a2be8-fbe9-45b6-a29f-85b6425c7986}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\IO">
+      <UniqueIdentifier>{a6a48040-2794-40f0-8dfd-05d9a946e25b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Math">
+      <UniqueIdentifier>{eecc9b6b-2cff-4966-a232-f73a416321b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\IO\Input">
+      <UniqueIdentifier>{426464fa-41fa-4070-9fe4-b8545b2cba83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\IO\Test">
+      <UniqueIdentifier>{5546638a-bd94-46e1-b4c1-593af656e412}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Math\Point">
+      <UniqueIdentifier>{6399ec62-5a11-4c84-a04d-cae6d359dcf5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Math\Geometry">
+      <UniqueIdentifier>{758a9fdf-bac7-4f5e-abf3-8982131d92eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Math\Line">
+      <UniqueIdentifier>{6e5fd3ad-0296-47a8-abde-504d0009784e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Math\Model">
+      <UniqueIdentifier>{98e2ab1d-34d2-4b68-9e8a-69f3f0c15586}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Math\Panel">
+      <UniqueIdentifier>{383187e3-05bf-451b-bebd-6d27e39b9196}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Math\Plane">
+      <UniqueIdentifier>{a0375af6-19a4-4b0f-a1b9-bad1a895eb49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Math\Polygon">
+      <UniqueIdentifier>{a52ad196-907b-4ec5-812d-a15a5c980066}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Math\Random">
+      <UniqueIdentifier>{1aee82e7-6b7e-4742-b913-a8c9bb53b04a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Math\Segment">
+      <UniqueIdentifier>{33a27948-ba9d-44dc-ad0c-da8f4d8d1ce7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Math\Test">
+      <UniqueIdentifier>{01b23553-8fb5-4395-bc56-50ed2ab69ee8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Math\Vector">
+      <UniqueIdentifier>{94683c9f-59d0-402f-9b3d-95b11133aca7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphic\Image">
+      <UniqueIdentifier>{9f542c1e-fcc9-4f47-b74c-d75765da98cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphic\ImageEditor">
+      <UniqueIdentifier>{259c4330-3da6-4d89-ae80-216c54941544}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphic\Pixel">
+      <UniqueIdentifier>{36332263-f623-4fc7-8e52-c64210ff11bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphic\Renderer">
+      <UniqueIdentifier>{9be4d372-c4f1-48d3-9dcc-d1447a6760b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphic\Test">
+      <UniqueIdentifier>{43eeb643-d834-4e19-9eea-51e0dbea9eeb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Object">
+      <UniqueIdentifier>{ec436bc0-3156-4c8c-9a81-84ae4d89fd17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Physics">
+      <UniqueIdentifier>{75c86dfa-78df-45fb-a1fc-5f4d6e3341ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Test">
+      <UniqueIdentifier>{737bb968-496b-4a1e-842f-e6941f838238}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IO\ConsoleManager.cpp">
+      <Filter>Source Files\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IO\Input\Input.cpp">
+      <Filter>Source Files\IO\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Math\Geometry\Geometry.cpp">
+      <Filter>Source Files\Math\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Math\Line\Line.cpp">
+      <Filter>Source Files\Math\Line</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Math\Model\Model.cpp">
+      <Filter>Source Files\Math\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Math\Vector\Vector.cpp">
+      <Filter>Source Files\Math\Vector</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Math\Segment\Segment.cpp">
+      <Filter>Source Files\Math\Segment</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Math\Random\Random.cpp">
+      <Filter>Source Files\Math\Random</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Math\Polygon\Polygon.cpp">
+      <Filter>Source Files\Math\Polygon</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Math\Plane\Plane.cpp">
+      <Filter>Source Files\Math\Plane</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Math\Panel\Panel.cpp">
+      <Filter>Source Files\Math\Panel</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Math\Point\Point.cpp">
+      <Filter>Source Files\Math\Point</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphic\Image\ConsoleImage.cpp">
+      <Filter>Source Files\Graphic\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphic\Image\Image.cpp">
+      <Filter>Source Files\Graphic\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphic\ImageEditor\ImageEditor.cpp">
+      <Filter>Source Files\Graphic\ImageEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphic\Renderer\ConsoleRenderer.cpp">
+      <Filter>Source Files\Graphic\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphic\Renderer\Renderer.cpp">
+      <Filter>Source Files\Graphic\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphic\Pixel\ConsolePixel.cpp">
+      <Filter>Source Files\Graphic\Pixel</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphic\Pixel\Pixel.cpp">
+      <Filter>Source Files\Graphic\Pixel</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\Physics\Physics.cpp">
+      <Filter>Source Files\Engine\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\Object\Object.cpp">
+      <Filter>Source Files\Engine\Object</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\README.md">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Test\RenderingTest.h">
+      <Filter>Source Files\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Test\ThreadTest.h">
+      <Filter>Source Files\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IO\ConsoleManager.hpp">
+      <Filter>Source Files\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IO\Input\Input.hpp">
+      <Filter>Source Files\IO\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IO\Test\test.h">
+      <Filter>Source Files\IO\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Math\Math.hpp">
+      <Filter>Source Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Math\Geometry\Geometry.hpp">
+      <Filter>Source Files\Math\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Math\Line\Line.hpp">
+      <Filter>Source Files\Math\Line</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Math\Model\Model.hpp">
+      <Filter>Source Files\Math\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Math\Vector\Vector.hpp">
+      <Filter>Source Files\Math\Vector</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Math\Test\test.h">
+      <Filter>Source Files\Math\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Math\Segment\Segment.hpp">
+      <Filter>Source Files\Math\Segment</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Math\Random\Random.hpp">
+      <Filter>Source Files\Math\Random</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Math\Polygon\Polygon.hpp">
+      <Filter>Source Files\Math\Polygon</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Math\Plane\Plane.hpp">
+      <Filter>Source Files\Math\Plane</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Math\Panel\Panel.hpp">
+      <Filter>Source Files\Math\Panel</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Math\Point\Point.hpp">
+      <Filter>Source Files\Math\Point</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphic\Graphic.hpp">
+      <Filter>Source Files\Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphic\Image\ConsoleImage.hpp">
+      <Filter>Source Files\Graphic\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphic\Image\Image.hpp">
+      <Filter>Source Files\Graphic\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphic\ImageEditor\ImageEditor.hpp">
+      <Filter>Source Files\Graphic\ImageEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphic\Test\test.h">
+      <Filter>Source Files\Graphic\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphic\Renderer\ConsoleRenderer.hpp">
+      <Filter>Source Files\Graphic\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphic\Renderer\Renderer.hpp">
+      <Filter>Source Files\Graphic\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphic\Pixel\ConsolePixel.hpp">
+      <Filter>Source Files\Graphic\Pixel</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphic\Pixel\Pixel.hpp">
+      <Filter>Source Files\Graphic\Pixel</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Test\test.h">
+      <Filter>Source Files\Engine\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Physics\Physics.hpp">
+      <Filter>Source Files\Engine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Object\Object.hpp">
+      <Filter>Source Files\Engine\Object</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
