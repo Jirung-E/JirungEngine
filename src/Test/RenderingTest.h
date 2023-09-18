@@ -115,7 +115,7 @@ namespace RenderingTest {
     void testRenderer() {
         println("\nTest Start!\n\n");
 
-        Polygon pol[50];
+        Polygon pol[10];
         int cnt = 0;
         for(Polygon& e : pol) {
             e.moveTo(e.p1 - Point { 0, 0, -50.0f + cnt * 3.0f });

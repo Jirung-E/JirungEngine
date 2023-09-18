@@ -34,7 +34,7 @@ namespace Math {
         Vector operator/=(float n);
 
         float magnitude() const;
-        Vector getUnitVector() const;
+        Vector unit() const;
         static Vector unitVectorOf(const Vector& vector);
         float getAngleWith(const Vector& other) const;
         static float getAngleBetween(const Vector& vector1, const Vector& vector2);

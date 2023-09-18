@@ -20,7 +20,7 @@ Polygon::Polygon(const Point& p1, const Point& p2, const Point& p3) : p1 { p1 },
 
 
 Vector Polygon::getNormal() const {
-    return Vector::crossProduct(Vector(p2-p1), Vector(p3-p1)).getUnitVector();
+    return Vector::crossProduct(Vector(p2-p1), Vector(p3-p1));
 }
 
 Point Polygon::getCenterOfGravity() const {

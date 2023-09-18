@@ -1,5 +1,7 @@
 #include "Renderer.hpp"
 
+#include "../../Math/Plane/Plane.hpp"
+
 #ifdef _WIN32
 #define _USE_MATH_DEFINES
 #endif
@@ -49,50 +51,38 @@ Renderer::Renderer() : Renderer { 160, 45 } {
 
 
 Image Renderer::renderGeneral(const Polygon& polygon) {
-    // 점이 화면 밖에 있는 경우 적절한 처리를 해줘야함
     Vector normal { polygon.getNormal() };
     Vector at { polygon.getCenterOfGravity() - camera.getPosition() };
     if(normal * at > 0) {   // 면의 뒷면은 그리지 않음
         return *image;
     }
 
-    float brightness = 100 * (-normal * at.getUnitVector());
+    float brightness = 100 * (-normal * at.unit());
+    float full_area = normal.magnitude() / 2.0f;
 
-    Point p1 { transformToPointOfDisplay(polygon.p1) };
-    Point p2 { transformToPointOfDisplay(polygon.p2) };
-    Point p3 { transformToPointOfDisplay(polygon.p3) };
+    Plane poly_plane { polygon.p1, normal };
 
-    vector<Point> fragment;
-
-    Vector direction { p3 - p2 };
-    float distance = direction.magnitude();
-
-    for(float i=0; i<=distance; i++) {          // -> 0.1로 하면 버버벅  
-        Vector d { direction.getUnitVector() * i };
-        Point p { p2 + d };
-        p.x = roundf(p.x);
-        p.y = roundf(p.y);
-
-        Vector v { p - p1 };
-        float dist = v.magnitude();
-
-        for(float k=0; k<=dist; k++) {
-            d = v.getUnitVector() * k;
-            p = p1 + d;
-            p.x = roundf(p.x);
-            p.y = roundf(p.y);
-            if(p.x < 0.0f || p.y < 0.0f || p.x >= image->getWidth() || p.y >= image->getHeight()) {
+    for(int i=0; i<image->getHeight(); ++i) {
+        for(int k=0; k<image->getWidth(); ++k) {
+            at = { camera.direction() * max(image->getWidth(), image->getHeight())/2.0f / tanf(camera.field_of_view/2) };
+            at += camera.getXAxis().vector * (k - image->getWidth()/2.0f);
+            at += camera.getYAxis().vector * (i - image->getHeight()/2.0f);
+            if(poly_plane.isParallelTo(Line { camera.getPosition(), at })) {
                 continue;
             }
-            if(find(fragment.begin(), fragment.end(), p) != fragment.end()) {
-                continue;
+            Point ray_point = poly_plane.getPointOfContactWith(Line { camera.getPosition(), at });
+
+            Vector v1 { polygon.p1 - ray_point };
+            Vector v2 { polygon.p2 - ray_point };
+            Vector v3 { polygon.p3 - ray_point };
+            float area1 = v1.crossProduct(v2).magnitude() / 2.0f;
+            float area2 = v2.crossProduct(v3).magnitude() / 2.0f;
+            float area3 = v3.crossProduct(v1).magnitude() / 2.0f;
+
+            if(area1 + area2 + area3 < full_area + 0.1f) {  // 0.1f는 오차범위
+                renderPoint(ray_point, brightness);
             }
-            fragment.push_back(p);
         }
-    }
-
-    for(const auto& e : fragment) {
-        image->setPixelBrightness(image->getPixelBrightness(e.x, e.y) + brightness, e.x, e.y);
     }
 
     return *image;
@@ -114,11 +104,11 @@ void Renderer::clearImage() {
 
 Point Renderer::getApparentPoint(const Point& point) const {
     float m = image->getWidth() > image->getHeight() ? image->getWidth() : image->getHeight();
-    float t = (m/2) / tan(camera.field_of_view/2);
+    float t = (m/2) / tanf(camera.field_of_view/2);
 
     float theta = Vector::getAngleBetween(camera.direction(), point - camera.getPosition());
-    float distance_to_apparent_point = t / cos(theta);
-    Vector to_apparent_point { Vector(point - camera.getPosition()).getUnitVector() * distance_to_apparent_point };
+    float distance_to_apparent_point = t / cosf(theta);
+    Vector to_apparent_point { Vector(point - camera.getPosition()).unit() * distance_to_apparent_point };
     return Point { camera.getPosition() + Point { to_apparent_point.x, to_apparent_point.y, to_apparent_point.z } };
 }
 
@@ -167,7 +157,7 @@ void Renderer::renderSegment(const Segment& segment) {
     float distance = Point::getDistanceBetween(transformToPointOfDisplay(start_point), transformToPointOfDisplay(end_point));
     
     for(int i=0; i<distance; ++i) {
-        Vector d { direction.getUnitVector() * (float)i };
+        Vector d { direction.unit() * (float)i };
         Point p { transformToPointOfDisplay(start_point) + Point { d.x, d.y, d.z } };
         if(p.x < 0.0f || p.y < 0.0f || p.x >= image->getWidth() || p.y >= image->getHeight()) {
             return;
@@ -179,7 +169,7 @@ void Renderer::renderSegment(const Segment& segment) {
 
 bool Renderer::isOutOfAngle(const Point& point) const {
     Vector to_point { point - camera.getPosition() };
-    Vector to_left_top { (camera.getLeftLimit() + camera.getTopLimit()) + camera.direction().getUnitVector() * -(camera.getLeftLimit()*camera.direction()) };
+    Vector to_left_top { (camera.getLeftLimit() + camera.getTopLimit()) + camera.direction().unit() * -(camera.getLeftLimit()*camera.direction()) };
     if(Vector::getAngleBetween(to_point, camera.direction()) > Vector::getAngleBetween(to_left_top, camera.direction())) {
         return true;
     }

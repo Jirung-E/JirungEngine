@@ -18,9 +18,9 @@ namespace Math {
         
     public:
         bool isContactWith(const Point& point) const;
-        Point* getPointOfContactWith(const Line& line) const;
+        Point getPointOfContactWith(const Line& line) const;
 
-        Line* getLineOfIntersectionWith(const Plane& other) const;
+        Line getLineOfIntersectionWith(const Plane& other) const;
 
         Point getFootOfPerpendicularFrom(const Point& point) const;
 

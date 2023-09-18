@@ -109,7 +109,7 @@ float Vector::magnitude() const {
     return sqrt(pow(x, 2) + pow(y, 2) + pow(z, 2));
 }
 
-Vector Vector::getUnitVector() const {
+Vector Vector::unit() const {
     if(magnitude() == 0.0f) {
         return *this;
     }
@@ -117,7 +117,7 @@ Vector Vector::getUnitVector() const {
 }
 
 Vector Vector::unitVectorOf(const Vector& vector) {
-    return vector.getUnitVector();
+    return vector.unit();
 }
 
 float Vector::getAngleWith(const Vector& other) const {
@@ -133,10 +133,10 @@ float Vector::getAngleBetween(const Vector& vector1, const Vector& vector2) {
 
 
 bool Vector::isParallelTo(const Vector& other) const {
-    if(this->getUnitVector() == other.getUnitVector()) {
+    if(this->unit() == other.unit()) {
         return true;
     }
-    if(this->getUnitVector() == other.getUnitVector() * -1) {
+    if(this->unit() == other.unit() * -1) {
         return true;
     }
     return false;

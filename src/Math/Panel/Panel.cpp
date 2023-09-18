@@ -48,12 +48,12 @@ Point Panel::leftCenter() const {
 Vector Panel::toTop() const {
     Vector to_top { 0, 0, 0 };
 
-    if(normal_vector.getUnitVector() == Vector { 0, 1, 0 } || normal_vector.magnitude() == 0.0f) {
+    if(normal_vector.unit() == Vector { 0, 1, 0 } || normal_vector.magnitude() == 0.0f) {
         to_top.z -= height/2;
         to_top = Vector { Line::rotate(Point(to_top.x, to_top.y, to_top.z), Line(normal_vector), rotate_angle) };
         return to_top;
     }
-    if(normal_vector.getUnitVector() == Vector { 0, -1, 0 }) {
+    if(normal_vector.unit() == Vector { 0, -1, 0 }) {
         to_top.z += height/2;
         to_top = Vector { Line::rotate(Point(to_top.x, to_top.y, to_top.z), Line(normal_vector), rotate_angle) };
         return to_top;
@@ -61,7 +61,7 @@ Vector Panel::toTop() const {
 
     float theta = Vector::getAngleBetween(Vector::j(), normal_vector);
     Vector N_xz { normal_vector.x, 0, normal_vector.z };
-    N_xz = N_xz.getUnitVector();
+    N_xz = N_xz.unit();
 
     to_top = Vector { (N_xz * -1) * (height/2) * cos(theta) };
     to_top.y = (height/2)*sin(theta);
@@ -82,10 +82,10 @@ Vector Panel::toLeft() const {
 
     Vector N_xz { normal_vector.x, 0, normal_vector.z };
     if((N_xz.x >= 0.0f && N_xz.z >= 0.0f) || (N_xz.x <= 0.0f && N_xz.z <= 0.0f)) {
-        to_left = Vector(-normal_vector.z, 0, normal_vector.x).getUnitVector() * (width/2);
+        to_left = Vector(-normal_vector.z, 0, normal_vector.x).unit() * (width/2);
     }
     else {
-        to_left = Vector(normal_vector.z, 0, -normal_vector.x).getUnitVector() * (width/2);
+        to_left = Vector(normal_vector.z, 0, -normal_vector.x).unit() * (width/2);
     }
 
     to_left = Vector { Line::rotate(Point(to_left.x, to_left.y, to_left.z), Line(normal_vector), rotate_angle) };
