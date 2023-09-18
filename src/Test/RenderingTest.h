@@ -123,7 +123,7 @@ namespace RenderingTest {
             cnt++;
         }
 
-        Renderer* renderer = new ConsoleRenderer { };
+        Renderer* renderer = new ConsoleRenderer { 150, 47 };
         Renderer* axis_renderer = new ConsoleRenderer { };
         Polygon xax;
         Polygon yax;
