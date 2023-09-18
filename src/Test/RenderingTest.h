@@ -169,6 +169,12 @@ namespace RenderingTest {
                 case KeyID::C:
                     renderer->camera.moveTo(renderer->camera.getPosition() - Point { 0, 0.2f, 0 });
                     break;
+                case KeyID::Z:
+                    renderer->camera.field_of_view += 0.1f;
+                    break;
+                case KeyID::X:
+                    renderer->camera.field_of_view -= 0.1f;
+                    break;
                 }
 
                 if(in->getPressedKeyID() == KeyID::ESC) {
