@@ -4,6 +4,7 @@
 #define _USE_MATH_DEFINES
 #endif
 #include <math.h>
+#include <vector>
 
 using namespace std;
 using namespace Math;
@@ -48,9 +49,51 @@ Renderer::Renderer() : Renderer { 160, 45 } {
 
 
 Image Renderer::renderGeneral(const Polygon& polygon) {
-    renderSegment(Segment { polygon.p1, Vector { polygon.p2 - polygon.p1 } });
-    // to
-    renderSegment(Segment { polygon.p1, Vector { polygon.p3 - polygon.p1 } });
+    // 점이 화면 밖에 있는 경우 적절한 처리를 해줘야함
+    Vector normal { polygon.getNormal() };
+    Vector at { polygon.getCenterOfGravity() - camera.getPosition() };
+    if(normal * at > 0) {   // 면의 뒷면은 그리지 않음
+        return *image;
+    }
+
+    float brightness = 100 * (-normal * at.getUnitVector());
+
+    Point p1 { transformToPointOfDisplay(polygon.p1) };
+    Point p2 { transformToPointOfDisplay(polygon.p2) };
+    Point p3 { transformToPointOfDisplay(polygon.p3) };
+
+    vector<Point> fragment;
+
+    Vector direction { p3 - p2 };
+    float distance = direction.magnitude();
+
+    for(float i=0; i<=distance; i++) {          // -> 0.1로 하면 버버벅  
+        Vector d { direction.getUnitVector() * i };
+        Point p { p2 + d };
+        p.x = roundf(p.x);
+        p.y = roundf(p.y);
+
+        Vector v { p - p1 };
+        float dist = v.magnitude();
+
+        for(float k=0; k<=dist; k++) {
+            d = v.getUnitVector() * k;
+            p = p1 + d;
+            p.x = roundf(p.x);
+            p.y = roundf(p.y);
+            if(p.x < 0.0f || p.y < 0.0f || p.x >= image->getWidth() || p.y >= image->getHeight()) {
+                continue;
+            }
+            if(find(fragment.begin(), fragment.end(), p) != fragment.end()) {
+                continue;
+            }
+            fragment.push_back(p);
+        }
+    }
+
+    for(const auto& e : fragment) {
+        image->setPixelBrightness(image->getPixelBrightness(e.x, e.y) + brightness, e.x, e.y);
+    }
 
     return *image;
 }
@@ -94,23 +137,23 @@ Point Renderer::transformToPointOfDisplay(const Point& point) const {
     return Point { image_x, image_y };
 }
 
-void Renderer::showPointOnImage(const Point& point) {
+void Renderer::showPointOnImage(const Point& point, float brightness) {
     if(point.x < 0.0f || point.y < 0.0f || point.x >= image->getWidth() || point.y >= image->getHeight()) {
         return;
     }
 
     unsigned short int x = static_cast<unsigned short int>(round(point.x));
     unsigned short int y = static_cast<unsigned short int>(round(point.y));
-    image->setPixelBrightness(30, x, y);
+    image->setPixelBrightness(brightness, x, y);
 }
 
-void Renderer::renderPoint(const Point& point) {
+void Renderer::renderPoint(const Point& point, float brightness) {
     Point p { transformToPointOfDisplay(point) };
     if(p.x < 0.0f || p.y < 0.0f || p.x >= image->getWidth() || p.y >= image->getHeight()) {
         return;
     }
 
-    showPointOnImage(p);
+    showPointOnImage(p, brightness);
 }
 
 void Renderer::renderSegment(const Segment& segment) {
@@ -119,6 +162,7 @@ void Renderer::renderSegment(const Segment& segment) {
     if(isOutOfAngle(start_point) || isOutOfAngle(end_point)) {
         return;
     }
+
     Vector direction { transformToPointOfDisplay(end_point) - transformToPointOfDisplay(start_point) };
     float distance = Point::getDistanceBetween(transformToPointOfDisplay(start_point), transformToPointOfDisplay(end_point));
     
@@ -129,7 +173,7 @@ void Renderer::renderSegment(const Segment& segment) {
             return;
         }
 
-        showPointOnImage(p);
+        showPointOnImage(p, 100.0f);
     }
 }
 

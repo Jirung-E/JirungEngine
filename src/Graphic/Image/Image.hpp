@@ -24,6 +24,7 @@ namespace Graphic {
 
         float getPixelBrightness(unsigned short int x, unsigned short int y) const;
         void setPixelBrightness(float level, unsigned short int x, unsigned short int y);
+        unsigned short int getBrightnessMax() const;
         
     protected:
         void terminate();

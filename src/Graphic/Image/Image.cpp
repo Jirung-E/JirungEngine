@@ -57,6 +57,10 @@ void Image::setPixelBrightness(float level, unsigned short int x, unsigned short
     pixels[height-1 - y][x]->setBrightness(level);
 }
 
+unsigned short int Graphic::Image::getBrightnessMax() const {
+    return pixels[0][0]->getBrightnessMax();
+}
+
 
 void Image::terminate() {
     for(int i=0; i<height; ++i) {

@@ -27,7 +27,7 @@ namespace Graphic {
         void setBrightness(float level);
 
     private:
-        unsigned short int getBrightnessMax() const;
+        unsigned short int getBrightnessMax() const override;
     };
 }
 

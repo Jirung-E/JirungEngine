@@ -40,8 +40,8 @@ namespace Graphic {
     private:
         Math::Point getApparentPoint(const Math::Point& point) const;
         Math::Point transformToPointOfDisplay(const Math::Point& point) const;
-        void showPointOnImage(const Math::Point& point);
-        void renderPoint(const Math::Point& point);
+        void showPointOnImage(const Math::Point& point, float brightness);
+        void renderPoint(const Math::Point& point, float brightness);
         void renderSegment(const Math::Segment& segment);
 
         bool isOutOfAngle(const Math::Point& point) const;

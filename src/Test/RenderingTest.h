@@ -123,7 +123,7 @@ namespace RenderingTest {
             cnt++;
         }
 
-        Renderer* renderer = new ConsoleRenderer { 150, 47 };
+        Renderer* renderer = new ConsoleRenderer { 150, 44 };
         Renderer* axis_renderer = new ConsoleRenderer { };
         Polygon xax;
         Polygon yax;
@@ -183,11 +183,19 @@ namespace RenderingTest {
 
                 renderer->clearImage();
                 for(const Polygon& e : pol) {
-                    renderer->renderClear(e);
+                    //renderer->renderClear(e);
+                    renderer->renderGeneral(e);
                 }
 
                 axis_renderer->clearImage();
                 axis_renderer->renderClear(xax);
+
+                Point position = renderer->camera.getPosition();
+                println("x: " + to_string(position.x) + "  y: " + to_string(position.y) + "  z: " + to_string(position.z) 
+                    + "\nfacing: " + to_string(renderer->camera.direction().x)
+                        + ", " + to_string(renderer->camera.direction().y)
+                        + ", " + to_string(renderer->camera.direction().z)
+                    + "\nfov: " + to_string(renderer->camera.field_of_view));
 
                 ImageEditor ie;
                 Image* ai = new ConsoleImage { 20, 10 };

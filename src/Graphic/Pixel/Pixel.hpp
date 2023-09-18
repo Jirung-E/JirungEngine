@@ -7,6 +7,7 @@ namespace Graphic {
     public:
         virtual float getBrightness() const = 0;
         virtual void setBrightness(float level) = 0;
+        virtual unsigned short int getBrightnessMax() const = 0;
     };
 }
 
