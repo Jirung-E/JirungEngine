@@ -1,0 +1,1 @@
+mkdir -p bin/ && g++ $(find src/ -name *.cpp -o -name *.c) -o bin//main -g -std=c++17 -pthread -lm && bin//main
