@@ -122,15 +122,21 @@ namespace RenderingTest {
         //    e.rotate(Line(e.getCenterOfGravity(), e.getNormal()), cnt/10.0f);
         //    cnt++;
         //}
+
+        Point p1 { 0, 0, 0 };
+        Point p2 { 1, 0, 0 };
+        Point p3 { 0, 1, 0 };
+        Point p4 { 0, 0, 1 };
+
         Model tetrahedron;
         tetrahedron.polygons.reserve(4);
-        tetrahedron.polygons.push_back(Polygon { Point { 0, 0, 0 }, Point { 1, 0, 0 }, Point { 0, 0, 1 } } * 5);
-        tetrahedron.polygons.push_back(Polygon { Point { 0, 0, 0 }, Point { 0, 0, 1 }, Point { 0, 1, 0 } } * 5);
-        tetrahedron.polygons.push_back(Polygon { Point { 0, 0, 0 }, Point { 0, 1, 0 }, Point { 1, 0, 0 } } * 5);
-        tetrahedron.polygons.push_back(Polygon { Point { 1, 0, 0 }, Point { 0, 1, 0 }, Point { 0, 0, 1 } } * 5);
+        tetrahedron.polygons.push_back(Polygon { p1, p2, p4 });
+        tetrahedron.polygons.push_back(Polygon { p1, p3, p2 });
+        tetrahedron.polygons.push_back(Polygon { p1, p4, p3 });
+        tetrahedron.polygons.push_back(Polygon { p2, p3, p4 });
 
         Renderer* renderer = new ConsoleRenderer { 150, 44 };
-        renderer->camera.moveTo({ 0, 0, 20 });
+        renderer->camera.moveTo({ 0, 0, 2 });
         Renderer* axis_renderer = new ConsoleRenderer { };
         Polygon xax;
         Polygon yax;
@@ -159,19 +165,18 @@ namespace RenderingTest {
                     renderer->camera.moveTo(renderer->camera.getPosition() + Vector { renderer->camera.getXAxis().vector * 0.3f });
                     break;
                 case KeyID::UPARROW:
-                    renderer->camera.rotateX(0.02f);
+                    renderer->camera.rotate(renderer->camera.getXAxis().vector, -0.02f);
                     break;
                 case KeyID::DOWNARROW:
-                    renderer->camera.rotateX(-0.02f);
+                    renderer->camera.rotate(renderer->camera.getXAxis().vector, 0.02f);
                     break;
                 case KeyID::LEFTARROW:
                     //renderer->camera.rotateY(0.02f);
-                    renderer->camera.rotate(Vector::j(), 0.02f);
+                    renderer->camera.rotate(Vector::j(), -0.02f);
                     break;
                 case KeyID::RIGHTARROW:
                     //renderer->camera.rotateY(-0.02f);
-                    renderer->camera.rotate(Vector::j(), -0.02f);
-                    
+                    renderer->camera.rotate(Vector::j(), 0.02f);
                     break;
                 case KeyID::SPACE:
                     renderer->camera.moveTo(renderer->camera.getPosition() + Vector { 0, 0.2f, 0 });
@@ -205,6 +210,7 @@ namespace RenderingTest {
                 //        renderer->renderGeneral(e);
                 //    }
                 //}
+
                 renderer->renderGeneral(tetrahedron);
 
                 axis_renderer->clearImage();
