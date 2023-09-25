@@ -1,5 +1,5 @@
 #include "../Graphic.hpp"
-#include "../Image/ConsoleImage.hpp"
+#include "../ConsoleImage.hpp"
 
 using namespace std;
 using namespace Graphic;

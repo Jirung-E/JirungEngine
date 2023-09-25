@@ -1,6 +1,6 @@
 #include "ConsoleRenderer.hpp"
 
-#include "../Image/ConsoleImage.hpp"
+#include "ConsoleImage.hpp"
 
 #include <cmath>
 

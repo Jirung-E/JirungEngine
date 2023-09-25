@@ -50,7 +50,7 @@ Point Segment::getNearestPointTo(const Segment& other) const {
 }
 
 bool Segment::isParallelTo(const Segment& other) const {
-    return this->vector.isParallelTo(other.vector);
+    return isParallel(this->vector, other.vector);
 }
 
 

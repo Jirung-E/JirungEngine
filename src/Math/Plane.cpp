@@ -36,7 +36,7 @@ Point Plane::getPointOfContactWith(const Line& line) const {
     Point A { line.point };
     // Point H { getFootOfPerpendicularFrom(A) };
     float AH = getDistanceTo(A);
-    float theta = Vector::getAngleBetween(this->normal_vector, line.vector);
+    float theta = angleBetween(this->normal_vector, line.vector);
     float AP = AH / cos(theta);
     Vector V { line.vector.unit() * AP };
     return Point { A - V };
@@ -52,14 +52,14 @@ Line Plane::getLineOfIntersectionWith(const Plane& other) const {
     Point H { getFootOfPerpendicularFrom(S) };
     Point F { getFootOfPerpendicularFrom(E) };
 
-    Vector line_vector { Vector::crossProduct(this->normal_vector, other.normal_vector) };
+    Vector line_vector { this->normal_vector.cross(other.normal_vector) };
     Point line_point;
 
     if(this->getDistanceTo(S) == 0.0f) {
         return Line { S, line_vector };
     }
 
-    float theta = Vector::getAngleBetween(this->normal_vector, other.normal_vector);
+    float theta = angleBetween(this->normal_vector, other.normal_vector);
     if(theta == M_PI/2.0f) {
         return Line { H, line_vector };
     }
@@ -107,11 +107,11 @@ float Plane::getDistanceTo(const Plane& other) const {
 }
 
 float Plane::getAngleWith(const Line& line) const {
-    return (float)abs(M_PI/2.0f - Vector::getAngleBetween(this->normal_vector, line.vector));
+    return (float)abs(M_PI/2.0f - angleBetween(this->normal_vector, line.vector));
 }
 
 float Plane::getAngleWith(const Plane& other) const {
-    float theta = Vector::getAngleBetween(this->normal_vector, other.normal_vector);
+    float theta = angleBetween(this->normal_vector, other.normal_vector);
     if(theta > M_PI/2.0f) {
         theta = M_PI - theta;
     }
@@ -119,14 +119,14 @@ float Plane::getAngleWith(const Plane& other) const {
 }
 
 bool Plane::isParallelTo(const Line& line) const {
-    if(Vector::isOrthogonal(this->normal_vector, line.vector)) {
+    if(isOrthogonal(this->normal_vector, line.vector)) {
         return true;
     }
     return false;
 }
 
 bool Plane::isParallelTo(const Plane& other) const {
-    if(Vector::isParallel(this->normal_vector, other.normal_vector)) {
+    if(isParallel(this->normal_vector, other.normal_vector)) {
         return true;
     }
     return false;

@@ -3,8 +3,8 @@
 using namespace Math;
 
 
-Model::Model() : polygons { Polygon { } } {
-    polygons[0].moveTo({ 0, 1, 0 });
+Model::Model() {
+
 }
 
 

@@ -1,7 +1,7 @@
 #ifndef __Image_hpp__
 #define __Image_hpp__
 
-#include "../Pixel/Pixel.hpp"
+#include "Pixel.hpp"
 
 
 namespace Graphic {

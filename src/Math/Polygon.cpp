@@ -20,7 +20,7 @@ Polygon::Polygon(const Point& p1, const Point& p2, const Point& p3) : p1 { p1 },
 
 
 Vector Polygon::getNormal() const {
-    return Vector::crossProduct(Vector(p2-p1), Vector(p3-p1));
+    return Vector(p2-p1).cross(Vector(p3-p1));
 }
 
 Point Polygon::getCenterOfGravity() const {
@@ -42,8 +42,8 @@ void Polygon::moveTo(const Point& point) {
 void Polygon::transformNormalVectorTo(const Vector& vector) {
     Vector v1 { getNormal() };
     Vector v2 { vector };
-    Line n { Vector::crossProduct(v1, v2) };
-    float theta = Vector::getAngleBetween(v1, v2);
+    Line n { v1.cross(v2) };
+    float theta = angleBetween(v1, v2);
 
     p1 = Line::rotate(p1, n, theta);
     p2 = Line::rotate(p2, n, theta);

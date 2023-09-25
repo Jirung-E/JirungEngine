@@ -1,14 +1,14 @@
 #ifndef __Math_hpp__
 #define __Math_hpp__
 
-#include "Point/Point.hpp"
-#include "Vector/Vector.hpp"
-#include "Line/Line.hpp"
-#include "Plane/Plane.hpp"
-#include "Segment/Segment.hpp"
-#include "Polygon/Polygon.hpp"
-#include "Model/Model.hpp"
-#include "Geometry/Geometry.hpp"
-#include "Random/Random.hpp"
+#include "Point.hpp"
+#include "Vector.hpp"
+#include "Line.hpp"
+#include "Plane.hpp"
+#include "Segment.hpp"
+#include "Polygon.hpp"
+#include "Model.hpp"
+#include "Geometry.hpp"
+#include "Random.hpp"
 
 #endif

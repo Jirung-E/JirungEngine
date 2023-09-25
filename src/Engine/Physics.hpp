@@ -1,7 +1,7 @@
 #ifndef __Physics_hpp__
 #define __Physics_hpp__
 
-#include "../../Math/Vector/Vector.hpp"
+#include "../Math/Vector.hpp"
 
 
 namespace Engine {

@@ -1,8 +1,8 @@
 #ifndef __Renderer_hpp__
 #define __Renderer_hpp__
 
-#include "../../Math/Math.hpp"
-#include "../Image/Image.hpp"
+#include "../Math/Math.hpp"
+#include "Image.hpp"
 
 
 namespace Graphic {
