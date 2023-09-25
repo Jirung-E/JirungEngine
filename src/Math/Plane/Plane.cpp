@@ -39,7 +39,7 @@ Point Plane::getPointOfContactWith(const Line& line) const {
     float theta = Vector::getAngleBetween(this->normal_vector, line.vector);
     float AP = AH / cos(theta);
     Vector V { line.vector.unit() * AP };
-    return Point { A - Point(V.x, V.y, V.z) };
+    return Point { A - V };
 }
 
 Line Plane::getLineOfIntersectionWith(const Plane& other) const {
@@ -77,9 +77,9 @@ Line Plane::getLineOfIntersectionWith(const Plane& other) const {
 Point Plane::getFootOfPerpendicularFrom(const Point& point) const {
     Vector v { this->normal_vector.unit() * this->getDistanceTo(point) };
     if(this->normal_vector * Vector(point - this->point) > 0.0f) {
-        return point - Point { v.x, v.y, v.z };
+        return point - v;
     }
-    return point + Point { v.x, v.y, v.z };
+    return point + v;
 }
 
 float Plane::getDistanceTo(const Point& point) const {
@@ -107,7 +107,7 @@ float Plane::getDistanceTo(const Plane& other) const {
 }
 
 float Plane::getAngleWith(const Line& line) const {
-    return abs(M_PI/2.0f - Vector::getAngleBetween(this->normal_vector, line.vector));
+    return (float)abs(M_PI/2.0f - Vector::getAngleBetween(this->normal_vector, line.vector));
 }
 
 float Plane::getAngleWith(const Plane& other) const {
