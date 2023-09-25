@@ -6,7 +6,7 @@ using namespace std;
 using namespace Graphic;
 
 
-vector<char> ConsolePixel::pixel_set { ' ', '.', ':', 'i', 'l', 'I', '%' };
+vector<char> ConsolePixel::pixel_set { ' ', '.', ':', 'i', 'l', 'I', '%', '@' };
 
 ConsolePixel::ConsolePixel() : pixel { ' ' } {
 
