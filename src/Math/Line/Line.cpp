@@ -102,7 +102,7 @@ Point Line::getFootOfPerpendicular(const Line& to, const Line& from) {
         return getFootOfPerpendicular(from, to.point);
     }
     Point H { getFootOfPerpendicular(to, from.point) };
-    float HS = sqrt(pow(getDistanceBetween(to, from.point), 2) - pow(getDistanceBetween(to, from), 2));
+    float HS = (float)sqrt(pow(getDistanceBetween(to, from.point), 2) - pow(getDistanceBetween(to, from), 2));
     float theta = Vector::getAngleBetween(to.vector, from.vector);
     float AH = HS / tan(theta);
     Vector AtoH { to.vector.unit() * AH };
