@@ -1,9 +1,9 @@
 #include "../Math/Math.hpp"
-#include "../IO/Input/Input.hpp"
+#include "../IO/Input.hpp"
 #include "../IO/ConsoleManager.hpp"
 #include "../Graphic/Graphic.hpp"
-#include "../Graphic/Image/ConsoleImage.hpp"
-#include "../Graphic/Renderer/ConsoleRenderer.hpp"
+#include "../Graphic/ConsoleImage.hpp"
+#include "../Graphic/ConsoleRenderer.hpp"
 
 #include <thread>
 #include <chrono>

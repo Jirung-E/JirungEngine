@@ -1,8 +1,8 @@
 #ifndef __Line_hpp__
 #define __Line_hpp__
 
-#include "../Point/Point.hpp"
-#include "../Vector/Vector.hpp"
+#include "Point.hpp"
+#include "Vector.hpp"
 
 
 namespace Math {

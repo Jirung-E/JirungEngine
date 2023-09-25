@@ -2,11 +2,11 @@
 #define __Graphic_hpp__
 
 //#include "Display/Display.hpp"
-#include "Image/Image.hpp"
-#include "Image/ConsoleImage.hpp"
-#include "ImageEditor/ImageEditor.hpp"
-#include "Pixel/Pixel.hpp"
-#include "Renderer/Renderer.hpp"
-#include "Renderer/ConsoleRenderer.hpp"
+#include "Image.hpp"
+#include "ConsoleImage.hpp"
+#include "ImageEditor.hpp"
+#include "Pixel.hpp"
+#include "Renderer.hpp"
+#include "ConsoleRenderer.hpp"
 
 #endif

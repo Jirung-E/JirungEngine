@@ -1,8 +1,8 @@
 #ifndef __Model_hpp__
 #define __Model_hpp__
 
-#include "../Polygon/Polygon.hpp"
-#include "../Geometry/Geometry.hpp"
+#include "Polygon.hpp"
+#include "Geometry.hpp"
 
 #include <vector>                                   // list?
 

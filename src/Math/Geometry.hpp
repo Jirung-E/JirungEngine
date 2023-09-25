@@ -1,9 +1,9 @@
 #ifndef __Geometry_hpp__
 #define __Geometry_hpp__
 
-#include "../Point/Point.hpp"
-#include "../Vector/Vector.hpp"
-#include "../Line/Line.hpp"
+#include "Point.hpp"
+#include "Vector.hpp"
+#include "Line.hpp"
 
 
 namespace Math {

@@ -1,6 +1,6 @@
 #include "ConsoleImage.hpp"
 
-#include "../Pixel/ConsolePixel.hpp"
+#include "ConsolePixel.hpp"
 
 using namespace std;
 using namespace Graphic;

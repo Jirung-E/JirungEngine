@@ -1,7 +1,7 @@
 #ifndef __Vector_hpp__
 #define __Vector_hpp__
 
-#include "../Point/Point.hpp"
+#include "Point.hpp"
 
 
 namespace Math {

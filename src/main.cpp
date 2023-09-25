@@ -1,7 +1,7 @@
 #include "Test/ThreadTest.h"
 #include "Test/RenderingTest.h"
 
-#include "IO/Input/Input.hpp"
+#include "IO/Input.hpp"
 #include "IO/ConsoleManager.hpp"
 #include "IO/Test/test.h"
 

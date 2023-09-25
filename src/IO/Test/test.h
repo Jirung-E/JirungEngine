@@ -1,5 +1,5 @@
 #include "../ConsoleManager.hpp"
-#include "../Input/Input.hpp"
+#include "../Input.hpp"
 
 #include <string>
 #include <chrono>

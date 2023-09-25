@@ -1,7 +1,7 @@
 #ifndef __Segment_hpp__
 #define __Segment_hpp__
 
-#include "../Line/Line.hpp"
+#include "Line.hpp"
 
 
 namespace Math {

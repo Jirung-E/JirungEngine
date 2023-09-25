@@ -1,9 +1,9 @@
 #ifndef __Object_hpp__
 #define __Object_hpp__
 
-#include "../../Math/Geometry/Geometry.hpp"
-#include "../../Math/Polygon/Polygon.hpp"
-#include "../Physics/Physics.hpp"
+#include "../Math/Geometry.hpp"
+#include "../Math/Polygon.hpp"
+#include "Physics.hpp"
 
 #include <vector>
 

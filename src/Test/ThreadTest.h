@@ -1,7 +1,7 @@
-#include "../Engine/Object/Object.hpp"
+#include "../Engine/Object.hpp"
 #include "../Graphic/Graphic.hpp"
 #include "../IO/ConsoleManager.hpp"
-#include "../IO/Input/Input.hpp"
+#include "../IO/Input.hpp"
 
 #include <thread>
 #include <chrono>
