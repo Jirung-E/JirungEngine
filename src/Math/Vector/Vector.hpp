@@ -6,16 +6,20 @@
 
 namespace Math {
     class Vector {
-        public: float x;
-        public: float y;
-        public: float z;
+    public:
+        float x;
+        float y;
+        float z;
 
     public:
-        Vector();
+        Vector(float x, float y, float z = 0.0);
         Vector(const Vector& vector);
         Vector(const Point& point);
-        Vector(float x, float y, float z = 0.0);
+        Vector();
 
+        operator Point() const;
+
+    public:
         Vector operator=(const Vector& vector);
         Vector operator+(const Vector& vector) const;
         Vector operator-(const Vector& vector) const;

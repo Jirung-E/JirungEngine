@@ -5,20 +5,24 @@
 using namespace Math;
 
 
-Vector::Vector() : x { 0 }, y { 0 }, z { 0 } {
-
-}
-
-Vector::Vector(const Vector& vector) : x { vector.x }, y { vector.y }, z { vector.z } {
-
-}
-
-Vector::Vector(const Point& point) : x { point.x }, y { point.y }, z { point.z } {
-
-}
-
 Vector::Vector(float x, float y, float z) : x { x }, y { y }, z { z } {
 
+}
+
+Vector::Vector(const Vector& vector) : Vector { vector.x, vector.y, vector.z } {
+
+}
+
+Vector::Vector(const Point& point) : Vector { point.x, point.y, point.z } {
+
+}
+
+Vector::Vector() : Vector { 0, 0, 0 } {
+
+}
+
+Math::Vector::operator Point() const {
+    return Point { x, y, z };
 }
 
 
@@ -106,7 +110,7 @@ Vector Vector::operator/=(float n) {
 
 
 float Vector::magnitude() const {
-    return sqrt(pow(x, 2) + pow(y, 2) + pow(z, 2));
+    return (float)sqrt(pow(x, 2) + pow(y, 2) + pow(z, 2));
 }
 
 Vector Vector::unit() const {
@@ -187,9 +191,9 @@ Point Math::operator-(const Point& point, const Vector& vector) {
 }
 
 Point& Math::operator+=(Point& point, const Vector& vector) {
-    return point += vector;
+    return point = point + vector;
 }
 
 Point& Math::operator-=(Point& point, const Vector& vector) {
-    return point -= vector;
+    return point = point - vector;
 }
