@@ -45,7 +45,7 @@ float Line::getDistanceTo(const Line& other) const {
 }
 
 bool Line::isParallelTo(const Line& other) const {
-    return this->vector.isParallelTo(other.vector);
+    return isParallel(this->vector, other.vector);
 }
 
 
@@ -70,11 +70,11 @@ float Line::getDistanceBetween(const Line& line1, const Line& line2) {
         return getDistanceBetween(line1, line2.point);
     }
     Vector start_point_to_start_point { line2.point - line1.point };
-    return abs(start_point_to_start_point * Vector::crossProduct(line1.vector, line2.vector).unit());
+    return abs(start_point_to_start_point * line1.vector.cross(line2.vector.unit()));
 }
 
 Line Line::getNormalOf(const Line& line1, const Line& line2) {
-    return Line { getFootOfPerpendicular(line1, line2), Vector::crossProduct(line1.vector, line2.vector) };
+    return Line { getFootOfPerpendicular(line1, line2), line1.vector.cross(line2.vector) };
 }
 
 bool Line::isParallel(const Line& line1, const Line& line2) {
@@ -103,7 +103,7 @@ Point Line::getFootOfPerpendicular(const Line& to, const Line& from) {
     }
     Point H { getFootOfPerpendicular(to, from.point) };
     float HS = (float)sqrt(pow(getDistanceBetween(to, from.point), 2) - pow(getDistanceBetween(to, from), 2));
-    float theta = Vector::getAngleBetween(to.vector, from.vector);
+    float theta = angleBetween(to.vector, from.vector);
     float AH = HS / tan(theta);
     Vector AtoH { to.vector.unit() * AH };
     Point A { H - AtoH };
@@ -115,6 +115,6 @@ Point Line::rotate(const Point& point, const Line& axis, float radian) {
     Point p { axis.getFootOfPerpendicularFrom(point) };
     Vector v { point - p };
     Vector n { axis.vector.unit() };
-    Vector result { (v*cos(radian)) + n*(1-cos(radian))*(v*n) + (n.crossProduct(v) * sin(radian)) };
+    Vector result { (v*cos(radian)) + n*(1-cos(radian))*(v*n) + (n.cross(v) * sin(radian)) };
     return p + result;
 }

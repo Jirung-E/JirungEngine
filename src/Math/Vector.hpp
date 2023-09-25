@@ -20,39 +20,37 @@ namespace Math {
         operator Point() const;
 
     public:
-        Vector operator=(const Vector& vector);
         Vector operator+(const Vector& vector) const;
         Vector operator-(const Vector& vector) const;
-        float scalarProduct(const Vector& vector) const;
-        static float scalarProduct(const Vector& vector1, const Vector& vector2);
-        Vector crossProduct(const Vector& vector) const;
-        static Vector crossProduct(const Vector& vector1, const Vector& vector2);
         float operator*(const Vector& vector) const;            // scalar product
+
         Vector operator*(float n) const;
         Vector operator/(float n) const;
+
+        Vector operator-();
+
+        Vector& operator+=(const Vector& vector);
+        Vector& operator-=(const Vector& vector);
+        Vector& operator*=(float n);
+        Vector& operator/=(float n);
+
         bool operator==(const Vector& vector) const;
         bool operator!=(const Vector& vector) const;
-        Vector operator+=(const Vector& vector);
-        Vector operator-=(const Vector& vector);
-        Vector operator*=(float n);
-        Vector operator/=(float n);
 
-        float magnitude() const;
         Vector unit() const;
-        static Vector unitVectorOf(const Vector& vector);
-        float getAngleWith(const Vector& other) const;
-        static float getAngleBetween(const Vector& vector1, const Vector& vector2);
-        bool isParallelTo(const Vector& other) const;
-        static bool isParallel(const Vector& vector1, const Vector& vector2);
-        static bool isOrthogonal(const Vector& vector1, const Vector& vector2);
+        Vector cross(const Vector& vector) const;
+        float magnitude() const;
 
         static Vector i();
         static Vector j();
         static Vector k();
     };
 
+    float angleBetween(const Vector& vector1, const Vector& vector2);
+    bool isParallel(const Vector& vector1, const Vector& vector2);
+    bool isOrthogonal(const Vector& vector1, const Vector& vector2);
+
     Vector operator*(float n, const Vector& vector);
-    Vector operator-(const Vector& vector);
 
     Vector operator-(const Point& point1, const Point& point2);
     Point operator+(const Point& point, const Vector& vector);
