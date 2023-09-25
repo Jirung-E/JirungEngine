@@ -46,9 +46,9 @@ void Geometry::rotateZ(float radian) {
 }
 
 void Geometry::rotate(const Line& axis, float radian) {
-    Point x_end { x_axis.point + Point(x_axis.vector.x, x_axis.vector.y, x_axis.vector.z) };
-    Point y_end { y_axis.point + Point(y_axis.vector.x, y_axis.vector.y, y_axis.vector.z) };
-    Point z_end { z_axis.point + Point(z_axis.vector.x, z_axis.vector.y, z_axis.vector.z) };
+    Point x_end { x_axis.point + x_axis.vector };
+    Point y_end { y_axis.point + y_axis.vector };
+    Point z_end { z_axis.point + z_axis.vector };
 
     position = Line::rotate(position, axis, radian);
     x_axis.vector = Vector { Line::rotate(x_end, axis, radian) - position };

@@ -172,3 +172,24 @@ Vector Math::operator*(float n, const Vector& vector) {
 Vector Math::operator-(const Vector& vector) {
     return vector * -1;
 }
+
+
+Vector Math::operator-(const Point& point1, const Point& point2) {
+    return Vector { point1.x - point2.x, point1.y - point2.y, point1.z - point2.z };
+}
+
+Point Math::operator+(const Point& point, const Vector& vector) {
+    return Point { point.x + vector.x, point.y + vector.y, point.z + vector.z };
+}
+
+Point Math::operator-(const Point& point, const Vector& vector) {
+    return Point { point.x - vector.x, point.y - vector.y, point.z - vector.z };
+}
+
+Point& Math::operator+=(Point& point, const Vector& vector) {
+    return point += vector;
+}
+
+Point& Math::operator-=(Point& point, const Vector& vector) {
+    return point -= vector;
+}

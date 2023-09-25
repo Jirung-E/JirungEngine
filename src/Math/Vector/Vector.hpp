@@ -49,6 +49,12 @@ namespace Math {
 
     Vector operator*(float n, const Vector& vector);
     Vector operator-(const Vector& vector);
+
+    Vector operator-(const Point& point1, const Point& point2);
+    Point operator+(const Point& point, const Vector& vector);
+    Point operator-(const Point& point, const Vector& vector);
+    Point& operator+=(Point& point, const Vector& vector);
+    Point& operator-=(Point& point, const Vector& vector);
 }
 
 #endif
