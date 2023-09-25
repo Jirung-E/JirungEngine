@@ -2,38 +2,26 @@
 
 #include <cmath>
 
-#include "../Vector/Vector.hpp"
-
 using namespace Math;
 
 
 Point::Point(float x, float y, float z) : x { x }, y { y }, z { z } {
-    
-}
 
-Point::Point() : Point { 0, 0, 0 } {
-    
 }
 
 Point::Point(const Point& point) : Point { point.x, point.y, point.z } {
-    
-}
-
-Point::Point(const Vector& vector) : Point { vector.x, vector.y, vector.z } {
 
 }
 
+Point::Point() : Point { 0, 0, 0 } {
 
-Point Point::operator=(const Point& point) {
-    x = point.x;
-    y = point.y;
-    z = point.z;
-    return *this;
 }
+
 
 Point Point::operator+(const Point& point) const {
     return Point { x + point.x, y + point.y, z + point.z };
 }
+
 
 Point Point::operator*(float n) const {
     return Point { x*n, y*n, z*n };
@@ -42,6 +30,29 @@ Point Point::operator*(float n) const {
 Point Point::operator/(float n) const {
     return Point { x/n, y/n, z/n };
 }
+
+
+Point& Point::operator+=(const Point& point) {
+    x += point.x;
+    y += point.y;
+    z += point.z;
+    return *this;
+}
+
+Point& Point::operator*=(float n) {
+    x *= n;
+    y *= n;
+    z *= n;
+    return *this;
+}
+
+Point& Point::operator/=(float n) {
+    x /= n;
+    y /= n;
+    z /= n;
+    return *this;
+}
+
 
 bool Point::operator==(const Point& point) const {
     if(x == point.x && y == point.y && z == point.z) {
@@ -52,27 +63,6 @@ bool Point::operator==(const Point& point) const {
 
 bool Point::operator!=(const Point& point) const {
     return !(*this == point);
-}
-
-Point Point::operator+=(const Point& point) {
-    x += point.x;
-    y += point.y;
-    z += point.z;
-    return *this;
-}
-
-Point Point::operator*=(float n) {
-    x *= n;
-    y *= n;
-    z *= n;
-    return *this;
-}
-
-Point Point::operator/=(float n) {
-    x /= n;
-    y /= n;
-    z /= n;
-    return *this;
 }
 
 bool Point::isInRange(const Point& point1, const Point& point2) const {
@@ -117,7 +107,7 @@ float Point::getDistanceTo(const Point& other) const {
 }
 
 float Point::getDistanceBetween(const Point& point1, const Point& point2) {
-    return sqrt(pow(point1.x - point2.x, 2) + pow(point1.y - point2.y, 2) + pow(point1.z - point2.z, 2));
+    return (float)sqrt(pow(point1.x - point2.x, 2) + pow(point1.y - point2.y, 2) + pow(point1.z - point2.z, 2));
 }
 
 
