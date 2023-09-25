@@ -115,19 +115,28 @@ namespace RenderingTest {
     void testRenderer() {
         println("\nTest Start!\n\n");
 
-        Polygon pol[10];
-        int cnt = 0;
-        for(Polygon& e : pol) {
-            e.moveTo(e.p1 - Point { 0, 0, -50.0f + cnt * 3.0f });
-            e.rotate(Line(e.getCenterOfGravity(), e.getNormal()), cnt/10.0f);
-            cnt++;
-        }
+        //Polygon pol[10];
+        //int cnt = 0;
+        //for(Polygon& e : pol) {
+        //    e.moveTo(e.p1 - Point { 0, 0, -50.0f + cnt * 3.0f });
+        //    e.rotate(Line(e.getCenterOfGravity(), e.getNormal()), cnt/10.0f);
+        //    cnt++;
+        //}
+        Model tetrahedron;
+        tetrahedron.polygons.reserve(4);
+        tetrahedron.polygons.push_back(Polygon { Point { 0, 0, 0 }, Point { 1, 0, 0 }, Point { 0, 0, 1 } } * 5);
+        tetrahedron.polygons.push_back(Polygon { Point { 0, 0, 0 }, Point { 0, 0, 1 }, Point { 0, 1, 0 } } * 5);
+        tetrahedron.polygons.push_back(Polygon { Point { 0, 0, 0 }, Point { 0, 1, 0 }, Point { 1, 0, 0 } } * 5);
+        tetrahedron.polygons.push_back(Polygon { Point { 1, 0, 0 }, Point { 0, 1, 0 }, Point { 0, 0, 1 } } * 5);
 
         Renderer* renderer = new ConsoleRenderer { 150, 44 };
+        renderer->camera.moveTo({ 0, 0, 20 });
         Renderer* axis_renderer = new ConsoleRenderer { };
         Polygon xax;
         Polygon yax;
         Polygon zax;
+
+        bool render_clear = false;
 
         Input* in = new KeyboardListener { };
 
@@ -138,16 +147,16 @@ namespace RenderingTest {
 
                 switch(in->getPressedKeyID()) {
                 case KeyID::W:
-                    renderer->camera.moveTo(renderer->camera.getPosition() + Point { renderer->camera.direction() * 0.3f });
+                    renderer->camera.moveTo(renderer->camera.getPosition() + Vector { renderer->camera.direction().x, 0, renderer->camera.direction().z });
                     break;
                 case KeyID::S:
-                    renderer->camera.moveTo(renderer->camera.getPosition() - Point { renderer->camera.direction() * 0.3f });
+                    renderer->camera.moveTo(renderer->camera.getPosition() - Vector { renderer->camera.direction().x, 0, renderer->camera.direction().z });
                     break;
                 case KeyID::A:
-                    renderer->camera.moveTo(renderer->camera.getPosition() - Point { renderer->camera.getXAxis().vector * 0.3f });
+                    renderer->camera.moveTo(renderer->camera.getPosition() - Vector { renderer->camera.getXAxis().vector * 0.3f });
                     break;
                 case KeyID::D:
-                    renderer->camera.moveTo(renderer->camera.getPosition() + Point { renderer->camera.getXAxis().vector * 0.3f });
+                    renderer->camera.moveTo(renderer->camera.getPosition() + Vector { renderer->camera.getXAxis().vector * 0.3f });
                     break;
                 case KeyID::UPARROW:
                     renderer->camera.rotateX(0.02f);
@@ -156,24 +165,28 @@ namespace RenderingTest {
                     renderer->camera.rotateX(-0.02f);
                     break;
                 case KeyID::LEFTARROW:
-                    renderer->camera.rotateY(0.02f);
-                    xax.rotate(-0.02f);
+                    //renderer->camera.rotateY(0.02f);
+                    renderer->camera.rotate(Vector::j(), 0.02f);
                     break;
                 case KeyID::RIGHTARROW:
-                    renderer->camera.rotateY(-0.02f);
-                    xax.rotate(0.02f);
+                    //renderer->camera.rotateY(-0.02f);
+                    renderer->camera.rotate(Vector::j(), -0.02f);
+                    
                     break;
                 case KeyID::SPACE:
-                    renderer->camera.moveTo(renderer->camera.getPosition() + Point { 0, 0.2f, 0 });
+                    renderer->camera.moveTo(renderer->camera.getPosition() + Vector { 0, 0.2f, 0 });
                     break;
                 case KeyID::C:
-                    renderer->camera.moveTo(renderer->camera.getPosition() - Point { 0, 0.2f, 0 });
+                    renderer->camera.moveTo(renderer->camera.getPosition() - Vector { 0, 0.2f, 0 });
                     break;
                 case KeyID::Z:
                     renderer->camera.field_of_view += 0.1f;
                     break;
                 case KeyID::X:
                     renderer->camera.field_of_view -= 0.1f;
+                    break;
+                case KeyID::R:
+                    render_clear = !render_clear;
                     break;
                 }
 
@@ -182,10 +195,17 @@ namespace RenderingTest {
                 }
 
                 renderer->clearImage();
-                for(const Polygon& e : pol) {
-                    //renderer->renderClear(e);
-                    renderer->renderGeneral(e);
-                }
+                //if(render_clear) {
+                //    for(const Polygon& e : pol) {
+                //        renderer->renderClear(e);
+                //    }
+                //}
+                //else {
+                //    for(const Polygon& e : pol) {
+                //        renderer->renderGeneral(e);
+                //    }
+                //}
+                renderer->renderGeneral(tetrahedron);
 
                 axis_renderer->clearImage();
                 axis_renderer->renderClear(xax);
@@ -215,7 +235,7 @@ namespace RenderingTest {
         const int num_of_polygons = 50;
         Polygon pol[num_of_polygons];
         for(int i=0; i<num_of_polygons; ++i) {
-            pol[i].moveTo(pol[i].p1 - Point { 0, 0, -50.0f + i*3.0f });
+            pol[i].moveTo({ pol[i].p1 - Point { 0, 0, -50.0f + i*3.0f } });
             pol[i].rotate(Line(pol[i].getCenterOfGravity(), pol[i].getNormal()), i/10.0f);
         }
 

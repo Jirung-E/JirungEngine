@@ -142,7 +142,6 @@
     <ClCompile Include="src\Math\Geometry\Geometry.cpp" />
     <ClCompile Include="src\Math\Line\Line.cpp" />
     <ClCompile Include="src\Math\Model\Model.cpp" />
-    <ClCompile Include="src\Math\Panel\Panel.cpp" />
     <ClCompile Include="src\Math\Plane\Plane.cpp" />
     <ClCompile Include="src\Math\Point\Point.cpp" />
     <ClCompile Include="src\Math\Polygon\Polygon.cpp" />
@@ -173,7 +172,6 @@
     <ClInclude Include="src\Math\Line\Line.hpp" />
     <ClInclude Include="src\Math\Math.hpp" />
     <ClInclude Include="src\Math\Model\Model.hpp" />
-    <ClInclude Include="src\Math\Panel\Panel.hpp" />
     <ClInclude Include="src\Math\Plane\Plane.hpp" />
     <ClInclude Include="src\Math\Point\Point.hpp" />
     <ClInclude Include="src\Math\Polygon\Polygon.hpp" />

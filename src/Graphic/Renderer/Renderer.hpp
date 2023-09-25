@@ -33,6 +33,7 @@ namespace Graphic {
         
     public:
         Image renderGeneral(const Math::Polygon& polygon);
+        Image renderGeneral(const Math::Model& model);
         Image renderClear(const Math::Polygon& polygon);
 
         void clearImage();

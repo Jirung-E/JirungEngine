@@ -46,9 +46,6 @@
     <Filter Include="Source Files\Math\Model">
       <UniqueIdentifier>{98e2ab1d-34d2-4b68-9e8a-69f3f0c15586}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Math\Panel">
-      <UniqueIdentifier>{383187e3-05bf-451b-bebd-6d27e39b9196}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Math\Plane">
       <UniqueIdentifier>{a0375af6-19a4-4b0f-a1b9-bad1a895eb49}</UniqueIdentifier>
     </Filter>
@@ -125,9 +122,6 @@
     </ClCompile>
     <ClCompile Include="src\Math\Plane\Plane.cpp">
       <Filter>Source Files\Math\Plane</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Math\Panel\Panel.cpp">
-      <Filter>Source Files\Math\Panel</Filter>
     </ClCompile>
     <ClCompile Include="src\Math\Point\Point.cpp">
       <Filter>Source Files\Math\Point</Filter>
@@ -210,9 +204,6 @@
     </ClInclude>
     <ClInclude Include="src\Math\Plane\Plane.hpp">
       <Filter>Source Files\Math\Plane</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Math\Panel\Panel.hpp">
-      <Filter>Source Files\Math\Panel</Filter>
     </ClInclude>
     <ClInclude Include="src\Math\Point\Point.hpp">
       <Filter>Source Files\Math\Point</Filter>

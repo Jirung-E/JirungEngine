@@ -1,7 +1,5 @@
 #include "Renderer.hpp"
 
-#include "../../Math/Plane/Plane.hpp"
-
 #ifdef _WIN32
 #define _USE_MATH_DEFINES
 #endif
@@ -15,7 +13,7 @@ using namespace Graphic;
 
 // <Camera> ---------------------------------------------------------------------------------------------------------------------------
 Renderer::Camera::Camera() : view_distance { 128 }, field_of_view { static_cast<float>(M_PI/1.8) } {
-    moveTo(Point { 0, 0, 64 });
+    //moveTo(Point { 0, 0, 64 });
 }
 
 
@@ -54,7 +52,8 @@ Image Renderer::renderGeneral(const Polygon& polygon) {
     Vector normal { polygon.getNormal() };
     Vector at { polygon.getCenterOfGravity() - camera.getPosition() };
     if(normal * at > 0) {   // 면의 뒷면은 그리지 않음
-        return *image;
+        normal = -normal;
+        //return *image;
     }
 
     float brightness = 100 * (-normal * at.unit());
@@ -83,6 +82,14 @@ Image Renderer::renderGeneral(const Polygon& polygon) {
                 renderPoint(ray_point, brightness);
             }
         }
+    }
+
+    return *image;
+}
+
+Image Graphic::Renderer::renderGeneral(const Math::Model& model) {
+    for(auto& e : model.polygons) {
+        renderGeneral(e);
     }
 
     return *image;
