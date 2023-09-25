@@ -123,17 +123,32 @@ namespace RenderingTest {
         //    cnt++;
         //}
 
-        Point p1 { 0, 0, 0 };
-        Point p2 { 1, 0, 0 };
-        Point p3 { 0, 1, 0 };
-        Point p4 { 0, 0, 1 };
+        Point p[] = {
+            { -1, -1, -1 },
+            { 1, -1, -1 },
+            { -1, -1, 1 },
+            { 1, -1, 1 },
+            { -1, 1, -1 },
+            { 1, 1, -1 },
+            { -1, 1, 1 },
+            { 1, 1, 1 }
+        };
 
-        Model tetrahedron;
-        tetrahedron.polygons.reserve(4);
-        tetrahedron.polygons.push_back(Polygon { p1, p2, p4 });
-        tetrahedron.polygons.push_back(Polygon { p1, p3, p2 });
-        tetrahedron.polygons.push_back(Polygon { p1, p4, p3 });
-        tetrahedron.polygons.push_back(Polygon { p2, p3, p4 });
+        Model cube;
+        cube.polygons.reserve(12);
+        cube.polygons.push_back(Polygon { p[0], p[1], p[2] });
+        cube.polygons.push_back(Polygon { p[1], p[3], p[2] });
+        cube.polygons.push_back(Polygon { p[0], p[4], p[1] });
+        cube.polygons.push_back(Polygon { p[1], p[4], p[5] });
+        cube.polygons.push_back(Polygon { p[0], p[2], p[4] });
+        cube.polygons.push_back(Polygon { p[2], p[6], p[4] });
+        cube.polygons.push_back(Polygon { p[1], p[5], p[3] });
+        cube.polygons.push_back(Polygon { p[3], p[5], p[7] });
+        cube.polygons.push_back(Polygon { p[2], p[3], p[6] });
+        cube.polygons.push_back(Polygon { p[3], p[7], p[6] });
+        cube.polygons.push_back(Polygon { p[4], p[6], p[5] });
+        cube.polygons.push_back(Polygon { p[5], p[6], p[7] });
+
 
         Renderer* renderer = new ConsoleRenderer { 150, 44 };
         renderer->camera.moveTo({ 0, 0, 2 });
@@ -211,7 +226,7 @@ namespace RenderingTest {
                 //    }
                 //}
 
-                renderer->renderGeneral(tetrahedron);
+                renderer->renderGeneral(cube);
 
                 axis_renderer->clearImage();
                 axis_renderer->renderClear(xax);
