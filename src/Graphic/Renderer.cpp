@@ -102,9 +102,9 @@ Image Graphic::Renderer::renderGeneral(const Math::Model& model) {
 
     for(int i=0; i<image->getHeight(); ++i) {
         for(int k=0; k<image->getWidth(); ++k) {
-            Vector ray { camera.direction() * max(image->getWidth(), image->getHeight())/2.0f / tanf(camera.field_of_view/2) };
-            ray += camera.getXAxis().vector * (k - image->getWidth()/2.0f);
-            ray += camera.getYAxis().vector * (i - image->getHeight()/2.0f);
+            Vector ray { camera.direction() * max(image->getWidth(), image->getHeight())/2.0f / tanf(camera.field_of_view/2.0f) };
+            ray += camera.getXAxis().vector * (k - image->getWidth()/2);
+            ray += camera.getYAxis().vector * (i - image->getHeight()/2);
             Line ray_line { camera.getPosition(), ray };
             
             Point nearest_point;
@@ -129,7 +129,8 @@ Image Graphic::Renderer::renderGeneral(const Math::Model& model) {
 
                 if(area1 + area2 + area3 < full_area + 0.01f) {  // 0.1f는 오차범위
                     //float brightness = 100 * (-normal * ray.unit());
-                    float brightness = 100 * (-normal * Vector { e.getCenterOfGravity() - camera.getPosition() }.unit());
+                    float light_power = 0.4f;   // 0 ~ 1
+                    float brightness = 100 * (-normal * (Vector { -5, -5, -1 }.unit() * light_power));
                     float distance = Point::getDistanceBetween(camera.getPosition(), ray_point);
                     //renderPoint(ray_point, brightness);
                     if(distance < min_dist) {
@@ -141,7 +142,7 @@ Image Graphic::Renderer::renderGeneral(const Math::Model& model) {
             }
 
             if(min_dist <= camera.view_distance) {
-                renderPoint(nearest_point, nearest_point_brightness);
+                showPointOnImage(Point { (float)k, (float)i }, nearest_point_brightness);
             }
         }
     }

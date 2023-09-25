@@ -116,13 +116,13 @@ bool KeyboardListener::detectKeyPress() {
         ungetc(ch, stdin);
         return true;
     }
+    return false;
 #endif
 
 #ifdef _WIN32
     return _kbhit();
 #endif
 
-    return false;
 }
 
 KeyID KeyboardListener::getPressedKeyID() {

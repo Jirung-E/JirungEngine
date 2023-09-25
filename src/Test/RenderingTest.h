@@ -115,14 +115,6 @@ namespace RenderingTest {
     void testRenderer() {
         println("\nTest Start!\n\n");
 
-        //Polygon pol[10];
-        //int cnt = 0;
-        //for(Polygon& e : pol) {
-        //    e.moveTo(e.p1 - Point { 0, 0, -50.0f + cnt * 3.0f });
-        //    e.rotate(Line(e.getCenterOfGravity(), e.getNormal()), cnt/10.0f);
-        //    cnt++;
-        //}
-
         Point p[] = {
             { -1, -1, -1 },
             { 1, -1, -1 },
@@ -133,7 +125,7 @@ namespace RenderingTest {
             { -1, 1, 1 },
             { 1, 1, 1 }
         };
-
+        
         Model cube;
         cube.polygons.reserve(12);
         cube.polygons.push_back(Polygon { p[0], p[1], p[2] });
@@ -149,21 +141,15 @@ namespace RenderingTest {
         cube.polygons.push_back(Polygon { p[4], p[6], p[5] });
         cube.polygons.push_back(Polygon { p[5], p[6], p[7] });
 
-
         Renderer* renderer = new ConsoleRenderer { 150, 44 };
         renderer->camera.moveTo({ 0, 0, 2 });
-        Renderer* axis_renderer = new ConsoleRenderer { };
-        Polygon xax;
-        Polygon yax;
-        Polygon zax;
-
-        bool render_clear = false;
 
         Input* in = new KeyboardListener { };
 
         while(true) {
+            setxy(0, 0);
             if(in->detectKeyPress()) {
-                setxy(0, 0);
+                
                 in->getInput();
 
                 switch(in->getPressedKeyID()) {
@@ -205,47 +191,29 @@ namespace RenderingTest {
                 case KeyID::X:
                     renderer->camera.field_of_view -= 0.1f;
                     break;
-                case KeyID::R:
-                    render_clear = !render_clear;
-                    break;
                 }
 
                 if(in->getPressedKeyID() == KeyID::ESC) {
                     break;
                 }
-
-                renderer->clearImage();
-                //if(render_clear) {
-                //    for(const Polygon& e : pol) {
-                //        renderer->renderClear(e);
-                //    }
-                //}
-                //else {
-                //    for(const Polygon& e : pol) {
-                //        renderer->renderGeneral(e);
-                //    }
-                //}
-
-                renderer->renderGeneral(cube);
-
-                axis_renderer->clearImage();
-                axis_renderer->renderClear(xax);
-
-                Point position = renderer->camera.getPosition();
-                println("x: " + to_string(position.x) + "  y: " + to_string(position.y) + "  z: " + to_string(position.z) 
-                    + "\nfacing: " + to_string(renderer->camera.direction().x)
-                        + ", " + to_string(renderer->camera.direction().y)
-                        + ", " + to_string(renderer->camera.direction().z)
-                    + "\nfov: " + to_string(renderer->camera.field_of_view));
-
-                ImageEditor ie;
-                Image* ai = new ConsoleImage { 20, 10 };
-                ie.draw(ai, axis_renderer->image, -(axis_renderer->image->getWidth()/2) + ai->getWidth()/2, -(axis_renderer->image->getHeight()/2) + ai->getHeight()/2);
-                ie.draw(renderer->image, ai, 0, renderer->image->getHeight()-1 - ai->getHeight());
-
-                ConsoleImage* ci = new ConsoleImage { renderer->image };
-                print(ci->getByString());
             }
+
+            cube.rotateX(0.01f);
+            cube.rotateY(0.01f);
+            cube.rotateZ(0.01f);
+
+            renderer->clearImage();
+            renderer->renderGeneral(cube);
+
+            Point position = renderer->camera.getPosition();
+            println("x: " + to_string(position.x) + "  y: " + to_string(position.y) + "  z: " + to_string(position.z)
+                + "\nfacing: " + to_string(renderer->camera.direction().x)
+                + ", " + to_string(renderer->camera.direction().y)
+                + ", " + to_string(renderer->camera.direction().z)
+                + "\nfov: " + to_string(renderer->camera.field_of_view));
+
+            ConsoleImage* ci = new ConsoleImage { renderer->image };
+            print(ci->getByString());
         }
     }
 
