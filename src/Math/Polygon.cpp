@@ -88,7 +88,7 @@ Polygon Polygon::operator/(float n) const {
     return poly;
 }
 
-Polygon Polygon::operator*=(float n) {
+Polygon& Polygon::operator*=(float n) {
     Vector v1 { Vector(p2-p1) * n };
     Vector v2 { Vector(p3-p1) * n };
 
@@ -98,7 +98,7 @@ Polygon Polygon::operator*=(float n) {
     return *this;
 }
 
-Polygon Polygon::operator/=(float n) {
+Polygon& Polygon::operator/=(float n) {
     Vector v1 { Vector(p2-p1) / n };
     Vector v2 { Vector(p3-p1) / n };
 

@@ -29,8 +29,8 @@ namespace Math {
 
         Polygon operator*(float n) const;
         Polygon operator/(float n) const;
-        Polygon operator*=(float n);
-        Polygon operator/=(float n);
+        Polygon& operator*=(float n);
+        Polygon& operator/=(float n);
     };
 }
 
