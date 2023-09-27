@@ -49,8 +49,8 @@ Renderer::Renderer() : Renderer { 160, 45 } {
 
 
 Image Renderer::renderGeneral(const Polygon& polygon) {
-    Vector normal { polygon.getNormal() };
-    Vector at { polygon.getCenterOfGravity() - camera.getPosition() };
+    Vector normal { polygon.normal() };
+    Vector at { polygon.centerOfGravity() - camera.getPosition() };
     if(normal * at > 0) {   // 면의 뒷면은 그리지 않음
         //normal = -normal;
         return *image;
@@ -90,8 +90,8 @@ Image Renderer::renderGeneral(const Polygon& polygon) {
 Image Graphic::Renderer::renderGeneral(const Math::Model& model) {
     list<Polygon> renderable_polygons;
     for(const auto& e : model.polygons) {
-        Vector at { e.getCenterOfGravity() - camera.getPosition() };
-        if(e.getNormal() * at >= 0) {
+        Vector at { e.centerOfGravity() - camera.getPosition() };
+        if(e.normal() * at >= 0) {
             continue;
         }
         renderable_polygons.push_back(e);
@@ -112,7 +112,7 @@ Image Graphic::Renderer::renderGeneral(const Math::Model& model) {
             float nearest_point_brightness = 0.0f;
 
             for(auto& e : renderable_polygons) {
-                Vector normal { e.getNormal() };
+                Vector normal { e.normal() };
                 Plane poly_plane { e.p1, normal };
                 if(poly_plane.isParallelTo(ray_line)) {
                     continue;

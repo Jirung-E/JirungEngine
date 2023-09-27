@@ -19,8 +19,8 @@ namespace Math {
         Polygon(const Polygon&) = default;
 
     public:
-        Vector getNormal() const;
-        Point getCenterOfGravity() const;
+        Vector normal() const;
+        Point centerOfGravity() const;
 
         void moveTo(const Point& point);
         void transformNormalVectorTo(const Vector& vector);

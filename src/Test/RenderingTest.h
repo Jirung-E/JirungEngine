@@ -225,7 +225,7 @@ namespace RenderingTest {
         Polygon pol[num_of_polygons];
         for(int i=0; i<num_of_polygons; ++i) {
             pol[i].moveTo({ pol[i].p1 - Point { 0, 0, -50.0f + i*3.0f } });
-            pol[i].rotate(Line(pol[i].getCenterOfGravity(), pol[i].getNormal()), i/10.0f);
+            pol[i].rotate(Line(pol[i].centerOfGravity(), pol[i].normal()), i/10.0f);
         }
 
         thread graphic_thread { [&]() {
