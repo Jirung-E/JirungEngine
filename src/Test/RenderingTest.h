@@ -141,10 +141,11 @@ namespace RenderingTest {
         cube.polygons.push_back(Polygon { p[4], p[6], p[5] });
         cube.polygons.push_back(Polygon { p[5], p[6], p[7] });
 
-        Renderer* renderer = new ConsoleRenderer { 150, 44 };
+        Renderer* renderer = new ConsoleRenderer { 156, 44 };
         renderer->camera.moveTo({ 0, 0, 2 });
 
         Input* in = new KeyboardListener { };
+        in->getInput();
 
         while(true) {
             setxy(0, 0);
@@ -205,14 +206,24 @@ namespace RenderingTest {
             renderer->clearImage();
             renderer->renderGeneral(cube);
 
-            Point position = renderer->camera.getPosition();
-            println("x: " + to_string(position.x) + "  y: " + to_string(position.y) + "  z: " + to_string(position.z)
-                + "\nfacing: " + to_string(renderer->camera.direction().x)
-                + ", " + to_string(renderer->camera.direction().y)
-                + ", " + to_string(renderer->camera.direction().z)
-                + "\nfov: " + to_string(renderer->camera.field_of_view));
+            Renderer::Camera& cam = renderer->camera;
+            Image* img = renderer->image;
 
-            ConsoleImage* ci = new ConsoleImage { renderer->image };
+            Point position = cam.getPosition();
+            printf("x: %7.2f      y: %7.2f      z: %7.2f", position.x, position.y, position.z);
+            string space(img->getWidth()-42, ' ');
+            println(space);
+
+            Vector facing = cam.direction();
+            printf("facing: %5.2f, %5.2f, %5.2f", facing.x, facing.y, facing.z);
+            space.resize(img->getWidth()-27, ' ');
+            println(space);
+
+            printf("fov: %7.2f", cam.field_of_view);
+            space.resize(img->getWidth()-12, ' ');
+            println(space);
+
+            ConsoleImage* ci = new ConsoleImage { img };
             print(ci->getByString());
         }
     }
