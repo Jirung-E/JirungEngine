@@ -129,8 +129,8 @@ Image Graphic::Renderer::renderGeneral(const Math::Model& model) {
 
                 if(area1 + area2 + area3 < full_area + 0.01f) {  // 0.1f는 오차범위
                     //float brightness = 100 * (-normal * ray.unit());
-                    float light_power = 0.4f;   // 0 ~ 1
-                    float brightness = 100 * (-normal * (Vector { -5, -5, -1 }.unit() * light_power));
+                    //float light_power = 0.4f;   // 0 ~ 1
+                    float brightness = 100 * pow(-normal.unit() * (Vector { -1, -1, -4 }.unit()), 10);
                     float distance = Point::getDistanceBetween(camera.getPosition(), ray_point);
                     //renderPoint(ray_point, brightness);
                     if(distance < min_dist) {
