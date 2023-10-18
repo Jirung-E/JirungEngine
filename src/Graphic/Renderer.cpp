@@ -103,8 +103,8 @@ Image Graphic::Renderer::renderGeneral(const Math::Model& model) {
     for(int i=0; i<image->getHeight(); ++i) {
         for(int k=0; k<image->getWidth(); ++k) {
             Vector ray { camera.direction() * max(image->getWidth(), image->getHeight())/2.0f / tanf(camera.field_of_view/2.0f) };
-            ray += camera.getXAxis().vector * (k - image->getWidth()/2);
-            ray += camera.getYAxis().vector * (i - image->getHeight()/2);
+            ray += camera.getXAxis().vector * float(k - image->getWidth()/2);
+            ray += camera.getYAxis().vector * float(i - image->getHeight()/2);
             Line ray_line { camera.getPosition(), ray };
             
             Point nearest_point;
