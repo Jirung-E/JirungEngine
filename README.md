@@ -1,5 +1,3 @@
-# develop 브랜치가 최신버전입니다.
-
 # GameEngine
 
 3D Rendering, Physics, Mathematics...
