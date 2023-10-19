@@ -1,5 +1,8 @@
 #include "Line.hpp"
 
+#ifdef _WIN32
+#define _USE_MATH_DEFINES
+#endif
 #include <cmath>
 
 using namespace Math;
@@ -23,7 +26,41 @@ bool Line::isExistPointOfContactWith(const Line& other) const {
 
 Point* Line::getPointOfContactWith(const Line& other) const {
     if(isExistPointOfContactWith(other)) {
-        return new Point { getFootOfPerpendicularFrom(other) };
+        // 여기부터 다시
+        Point H { getFootOfPerpendicularFrom(other.point) };
+        float SH { Point::getDistanceBetween(other.point, H) };
+        float theta = angleBetween(vector, other.vector);
+        if(theta == M_PI/2) {
+            return new Point { H };
+        }
+        else if(theta > M_PI/2) {
+            float AH { SH * tanf((float)M_PI/2.0f - theta) };
+            Vector HS { other.point - H };
+            float d = other.vector * HS;
+            if(d == 0) {
+                return new Point { H };
+            }
+            else if(d > 0) {
+                return new Point { H - vector.unit() * AH };
+            }
+            else {
+                return new Point { H + vector.unit() * AH };
+            }
+        }
+        else {
+            float AH { SH * tanf(theta - (float)M_PI/2.0f) };
+            Vector HS { other.point - H };
+            float d = other.vector * HS;
+            if(d == 0) {
+                return new Point { H };
+            }
+            else if(d > 0) {
+                return new Point { H + vector.unit() * AH };
+            }
+            else {
+                return new Point { H - vector.unit() * AH };
+            }
+        }
     }
     return nullptr;
 }
